@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mitals — Spedycja, Magazynowanie i Transport | Twój łańcuch dostaw bez zarzutu</title>
+<meta name="description" content="Mitals — nowoczesna firma spedycyjno-logistyczna z Warszawy. Spedycja, magazynowanie oraz transport krajowy i zagraniczny. 10 000 zrealizowanych zleceń, 500 firm, 20 krajów." />
+<meta name="theme-color" content="#0b3d91" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   MITALS — Premium demo. Design & build tokens
+   ============================================================ */
+:root{
+  --navy-900:#071d3f;
+  --navy-800:#0b2c5e;
+  --navy-700:#0e3a7a;
+  --blue-600:#1e63d6;
+  --blue-500:#2f7cff;
+  --blue-400:#5b9bff;
+  --sky-100:#eaf2ff;
+  --sky-50:#f4f8ff;
+  --green-600:#16a34a;
+  --green-500:#22c55e;
+  --green-400:#4ade80;
+  --amber:#f5a623;
+  --ink:#0c1830;
+  --slate-700:#33415c;
+  --slate-500:#5b6b8c;
+  --slate-400:#8695b3;
+  --line:#e4ebf5;
+  --white:#ffffff;
+  --bg:#fbfcff;
+  --radius:22px;
+  --radius-sm:14px;
+  --shadow-sm:0 4px 16px rgba(11,44,94,.06);
+  --shadow-md:0 18px 44px rgba(11,44,94,.10);
+  --shadow-lg:0 40px 90px rgba(11,44,94,.16);
+  --shadow-blue:0 24px 60px rgba(30,99,214,.32);
+  --grad-blue:linear-gradient(135deg,#2f7cff 0%,#1e63d6 55%,#0e3a7a 100%);
+  --grad-eco:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);
+  --grad-hero:radial-gradient(1200px 700px at 80% -10%,#eaf2ff 0%,rgba(234,242,255,0) 60%),radial-gradient(900px 600px at -10% 20%,#eefaf1 0%,rgba(238,250,241,0) 55%);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;line-height:1.1;letter-spacing:-.02em;color:var(--navy-900)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section{position:relative}
+.container{width:min(1200px,92vw);margin-inline:auto}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue-600);background:var(--sky-100);
+  padding:8px 16px;border-radius:100px;border:1px solid #d7e6ff;
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--blue-500);box-shadow:0 0 0 4px rgba(47,124,255,.18)}
+.eyebrow.eco{color:var(--green-600);background:#e9fbef;border-color:#c9f2d5}
+.eyebrow.eco .dot{background:var(--green-500);box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-weight:600;font-size:1rem;padding:15px 28px;border-radius:100px;
+  cursor:pointer;border:none;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s;
+  white-space:nowrap;
+}
+.btn svg{width:18px;height:18px;transition:transform .35s var(--ease)}
+.btn-primary{background:var(--grad-blue);color:#fff;box-shadow:var(--shadow-blue)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 30px 70px rgba(30,99,214,.42)}
+.btn-primary:hover svg{transform:translateX(4px)}
+.btn-ghost{background:#fff;color:var(--navy-800);border:1.5px solid var(--line);box-shadow:var(--shadow-sm)}
+.btn-ghost:hover{transform:translateY(-3px);border-color:var(--blue-400);box-shadow:var(--shadow-md)}
+.btn-white{background:#fff;color:var(--navy-800)}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 24px 50px rgba(0,0,0,.2)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:all .4s var(--ease);
+  padding:18px 0;
+}
+header.nav.scrolled{
+  padding:10px 0;
+  background:rgba(251,252,255,.82);
+  backdrop-filter:saturate(180%) blur(18px);
+  -webkit-backdrop-filter:saturate(180%) blur(18px);
+  box-shadow:0 8px 30px rgba(11,44,94,.07);
+  border-bottom:1px solid rgba(228,235,245,.8);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px;font-family:'Sora';font-weight:800;font-size:1.5rem;color:var(--navy-900);letter-spacing:-.03em}
+.logo-mark{
+  width:42px;height:42px;border-radius:12px;background:var(--grad-blue);
+  display:grid;place-items:center;box-shadow:var(--shadow-blue);position:relative;overflow:hidden;
+}
+.logo-mark svg{width:24px;height:24px}
+.logo span.dotgreen{color:var(--green-500)}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-weight:500;font-size:.97rem;color:var(--slate-700);position:relative;transition:color .25s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--grad-blue);transition:width .3s var(--ease);border-radius:2px}
+.nav-links a:hover{color:var(--navy-900)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:16px}
+.nav-phone{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--navy-800);font-size:.95rem}
+.nav-phone svg{width:17px;height:17px;color:var(--blue-500)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2.5px;background:var(--navy-900);border-radius:3px;transition:.3s var(--ease)}
+.burger.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.active span:nth-child(2){opacity:0}
+.burger.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;inset:0 0 0 auto;width:min(340px,85vw);z-index:99;
+  background:#fff;box-shadow:-20px 0 60px rgba(11,44,94,.18);
+  transform:translateX(100%);transition:transform .45s var(--ease);
+  padding:110px 32px 40px;display:flex;flex-direction:column;gap:8px;
+}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{padding:14px 0;font-size:1.1rem;font-weight:600;color:var(--navy-800);border-bottom:1px solid var(--line)}
+.mobile-menu .btn{margin-top:20px;justify-content:center}
+.overlay{position:fixed;inset:0;background:rgba(7,29,63,.4);backdrop-filter:blur(3px);z-index:98;opacity:0;visibility:hidden;transition:.35s}
+.overlay.show{opacity:1;visibility:visible}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding:170px 0 90px;background:var(--grad-hero);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.5rem,5vw,4.15rem);font-weight:800;margin:22px 0 20px}
+.hero h1 .accent{
+  background:var(--grad-blue);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative;
+}
+.hero p.lead{font-size:1.18rem;color:var(--slate-700);max-width:540px;margin-bottom:34px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:38px}
+.hero-trust{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.hero-trust .avatars{display:flex}
+.hero-trust .avatars span{
+  width:40px;height:40px;border-radius:50%;border:3px solid #fff;margin-left:-12px;
+  background-size:cover;background-position:center;box-shadow:var(--shadow-sm);
+}
+.hero-trust .avatars span:first-child{margin-left:0}
+.hero-trust .txt{font-size:.9rem;color:var(--slate-500)}
+.hero-trust .txt b{color:var(--navy-900);display:block;font-size:.98rem}
+.stars{color:var(--amber);font-size:.9rem;letter-spacing:1px}
+
+/* Hero signature visual — animated route map */
+.hero-visual{position:relative;height:520px}
+.route-card{
+  position:absolute;inset:0;border-radius:28px;overflow:hidden;
+  box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.7);
+  background:#0b2c5e;
+}
+.route-card .photo{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,29,63,.35),rgba(7,29,63,.75)),url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80') center/cover;
+}
+.route-svg{position:absolute;inset:0;width:100%;height:100%}
+.route-path{fill:none;stroke:rgba(255,255,255,.28);stroke-width:2.5;stroke-dasharray:8 8}
+.route-path-active{fill:none;stroke:#5b9bff;stroke-width:3.5;stroke-linecap:round;filter:drop-shadow(0 0 8px rgba(91,155,255,.9))}
+.route-node{fill:#fff}
+.route-node-ring{fill:none;stroke:rgba(255,255,255,.5);stroke-width:2}
+.route-truck{filter:drop-shadow(0 6px 12px rgba(0,0,0,.4))}
+.pin-label{
+  position:absolute;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);
+  padding:7px 13px;border-radius:100px;font-size:.78rem;font-weight:700;color:var(--navy-900);
+  box-shadow:var(--shadow-md);display:flex;align-items:center;gap:7px;white-space:nowrap;
+}
+.pin-label .dt{width:8px;height:8px;border-radius:50%;background:var(--green-500)}
+.pin-warsaw{top:38%;left:44%}
+.pin-berlin{top:20%;left:14%}
+.pin-milan{bottom:16%;left:30%}
+/* floating stat chip */
+.float-chip{
+  position:absolute;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
+  border-radius:18px;padding:16px 20px;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.8);
+  display:flex;align-items:center;gap:14px;
+}
+.float-chip .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.float-chip .ic svg{width:22px;height:22px}
+.float-chip b{display:block;font-family:'Sora';font-size:1.25rem;color:var(--navy-900);line-height:1}
+.float-chip small{font-size:.78rem;color:var(--slate-500)}
+.chip-1{top:-22px;right:-14px;animation:floaty 5s ease-in-out infinite}
+.chip-1 .ic{background:var(--grad-blue)}
+.chip-2{bottom:-24px;left:-26px;animation:floaty 6s ease-in-out infinite .6s}
+.chip-2 .ic{background:var(--grad-eco)}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* logo marquee */
+.marquee-wrap{padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;overflow:hidden}
+.marquee-label{text-align:center;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-400);font-weight:600;margin-bottom:20px}
+.marquee{display:flex;gap:64px;width:max-content;animation:scrollx 32s linear infinite}
+.marquee span{font-family:'Sora';font-weight:700;font-size:1.35rem;color:#c3cfe2;white-space:nowrap;display:flex;align-items:center;gap:10px}
+.marquee span svg{width:22px;height:22px;opacity:.7}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats{padding:80px 0}
+.stats-inner{
+  background:var(--grad-blue);border-radius:32px;padding:60px clamp(28px,5vw,72px);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:30px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow-blue);
+}
+.stats-inner::before{content:"";position:absolute;top:-60%;right:-10%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 65%)}
+.stats-inner::after{content:"";position:absolute;bottom:-70%;left:-8%;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.22),transparent 65%)}
+.stat{text-align:center;color:#fff;position:relative;z-index:2}
+.stat .num{font-family:'Sora';font-weight:800;font-size:clamp(2.6rem,5vw,3.7rem);line-height:1;display:flex;justify-content:center;align-items:baseline;gap:4px}
+.stat .suffix{font-size:1.6rem;opacity:.9}
+.stat .lbl{margin-top:12px;font-size:1.02rem;opacity:.92;font-weight:500}
+.stat .divider{display:none}
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+.section{padding:100px 0}
+.section-head{max-width:680px;margin-bottom:56px}
+.section-head.center{margin-inline:auto;text-align:center}
+.section-head h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:800;margin:18px 0 16px}
+.section-head p{font-size:1.12rem;color:var(--slate-700)}
+
+/* ---------- Why us ---------- */
+.why{background:linear-gradient(180deg,#fff, #f4f8ff)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.why-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:38px 32px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s;position:relative;overflow:hidden;
+}
+.why-card::before{content:"";position:absolute;left:0;top:0;height:4px;width:0;background:var(--grad-blue);transition:width .5s var(--ease)}
+.why-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-md);border-color:transparent}
+.why-card:hover::before{width:100%}
+.why-ic{width:62px;height:62px;border-radius:18px;background:var(--sky-100);display:grid;place-items:center;margin-bottom:22px;transition:.4s var(--ease)}
+.why-ic svg{width:30px;height:30px;color:var(--blue-600);transition:.4s}
+.why-card:hover .why-ic{background:var(--grad-blue);transform:rotate(-6deg) scale(1.05)}
+.why-card:hover .why-ic svg{color:#fff}
+.why-card h3{font-size:1.4rem;margin-bottom:12px}
+.why-card p{color:var(--slate-500);font-size:1rem}
+.why-num{position:absolute;top:24px;right:28px;font-family:'Sora';font-weight:800;font-size:2.6rem;color:#eef3fb;line-height:1;z-index:0}
+
+/* ---------- Services / Offer ---------- */
+.offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.svc{
+  position:relative;border-radius:var(--radius);overflow:hidden;min-height:340px;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:34px;color:#fff;
+  box-shadow:var(--shadow-md);transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.svc .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s var(--ease);z-index:0}
+.svc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,29,63,.05) 0%,rgba(7,29,63,.35) 45%,rgba(7,29,63,.9) 100%);z-index:1}
+.svc:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.svc:hover .bg{transform:scale(1.08)}
+.svc-content{position:relative;z-index:2}
+.svc-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28);padding:7px 14px;border-radius:100px;font-size:.78rem;font-weight:600;margin-bottom:16px}
+.svc-tag svg{width:15px;height:15px}
+.svc h3{color:#fff;font-size:1.6rem;margin-bottom:10px}
+.svc p{color:rgba(255,255,255,.82);font-size:.98rem;max-width:440px;margin-bottom:16px}
+.svc .more{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.95rem;color:#fff;opacity:.85;transition:.3s}
+.svc .more svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.svc:hover .more{opacity:1}
+.svc:hover .more svg{transform:translateX(5px)}
+.svc.wide{grid-column:span 2;min-height:300px}
+
+/* ---------- Ecology ---------- */
+.eco{background:linear-gradient(135deg,#062616 0%,#0a3d24 55%,#0e5a34 100%);color:#fff;overflow:hidden}
+.eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.eco h2{color:#fff;font-size:clamp(2rem,3.8vw,3rem);margin:18px 0 18px}
+.eco p.lead{color:rgba(255,255,255,.82);font-size:1.12rem;margin-bottom:30px}
+.eco-list{display:flex;flex-direction:column;gap:18px}
+.eco-item{display:flex;gap:16px;align-items:flex-start}
+.eco-item .tick{width:38px;height:38px;border-radius:11px;background:rgba(34,197,94,.18);border:1px solid rgba(74,222,128,.35);display:grid;place-items:center;flex-shrink:0}
+.eco-item .tick svg{width:20px;height:20px;color:var(--green-400)}
+.eco-item b{display:block;font-family:'Sora';color:#fff;font-size:1.08rem;margin-bottom:3px}
+.eco-item span{color:rgba(255,255,255,.72);font-size:.96rem}
+.eco-visual{position:relative}
+.eco-visual .imgwrap{border-radius:26px;overflow:hidden;box-shadow:var(--shadow-lg);height:460px;position:relative}
+.eco-visual .imgwrap img{width:100%;height:100%;object-fit:cover}
+.eco-badge{
+  position:absolute;bottom:-24px;left:-24px;background:#fff;color:var(--navy-900);
+  border-radius:20px;padding:22px 26px;box-shadow:var(--shadow-lg);text-align:center;
+}
+.eco-badge .big{font-family:'Sora';font-weight:800;font-size:2.4rem;color:var(--green-600);line-height:1}
+.eco-badge small{font-size:.82rem;color:var(--slate-500);font-weight:500}
+.eco-ring{position:absolute;top:-30px;right:-30px;width:120px;height:120px;border:2px dashed rgba(74,222,128,.4);border-radius:50%;animation:spin 24s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- Process ---------- */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:step}
+.step{position:relative;padding:30px 24px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);transition:.4s var(--ease)}
+.step:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent}
+.step .n{font-family:'Sora';font-weight:800;font-size:1rem;width:42px;height:42px;border-radius:12px;background:var(--grad-blue);color:#fff;display:grid;place-items:center;margin-bottom:18px;box-shadow:var(--shadow-blue)}
+.step h4{font-size:1.15rem;margin-bottom:8px}
+.step p{color:var(--slate-500);font-size:.92rem}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact{background:linear-gradient(180deg,#f4f8ff,#fff)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:stretch}
+.contact-info{display:flex;flex-direction:column;gap:14px}
+.contact-info h2{font-size:clamp(1.9rem,3.5vw,2.7rem);margin:16px 0 12px}
+.contact-info>p{color:var(--slate-700);font-size:1.08rem;margin-bottom:14px}
+.info-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:22px 24px;
+  display:flex;gap:16px;align-items:center;transition:.35s var(--ease);
+}
+.info-card:hover{transform:translateX(6px);box-shadow:var(--shadow-sm);border-color:var(--blue-400)}
+.info-card .ic{width:50px;height:50px;border-radius:14px;background:var(--sky-100);display:grid;place-items:center;flex-shrink:0}
+.info-card .ic svg{width:24px;height:24px;color:var(--blue-600)}
+.info-card small{color:var(--slate-500);font-size:.82rem;display:block;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.info-card b{font-size:1.05rem;color:var(--navy-900);font-family:'Sora';font-weight:600}
+.info-card .phones{display:flex;flex-direction:column;line-height:1.35}
+.info-card .phones a{font-family:'Sora';font-weight:600;color:var(--navy-900);transition:color .2s}
+.info-card .phones a:hover{color:var(--blue-600)}
+
+.form-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(28px,4vw,44px);box-shadow:var(--shadow-md)}
+.form-card h3{font-size:1.55rem;margin-bottom:6px}
+.form-card .sub{color:var(--slate-500);margin-bottom:26px;font-size:.98rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:16px;position:relative}
+.field label{display:block;font-size:.85rem;font-weight:600;color:var(--slate-700);margin-bottom:7px}
+.field input,.field select,.field textarea{
+  width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;
+  font-family:inherit;font-size:.98rem;color:var(--ink);background:#fbfcff;transition:.25s;
+}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue-500);background:#fff;box-shadow:0 0 0 4px rgba(47,124,255,.12)}
+.form-card .btn{width:100%;justify-content:center;margin-top:6px}
+.form-note{font-size:.8rem;color:var(--slate-400);text-align:center;margin-top:14px}
+.form-success{display:none;text-align:center;padding:20px 0}
+.form-success.show{display:block;animation:pop .5s var(--ease)}
+.form-success .ico{width:70px;height:70px;border-radius:50%;background:var(--grad-eco);display:grid;place-items:center;margin:0 auto 18px;box-shadow:0 16px 40px rgba(22,163,74,.35)}
+.form-success .ico svg{width:36px;height:36px;color:#fff}
+.form-success h3{margin-bottom:8px}
+.form-success p{color:var(--slate-500)}
+@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+
+/* ---------- Company data strip ---------- */
+.company-strip{margin-top:60px;background:var(--navy-900);border-radius:var(--radius);padding:38px clamp(24px,4vw,48px);color:#fff;position:relative;overflow:hidden}
+.company-strip::before{content:"";position:absolute;top:-40%;right:-5%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(47,124,255,.25),transparent 65%)}
+.company-strip h4{color:#fff;font-size:1.2rem;margin-bottom:24px;position:relative;z-index:2}
+.company-data{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 40px;position:relative;z-index:2}
+.company-data .item small{display:block;color:var(--slate-400);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;font-weight:600}
+.company-data .item b{font-family:'Sora';font-weight:600;font-size:1.02rem;color:#fff}
+.addr-full{grid-column:span 3;padding-top:20px;margin-top:6px;border-top:1px solid rgba(255,255,255,.12);display:grid;grid-template-columns:1fr 1fr;gap:22px}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:#050f22;color:rgba(255,255,255,.72);padding:70px 0 34px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:48px}
+.foot-brand .logo{color:#fff;margin-bottom:18px}
+.foot-brand p{font-size:.95rem;max-width:320px;color:rgba(255,255,255,.6)}
+.foot-col h5{color:#fff;font-family:'Sora';font-size:1rem;margin-bottom:18px}
+.foot-col a{display:block;padding:7px 0;font-size:.94rem;color:rgba(255,255,255,.62);transition:.25s}
+.foot-col a:hover{color:#fff;transform:translateX(4px)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:.85rem;color:rgba(255,255,255,.45)}
+.foot-bottom .socials{display:flex;gap:12px}
+.foot-bottom .socials a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:.3s}
+.foot-bottom .socials a:hover{background:var(--blue-600);transform:translateY(-3px)}
+.foot-bottom .socials svg{width:18px;height:18px;color:#fff}
+.demo-banner{background:var(--amber);color:#3a2a00;text-align:center;font-size:.82rem;font-weight:600;padding:9px}
+
+/* floating call button (mobile) */
+.fab{
+  position:fixed;bottom:24px;right:24px;z-index:90;width:60px;height:60px;border-radius:50%;
+  background:var(--grad-eco);display:none;place-items:center;box-shadow:0 16px 40px rgba(22,163,74,.45);
+  animation:pulse 2.4s infinite;
+}
+.fab svg{width:26px;height:26px;color:#fff}
+@keyframes pulse{0%{box-shadow:0 16px 40px rgba(22,163,74,.45),0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 16px 40px rgba(22,163,74,.45),0 0 0 18px rgba(34,197,94,0)}100%{box-shadow:0 16px 40px rgba(22,163,74,.45),0 0 0 0 rgba(34,197,94,0)}}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad-blue);z-index:200;transition:width .1s}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:60px}
+  .hero-visual{height:440px;max-width:520px;margin-inline:auto;width:100%}
+  .why-grid,.process-grid{grid-template-columns:repeat(2,1fr)}
+  .eco-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:34px}
+  .nav-links,.nav-phone{display:none}
+  .burger{display:flex}
+  .fab{display:grid}
+}
+@media(max-width:640px){
+  .stats-inner{grid-template-columns:1fr;gap:0;padding:20px 28px}
+  .stat{padding:30px 0}
+  .stat .divider{display:block;height:1px;background:rgba(255,255,255,.16);margin:0 auto}
+  .stat:not(:last-child){border-bottom:1px solid rgba(255,255,255,.16)}
+  .why-grid,.process-grid,.offer-grid,.company-data,.form-row,.addr-full{grid-template-columns:1fr}
+  .svc.wide{grid-column:span 1}
+  .company-data .addr-full{grid-column:span 1}
+  .foot-grid,.foot-bottom{grid-template-columns:1fr;text-align:left}
+  .section{padding:70px 0}
+  .eco-badge{left:0}
+  .float-chip{transform:scale(.85)}
+  .chip-1{right:-6px}.chip-2{left:-6px}
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="progress"></div>
+<div class="demo-banner">✦ Wersja demonstracyjna przygotowana dla Mitals Sp. z o.o. — projekt do akceptacji ✦</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v8H3z" stroke="#fff" stroke-width="1.8"/><path d="M14 10h4l3 3v2h-7z" stroke="#fff" stroke-width="1.8"/><circle cx="7" cy="17" r="1.8" stroke="#fff" stroke-width="1.8"/><circle cx="17.5" cy="17" r="1.8" stroke="#fff" stroke-width="1.8"/></svg>
+      </span>
+      Mitals<span class="dotgreen">.</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#why">Dlaczego my</a>
+      <a href="#offer">Oferta</a>
+      <a href="#eco">Ekologia</a>
+      <a href="#process">Jak działamy</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+48666968006" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 011-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        666 968 006
+      </a>
+      <a href="#contact" class="btn btn-primary" style="padding:12px 22px;font-size:.95rem">Wyceń transport
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#why">Dlaczego my</a>
+  <a href="#offer">Oferta</a>
+  <a href="#eco">Ekologia</a>
+  <a href="#process">Jak działamy</a>
+  <a href="#contact">Kontakt</a>
+  <a href="tel:+48666968006" class="btn btn-ghost">📞 666 968 006</a>
+  <a href="#contact" class="btn btn-primary">Wyceń transport</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal"><span class="dot"></span>Spedycja • Magazynowanie • Transport</span>
+      <h1 class="reveal d1">Twój łańcuch dostaw <span class="accent">bez zarzutu.</span></h1>
+      <p class="lead reveal d2">Organizujemy spedycję, magazynowanie oraz transport krajowy i zagraniczny. Łączymy 15 lat doświadczenia z nowoczesną logistyką — Twój ładunek dojedzie na czas, bezpiecznie i w najlepszej cenie.</p>
+      <div class="hero-actions reveal d3">
+        <a href="#contact" class="btn btn-primary">Zamów wycenę
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#offer" class="btn btn-ghost">Poznaj ofertę</a>
+      </div>
+      <div class="hero-trust reveal d4">
+        <div class="avatars">
+          <span style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80')"></span>
+          <span style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80')"></span>
+          <span style="background-image:url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&q=80')"></span>
+          <span style="background-image:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=100&q=80')"></span>
+        </div>
+        <div class="txt">
+          <span class="stars">★★★★★</span>
+          <b>500+ zadowolonych firm</b>
+          zaufało naszej logistyce
+        </div>
+      </div>
+    </div>
+
+    <!-- Signature visual: animated route map -->
+    <div class="hero-visual reveal d2">
+      <div class="route-card">
+        <div class="photo"></div>
+        <svg class="route-svg" viewBox="0 0 500 520" preserveAspectRatio="xMidYMid slice">
+          <path class="route-path" d="M70,110 C160,140 180,250 250,270 C330,293 360,400 210,440"/>
+          <path class="route-path-active" id="activePath" d="M70,110 C160,140 180,250 250,270 C330,293 360,400 210,440"/>
+          <g><circle class="route-node-ring" cx="70" cy="110" r="11"/><circle class="route-node" cx="70" cy="110" r="5"/></g>
+          <g><circle class="route-node-ring" cx="250" cy="270" r="11"/><circle class="route-node" cx="250" cy="270" r="5"/></g>
+          <g><circle class="route-node-ring" cx="210" cy="440" r="11"/><circle class="route-node" cx="210" cy="440" r="5"/></g>
+          <g class="route-truck" id="truck">
+            <circle r="18" fill="#2f7cff"/>
+            <path d="M-9,-3h8v6h-8z M1,-1h5l3,3v3h-8z" fill="#fff" transform="scale(.9)"/>
+            <circle cx="-5" cy="4" r="1.8" fill="#0b2c5e"/><circle cx="6" cy="4" r="1.8" fill="#0b2c5e"/>
+          </g>
+        </svg>
+        <div class="pin-label pin-berlin"><span class="dt"></span>Berlin</div>
+        <div class="pin-label pin-warsaw"><span class="dt"></span>Warszawa · HUB</div>
+        <div class="pin-label pin-milan"><span class="dt"></span>Milano</div>
+      </div>
+      <div class="float-chip chip-1">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v8H3z" stroke="#fff" stroke-width="1.8"/><path d="M14 10h4l3 3v2h-7z" stroke="#fff" stroke-width="1.8"/><circle cx="7" cy="17" r="1.6" fill="#fff"/><circle cx="17.5" cy="17" r="1.6" fill="#fff"/></svg></span>
+        <div><b>Dostawa on-time</b><small>Śledzenie 24/7</small></div>
+      </div>
+      <div class="float-chip chip-2">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V7z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><b>Ubezpieczony ładunek</b><small>Pełna ochrona</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee-wrap reveal">
+  <div class="container"><p class="marquee-label">Obsługujemy transport w 20 krajach Europy</p></div>
+  <div class="marquee">
+    <span>🇵🇱 Polska</span><span>🇩🇪 Niemcy</span><span>🇳🇱 Holandia</span><span>🇫🇷 Francja</span><span>🇮🇹 Włochy</span><span>🇪🇸 Hiszpania</span><span>🇨🇿 Czechy</span><span>🇦🇹 Austria</span><span>🇧🇪 Belgia</span><span>🇸🇪 Szwecja</span>
+    <span>🇵🇱 Polska</span><span>🇩🇪 Niemcy</span><span>🇳🇱 Holandia</span><span>🇫🇷 Francja</span><span>🇮🇹 Włochy</span><span>🇪🇸 Hiszpania</span><span>🇨🇿 Czechy</span><span>🇦🇹 Austria</span><span>🇧🇪 Belgia</span><span>🇸🇪 Szwecja</span>
+  </div>
+</div>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-inner reveal">
+      <div class="stat">
+        <div class="num"><span class="counter" data-target="10000">0</span><span class="suffix">+</span></div>
+        <div class="lbl">zrealizowanych zleceń transportowych</div>
+      </div>
+      <div class="stat">
+        <div class="num"><span class="counter" data-target="500">0</span><span class="suffix">+</span></div>
+        <div class="lbl">obsłużonych firm i kontrahentów</div>
+      </div>
+      <div class="stat">
+        <div class="num"><span class="counter" data-target="20">0</span></div>
+        <div class="lbl">krajów w zasięgu naszej logistyki</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="section why" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Dlaczego Mitals</span>
+      <h2>Logistyka, na której możesz polegać</h2>
+      <p>Nie tylko przewozimy ładunki — bierzemy odpowiedzialność za cały proces. Trzy filary, które sprawiają, że firmy wracają do nas od lat.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal d1">
+        <span class="why-num">01</span>
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.5 7.1 18.2 8 12.7 4 8.8 9.5 8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Doświadczenie</h3>
+        <p>15 lat na rynku i tysiące zrealizowanych tras. Znamy przepisy, granice i sezonowe wyzwania — planujemy transport tak, by uniknąć kosztownych niespodzianek.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <span class="why-num">02</span>
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h3>Kompleksowość</h3>
+        <p>Spedycja, magazynowanie i transport w jednym miejscu. Jeden partner, jedna umowa i pełna kontrola nad łańcuchem dostaw — od nadania do rozładunku.</p>
+      </div>
+      <div class="why-card reveal d3">
+        <span class="why-num">03</span>
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 12l2.3 2.3L16 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Niezawodność</h3>
+        <p>Gwarantujemy terminowość i bezpieczeństwo ładunku. Śledzenie przesyłek w czasie rzeczywistym oraz stały opiekun, który zna Twoje zlecenie na wylot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFER ============ -->
+<section class="section" id="offer">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Nasza oferta</span>
+      <h2>Kompletne usługi logistyczne</h2>
+      <p>Od pojedynczej palety po pełną obsługę łańcucha dostaw. Dobierzemy rozwiązanie skrojone pod Twój biznes.</p>
+    </div>
+    <div class="offer-grid">
+      <article class="svc reveal d1">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1000&q=80')"></div>
+        <div class="svc-content">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none"><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="1.6"/></svg>Spedycja</span>
+          <h3>Spedycja krajowa i międzynarodowa</h3>
+          <p>Organizujemy przewóz towarów na terenie Polski i za granicą. Dobieramy optymalną trasę, przewoźnika i formalności — Ty otrzymujesz gotowe, bezpieczne rozwiązanie.</p>
+          <span class="more">Dowiedz się więcej <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </article>
+      <article class="svc reveal d2">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1000&q=80')"></div>
+        <div class="svc-content">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21V9l9-5 9 5v12" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 21v-6h10v6" stroke="#fff" stroke-width="1.6"/></svg>Magazynowanie</span>
+          <h3>Bezpieczne magazynowanie</h3>
+          <p>Udostępniamy przestrzeń magazynową na przejrzystych zasadach współpracy. Twoje towary czekają w monitorowanych, dobrze zorganizowanych warunkach.</p>
+          <span class="more">Dowiedz się więcej <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </article>
+      <article class="svc wide reveal d1">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1400&q=80')"></div>
+        <div class="svc-content">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v8H3z" stroke="#fff" stroke-width="1.6"/><path d="M14 10h4l3 3v2h-7z" stroke="#fff" stroke-width="1.6"/><circle cx="7" cy="17" r="1.6" stroke="#fff" stroke-width="1.6"/><circle cx="17.5" cy="17" r="1.6" stroke="#fff" stroke-width="1.6"/></svg>Transport drogowy</span>
+          <h3>Transport krajowy i zagraniczny</h3>
+          <p>Realizujemy transport drogowy z optymalizacją kosztów i efektywnym wykorzystaniem przestrzeni ładunkowej. Nowoczesna flota, terminowość i pełne ubezpieczenie ładunku w każdej trasie — po Polsce i w całej Europie.</p>
+          <span class="more">Dowiedz się więcej <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ECOLOGY ============ -->
+<section class="section eco" id="eco">
+  <div class="container eco-grid">
+    <div class="reveal">
+      <span class="eyebrow eco"><span class="dot"></span>Zielona transformacja</span>
+      <h2>Logistyka, która szanuje planetę</h2>
+      <p class="lead">Wierzymy, że nowoczesna spedycja musi iść w parze z odpowiedzialnością za środowisko. Łączymy różne gałęzie transportu i optymalizujemy trasy, aby ograniczać emisję gazów cieplarnianych.</p>
+      <div class="eco-list">
+        <div class="eco-item">
+          <span class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>Optymalizacja tras i ładunków</b><span>Maksymalne wykorzystanie przestrzeni ładunkowej ogranicza liczbę pustych przebiegów i emisję CO₂.</span></div>
+        </div>
+        <div class="eco-item">
+          <span class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>Transport intermodalny</b><span>Łączymy transport drogowy z innymi gałęziami, by przewozić więcej, emitując mniej.</span></div>
+        </div>
+        <div class="eco-item">
+          <span class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>Nowoczesne magazynowanie</b><span>Efektywne procesy magazynowe zmniejszają zużycie energii i ślad węglowy dostaw.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="eco-visual reveal d2">
+      <div class="eco-ring"></div>
+      <div class="imgwrap">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80" alt="Zielona logistyka i zrównoważony transport" loading="lazy" />
+      </div>
+      <div class="eco-badge">
+        <div class="big">-30%</div>
+        <small>emisji dzięki<br/>optymalizacji tras</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Jak działamy</span>
+      <h2>Prosty proces, pełna kontrola</h2>
+      <p>Od pierwszego kontaktu po dostawę — prowadzimy Cię przez każdy etap.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step reveal d1"><div class="n">01</div><h4>Zgłoszenie</h4><p>Przesyłasz szczegóły ładunku i trasy. Reagujemy błyskawicznie.</p></div>
+      <div class="step reveal d2"><div class="n">02</div><h4>Wycena</h4><p>Otrzymujesz przejrzystą, konkurencyjną ofertę bez ukrytych kosztów.</p></div>
+      <div class="step reveal d3"><div class="n">03</div><h4>Realizacja</h4><p>Organizujemy transport i magazynowanie, dobierając najlepsze rozwiązanie.</p></div>
+      <div class="step reveal d4"><div class="n">04</div><h4>Dostawa</h4><p>Śledzisz przesyłkę, a ładunek dociera na czas i bezpiecznie.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow"><span class="dot"></span>Kontakt</span>
+        <h2>Porozmawiajmy o Twoim transporcie</h2>
+        <p>Masz ładunek do przewiezienia lub potrzebujesz przestrzeni magazynowej? Zostaw wiadomość lub zadzwoń — przygotujemy wycenę tego samego dnia.</p>
+        <div class="info-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 011-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+          <div class="phones">
+            <small>Zadzwoń do nas</small>
+            <a href="tel:+48666968006">666 968 006</a>
+            <a href="tel:+48602653023">602 653 023</a>
+            <a href="tel:+48509028051">509 028 051</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+          <div><small>Napisz e-mail</small><b><a href="mailto:biuro@mitals.pl">biuro@mitals.pl</a></b></div>
+        </div>
+        <div class="info-card">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <div><small>Siedziba spółki</small><b>ul. Grzybowska 2/31, 00-131 Warszawa</b></div>
+        </div>
+      </div>
+
+      <div class="form-card reveal d2">
+        <form id="contactForm" novalidate>
+          <h3>Zamów bezpłatną wycenę</h3>
+          <p class="sub">Wypełnij formularz — odezwiemy się w ciągu kilku godzin.</p>
+          <div class="form-row">
+            <div class="field"><label for="name">Imię i nazwisko *</label><input id="name" name="name" type="text" placeholder="Jan Kowalski" required /></div>
+            <div class="field"><label for="company">Firma</label><input id="company" name="company" type="text" placeholder="Nazwa firmy" /></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="phone">Telefon *</label><input id="phone" name="phone" type="tel" placeholder="+48 600 000 000" required /></div>
+            <div class="field"><label for="email">E-mail *</label><input id="email" name="email" type="email" placeholder="jan@firma.pl" required /></div>
+          </div>
+          <div class="field">
+            <label for="service">Interesuje mnie</label>
+            <select id="service" name="service">
+              <option>Spedycja</option>
+              <option>Magazynowanie</option>
+              <option>Transport krajowy</option>
+              <option>Transport zagraniczny</option>
+              <option>Kompleksowa obsługa logistyczna</option>
+            </select>
+          </div>
+          <div class="field"><label for="message">Wiadomość</label><textarea id="message" name="message" placeholder="Opisz ładunek, trasę lub potrzeby..."></textarea></div>
+          <button type="submit" class="btn btn-primary">Wyślij zapytanie
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 12l16-8-6 16-3-6z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form-note">Wysyłając formularz akceptujesz przetwarzanie danych w celu kontaktu handlowego.</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Dziękujemy!</h3>
+          <p>Twoje zapytanie zostało przyjęte. Skontaktujemy się z Tobą wkrótce.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company data strip -->
+    <div class="company-strip reveal">
+      <h4>Dane rejestrowe spółki</h4>
+      <div class="company-data">
+        <div class="item"><small>KRS</small><b>0001048670</b></div>
+        <div class="item"><small>REGON</small><b>525914430</b></div>
+        <div class="item"><small>NIP</small><b>5214029162</b></div>
+        <div class="addr-full">
+          <div class="item"><small>Adres siedziby</small><b>ul. Grzybowska 2/31, 00-131 Warszawa</b></div>
+          <div class="item"><small>Adres korespondencyjny</small><b>Natalia 14, 08-400 Garwolin, woj. mazowieckie</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="logo">
+          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v8H3z" stroke="#fff" stroke-width="1.8"/><path d="M14 10h4l3 3v2h-7z" stroke="#fff" stroke-width="1.8"/><circle cx="7" cy="17" r="1.8" stroke="#fff" stroke-width="1.8"/><circle cx="17.5" cy="17" r="1.8" stroke="#fff" stroke-width="1.8"/></svg></span>
+          Mitals<span class="dotgreen">.</span>
+        </a>
+        <p>Nowoczesna firma spedycyjno-logistyczna z Warszawy. Spedycja, magazynowanie oraz transport krajowy i zagraniczny — z nami Twój łańcuch dostaw działa bez zarzutu.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Oferta</h5>
+        <a href="#offer">Spedycja</a>
+        <a href="#offer">Magazynowanie</a>
+        <a href="#offer">Transport krajowy</a>
+        <a href="#offer">Transport zagraniczny</a>
+      </div>
+      <div class="foot-col">
+        <h5>Firma</h5>
+        <a href="#why">Dlaczego my</a>
+        <a href="#eco">Ekologia</a>
+        <a href="#process">Jak działamy</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+      <div class="foot-col">
+        <h5>Kontakt</h5>
+        <a href="tel:+48666968006">666 968 006</a>
+        <a href="tel:+48602653023">602 653 023</a>
+        <a href="tel:+48509028051">509 028 051</a>
+        <a href="mailto:biuro@mitals.pl">biuro@mitals.pl</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Mitals Sp. z o.o. · KRS 0001048670 · NIP 5214029162 · Wszelkie prawa zastrzeżone.</div>
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 002.5 6a2.5 2.5 0 105 0 2.5 2.5 0 00-2.52-2.5zM3 8.75h4v11.75H3zM9.5 8.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v6.1h-4v-5.4c0-1.3 0-2.95-1.8-2.95s-2.08 1.4-2.08 2.85v5.5h-4z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg></a>
+        <a href="mailto:biuro@mitals.pl" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke="#fff" stroke-width="1.8"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="tel:+48666968006" class="fab" aria-label="Zadzwoń"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 011-2z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg></a>
+
+<script>
+/* ---------- Nav scroll state + progress ---------- */
+const nav=document.getElementById('nav'),progress=document.getElementById('progress');
+function onScroll(){
+  const y=window.scrollY;
+  nav.classList.toggle('scrolled',y>30);
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  progress.style.width=(y/h*100)+'%';
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- Mobile menu ---------- */
+const burger=document.getElementById('burger'),menu=document.getElementById('mobileMenu'),overlay=document.getElementById('overlay');
+function toggleMenu(open){burger.classList.toggle('active',open);menu.classList.toggle('open',open);overlay.classList.toggle('show',open);document.body.style.overflow=open?'hidden':''}
+burger.addEventListener('click',()=>toggleMenu(!menu.classList.contains('open')));
+overlay.addEventListener('click',()=>toggleMenu(false));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+
+/* ---------- Scroll reveal ---------- */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.14,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- Animated counters ---------- */
+function animateCounter(el){
+  const target=+el.dataset.target;let start=0;const dur=1800,t0=performance.now();
+  function tick(now){
+    const p=Math.min((now-t0)/dur,1);
+    const eased=1-Math.pow(1-p,3);
+    const val=Math.floor(eased*target);
+    el.textContent=val.toLocaleString('pl-PL');
+    if(p<1)requestAnimationFrame(tick);else el.textContent=target.toLocaleString('pl-PL');
+  }
+  requestAnimationFrame(tick);
+}
+const counterIO=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);counterIO.unobserve(e.target)}});
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(c=>counterIO.observe(c));
+
+/* ---------- Hero truck animation along route ---------- */
+(function(){
+  const path=document.getElementById('activePath'),truck=document.getElementById('truck');
+  if(!path||!truck)return;
+  const len=path.getTotalLength();
+  path.style.strokeDasharray=len;path.style.strokeDashoffset=len;
+  let t=0;
+  function loop(){
+    t+=0.0016;if(t>1)t=0;
+    // draw progress
+    path.style.strokeDashoffset=len*(1-t);
+    const pt=path.getPointAtLength(t*len);
+    const pt2=path.getPointAtLength(Math.min(t+0.01,1)*len);
+    const ang=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI;
+    truck.setAttribute('transform',`translate(${pt.x},${pt.y}) rotate(${ang})`);
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ---------- Contact form (demo) ---------- */
+const form=document.getElementById('contactForm'),success=document.getElementById('formSuccess');
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  if(!form.checkValidity()){form.reportValidity();return;}
+  form.style.display='none';success.classList.add('show');
+});
+
+/* ---------- Parallax float chips (subtle) ---------- */
+const chips=document.querySelectorAll('.float-chip');
+window.addEventListener('mousemove',(e)=>{
+  if(window.innerWidth<980)return;
+  const x=(e.clientX/window.innerWidth-.5),y=(e.clientY/window.innerHeight-.5);
+  chips.forEach((c,i)=>{const f=(i+1)*8;c.style.marginLeft=(x*f)+'px';c.style.marginTop=(y*f)+'px';});
+});
+</script>
+</body>
+</html>
