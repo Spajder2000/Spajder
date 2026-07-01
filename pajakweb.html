@@ -180,24 +180,14 @@ section{position:relative;z-index:2}
 .hero-device .device-label{display:flex;align-items:center;gap:.55rem;padding:.3rem .5rem .9rem;font-size:.78rem;font-weight:700;color:var(--ink);font-family:'Space Grotesk',sans-serif}
 .hero-device .device-label .dot{width:7px;height:7px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 0 var(--emerald-glow);animation:pulseDot 2.2s infinite;flex:none}
 .compare-widget{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;background:var(--graphite);border:1px solid rgba(255,255,255,.08);cursor:ew-resize;-webkit-user-select:none;user-select:none;touch-action:pan-y}
-.compare-pane{position:absolute;inset:0;padding:2rem 1.8rem;display:flex;flex-direction:column;gap:1rem;justify-content:center}
-.compare-before{background:linear-gradient(155deg,#eef2f8,#dbe4f0)}
-.compare-after{background:linear-gradient(155deg,var(--graphite),#0f1a14);clip-path:inset(0 0 0 50%)}
-.compare-after::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(0,211,138,.24),transparent 55%)}
-.compare-after>*{position:relative;z-index:1}
-.cw-tag{align-self:flex-start;padding:.4rem .85rem;border-radius:100px;font-size:.7rem;font-weight:700;font-family:'Space Grotesk',sans-serif;letter-spacing:.03em;background:rgba(28,45,70,.09);color:#3d5a85}
-.cw-tag-accent{background:rgba(0,211,138,.18);color:var(--emerald)}
-.cw-heading{margin:0}
-.cw-heading-serif{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:1.4rem;color:#1c2b3f}
-.cw-heading-bold{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.02em;font-size:1.05rem;color:#fff}
-.cw-tiles{display:flex;gap:.5rem}
-.cw-tile{flex:1;aspect-ratio:3/4;border-radius:8px;background:linear-gradient(160deg,#5b7fb5,#2c4a75);display:flex;align-items:flex-end;padding:.5rem .45rem;box-shadow:inset 0 -34px 26px -14px rgba(0,0,0,.55)}
-.cw-tile span{font-size:.6rem;font-weight:700;color:#fff;line-height:1.25}
-.cw-tiles-2{gap:.7rem}
-.cw-tile-accent{background:linear-gradient(160deg,#1c2530,#0a0e13);border:1px solid rgba(0,211,138,.35)}
-.cw-metric{margin-top:.2rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.76rem;font-weight:700}
+.compare-pane{position:absolute;inset:0;overflow:hidden;background:var(--graphite);isolation:isolate}
+.compare-after{clip-path:inset(0 0 0 50%)}
+.cw-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.cw-tag{position:absolute;top:1.1rem;left:1.1rem;z-index:2;padding:.4rem .85rem;border-radius:100px;font-size:.7rem;font-weight:700;font-family:'Space Grotesk',sans-serif;letter-spacing:.03em;background:rgba(10,14,19,.68);color:#fff;backdrop-filter:blur(6px)}
+.cw-tag-accent{background:rgba(0,211,138,.85);color:#03150e}
+.cw-metric{position:absolute;left:1.1rem;right:1.1rem;bottom:1.1rem;z-index:2;display:inline-flex;align-items:center;gap:.5rem;font-size:.76rem;font-weight:700;padding:.55rem .85rem;border-radius:var(--radius-sm);background:rgba(10,14,19,.72);backdrop-filter:blur(6px)}
 .cw-metric svg{width:15px;height:15px;flex:none}
-.cw-bad{color:#c0392b}
+.cw-bad{color:#ff8a80}
 .cw-good{color:var(--emerald)}
 .compare-handle{position:absolute;top:0;bottom:0;left:50%;width:44px;margin-left:-22px;display:flex;align-items:center;justify-content:center;z-index:5}
 .compare-handle::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-50%);box-shadow:0 0 12px rgba(0,0,0,.3)}
@@ -601,22 +591,13 @@ section{position:relative;z-index:2}
         <div class="device-label"><span class="dot" aria-hidden="true"></span> FIDES — realny case Pajakweb. Przeciągnij suwak.</div>
         <div class="compare-widget" id="compareWidget">
           <div class="compare-pane compare-before">
+            <img src="assets/fides-przed.jpg" alt="Strona FIDES przed metamorfozą Pajakweb" class="cw-shot">
             <span class="cw-tag">FIDES — przed</span>
-            <h4 class="cw-heading cw-heading-serif">Nasza oferta</h4>
-            <div class="cw-tiles">
-              <div class="cw-tile"><span>Usługi<br>logistyczne</span></div>
-              <div class="cw-tile"><span>Wynajem<br>pojazdów</span></div>
-              <div class="cw-tile"><span>Transport<br>i spedycja</span></div>
-            </div>
             <span class="cw-metric cw-bad"><svg class="ic"><use href="#i-cross"/></svg>Przeciążona, nieczytelna oferta</span>
           </div>
           <div class="compare-pane compare-after" id="comparePaneAfter">
+            <img src="assets/fides-po.jpg" alt="Strona FIDES po metamorfozie Pajakweb" class="cw-shot">
             <span class="cw-tag cw-tag-accent">FIDES — po</span>
-            <h4 class="cw-heading cw-heading-bold">NASZA OFERTA</h4>
-            <div class="cw-tiles cw-tiles-2">
-              <div class="cw-tile cw-tile-accent"><span>Transport<br>i spedycja</span></div>
-              <div class="cw-tile cw-tile-accent"><span>Wypożyczalnia<br>samochodów</span></div>
-            </div>
             <span class="cw-metric cw-good"><svg class="ic"><use href="#i-check"/></svg>Jasny, uporządkowany przekaz</span>
           </div>
           <div class="compare-handle" id="compareHandle" role="slider" aria-label="Suwak porównania przed i po" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
