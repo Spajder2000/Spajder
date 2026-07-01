@@ -19,6 +19,8 @@
   "description": "Agencja interaktywna projektująca strony i systemy sprzedażowe wyłącznie dla firm transportowych, logistycznych i wypożyczalni pojazdów.",
   "areaServed": "Polska",
   "address": { "@type": "PostalAddress", "addressLocality": "Opole", "addressCountry": "PL" },
+  "telephone": "+48796869739",
+  "email": "kontakt@radoslaw-pajak.pl",
   "taxID": "7471746151",
   "knowsAbout": ["Transport", "Spedycja", "Logistyka", "Wypożyczalnie pojazdów", "TSL", "Projektowanie stron B2B"]
 }
@@ -34,7 +36,7 @@
   --line:rgba(10,14,19,.09); --line-strong:rgba(10,14,19,.16);
   --glass:rgba(255,255,255,.66); --glass-strong:rgba(255,255,255,.88); --glass-border:rgba(255,255,255,.6);
 
-  --blue:#2f5cf5; --blue-600:#1c3fd6; --blue-glow:rgba(47,92,245,.3);
+  --blue:#2f5cf5; --blue-600:#1c3fd6; --blue-glow:rgba(47,92,245,.3); --logo-dot:#38bdf8;
   --emerald:#00d38a; --emerald-600:#00b478; --emerald-glow:rgba(0,211,138,.35);
   --grad-accent:linear-gradient(120deg,var(--emerald),var(--blue));
 
@@ -105,7 +107,9 @@ section{position:relative;z-index:2}
 .btn-primary{background:var(--ink);color:#fff;box-shadow:var(--shadow-md)}
 .btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-glow);background:var(--graphite-2)}
 .btn-primary:hover svg{transform:translate(3px,-1px)}
-.btn-accent{background:var(--grad-accent);color:#03150e;box-shadow:var(--shadow-glow)}
+.btn-accent{position:relative;overflow:hidden;background:var(--grad-accent);color:#03150e;box-shadow:var(--shadow-glow)}
+.btn-accent::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);background-size:220% 100%;background-position:150% 0;animation:btnShimmer 4.5s ease-in-out infinite}
+@keyframes btnShimmer{0%,80%,100%{background-position:150% 0}40%{background-position:-50% 0}}
 .btn-accent:hover{transform:translateY(-3px);box-shadow:0 26px 60px -16px var(--emerald-glow)}
 .btn-accent:hover svg{transform:translate(3px,-1px)}
 .btn-ghost{background:var(--glass);color:var(--ink);border-color:var(--line-strong);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4)}
@@ -125,12 +129,15 @@ section{position:relative;z-index:2}
   box-shadow:0 10px 30px -16px rgba(10,14,19,.22);transition:box-shadow .4s var(--ease),background .4s var(--ease)}
 .nav.scrolled .nav-bar{background:var(--glass-strong);box-shadow:var(--shadow-md)}
 .brand{display:flex;align-items:center;gap:.7rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.14rem;letter-spacing:-.01em;color:var(--ink);padding-left:.25rem}
-.brand .mark{width:42px;height:42px;border-radius:12px;background:var(--ink);display:grid;place-items:center;flex:none;position:relative}
-.brand .mark svg{width:23px;height:23px;color:var(--emerald)}
+.brand .wordmark{display:inline-flex;align-items:flex-end;font-weight:700;letter-spacing:-.02em;line-height:1}
+.brand .wm-dot{width:8px;height:8px;border-radius:50%;background:var(--logo-dot);margin:0 0 3px 3px;flex:none;box-shadow:0 0 0 0 rgba(56,189,248,.5);animation:wmPulse 2.6s infinite}
+@keyframes wmPulse{0%,100%{box-shadow:0 0 0 0 rgba(56,189,248,.5)}70%{box-shadow:0 0 0 7px transparent}}
 .brand small{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-400);margin-top:1px}
 .nav-links{display:flex;align-items:center;gap:.15rem}
-.nav-links a{display:inline-block;color:var(--slate-500);font-weight:600;font-size:.9rem;padding:.65rem .95rem;border-radius:100px;transition:color .25s,background .25s}
+.nav-links a{position:relative;display:inline-block;color:var(--slate-500);font-weight:600;font-size:.9rem;padding:.65rem .95rem;border-radius:100px;transition:color .25s,background .25s}
+.nav-links a::after{content:"";position:absolute;left:.95rem;right:.95rem;bottom:.4rem;height:2px;border-radius:2px;background:var(--grad-accent);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .nav-links a:hover{color:var(--ink);background:var(--surface-2)}
+.nav-links a:hover::after{transform:scaleX(1)}
 .nav-actions{display:flex;align-items:center;gap:.6rem}
 .burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line-strong);background:var(--surface);flex-direction:column;justify-content:center;align-items:center;gap:5px;flex:none}
 .burger span{width:19px;height:2px;background:var(--ink);border-radius:2px;transition:.32s var(--ease)}
@@ -143,7 +150,7 @@ section{position:relative;z-index:2}
 .mobile-panel.open .mobile-sheet{transform:translateX(0)}
 .mobile-sheet a{display:block;padding:1rem 0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;border-bottom:1px solid var(--line);color:var(--ink)}
 .mobile-sheet .btn{margin-top:1.6rem}
-@media(max-width:960px){ .nav-links,.nav-actions .btn{display:none} .burger{display:flex} }
+@media(max-width:1180px){ .nav-links,.nav-actions .btn{display:none} .burger{display:flex} }
 
 /* ---- hero ---- */
 .hero{position:relative;overflow:hidden;min-height:100vh;min-height:100dvh;display:flex;align-items:center;padding:calc(var(--nav-h) + 2.4rem) 0 4rem;color:#fff}
@@ -172,18 +179,29 @@ section{position:relative;z-index:2}
 .hero-device{background:var(--glass-strong);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);border:1px solid var(--glass-border);border-radius:calc(var(--radius-lg) + 10px);padding:14px;box-shadow:var(--shadow-lg);transform-style:preserve-3d;transition:transform .15s ease-out}
 .hero-device .device-label{display:flex;align-items:center;gap:.55rem;padding:.3rem .5rem .9rem;font-size:.78rem;font-weight:700;color:var(--ink);font-family:'Space Grotesk',sans-serif}
 .hero-device .device-label .dot{width:7px;height:7px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 0 var(--emerald-glow);animation:pulseDot 2.2s infinite;flex:none}
-.hero-panel{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;background:var(--graphite);border:1px solid rgba(255,255,255,.08)}
-.hero-panel::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(47,92,245,.28),transparent 55%),radial-gradient(circle at 80% 85%,rgba(0,211,138,.24),transparent 50%);z-index:1}
-.hero-panel svg{position:relative;z-index:2;width:100%;height:100%}
-.net-route{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1.4}
-.net-route-glow{fill:none;stroke:url(#netGrad);stroke-width:2;stroke-dasharray:260;stroke-dashoffset:260;opacity:0;transition:stroke-dashoffset 1.8s var(--ease),opacity .4s}
-.hero-panel.in-view .net-route-glow{stroke-dashoffset:0;opacity:1}
-.net-node circle.core{fill:#fff;stroke-width:0}
-.net-node.hub circle.core{fill:var(--emerald);r:7}
-.net-node circle.ring{fill:none;stroke:var(--emerald);stroke-width:1.2;opacity:0;animation:ringPulse 2.6s ease-out infinite}
-.net-node.blue circle.ring{stroke:var(--blue)}
-.net-node.blue circle.core{fill:var(--blue)}
-@keyframes ringPulse{0%{transform:scale(.5);opacity:.8}100%{transform:scale(2.8);opacity:0}}
+.compare-widget{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;background:var(--graphite);border:1px solid rgba(255,255,255,.08);cursor:ew-resize;-webkit-user-select:none;user-select:none;touch-action:pan-y}
+.compare-pane{position:absolute;inset:0;padding:2rem 1.8rem;display:flex;flex-direction:column;gap:1rem;justify-content:center}
+.compare-before{background:linear-gradient(155deg,#20242c,#2b2f38)}
+.compare-after{background:linear-gradient(155deg,var(--graphite),#0f1a14);clip-path:inset(0 0 0 50%)}
+.compare-after::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 15%,rgba(0,211,138,.24),transparent 55%)}
+.compare-after>*{position:relative;z-index:1}
+.cw-tag{align-self:flex-start;padding:.4rem .85rem;border-radius:100px;font-size:.7rem;font-weight:700;font-family:'Space Grotesk',sans-serif;letter-spacing:.03em;background:rgba(255,255,255,.12);color:rgba(255,255,255,.7)}
+.cw-tag-accent{background:rgba(0,211,138,.18);color:var(--emerald)}
+.cw-line{height:10px;border-radius:100px;background:rgba(255,255,255,.14)}
+.cw-line-accent{background:rgba(0,211,138,.3)}
+.cw-line.w70{width:70%}.cw-line.w45{width:45%}.cw-line.w60{width:60%}
+.cw-line.w80{width:80%}.cw-line.w55{width:55%}.cw-line.w65{width:65%}
+.cw-btn{margin-top:.4rem;align-self:flex-start;padding:.7rem 1.3rem;border-radius:100px;font-size:.82rem;font-weight:700;font-family:'Space Grotesk',sans-serif;background:rgba(255,255,255,.14);color:rgba(255,255,255,.65)}
+.cw-btn-accent{background:var(--grad-accent);color:#03150e}
+.cw-metric{margin-top:.6rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:700}
+.cw-metric svg{width:15px;height:15px;flex:none}
+.cw-bad{color:#ff8a80}
+.cw-good{color:var(--emerald)}
+.compare-handle{position:absolute;top:0;bottom:0;left:50%;width:44px;margin-left:-22px;display:flex;align-items:center;justify-content:center;z-index:5}
+.compare-handle::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-50%);box-shadow:0 0 12px rgba(0,0,0,.3)}
+.compare-handle .grip{width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:var(--shadow-lg);color:var(--ink);transition:transform .25s var(--ease)}
+.compare-handle .grip svg{width:19px;height:19px}
+.compare-widget:hover .compare-handle .grip{transform:scale(1.08)}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .hero-float{position:absolute;display:flex;align-items:center;gap:.75rem;background:var(--glass-strong);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:.9rem 1.1rem;box-shadow:var(--shadow-lg);z-index:3;animation:floaty 5.5s ease-in-out infinite}
 .hero-float .ic-wrap{width:38px;height:38px;border-radius:10px;background:var(--grad-accent);display:grid;place-items:center;flex:none}
@@ -253,7 +271,8 @@ section{position:relative;z-index:2}
   background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),var(--emerald-glow),transparent 65%)}
 .b-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--line-strong)}
 .b-card:hover::before{opacity:1}
-.b-card .ic-wrap{width:48px;height:48px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);display:grid;place-items:center;margin-bottom:1.2rem;flex:none;position:relative;z-index:1}
+.b-card:hover .ic-wrap{transform:rotate(-8deg) scale(1.08)}
+.b-card .ic-wrap{width:48px;height:48px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);display:grid;place-items:center;margin-bottom:1.2rem;flex:none;position:relative;z-index:1;transition:transform .4s var(--ease)}
 .b-card .ic-wrap svg{width:23px;height:23px;color:var(--blue-600)}
 .b-card h3{font-size:1.2rem;margin-bottom:.55rem;position:relative;z-index:1}
 .b-card p{font-size:.92rem;color:var(--slate-500);position:relative;z-index:1;max-width:38ch}
@@ -325,6 +344,22 @@ section{position:relative;z-index:2}
 .pf-block p{font-size:.9rem;color:var(--slate-700)}
 @media(max-width:980px){.portfolio-wrap{grid-template-columns:1fr}.pf-tabs{position:static;flex-direction:row;overflow-x:auto;padding-bottom:.4rem}.pf-tab{flex:0 0 auto;min-width:220px}}
 @media(max-width:640px){.pf-grid3{grid-template-columns:1fr}}
+
+/* ---- process ---- */
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1.4rem;margin-top:4rem;position:relative}
+.process-steps::before{content:"";position:absolute;top:27px;left:10%;right:10%;height:2px;background:var(--line-strong)}
+.process-steps::after{content:"";position:absolute;top:27px;left:10%;width:0;height:2px;background:var(--grad-accent);transition:width 1.8s var(--ease)}
+.process-steps.fill::after{width:80%}
+.process-step{position:relative;text-align:center}
+.process-step .num{width:54px;height:54px;border-radius:50%;background:var(--surface);border:2px solid var(--line-strong);display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--blue-600);margin:0 auto 1.4rem;position:relative;z-index:1;transition:border-color .4s var(--ease),transform .4s var(--ease),background .4s var(--ease)}
+.process-step:hover .num{transform:scale(1.1);border-color:var(--emerald);background:var(--ink)}
+.process-step:hover .num svg{color:var(--emerald)}
+.process-step .num svg{width:22px;height:22px;transition:color .4s var(--ease)}
+.process-step .step-tag{display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-400);margin-bottom:.4rem}
+.process-step h3{font-size:1.05rem;margin-bottom:.5rem}
+.process-step p{font-size:.86rem;color:var(--slate-500);max-width:24ch;margin:0 auto}
+@media(max-width:980px){.process-steps{grid-template-columns:repeat(2,1fr);gap:2.4rem 1.4rem}.process-steps::before,.process-steps::after{display:none}}
+@media(max-width:560px){.process-steps{grid-template-columns:1fr}}
 
 /* ---- guarantee (dark) ---- */
 .guarantee{background:var(--graphite);color:var(--graphite-fg);position:relative;overflow:hidden}
@@ -437,8 +472,7 @@ section{position:relative;z-index:2}
 .footer{background:var(--graphite);color:var(--graphite-fg-muted);padding:5rem 0 0}
 .footer-grid{display:grid;grid-template-columns:1.5fr .9fr .9fr 1.1fr;gap:2.6rem;padding-bottom:3.4rem;border-bottom:1px solid var(--graphite-border)}
 .footer .brand{color:#fff;margin-bottom:1.1rem}
-.footer .brand .mark{background:var(--grad-accent)}
-.footer .brand .mark svg{color:#03150e}
+.footer .brand .wordmark{color:#fff}
 .footer-brand p{font-size:.92rem;max-width:32ch;margin-top:1rem;line-height:1.75}
 .footer h5{font-family:'Space Grotesk',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(243,246,248,.45);margin-bottom:1.2rem}
 .footer ul{display:flex;flex-direction:column;gap:.8rem}
@@ -463,7 +497,7 @@ section{position:relative;z-index:2}
 
 /* ---- generic responsive ---- */
 @media(max-width:1080px){.hero-grid{grid-template-columns:1fr}.hero-visual{max-width:440px;margin:0 auto;width:100%}.hero-float{display:none}.hero-bg::after{background:linear-gradient(180deg,rgba(6,10,16,.78),rgba(6,10,16,.93))}}
-@media(max-width:640px){.container{padding:0 20px}.hero-cta .btn{flex:1;justify-content:center}}
+@media(max-width:640px){.container{padding:0 20px}.hero-cta .btn{flex:1;justify-content:center;min-width:max-content}}
 </style>
 </head>
 <body>
@@ -492,6 +526,9 @@ section{position:relative;z-index:2}
 <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
 <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></symbol>
 <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+<symbol id="i-design" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><path d="M5 16s-1-4 3-8 9-4 9-4 1 5-4 9-8 3-8 3Z"/><path d="M9 15l-3 3M9 9 6 6"/><circle cx="14.5" cy="9.5" r="1.5"/></symbol>
 </defs>
 </svg>
 
@@ -504,19 +541,18 @@ section{position:relative;z-index:2}
   <div class="nav-inner">
     <div class="nav-bar">
       <a href="#top" class="brand" aria-label="Pajakweb — strona główna">
-        <span class="mark" aria-hidden="true"><svg class="ic" style="width:23px;height:23px"><use href="#i-network"/></svg></span>
-        <span>PAJAKWEB<small>Tylko TSL &amp; Rental</small></span>
+        <span><span class="wordmark">PAJAKWEB<span class="wm-dot" aria-hidden="true"></span></span><small>Tylko TSL &amp; Rental</small></span>
       </a>
       <ul class="nav-links">
         <li><a href="#manifest">Manifest</a></li>
         <li><a href="#tworca">O mnie</a></li>
         <li><a href="#atuty">Atuty</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#proces">Proces</a></li>
         <li><a href="#gwarancja">Gwarancja</a></li>
         <li><a href="#brief">Kontakt</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="#brief" class="btn btn-ghost btn-sm">Kontakt</a>
         <a href="#brief" class="btn btn-accent btn-sm">Bezpłatny Audyt Trasy Cyfrowej</a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobilePanel"><span></span><span></span><span></span></button>
       </div>
@@ -530,6 +566,7 @@ section{position:relative;z-index:2}
     <a href="#tworca">O mnie</a>
     <a href="#atuty">Atuty</a>
     <a href="#portfolio">Portfolio</a>
+    <a href="#proces">Proces</a>
     <a href="#gwarancja">Gwarancja</a>
     <a href="#brief">Kontakt</a>
     <a href="#brief" class="btn btn-accent btn-block">Bezpłatny Audyt Trasy Cyfrowej</a>
@@ -559,28 +596,27 @@ section{position:relative;z-index:2}
     </div>
     <div class="hero-visual reveal" data-d="2">
       <div class="hero-device" id="heroDevice">
-        <div class="device-label"><span class="dot" aria-hidden="true"></span> Audyt Trasy Cyfrowej — podgląd na żywo</div>
-        <div class="hero-panel" id="heroPanel">
-          <svg viewBox="0 0 360 440" aria-hidden="true">
-            <defs>
-              <linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#00d38a"/><stop offset="100%" stop-color="#2f5cf5"/>
-              </linearGradient>
-            </defs>
-            <path class="net-route" d="M180,220 L70,120"/><path class="net-route-glow" d="M180,220 L70,120"/>
-            <path class="net-route" d="M180,220 L290,110"/><path class="net-route-glow" d="M180,220 L290,110"/>
-            <path class="net-route" d="M180,220 L60,300"/><path class="net-route-glow" d="M180,220 L60,300"/>
-            <path class="net-route" d="M180,220 L300,320"/><path class="net-route-glow" d="M180,220 L300,320"/>
-            <path class="net-route" d="M180,220 L180,370"/><path class="net-route-glow" d="M180,220 L180,370"/>
-            <path class="net-route" d="M70,120 L290,110"/>
-            <path class="net-route" d="M60,300 L300,320"/>
-            <g class="net-node hub"><circle class="ring" cx="180" cy="220" r="8"/><circle class="core" cx="180" cy="220" r="7"/></g>
-            <g class="net-node blue"><circle class="ring" cx="70" cy="120" r="6"/><circle class="core" cx="70" cy="120" r="5"/></g>
-            <g class="net-node blue"><circle class="ring" cx="290" cy="110" r="6"/><circle class="core" cx="290" cy="110" r="5"/></g>
-            <g class="net-node"><circle class="ring" cx="60" cy="300" r="6"/><circle class="core" cx="60" cy="300" r="5"/></g>
-            <g class="net-node"><circle class="ring" cx="300" cy="320" r="6"/><circle class="core" cx="300" cy="320" r="5"/></g>
-            <g class="net-node blue"><circle class="ring" cx="180" cy="370" r="6"/><circle class="core" cx="180" cy="370" r="5"/></g>
-          </svg>
+        <div class="device-label"><span class="dot" aria-hidden="true"></span> Przeciągnij suwak i zobacz różnicę</div>
+        <div class="compare-widget" id="compareWidget">
+          <div class="compare-pane compare-before">
+            <span class="cw-tag">Zwykła wizytówka</span>
+            <div class="cw-line w70"></div>
+            <div class="cw-line w45"></div>
+            <div class="cw-line w60"></div>
+            <div class="cw-btn">Kontakt</div>
+            <span class="cw-metric cw-bad"><svg class="ic"><use href="#i-cross"/></svg>Brak zapytań o fracht</span>
+          </div>
+          <div class="compare-pane compare-after" id="comparePaneAfter">
+            <span class="cw-tag cw-tag-accent">System Pajakweb</span>
+            <div class="cw-line cw-line-accent w80"></div>
+            <div class="cw-line cw-line-accent w55"></div>
+            <div class="cw-line cw-line-accent w65"></div>
+            <div class="cw-btn cw-btn-accent">Zapytaj o wycenę</div>
+            <span class="cw-metric cw-good"><svg class="ic"><use href="#i-check"/></svg>+240% zapytań ofertowych</span>
+          </div>
+          <div class="compare-handle" id="compareHandle" role="slider" aria-label="Suwak porównania przed i po" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+            <span class="grip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg></span>
+          </div>
         </div>
       </div>
       <div class="hero-float f1">
@@ -828,6 +864,49 @@ section{position:relative;z-index:2}
   </div>
 </section>
 
+<!-- ============ PROCES ============ -->
+<section class="section-pad" id="proces" style="background:var(--surface-2)">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" style="justify-content:center">Jak wygląda współpraca</span>
+      <h2>Od podpisu do opieki.<br>Bez niespodzianek.</h2>
+      <p>Pięć jasnych etapów — wiesz dokładnie, na jakim etapie jesteśmy i co dzieje się dalej.</p>
+    </div>
+    <div class="process-steps" id="processSteps">
+      <div class="process-step reveal">
+        <span class="num"><svg class="ic"><use href="#i-doc"/></svg></span>
+        <span class="step-tag">Krok 01</span>
+        <h3>Podpisanie umowy</h3>
+        <p>Ustalamy zakres, harmonogram i cel — bez drobnego druku.</p>
+      </div>
+      <div class="process-step reveal" data-d="1">
+        <span class="num"><svg class="ic"><use href="#i-design"/></svg></span>
+        <span class="step-tag">Krok 02</span>
+        <h3>Projektowanie</h3>
+        <p>Makiety i copy dopasowane do Twojej floty i klientów.</p>
+      </div>
+      <div class="process-step reveal" data-d="2">
+        <span class="num"><svg class="ic"><use href="#i-code"/></svg></span>
+        <span class="step-tag">Krok 03</span>
+        <h3>Realizacja</h3>
+        <p>Kodujemy szybki, responsywny system zgodny z projektem.</p>
+      </div>
+      <div class="process-step reveal" data-d="3">
+        <span class="num"><svg class="ic"><use href="#i-rocket"/></svg></span>
+        <span class="step-tag">Krok 04</span>
+        <h3>Wdrożenie</h3>
+        <p>Publikacja strony, domena i testy każdego formularza.</p>
+      </div>
+      <div class="process-step reveal" data-d="4">
+        <span class="num"><svg class="ic"><use href="#i-shield"/></svg></span>
+        <span class="step-tag">Krok 05</span>
+        <h3>Opieka nad projektem</h3>
+        <p>6 miesięcy pełnej opieki technicznej w cenie wdrożenia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ GWARANCJA ============ -->
 <section class="section-pad guarantee" id="gwarancja">
   <div class="container">
@@ -1004,8 +1083,7 @@ section{position:relative;z-index:2}
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#top" class="brand">
-          <span class="mark"><svg class="ic" style="width:23px;height:23px"><use href="#i-network"/></svg></span>
-          <span>PAJAKWEB</span>
+          <span class="wordmark">PAJAKWEB<span class="wm-dot" aria-hidden="true"></span></span>
         </a>
         <p>Jedyna agencja w Polsce projektująca systemy wizerunkowo-sprzedażowe wyłącznie dla transportu, logistyki i wypożyczalni pojazdów.</p>
       </div>
@@ -1023,14 +1101,15 @@ section{position:relative;z-index:2}
           <li><a href="#manifest">Manifest</a></li>
           <li><a href="#atuty">Atuty</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#proces">Proces</a></li>
           <li><a href="#gwarancja">Gwarancja</a></li>
         </ul>
       </div>
       <div>
         <h5>Kontakt</h5>
         <ul class="footer-contact">
-          <li><svg class="ic"><use href="#i-mail"/></svg><a href="mailto:kontakt@pajakweb.pl">kontakt@pajakweb.pl</a></li>
-          <li><svg class="ic"><use href="#i-phone"/></svg><a href="tel:+48508315729">+48 508 315 729</a></li>
+          <li><svg class="ic"><use href="#i-mail"/></svg><a href="mailto:kontakt@radoslaw-pajak.pl">kontakt@radoslaw-pajak.pl</a></li>
+          <li><svg class="ic"><use href="#i-phone"/></svg><a href="tel:+48796869739">+48 796 869 739</a></li>
           <li><svg class="ic"><use href="#i-pin"/></svg><span>Opole, Polska</span></li>
         </ul>
       </div>
@@ -1083,14 +1162,55 @@ section{position:relative;z-index:2}
     rev.forEach(function(e){ io.observe(e); });
   }
 
-  /* Hero network panel reveal */
-  var heroPanel = document.getElementById('heroPanel');
-  if('IntersectionObserver' in window){
-    var pio = new IntersectionObserver(function(entries){
-      entries.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in-view'); pio.unobserve(x.target); } });
-    }, {threshold:.3});
-    pio.observe(heroPanel);
-  } else { heroPanel.classList.add('in-view'); }
+  /* Process steps line fill */
+  var processSteps = document.getElementById('processSteps');
+  if(processSteps){
+    if(reduce || !('IntersectionObserver' in window)){ processSteps.classList.add('fill'); }
+    else{
+      var prio = new IntersectionObserver(function(entries){
+        entries.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('fill'); prio.unobserve(x.target); } });
+      }, {threshold:.35});
+      prio.observe(processSteps);
+    }
+  }
+
+  /* Before/after compare widget */
+  var compareWidget = document.getElementById('compareWidget');
+  var compareHandle = document.getElementById('compareHandle');
+  var comparePaneAfter = document.getElementById('comparePaneAfter');
+  if(compareWidget && compareHandle && comparePaneAfter){
+    var setCompare = function(pct){
+      pct = Math.max(4, Math.min(96, pct));
+      comparePaneAfter.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+      compareHandle.style.left = pct + '%';
+      compareHandle.setAttribute('aria-valuenow', Math.round(pct));
+    };
+    var dragging = false;
+    var updateFromClientX = function(clientX){
+      var r = compareWidget.getBoundingClientRect();
+      setCompare(((clientX - r.left) / r.width) * 100);
+    };
+    compareWidget.addEventListener('pointerdown', function(e){ dragging = true; compareWidget.setPointerCapture(e.pointerId); updateFromClientX(e.clientX); });
+    compareWidget.addEventListener('pointermove', function(e){ if(dragging) updateFromClientX(e.clientX); });
+    compareWidget.addEventListener('pointerup', function(){ dragging = false; });
+    compareWidget.addEventListener('pointercancel', function(){ dragging = false; });
+    compareHandle.addEventListener('keydown', function(e){
+      var cur = parseFloat(compareHandle.getAttribute('aria-valuenow')) || 50;
+      if(e.key === 'ArrowLeft'){ setCompare(cur - 5); e.preventDefault(); }
+      if(e.key === 'ArrowRight'){ setCompare(cur + 5); e.preventDefault(); }
+    });
+    if(!reduce && 'IntersectionObserver' in window){
+      var cwio = new IntersectionObserver(function(entries){
+        entries.forEach(function(x){
+          if(x.isIntersecting){
+            setCompare(28); setTimeout(function(){ setCompare(50); }, 900);
+            cwio.unobserve(x.target);
+          }
+        });
+      }, {threshold:.4});
+      cwio.observe(compareWidget);
+    }
+  }
 
   /* Hero photo parallax */
   var heroSection = document.querySelector('.hero'), heroBgImg = document.querySelector('.hero-bg img');
