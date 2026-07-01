@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pajakweb — Strony i Systemy Sprzedażowe dla Transportu, Logistyki i Wypożyczalni</title>
+<meta name="description" content="Pajakweb — jedyna agencja w Polsce projektująca strony i systemy sprzedażowe wyłącznie dla branży TSL i wypożyczalni pojazdów. Znamy tachografy, giełdy transportowe i rekrutację kierowców. 6 miesięcy pełnej opieki w cenie wdrożenia. Bezpłatny audyt trasy cyfrowej.">
+<meta name="theme-color" content="#0a0e13">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a0e13'/%3E%3Cpath d='M32 14 L14 26 M32 14 L50 26 M32 14 L32 32 M14 26 L14 44 M50 26 L50 44 M32 32 L14 44 M32 32 L50 44' stroke='%2300d38a' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='14' r='4' fill='%2300d38a'/%3E%3Ccircle cx='14' cy='26' r='3' fill='%232f5cff'/%3E%3Ccircle cx='50' cy='26' r='3' fill='%232f5cff'/%3E%3Ccircle cx='32' cy='32' r='3' fill='%232f5cff'/%3E%3Ccircle cx='14' cy='44' r='3' fill='%2300d38a'/%3E%3Ccircle cx='50' cy='44' r='3' fill='%2300d38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Pajakweb",
+  "founder": { "@type": "Person", "name": "Radosław Pająk" },
+  "description": "Agencja interaktywna projektująca strony i systemy sprzedażowe wyłącznie dla firm transportowych, logistycznych i wypożyczalni pojazdów.",
+  "areaServed": "Polska",
+  "address": { "@type": "PostalAddress", "addressLocality": "Opole", "addressCountry": "PL" },
+  "taxID": "7471746151",
+  "knowsAbout": ["Transport", "Spedycja", "Logistyka", "Wypożyczalnie pojazdów", "TSL", "Projektowanie stron B2B"]
+}
+</script>
+<style>
+/* ======================================================================
+   PAJAKWEB — LANDING PAGE DLA TSL I RENTALU
+   Light mode · Graphite + Cyber-Blue + Neon Emerald · Bento · Glassmorphism
+   ====================================================================== */
+:root{
+  --ink:#0a0e13; --ink-2:#12181f; --slate-700:#2a3542; --slate-500:#57626e; --slate-400:#828d97;
+  --bg:#f5f7fa; --surface:#ffffff; --surface-2:#eef1f5;
+  --line:rgba(10,14,19,.09); --line-strong:rgba(10,14,19,.16);
+  --glass:rgba(255,255,255,.66); --glass-strong:rgba(255,255,255,.88); --glass-border:rgba(255,255,255,.6);
+
+  --blue:#2f5cf5; --blue-600:#1c3fd6; --blue-glow:rgba(47,92,245,.3);
+  --emerald:#00d38a; --emerald-600:#00b478; --emerald-glow:rgba(0,211,138,.35);
+  --grad-accent:linear-gradient(120deg,var(--emerald),var(--blue));
+
+  --graphite:#0a0e13; --graphite-2:#121922; --graphite-surface:rgba(255,255,255,.055);
+  --graphite-border:rgba(255,255,255,.13); --graphite-fg:#f3f6f8; --graphite-fg-muted:rgba(243,246,248,.68);
+
+  --shadow-sm:0 1px 2px rgba(10,14,19,.06),0 2px 8px rgba(10,14,19,.06);
+  --shadow-md:0 14px 36px -12px rgba(10,14,19,.16);
+  --shadow-lg:0 32px 76px -20px rgba(10,14,19,.26);
+  --shadow-glow:0 18px 46px -14px var(--emerald-glow);
+
+  --radius:20px; --radius-sm:13px; --radius-lg:28px; --radius-xl:34px;
+  --maxw:1260px; --nav-h:82px;
+  --ease:cubic-bezier(.19,1,.22,1); --ease-soft:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px)}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);
+  line-height:1.68;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+}
+h1,h2,h3,h4,.disp{font-family:'Space Grotesk',sans-serif;line-height:1.1;letter-spacing:-.02em;font-weight:600;color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+ul{list-style:none}
+button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{position:relative;z-index:2}
+::selection{background:var(--emerald-glow);color:var(--ink)}
+:focus-visible{outline:2.5px solid var(--emerald);outline-offset:3px;border-radius:6px}
+.icon-sprite{position:absolute;width:0;height:0;overflow:hidden}
+.ic{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.skip-link{position:absolute;left:16px;top:-60px;background:var(--ink);color:#fff;padding:.8rem 1.2rem;border-radius:10px;z-index:10000;transition:top .25s var(--ease)}
+.skip-link:focus{top:16px}
+
+/* ---- decorative background ---- */
+.bg-aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.bg-aurora span{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform}
+.bg-aurora .a1{width:46vw;height:46vw;left:-12vw;top:-14vw;background:radial-gradient(circle,var(--blue),transparent 68%);opacity:.14;animation:driftA 30s var(--ease) infinite alternate}
+.bg-aurora .a2{width:40vw;height:40vw;right:-10vw;top:4vw;background:radial-gradient(circle,var(--emerald),transparent 68%);opacity:.13;animation:driftB 34s var(--ease) infinite alternate}
+.bg-aurora .a3{width:36vw;height:36vw;left:30vw;bottom:-16vw;background:radial-gradient(circle,var(--blue),transparent 70%);opacity:.09;animation:driftC 38s var(--ease) infinite alternate}
+@keyframes driftA{to{transform:translate(6vw,5vw) scale(1.12)}}
+@keyframes driftB{to{transform:translate(-5vw,7vw) scale(1.08)}}
+@keyframes driftC{to{transform:translate(4vw,-5vw) scale(1.15)}}
+.bg-topo{position:fixed;inset:0;z-index:0;opacity:.55;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 85%)}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad-accent);z-index:1200;transition:width .1s linear}
+
+/* ---- section head / eyebrow ---- */
+.section-pad{padding:clamp(4.4rem,9vw,7.6rem) 0}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.79rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blue-600);margin-bottom:1.1rem}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--grad-accent);box-shadow:0 0 0 4px var(--emerald-glow)}
+.eyebrow.on-dark{color:var(--emerald)}
+.sec-head{max-width:660px;margin-bottom:3.4rem}
+.sec-head.center{margin:0 auto 3.4rem;text-align:center}
+.sec-head h2{font-size:clamp(2rem,3.8vw,3rem);margin-bottom:1.05rem}
+.sec-head p{color:var(--slate-500);font-size:1.08rem;max-width:56ch}
+.sec-head.center p{margin:0 auto}
+.grad-text{background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-family:'Space Grotesk',sans-serif;font-weight:600;
+  font-size:.95rem;padding:1rem 1.75rem;border-radius:100px;cursor:pointer;border:1px solid transparent;min-height:54px;white-space:nowrap;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
+.btn svg{width:18px;height:18px;flex:none;transition:transform .3s var(--ease)}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:var(--shadow-md)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-glow);background:var(--graphite-2)}
+.btn-primary:hover svg{transform:translate(3px,-1px)}
+.btn-accent{background:var(--grad-accent);color:#03150e;box-shadow:var(--shadow-glow)}
+.btn-accent:hover{transform:translateY(-3px);box-shadow:0 26px 60px -16px var(--emerald-glow)}
+.btn-accent:hover svg{transform:translate(3px,-1px)}
+.btn-ghost{background:var(--glass);color:var(--ink);border-color:var(--line-strong);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4)}
+.btn-ghost:hover{border-color:var(--blue);transform:translateY(-3px)}
+.btn-outline-light{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.3)}
+.btn-outline-light:hover{background:rgba(255,255,255,.16);transform:translateY(-3px)}
+.btn-block{width:100%;white-space:normal;text-align:center;line-height:1.25}
+.btn-sm{padding:.72rem 1.3rem;min-height:44px;font-size:.87rem}
+.btn:active{transform:translateY(-1px) scale(.98)}
+.btn[disabled]{opacity:.4;pointer-events:none}
+
+/* ---- nav ---- */
+.nav{position:fixed;top:14px;left:0;right:0;z-index:1000;display:flex;align-items:center;transition:top .4s var(--ease)}
+.nav-inner{width:100%;max-width:calc(var(--maxw) + 40px);margin:0 auto;padding:0 20px}
+.nav-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.65rem 1.1rem;border-radius:100px;
+  background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:0 10px 30px -16px rgba(10,14,19,.22);transition:box-shadow .4s var(--ease),background .4s var(--ease)}
+.nav.scrolled .nav-bar{background:var(--glass-strong);box-shadow:var(--shadow-md)}
+.brand{display:flex;align-items:center;gap:.7rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.14rem;letter-spacing:-.01em;color:var(--ink);padding-left:.25rem}
+.brand .mark{width:42px;height:42px;border-radius:12px;background:var(--ink);display:grid;place-items:center;flex:none;position:relative}
+.brand .mark svg{width:23px;height:23px;color:var(--emerald)}
+.brand small{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-400);margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:.15rem}
+.nav-links a{display:inline-block;color:var(--slate-500);font-weight:600;font-size:.9rem;padding:.65rem .95rem;border-radius:100px;transition:color .25s,background .25s}
+.nav-links a:hover{color:var(--ink);background:var(--surface-2)}
+.nav-actions{display:flex;align-items:center;gap:.6rem}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line-strong);background:var(--surface);flex-direction:column;justify-content:center;align-items:center;gap:5px;flex:none}
+.burger span{width:19px;height:2px;background:var(--ink);border-radius:2px;transition:.32s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-panel{position:fixed;inset:0;z-index:999;background:rgba(10,14,19,.55);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .35s var(--ease);display:flex;justify-content:flex-end}
+.mobile-panel.open{opacity:1;visibility:visible}
+.mobile-sheet{width:min(340px,84vw);height:100%;background:var(--surface);padding:7rem 1.8rem 2rem;box-shadow:-30px 0 60px -20px rgba(0,0,0,.35);transform:translateX(100%);transition:transform .45s var(--ease)}
+.mobile-panel.open .mobile-sheet{transform:translateX(0)}
+.mobile-sheet a{display:block;padding:1rem 0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;border-bottom:1px solid var(--line);color:var(--ink)}
+.mobile-sheet .btn{margin-top:1.6rem}
+@media(max-width:960px){ .nav-links,.nav-actions .btn{display:none} .burger{display:flex} }
+
+/* ---- hero ---- */
+.hero{min-height:100vh;min-height:100dvh;display:flex;align-items:center;padding:calc(var(--nav-h) + 2.4rem) 0 4rem}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:3.2rem;align-items:center}
+.hero-chip{display:inline-flex;align-items:center;gap:.65rem;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(12px);padding:.55rem 1.1rem .55rem .8rem;border-radius:100px;font-size:.82rem;font-weight:600;margin-bottom:1.7rem;box-shadow:var(--shadow-sm)}
+.hero-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 0 var(--emerald-glow);animation:pulseDot 2.2s infinite}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 var(--emerald-glow)}70%{box-shadow:0 0 0 9px transparent}}
+.hero h1{font-size:clamp(2.5rem,5.2vw,4.4rem);margin-bottom:1.4rem;max-width:15ch}
+.hero p.lead{font-size:clamp(1.04rem,1.7vw,1.22rem);color:var(--slate-500);max-width:52ch;margin-bottom:2.2rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.8rem}
+.hero-meta{display:flex;gap:2.4rem;flex-wrap:wrap;padding-top:1.8rem;border-top:1px solid var(--line)}
+.hero-meta div{display:flex;flex-direction:column;gap:.15rem}
+.hero-meta strong{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:var(--ink)}
+.hero-meta span{font-size:.8rem;color:var(--slate-400);font-weight:500}
+
+.hero-visual{position:relative}
+.hero-panel{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;background:var(--graphite);box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.08)}
+.hero-panel::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(47,92,245,.28),transparent 55%),radial-gradient(circle at 80% 85%,rgba(0,211,138,.24),transparent 50%);z-index:1}
+.hero-panel svg{position:relative;z-index:2;width:100%;height:100%}
+.net-route{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1.4}
+.net-route-glow{fill:none;stroke:url(#netGrad);stroke-width:2;stroke-dasharray:260;stroke-dashoffset:260;opacity:0;transition:stroke-dashoffset 1.8s var(--ease),opacity .4s}
+.hero-panel.in-view .net-route-glow{stroke-dashoffset:0;opacity:1}
+.net-node circle.core{fill:#fff;stroke-width:0}
+.net-node.hub circle.core{fill:var(--emerald);r:7}
+.net-node circle.ring{fill:none;stroke:var(--emerald);stroke-width:1.2;opacity:0;animation:ringPulse 2.6s ease-out infinite}
+.net-node.blue circle.ring{stroke:var(--blue)}
+.net-node.blue circle.core{fill:var(--blue)}
+@keyframes ringPulse{0%{transform:scale(.5);opacity:.8}100%{transform:scale(2.8);opacity:0}}
+.hero-float{position:absolute;display:flex;align-items:center;gap:.75rem;background:var(--glass-strong);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:.9rem 1.1rem;box-shadow:var(--shadow-lg);z-index:3}
+.hero-float .ic-wrap{width:38px;height:38px;border-radius:10px;background:var(--grad-accent);display:grid;place-items:center;flex:none}
+.hero-float .ic-wrap svg{width:19px;height:19px;color:#03150e}
+.hero-float strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:var(--ink)}
+.hero-float span{font-size:.74rem;color:var(--slate-400)}
+.hero-float.f1{top:6%;left:-9%}
+.hero-float.f2{bottom:8%;right:-8%}
+
+/* ---- marquee ---- */
+.marquee-wrap{padding:52px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.marquee-wrap .label{text-align:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-400);margin-bottom:1.8rem;font-weight:600}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee-track{display:flex;width:max-content;gap:4rem;animation:scrollx 32s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.28rem;color:var(--slate-400);letter-spacing:-.01em;white-space:nowrap;opacity:.8;transition:opacity .3s,color .3s}
+.marquee-track span:hover{opacity:1;color:var(--ink)}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ---- manifest ---- */
+.manifest-lead{max-width:78ch;font-size:1.2rem;color:var(--slate-700);margin-bottom:3.2rem;font-weight:500}
+.manifest-lead strong{color:var(--ink)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.compare-col{border-radius:var(--radius-lg);padding:2.2rem;border:1px solid var(--line)}
+.compare-col.bad{background:var(--surface)}
+.compare-col.good{background:var(--ink);color:#fff;box-shadow:var(--shadow-lg);border-color:transparent;position:relative;overflow:hidden}
+.compare-col.good::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 10%,rgba(0,211,138,.22),transparent 55%)}
+.compare-col.good>*{position:relative;z-index:1}
+.compare-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1.6rem;padding-bottom:1.4rem;border-bottom:1px solid var(--line)}
+.compare-col.good .compare-head{border-color:rgba(255,255,255,.14)}
+.compare-head .ic-badge{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none}
+.compare-col.bad .ic-badge{background:rgba(220,60,50,.1);color:#d63c32}
+.compare-col.good .ic-badge{background:var(--grad-accent);color:#03150e}
+.compare-head h3{font-size:1.2rem}
+.compare-col.good h3{color:#fff}
+.compare-list{display:flex;flex-direction:column;gap:1.1rem}
+.compare-list li{display:flex;gap:.85rem;align-items:flex-start;font-size:.96rem}
+.compare-col.bad .compare-list li{color:var(--slate-500)}
+.compare-col.good .compare-list li{color:rgba(255,255,255,.82)}
+.compare-list svg{width:19px;height:19px;flex:none;margin-top:.15rem}
+.compare-col.bad .compare-list svg{color:#d63c32}
+.compare-col.good .compare-list svg{color:var(--emerald)}
+@media(max-width:860px){.compare{grid-template-columns:1fr}}
+
+/* ---- bento atuty ---- */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:1.25rem}
+.b-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.85rem;overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease)}
+.b-card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s;pointer-events:none;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),var(--emerald-glow),transparent 65%)}
+.b-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--line-strong)}
+.b-card:hover::before{opacity:1}
+.b-card .ic-wrap{width:48px;height:48px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);display:grid;place-items:center;margin-bottom:1.2rem;flex:none;position:relative;z-index:1}
+.b-card .ic-wrap svg{width:23px;height:23px;color:var(--blue-600)}
+.b-card h3{font-size:1.2rem;margin-bottom:.55rem;position:relative;z-index:1}
+.b-card p{font-size:.92rem;color:var(--slate-500);position:relative;z-index:1;max-width:38ch}
+.b-card.feature{grid-column:1/3;grid-row:1/3;justify-content:flex-end;background:var(--ink);color:#fff;border-color:transparent}
+.b-card.feature::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 10%,rgba(0,211,138,.22),transparent 55%);z-index:0}
+.b-card.feature .ic-wrap{background:var(--grad-accent);border:none;width:54px;height:54px}
+.b-card.feature .ic-wrap svg{color:#03150e;width:26px;height:26px}
+.b-card.feature h3{font-size:1.6rem;color:#fff}
+.b-card.feature p{font-size:1rem;max-width:34ch;color:rgba(255,255,255,.78)}
+.b1{grid-column:3/5;grid-row:1/2}
+.b2{grid-column:3/4;grid-row:2/3}
+.b3{grid-column:4/5;grid-row:2/3}
+.b4{grid-column:1/3;grid-row:3/4}
+.b5{grid-column:3/4;grid-row:3/4}
+.b6{grid-column:4/5;grid-row:3/4}
+@media(max-width:1080px){
+  .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto}
+  .b-card{min-height:210px}
+  .b-card.feature{grid-column:1/3;grid-row:auto;min-height:280px}
+  .b1,.b2,.b3,.b4,.b5,.b6{grid-column:auto;grid-row:auto}
+}
+@media(max-width:620px){ .bento{grid-template-columns:1fr} .b-card.feature{grid-column:1} }
+
+/* ---- portfolio ---- */
+.portfolio-wrap{display:grid;grid-template-columns:.62fr 1.38fr;gap:2.6rem;align-items:start}
+.pf-tabs{display:flex;flex-direction:column;gap:.9rem;position:sticky;top:calc(var(--nav-h) + 24px)}
+.pf-tab{display:flex;align-items:center;gap:1rem;padding:1.15rem 1.3rem;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);
+  transition:transform .3s var(--ease),border-color .3s,background .3s;text-align:left;width:100%}
+.pf-tab:hover{transform:translateX(4px);border-color:var(--line-strong)}
+.pf-tab[aria-selected="true"]{background:var(--ink);border-color:transparent;box-shadow:var(--shadow-md)}
+.pf-tab .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.85rem;color:var(--slate-400);flex:none}
+.pf-tab[aria-selected="true"] .num{color:var(--emerald)}
+.pf-tab .txt{flex:1;min-width:0}
+.pf-tab .txt strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:var(--ink)}
+.pf-tab[aria-selected="true"] .txt strong{color:#fff}
+.pf-tab .txt span{font-size:.8rem;color:var(--slate-400)}
+.pf-tab[aria-selected="true"] .txt span{color:rgba(255,255,255,.6)}
+.pf-tab svg{width:16px;height:16px;color:var(--slate-400);transition:transform .3s var(--ease)}
+.pf-tab[aria-selected="true"] svg{color:var(--emerald);transform:translateX(3px)}
+
+.pf-panel{display:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);overflow:hidden}
+.pf-panel.active{display:block;animation:fadein .5s var(--ease)}
+@keyframes fadein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pf-mock{aspect-ratio:16/10;position:relative;overflow:hidden}
+.pf-mock .chrome{height:38px;display:flex;align-items:center;gap:6px;padding:0 14px;background:rgba(255,255,255,.08)}
+.pf-mock .chrome i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
+.pf-mock .stage{position:absolute;inset:38px 0 0;padding:2.4rem 2.6rem;display:flex;flex-direction:column;justify-content:center;gap:1rem}
+.pf-mock .stage .tag{align-self:flex-start;padding:.4rem .9rem;border-radius:100px;font-size:.72rem;font-weight:700;font-family:'Space Grotesk',sans-serif;letter-spacing:.04em}
+.pf-mock .stage h4{font-size:clamp(1.3rem,3vw,2.1rem);max-width:14ch;color:#fff}
+.pf-mock .stage .bar{height:11px;border-radius:100px;background:rgba(255,255,255,.16);max-width:60%}
+.pf-mock .stage .bar.short{max-width:34%}
+.pf-mock .stage .cta{width:150px;height:40px;border-radius:100px;margin-top:.4rem}
+.pf-body{padding:2.4rem clamp(1.6rem,3vw,2.8rem) 2.6rem}
+.pf-body .pf-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.8rem;flex-wrap:wrap}
+.pf-body h3{font-size:1.5rem}
+.pf-body .pf-meta{font-size:.85rem;color:var(--slate-400);margin-top:.3rem}
+.pf-stats{display:flex;gap:.7rem;flex-wrap:wrap}
+.pf-stat{background:var(--surface-2);border-radius:100px;padding:.5rem 1rem;font-size:.78rem;font-weight:700;color:var(--slate-700);font-family:'Space Grotesk',sans-serif}
+.pf-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.pf-block{padding:1.4rem;border-radius:var(--radius);background:var(--surface-2)}
+.pf-block .lbl{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-600);margin-bottom:.6rem;display:block}
+.pf-block p{font-size:.9rem;color:var(--slate-700)}
+@media(max-width:980px){.portfolio-wrap{grid-template-columns:1fr}.pf-tabs{position:static;flex-direction:row;overflow-x:auto;padding-bottom:.4rem}.pf-tab{flex:0 0 auto;min-width:220px}}
+@media(max-width:640px){.pf-grid3{grid-template-columns:1fr}}
+
+/* ---- guarantee (dark) ---- */
+.guarantee{background:var(--graphite);color:var(--graphite-fg);position:relative;overflow:hidden}
+.guarantee::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 10% 10%,rgba(47,92,245,.22),transparent 45%),radial-gradient(circle at 90% 90%,rgba(0,211,138,.2),transparent 45%)}
+.guarantee .container{position:relative;z-index:1}
+.guarantee .sec-head h2,.guarantee .sec-head p{color:#fff}
+.guarantee .sec-head p{color:var(--graphite-fg-muted)}
+.g-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:3.4rem;align-items:center}
+.g-number{display:flex;align-items:baseline;gap:.9rem}
+.g-number strong{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(5rem,11vw,8rem);line-height:.9;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.g-number span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;color:#fff}
+.g-caption{margin-top:1rem;font-size:1.1rem;color:var(--graphite-fg-muted);max-width:34ch}
+.g-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.g-item{display:flex;gap:1rem;padding:1.4rem;border-radius:var(--radius);background:var(--graphite-surface);border:1px solid var(--graphite-border);transition:transform .35s var(--ease),border-color .35s}
+.g-item:hover{transform:translateY(-4px);border-color:var(--emerald)}
+.g-item .ic-wrap{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;flex:none}
+.g-item .ic-wrap svg{width:20px;height:20px;color:var(--emerald)}
+.g-item strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:.98rem;color:#fff;margin-bottom:.25rem}
+.g-item span{font-size:.84rem;color:var(--graphite-fg-muted)}
+@media(max-width:980px){.g-wrap{grid-template-columns:1fr;gap:2.2rem}}
+@media(max-width:560px){.g-grid{grid-template-columns:1fr}}
+
+/* ---- brief / multi-step form ---- */
+.brief-intro{display:flex;gap:1.3rem;flex-wrap:wrap;margin-bottom:3rem}
+.brief-step-mini{display:flex;align-items:center;gap:.7rem;font-size:.86rem;color:var(--slate-500);font-weight:600}
+.brief-step-mini .n{width:26px;height:26px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-size:.76rem;color:var(--ink);flex:none}
+
+.form-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);overflow:hidden;max-width:820px;margin:0 auto}
+.form-progress{padding:1.7rem 2rem 1.5rem;border-bottom:1px solid var(--line)}
+.form-progress-bar{height:6px;border-radius:100px;background:var(--surface-2);overflow:hidden;margin-bottom:1.3rem;position:relative}
+.form-progress-fill{position:absolute;inset:0;width:33.333%;border-radius:100px;background:var(--grad-accent);transition:width .55s var(--ease)}
+.form-steps-row{display:flex;justify-content:space-between}
+.fstep{display:flex;align-items:center;gap:.6rem;flex:1}
+.fstep .num{width:30px;height:30px;border-radius:50%;background:var(--surface-2);border:1.5px solid var(--line-strong);display:grid;place-items:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.82rem;color:var(--slate-400);flex:none;transition:all .4s var(--ease)}
+.fstep span{font-size:.82rem;font-weight:600;color:var(--slate-400);transition:color .4s var(--ease)}
+.fstep.active .num{background:var(--ink);border-color:transparent;color:var(--emerald)}
+.fstep.active span{color:var(--ink)}
+.fstep.done .num{background:var(--emerald);border-color:transparent;color:#03150e}
+.fstep.done span{color:var(--ink)}
+.fstep .num svg{width:14px;height:14px}
+@media(max-width:560px){.fstep span{display:none}}
+
+.form-body{position:relative;overflow:hidden}
+.form-track{display:flex;width:300%;transition:transform .55s var(--ease)}
+.form-track[data-step="0"]{transform:translateX(0%)}
+.form-track[data-step="1"]{transform:translateX(-33.3333%)}
+.form-track[data-step="2"]{transform:translateX(-66.6666%)}
+.form-step{flex:0 0 33.3333%;padding:2.2rem clamp(1.4rem,3vw,2.4rem) 2.4rem;min-width:0}
+.form-step h3{font-size:1.3rem;margin-bottom:.35rem}
+.form-step .hint{color:var(--slate-500);font-size:.92rem;margin-bottom:1.7rem}
+
+.choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.8rem}
+.choice-card{position:relative}
+.choice-card input{position:absolute;opacity:0;pointer-events:none}
+.choice-card label{display:flex;flex-direction:column;gap:.8rem;padding:1.4rem 1.2rem;border-radius:var(--radius);border:1.5px solid var(--line-strong);background:var(--surface-2);cursor:pointer;transition:all .3s var(--ease);height:100%}
+.choice-card .ic-wrap{width:42px;height:42px;border-radius:11px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;transition:all .3s var(--ease)}
+.choice-card .ic-wrap svg{width:21px;height:21px;color:var(--blue-600)}
+.choice-card strong{font-family:'Space Grotesk',sans-serif;font-size:.98rem;color:var(--ink)}
+.choice-card span{font-size:.8rem;color:var(--slate-400)}
+.choice-card input:checked + label{border-color:var(--emerald);background:var(--ink);box-shadow:var(--shadow-md)}
+.choice-card input:checked + label .ic-wrap{background:var(--grad-accent);border-color:transparent}
+.choice-card input:checked + label .ic-wrap svg{color:#03150e}
+.choice-card input:checked + label strong{color:#fff}
+.choice-card input:checked + label span{color:rgba(255,255,255,.62)}
+.choice-card input:focus-visible + label{outline:2.5px solid var(--emerald);outline-offset:2px}
+
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.2rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.83rem;font-weight:700;color:var(--ink)}
+.field .req{color:var(--emerald-600)}
+.field input,.field select,.field textarea{
+  width:100%;padding:.9rem 1.05rem;border-radius:12px;border:1.5px solid var(--line-strong);background:var(--surface-2);
+  font-size:.95rem;color:var(--ink);transition:border-color .25s,box-shadow .25s,background .25s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:var(--surface);box-shadow:0 0 0 4px var(--blue-glow)}
+.field textarea{resize:vertical;min-height:90px}
+.field.error input,.field.error select{border-color:#d63c32;box-shadow:0 0 0 4px rgba(214,60,50,.1);animation:shakeField .4s}
+@keyframes shakeField{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.field-error-msg{font-size:.76rem;color:#d63c32;font-weight:600;display:none}
+.field.error .field-error-msg{display:block}
+
+.goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.6rem}
+.goal-chip{position:relative}
+.goal-chip input{position:absolute;opacity:0;pointer-events:none}
+.goal-chip label{display:flex;align-items:center;gap:.7rem;padding:.9rem 1.05rem;border-radius:var(--radius-sm);border:1.5px solid var(--line-strong);background:var(--surface-2);cursor:pointer;transition:all .25s var(--ease);font-size:.9rem;font-weight:600;color:var(--slate-700)}
+.goal-chip .box{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line-strong);display:grid;place-items:center;flex:none;background:var(--surface);transition:all .25s}
+.goal-chip .box svg{width:13px;height:13px;color:#fff;opacity:0;transition:opacity .2s}
+.goal-chip input:checked + label{border-color:var(--emerald);background:rgba(0,211,138,.07)}
+.goal-chip input:checked + label .box{background:var(--emerald);border-color:var(--emerald)}
+.goal-chip input:checked + label .box svg{opacity:1}
+.goal-chip input:focus-visible + label{outline:2.5px solid var(--blue);outline-offset:2px}
+
+.check-row{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:1.6rem}
+.check-row input[type=checkbox]{width:20px;height:20px;margin-top:1px;accent-color:var(--emerald);flex:none}
+.check-row label{font-size:.84rem;color:var(--slate-500);line-height:1.55}
+.form-actions{display:flex;justify-content:space-between;gap:1rem;padding-top:.4rem}
+.form-actions .spacer{flex:1}
+@media(max-width:640px){.field-grid,.choice-grid,.goal-grid{grid-template-columns:1fr}.form-step{padding:1.8rem 1.3rem 2rem}.form-progress{padding:1.4rem 1.3rem 1.2rem}}
+
+.form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:4.6rem 2.4rem}
+.form-success.show{display:flex}
+.success-check{width:86px;height:86px;border-radius:50%;background:var(--grad-accent);display:grid;place-items:center;margin-bottom:1.7rem;box-shadow:var(--shadow-glow)}
+.success-check svg{width:38px;height:38px;color:#03150e;stroke-dasharray:40;stroke-dashoffset:40;animation:drawCheck .6s .2s var(--ease) forwards}
+@keyframes drawCheck{to{stroke-dashoffset:0}}
+.form-success h3{font-size:1.55rem;margin-bottom:.7rem}
+.form-success p{color:var(--slate-500);max-width:40ch;margin-bottom:0}
+
+/* ---- footer ---- */
+.footer{background:var(--graphite);color:var(--graphite-fg-muted);padding:5rem 0 0}
+.footer-grid{display:grid;grid-template-columns:1.5fr .9fr .9fr 1.1fr;gap:2.6rem;padding-bottom:3.4rem;border-bottom:1px solid var(--graphite-border)}
+.footer .brand{color:#fff;margin-bottom:1.1rem}
+.footer .brand .mark{background:var(--grad-accent)}
+.footer .brand .mark svg{color:#03150e}
+.footer-brand p{font-size:.92rem;max-width:32ch;margin-top:1rem;line-height:1.75}
+.footer h5{font-family:'Space Grotesk',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(243,246,248,.45);margin-bottom:1.2rem}
+.footer ul{display:flex;flex-direction:column;gap:.8rem}
+.footer ul a,.footer ul span{color:var(--graphite-fg-muted);font-size:.92rem;transition:color .2s}
+.footer ul a:hover{color:var(--emerald)}
+.footer-contact li{display:flex;gap:.65rem;align-items:flex-start}
+.footer-contact svg{width:17px;height:17px;color:var(--emerald);flex:none;margin-top:2px}
+.footer-bottom{padding:1.8rem 0 2.2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:rgba(243,246,248,.42)}
+@media(max-width:980px){.footer-grid{grid-template-columns:1fr 1fr;gap:2.4rem}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
+
+/* ---- reveal on scroll ---- */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease-soft),transform .8s var(--ease-soft)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}.reveal[data-d="4"]{transition-delay:.32s}
+.reveal[data-d="5"]{transition-delay:.4s}.reveal[data-d="6"]{transition-delay:.48s}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+
+/* ---- generic responsive ---- */
+@media(max-width:1080px){.hero-grid{grid-template-columns:1fr}.hero-visual{max-width:440px;margin:0 auto;width:100%}.hero-float{display:none}}
+@media(max-width:640px){.container{padding:0 20px}.hero-cta .btn{flex:1;justify-content:center}}
+</style>
+</head>
+<body>
+<a href="#top" class="skip-link">Przejdź do treści głównej</a>
+
+<!-- ============ ICON SPRITE ============ -->
+<svg class="icon-sprite" aria-hidden="true">
+<defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+<symbol id="i-cross" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 8h11v9H2z"/><path d="M13 11h4l3 3v3h-7z"/><circle cx="6.5" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2.3"/><circle cx="18" cy="5" r="2.3"/><path d="M8 19h6a4 4 0 0 0 4-4V9a4 4 0 0 0-4-4h-1"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3.5v5.6c0 5-3.4 8.9-8 10-4.6-1.1-8-5-8-10V6.5L12 3Z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.3a3.4 3.4 0 0 1 0 6.6M21.5 20c0-3-2-5.2-4.7-5.8"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></symbol>
+<symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></symbol>
+<symbol id="i-car" viewBox="0 0 24 24"><path d="M3 16V8a1 1 0 0 1 1-1h9l4 4v5"/><path d="M3 16h14"/><circle cx="7" cy="17.5" r="1.7"/><circle cx="15.5" cy="17.5" r="1.7"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.8 7-12.1A7 7 0 0 0 5 8.9C5 14.2 12 21 12 21Z"/><circle cx="12" cy="9" r="2.4"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4.9 19.1a10 10 0 1 1 14.2 0"/><path d="M12 12 16 8"/><circle cx="12" cy="12" r="1.4"/></symbol>
+<symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="19" r="2.4"/><circle cx="19" cy="19" r="2.4"/><path d="M12 7.4V13M12 13 6.6 17M12 13l5.4 4"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+</defs>
+</svg>
+
+<div class="bg-aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+<div class="bg-topo" aria-hidden="true"></div>
+<div class="progress" id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-bar">
+      <a href="#top" class="brand" aria-label="Pajakweb — strona główna">
+        <span class="mark" aria-hidden="true"><svg class="ic" style="width:23px;height:23px"><use href="#i-network"/></svg></span>
+        <span>PAJAKWEB<small>Tylko TSL &amp; Rental</small></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#manifest">Manifest</a></li>
+        <li><a href="#atuty">Atuty</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#gwarancja">Gwarancja</a></li>
+        <li><a href="#brief">Kontakt</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#brief" class="btn btn-ghost btn-sm">Kontakt</a>
+        <a href="#brief" class="btn btn-accent btn-sm">Bezpłatny Audyt Trasy Cyfrowej</a>
+        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobilePanel"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <nav class="mobile-sheet">
+    <a href="#manifest">Manifest</a>
+    <a href="#atuty">Atuty</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#gwarancja">Gwarancja</a>
+    <a href="#brief">Kontakt</a>
+    <a href="#brief" class="btn btn-accent btn-block">Bezpłatny Audyt Trasy Cyfrowej</a>
+  </nav>
+</div>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="hero-chip reveal"><span class="dot" aria-hidden="true"></span> Jedyna agencja w Polsce wyłącznie dla TSL i Rentalu</span>
+      <h1 class="reveal" data-d="1">Strony, które rozumieją<br>Twoją <span class="grad-text">flotę.</span></h1>
+      <p class="lead reveal" data-d="2">Nie robimy stron dla wszystkich. Projektujemy systemy wizerunkowo-sprzedażowe wyłącznie dla transportu, logistyki i wypożyczalni pojazdów — takie, które mówią językiem giełd transportowych, tachografów i rekrutacji kierowców.</p>
+      <div class="hero-cta reveal" data-d="3">
+        <a href="#brief" class="btn btn-accent">Bezpłatny Audyt Trasy Cyfrowej<svg class="ic"><use href="#i-arrow"/></svg></a>
+        <a href="#portfolio" class="btn btn-ghost">Zobacz nasze wdrożenia</a>
+      </div>
+      <div class="hero-meta reveal" data-d="4">
+        <div><strong data-count="100" data-suffix="%">0</strong><span>projektów wyłącznie dla TSL i Rentalu</span></div>
+        <div><strong data-count="6" data-suffix=" mies.">0</strong><span>pełnej opieki w cenie wdrożenia</span></div>
+        <div><strong data-count="0" data-suffix=" zł">0</strong><span>za poprawki przez pół roku</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal" data-d="2">
+      <div class="hero-panel" id="heroPanel">
+        <svg viewBox="0 0 360 440" aria-hidden="true">
+          <defs>
+            <linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#00d38a"/><stop offset="100%" stop-color="#2f5cf5"/>
+            </linearGradient>
+          </defs>
+          <path class="net-route" d="M180,220 L70,120"/><path class="net-route-glow" d="M180,220 L70,120"/>
+          <path class="net-route" d="M180,220 L290,110"/><path class="net-route-glow" d="M180,220 L290,110"/>
+          <path class="net-route" d="M180,220 L60,300"/><path class="net-route-glow" d="M180,220 L60,300"/>
+          <path class="net-route" d="M180,220 L300,320"/><path class="net-route-glow" d="M180,220 L300,320"/>
+          <path class="net-route" d="M180,220 L180,370"/><path class="net-route-glow" d="M180,220 L180,370"/>
+          <path class="net-route" d="M70,120 L290,110"/>
+          <path class="net-route" d="M60,300 L300,320"/>
+          <g class="net-node hub"><circle class="ring" cx="180" cy="220" r="8"/><circle class="core" cx="180" cy="220" r="7"/></g>
+          <g class="net-node blue"><circle class="ring" cx="70" cy="120" r="6"/><circle class="core" cx="70" cy="120" r="5"/></g>
+          <g class="net-node blue"><circle class="ring" cx="290" cy="110" r="6"/><circle class="core" cx="290" cy="110" r="5"/></g>
+          <g class="net-node"><circle class="ring" cx="60" cy="300" r="6"/><circle class="core" cx="60" cy="300" r="5"/></g>
+          <g class="net-node"><circle class="ring" cx="300" cy="320" r="6"/><circle class="core" cx="300" cy="320" r="5"/></g>
+          <g class="net-node blue"><circle class="ring" cx="180" cy="370" r="6"/><circle class="core" cx="180" cy="370" r="5"/></g>
+        </svg>
+      </div>
+      <div class="hero-float f1">
+        <span class="ic-wrap"><svg class="ic"><use href="#i-truck"/></svg></span>
+        <span><strong>TSL</strong><span>Transport &amp; spedycja</span></span>
+      </div>
+      <div class="hero-float f2">
+        <span class="ic-wrap"><svg class="ic"><use href="#i-car"/></svg></span>
+        <span><strong>Rental</strong><span>Wypożyczalnie floty</span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MARQUEE ============ -->
+<section class="marquee-wrap">
+  <p class="label">Systemy zaprojektowane dla</p>
+  <div class="marquee">
+    <div class="marquee-track" id="marquee">
+      <span>GROSTRANS</span><span>OPTIGO TRANSPORT</span><span>PRIMEBUS</span><span>TALERON</span><span>BERTBUS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFEST ============ -->
+<section class="section-pad" id="manifest">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Manifest specjalizacji</span>
+      <h2>Ogólna agencja nie zna Twojej branży.<br>My żyjemy transportem.</h2>
+    </div>
+    <p class="manifest-lead reveal" data-d="1">Setki agencji twierdzi, że „zrobią ładną stronę dla każdej branży”. Problem w tym, że transport, logistyka i wynajem floty rządzą się zupełnie innymi prawami niż sklep z butami. <strong>Kto nie rozumie giełd transportowych, tachografów i cyklu rekrutacji kierowców — nie zaprojektuje strony, która realnie generuje zapytania ofertowe.</strong></p>
+    <div class="compare">
+      <div class="compare-col bad reveal" data-d="2">
+        <div class="compare-head">
+          <span class="ic-badge"><svg class="ic"><use href="#i-cross"/></svg></span>
+          <h3>Ogólna agencja</h3>
+        </div>
+        <ul class="compare-list">
+          <li><svg class="ic"><use href="#i-cross"/></svg> Ten sam szablon dla kwiaciarni i przewoźnika TSL.</li>
+          <li><svg class="ic"><use href="#i-cross"/></svg> Nie wie, czym różni się fracht FTL od LTL ani jak działa giełda transportowa.</li>
+          <li><svg class="ic"><use href="#i-cross"/></svg> Formularz kontaktowy z jednym polem „Wiadomość” — zero danych o flocie i trasach.</li>
+          <li><svg class="ic"><use href="#i-cross"/></svg> Nie rozumie cyklu rekrutacji kierowców ani sezonowości branży.</li>
+          <li><svg class="ic"><use href="#i-cross"/></svg> SEO pod ogólne frazy typu „firma transportowa” — bez pozycjonowania pod konkretne trasy.</li>
+        </ul>
+      </div>
+      <div class="compare-col good reveal" data-d="3">
+        <div class="compare-head">
+          <span class="ic-badge"><svg class="ic"><use href="#i-check"/></svg></span>
+          <h3>Pajakweb</h3>
+        </div>
+        <ul class="compare-list">
+          <li><svg class="ic"><use href="#i-check"/></svg> Projektujemy wyłącznie systemy dla transportu, logistyki i wypożyczalni — znamy Wasz język.</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> Wiemy, czym są tachografy, CMR, ADR, cross-docking i giełdy transportowe.</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> Formularz briefowy zbiera dane o flocie, trasach i wolumenie od pierwszego kontaktu.</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> Projektujemy pod rekrutację kierowców i pozyskiwanie zleceń — jednocześnie.</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> Pozycjonowanie pod frazy branżowe i trasy, których faktycznie szukają Twoi klienci.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENTO ATUTY ============ -->
+<section class="section-pad" id="atuty" style="background:var(--surface-2)">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Dlaczego Pajakweb</span>
+      <h2>Znamy Twoją flotę lepiej<br>niż inni programiści.</h2>
+      <p>Siedem powodów, dla których firmy transportowe i wypożyczalnie wybierają wąską specjalizację zamiast kolejnej ogólnej agencji.</p>
+    </div>
+    <div class="bento">
+      <article class="b-card feature reveal">
+        <span class="ic-wrap"><svg class="ic" style="width:26px;height:26px"><use href="#i-network"/></svg></span>
+        <h3>Ultra-wąska specjalizacja</h3>
+        <p>Nie obsługujemy fryzjerów ani restauracji. Projektujemy wyłącznie dla transportu, spedycji, logistyki i wypożyczalni pojazdów — 100% naszej uwagi trafia w jedną branżę.</p>
+      </article>
+      <article class="b-card b1 reveal" data-d="1">
+        <span class="ic-wrap"><svg class="ic"><use href="#i-truck"/></svg></span>
+        <h3>Znamy język floty</h3>
+        <p>Tachografy, giełdy transportowe, CMR, ADR, cross-docking — to nasz codzienny słownik, nie obce pojęcia.</p>
+      </article>
+      <article class="b-card b2 reveal" data-d="2">
+        <span class="ic-wrap"><svg class="ic"><use href="#i-chart"/></svg></span>
+        <h3>Konwersja zapytań o fracht</h3>
+        <p>Formularze zaprojektowane pod pozyskiwanie zleceń, nie ogólne leady bez wartości.</p>
+      </article>
+      <article class="b-card b3 reveal" data-d="3">
+        <span class="ic-wrap"><svg class="ic"><use href="#i-users"/></svg></span>
+        <h3>Rekrutacja kierowców</h3>
+        <p>Sekcje kariery, które realnie przyciągają kierowców w czasach niedoboru kadry.</p>
+      </article>
+      <article class="b-card b4 reveal" data-d="4">
+        <span class="ic-wrap"><svg class="ic"><use href="#i-shield"/></svg></span>
+        <h3>6 miesięcy opieki w cenie</h3>
+        <p>Pełna obsługa techniczna i zmiany bez dodatkowych faktur przez pół roku od wdrożenia.</p>
+      </article>
+      <article class="b-card b5 reveal" data-d="5">
+        <span class="ic-wrap"><svg class="ic"><use href="#i-doc"/></svg></span>
+        <h3>Wycena po audycie</h3>
+        <p>Indywidualny audyt trasy cyfrowej zamiast gotowego cennika z sufitu.</p>
+      </article>
+      <article class="b-card b6 reveal" data-d="6">
+        <span class="ic-wrap"><svg class="ic"><use href="#i-bolt"/></svg></span>
+        <h3>Szybkość i wydajność</h3>
+        <p>Strony ładujące się poniżej sekundy — kluczowe, gdy dyspozytor sprawdza ofertę między zleceniami.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="section-pad" id="portfolio">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Eksperckie wdrożenia</span>
+      <h2>Wybrane systemy dla transportu<br>i wynajmu floty.</h2>
+      <p>Trzy różne wyzwania branżowe. Jeden wspólny mianownik — strona, która sprzedaje flotę, a nie tylko o niej informuje.</p>
+    </div>
+
+    <div class="portfolio-wrap reveal" data-d="1">
+      <div class="pf-tabs" role="tablist" aria-label="Case studies" id="pfTabs">
+        <button class="pf-tab" role="tab" aria-selected="true" data-target="pf-1">
+          <span class="num">01</span>
+          <span class="txt"><strong>Grostrans</strong><span>Transport &amp; spedycja FTL · od 1993</span></span>
+          <svg class="ic"><use href="#i-arrow"/></svg>
+        </button>
+        <button class="pf-tab" role="tab" aria-selected="false" data-target="pf-2">
+          <span class="num">02</span>
+          <span class="txt"><strong>Optigo Transport</strong><span>Spedycja i logistyka kontraktowa</span></span>
+          <svg class="ic"><use href="#i-arrow"/></svg>
+        </button>
+        <button class="pf-tab" role="tab" aria-selected="false" data-target="pf-3">
+          <span class="num">03</span>
+          <span class="txt"><strong>PRIMEBUS</strong><span>Dedykowana wypożyczalnia busów</span></span>
+          <svg class="ic"><use href="#i-arrow"/></svg>
+        </button>
+      </div>
+
+      <div class="pf-panels">
+        <article class="pf-panel active" id="pf-1">
+          <div class="pf-mock" style="background:linear-gradient(155deg,#081b30,#0b2a4a)">
+            <div class="chrome"><i></i><i></i><i></i></div>
+            <div class="stage">
+              <span class="tag" style="background:rgba(215,154,60,.18);color:#e8b968">Transport FTL · od 1993</span>
+              <h4>Twój ładunek.<br>Nasza trasa.</h4>
+              <div class="bar" style="background:rgba(215,154,60,.35)"></div>
+              <div class="bar short"></div>
+              <div class="cta" style="background:linear-gradient(135deg,#d79a3c,#bd7f22)"></div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-head">
+              <div><h3>Grostrans</h3><p class="pf-meta">Transport-Spedycja Grzegorz Buczyński · Sochaczew</p></div>
+              <div class="pf-stats"><span class="pf-stat">33 lata na rynku</span><span class="pf-stat">FTL Europa i WNP</span></div>
+            </div>
+            <div class="pf-grid3">
+              <div class="pf-block"><span class="lbl">Wyzwanie</span><p>30 lat doświadczenia i duża, serwisowana flota — a wizerunek online nieadekwatny do skali zaufania klientów.</p></div>
+              <div class="pf-block"><span class="lbl">Rozwiązanie</span><p>Premium warstwa wizualna, oś czasu historii firmy budująca zaufanie oraz prezentacja floty naczep plandekowych i chłodni.</p></div>
+              <div class="pf-block"><span class="lbl">Efekt</span><p>Spójny wizerunek klasy premium dla klientów z FMCG i branży spożywczej, wymagających transportu w kontrolowanej temperaturze.</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pf-panel" id="pf-2">
+          <div class="pf-mock" style="background:linear-gradient(155deg,#080b11,#0d121b)">
+            <div class="chrome"><i></i><i></i><i></i></div>
+            <div class="stage">
+              <span class="tag" style="background:rgba(47,104,255,.2);color:#8fb3ff">Spedycja i logistyka kontraktowa</span>
+              <h4>Transport, który wyznacza standardy.</h4>
+              <div class="bar" style="background:rgba(47,104,255,.4)"></div>
+              <div class="bar short"></div>
+              <div class="cta" style="background:linear-gradient(135deg,#2f68ff,#123fb8)"></div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-head">
+              <div><h3>Optigo Transport</h3><p class="pf-meta">Transport, spedycja i logistyka kontraktowa · Europa</p></div>
+              <div class="pf-stats"><span class="pf-stat">99,8% dostaw na czas</span><span class="pf-stat">24 kraje Europy</span></div>
+            </div>
+            <div class="pf-grid3">
+              <div class="pf-block"><span class="lbl">Wyzwanie</span><p>Rozbudowana oferta — transport, spedycja i magazynowanie — rozmywała przekaz i utrudniała klientom szybką ocenę zasięgu.</p></div>
+              <div class="pf-block"><span class="lbl">Rozwiązanie</span><p>Interaktywna mapa zasięgu w Europie, bento z czterema filarami usług i wielokrokowy formularz wyceny podnoszący jakość zapytań.</p></div>
+              <div class="pf-block"><span class="lbl">Efekt</span><p>Jasna segmentacja usług i formularz, który od razu filtruje realne zlecenia od zapytań przypadkowych.</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pf-panel" id="pf-3">
+          <div class="pf-mock" style="background:linear-gradient(155deg,#0B1220,#1E293B)">
+            <div class="chrome"><i></i><i></i><i></i></div>
+            <div class="stage">
+              <span class="tag" style="background:rgba(161,98,7,.22);color:#e0ac4f">Wypożyczalnia busów B2B</span>
+              <h4>Wynajem, który rośnie z Twoją firmą.</h4>
+              <div class="bar" style="background:rgba(161,98,7,.4)"></div>
+              <div class="bar short"></div>
+              <div class="cta" style="background:linear-gradient(135deg,#A16207,#7C4A05)"></div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-head">
+              <div><h3>PRIMEBUS</h3><p class="pf-meta">Premium wynajem busów — B2B długoterminowy i krótkoterminowy</p></div>
+              <div class="pf-stats"><span class="pf-stat">15 pojazdów floty</span><span class="pf-stat">100% ubezpieczonych</span></div>
+            </div>
+            <div class="pf-grid3">
+              <div class="pf-block"><span class="lbl">Wyzwanie</span><p>Jedna flota, dwa zupełnie różne klienty — firmy szukające kontraktu flotowego i klienci jednorazowi. Oferta mieszała się w jeden nieczytelny komunikat.</p></div>
+              <div class="pf-block"><span class="lbl">Rozwiązanie</span><p>Rozdzielenie ścieżek B2B i krótkoterminowej, filtrowana siatka floty (z tachografem / bez) oraz dedykowany formularz kontraktowy dla firm.</p></div>
+              <div class="pf-block"><span class="lbl">Efekt</span><p>Klient sam segmentuje się już na wejściu, a dział handlowy dostaje zapytania z gotowym kontekstem floty i celu wynajmu.</p></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GWARANCJA ============ -->
+<section class="section-pad guarantee" id="gwarancja">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark">Zero ryzyka wdrożenia</span>
+      <h2>6 miesięcy pełnej opieki.<br>W cenie wdrożenia.</h2>
+      <p>Nie zostawiamy Cię samego z gotowym kodem. Przez pół roku od uruchomienia systemu wprowadzamy zmiany, monitorujemy działanie strony i reagujemy priorytetowo — bez dodatkowych faktur.</p>
+    </div>
+    <div class="g-wrap">
+      <div class="reveal" data-d="1">
+        <div class="g-number"><strong>6</strong><span>miesięcy</span></div>
+        <p class="g-caption">To nie promocja na start. To standardowy element każdego wdrożenia Pajakweb — bo strona ma pracować na zlecenia, a nie leżeć odłogiem po starcie.</p>
+      </div>
+      <div class="g-grid">
+        <div class="g-item reveal" data-d="1">
+          <span class="ic-wrap"><svg class="ic"><use href="#i-refresh"/></svg></span>
+          <span><strong>Poprawki bez limitu</strong><span>Zmiany treści i drobne modyfikacje bez dodatkowych faktur.</span></span>
+        </div>
+        <div class="g-item reveal" data-d="2">
+          <span class="ic-wrap"><svg class="ic"><use href="#i-gauge"/></svg></span>
+          <span><strong>Monitoring 24/7</strong><span>Nadzorujemy działanie i wydajność strony bez Twojego udziału.</span></span>
+        </div>
+        <div class="g-item reveal" data-d="3">
+          <span class="ic-wrap"><svg class="ic"><use href="#i-bolt"/></svg></span>
+          <span><strong>Priorytetowy czas reakcji</strong><span>Zgłoszenia od klientów TSL obsługujemy poza kolejnością.</span></span>
+        </div>
+        <div class="g-item reveal" data-d="4">
+          <span class="ic-wrap"><svg class="ic"><use href="#i-lock"/></svg></span>
+          <span><strong>Aktualizacje i bezpieczeństwo</strong><span>Regularne aktualizacje techniczne bez ryzyka przestoju.</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BRIEF / FORMULARZ ============ -->
+<section class="section-pad" id="brief">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" style="justify-content:center">Bezpłatny Audyt Trasy Cyfrowej</span>
+      <h2>Opowiedz nam o swojej flocie.</h2>
+      <p>3 kroki, 90 sekund. Otrzymasz indywidualną wycenę dopasowaną do Twojej floty i celów — bez cennika z sufitu i bez zobowiązań.</p>
+    </div>
+
+    <div class="form-card reveal" data-d="1">
+      <div class="form-progress">
+        <div class="form-progress-bar"><span class="form-progress-fill" id="pFill"></span></div>
+        <div class="form-steps-row">
+          <div class="fstep active" data-step="0"><span class="num">1</span><span>Profil</span></div>
+          <div class="fstep" data-step="1"><span class="num">2</span><span>Flota i cele</span></div>
+          <div class="fstep" data-step="2"><span class="num">3</span><span>Kontakt</span></div>
+        </div>
+      </div>
+
+      <form id="briefForm" novalidate>
+        <div class="form-body">
+          <div class="form-track" id="formTrack" data-step="0">
+
+            <!-- KROK 1 -->
+            <div class="form-step is-active" data-panel="0">
+              <h3>Czym zajmuje się Twoja firma?</h3>
+              <p class="hint">Wybierz profil, który najlepiej opisuje Twoją działalność.</p>
+              <div class="choice-grid" role="radiogroup" aria-label="Profil działalności">
+                <div class="choice-card">
+                  <input type="radio" name="profile" id="profTransport" value="Transport">
+                  <label for="profTransport">
+                    <span class="ic-wrap"><svg class="ic"><use href="#i-truck"/></svg></span>
+                    <strong>Transport</strong>
+                    <span>Przewozy krajowe i międzynarodowe, FTL/LTL</span>
+                  </label>
+                </div>
+                <div class="choice-card">
+                  <input type="radio" name="profile" id="profLogistyka" value="Logistyka/Spedycja">
+                  <label for="profLogistyka">
+                    <span class="ic-wrap"><svg class="ic"><use href="#i-warehouse"/></svg></span>
+                    <strong>Logistyka / Spedycja</strong>
+                    <span>Magazynowanie, fulfillment, cross-docking</span>
+                  </label>
+                </div>
+                <div class="choice-card">
+                  <input type="radio" name="profile" id="profWypozyczalnia" value="Wypożyczalnia">
+                  <label for="profWypozyczalnia">
+                    <span class="ic-wrap"><svg class="ic"><use href="#i-car"/></svg></span>
+                    <strong>Wypożyczalnia</strong>
+                    <span>Busy, samochody dostawcze i osobowe</span>
+                  </label>
+                </div>
+              </div>
+              <div class="field-error-msg" id="step0Error" style="display:none;margin-bottom:1rem">Wybierz profil działalności, aby przejść dalej.</div>
+              <div class="form-actions">
+                <span class="spacer"></span>
+                <button type="button" class="btn btn-primary" data-next>Dalej<svg class="ic"><use href="#i-arrow"/></svg></button>
+              </div>
+            </div>
+
+            <!-- KROK 2 -->
+            <div class="form-step" data-panel="1">
+              <h3>Flota i cele</h3>
+              <p class="hint">Pomóż nam dopasować zakres audytu do skali Twojej działalności.</p>
+              <div class="field full">
+                <label for="fleetSize">Ile pojazdów liczy Twoja flota? <span class="req">*</span></label>
+                <select id="fleetSize" name="fleetSize">
+                  <option value="">Wybierz zakres</option>
+                  <option value="1-5">1–5 pojazdów</option>
+                  <option value="6-15">6–15 pojazdów</option>
+                  <option value="16-50">16–50 pojazdów</option>
+                  <option value="50+">50+ pojazdów</option>
+                </select>
+                <div class="field-error-msg">Wybierz wielkość floty.</div>
+              </div>
+              <label style="display:block;font-size:.83rem;font-weight:700;color:var(--ink);margin-bottom:.7rem">Twoje priorytety <span class="req">*</span> <span style="font-weight:500;color:var(--slate-400)">(wybierz min. jeden)</span></label>
+              <div class="goal-grid" id="goalGrid">
+                <div class="goal-chip">
+                  <input type="checkbox" id="goal1" value="Więcej zapytań ofertowych">
+                  <label for="goal1"><span class="box"><svg class="ic" style="width:13px;height:13px"><use href="#i-check"/></svg></span>Więcej zapytań ofertowych</label>
+                </div>
+                <div class="goal-chip">
+                  <input type="checkbox" id="goal2" value="Wizerunek wobec kontrahentów">
+                  <label for="goal2"><span class="box"><svg class="ic" style="width:13px;height:13px"><use href="#i-check"/></svg></span>Wizerunek wobec kontrahentów</label>
+                </div>
+                <div class="goal-chip">
+                  <input type="checkbox" id="goal3" value="Rekrutacja kierowców">
+                  <label for="goal3"><span class="box"><svg class="ic" style="width:13px;height:13px"><use href="#i-check"/></svg></span>Rekrutacja kierowców</label>
+                </div>
+                <div class="goal-chip">
+                  <input type="checkbox" id="goal4" value="Automatyzacja obsługi (AI)">
+                  <label for="goal4"><span class="box"><svg class="ic" style="width:13px;height:13px"><use href="#i-check"/></svg></span>Automatyzacja obsługi (AI)</label>
+                </div>
+              </div>
+              <div class="field-error-msg" id="step1Error" style="display:none;margin-bottom:1rem">Uzupełnij wielkość floty i zaznacz co najmniej jeden cel.</div>
+              <div class="form-actions">
+                <button type="button" class="btn btn-ghost" data-prev><svg class="ic" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg>Wstecz</button>
+                <button type="button" class="btn btn-primary" data-next>Dalej<svg class="ic"><use href="#i-arrow"/></svg></button>
+              </div>
+            </div>
+
+            <!-- KROK 3 -->
+            <div class="form-step" data-panel="2">
+              <h3>Dane kontaktowe</h3>
+              <p class="hint">Odezwiemy się w ciągu 24 godzin z terminem bezpłatnego audytu.</p>
+              <div class="field-grid">
+                <div class="field"><label for="cName">Imię i nazwisko <span class="req">*</span></label><input id="cName" name="cName" required placeholder="Jan Kowalski"><div class="field-error-msg">Podaj imię i nazwisko.</div></div>
+                <div class="field"><label for="cCompany">Firma</label><input id="cCompany" name="cCompany" placeholder="Nazwa firmy"></div>
+                <div class="field"><label for="cEmail">Email <span class="req">*</span></label><input type="email" id="cEmail" name="cEmail" required placeholder="jan@firma.pl"><div class="field-error-msg">Podaj poprawny adres email.</div></div>
+                <div class="field"><label for="cPhone">Telefon</label><input type="tel" id="cPhone" name="cPhone" placeholder="+48 600 000 000"></div>
+              </div>
+              <div class="check-row">
+                <input type="checkbox" id="cConsent" name="cConsent" required>
+                <label for="cConsent">Wyrażam zgodę na kontakt w celu przygotowania bezpłatnego audytu trasy cyfrowej zgodnie z Polityką Prywatności. <span class="req">*</span></label>
+              </div>
+              <div class="field-error-msg" id="step2Error" style="display:none;margin-bottom:1rem">Uzupełnij wymagane pola i zaznacz zgodę.</div>
+              <div class="form-actions">
+                <button type="button" class="btn btn-ghost" data-prev><svg class="ic" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg>Wstecz</button>
+                <button type="submit" class="btn btn-accent">Zamów bezpłatny audyt<svg class="ic"><use href="#i-arrow"/></svg></button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <span class="success-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 7"/></svg></span>
+          <h3>Dziękujemy! Audyt jest w drodze.</h3>
+          <p>Przeanalizujemy Twoją flotę i cele, a w ciągu 24 godzin skontaktujemy się z terminem bezpłatnego audytu trasy cyfrowej.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <span class="mark"><svg class="ic" style="width:23px;height:23px"><use href="#i-network"/></svg></span>
+          <span>PAJAKWEB</span>
+        </a>
+        <p>Jedyna agencja w Polsce projektująca systemy wizerunkowo-sprzedażowe wyłącznie dla transportu, logistyki i wypożyczalni pojazdów.</p>
+      </div>
+      <div>
+        <h5>Specjalizacja</h5>
+        <ul>
+          <li><a href="#brief">Transport i spedycja</a></li>
+          <li><a href="#brief">Logistyka i magazynowanie</a></li>
+          <li><a href="#brief">Wypożyczalnie pojazdów</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Agencja</h5>
+        <ul>
+          <li><a href="#manifest">Manifest</a></li>
+          <li><a href="#atuty">Atuty</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#gwarancja">Gwarancja</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <ul class="footer-contact">
+          <li><svg class="ic"><use href="#i-mail"/></svg><a href="mailto:kontakt@pajakweb.pl">kontakt@pajakweb.pl</a></li>
+          <li><svg class="ic"><use href="#i-phone"/></svg><a href="tel:+48508315729">+48 508 315 729</a></li>
+          <li><svg class="ic"><use href="#i-pin"/></svg><span>Opole, Polska</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pajakweb — Radosław Pająk · NIP 7471746151 · Wszelkie prawa zastrzeżone.</p>
+      <p>Bezpłatny Audyt Trasy Cyfrowej — <a href="#brief" style="color:var(--emerald)">zamów teraz</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Nav scroll state */
+  var nav = document.getElementById('nav'), prog = document.getElementById('progress');
+  function onScroll(){
+    nav.classList.toggle('scrolled', scrollY > 30);
+    if(scrollY > 30){ nav.style.top = '0px'; } else { nav.style.top = '14px'; }
+    var h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h > 0 ? (scrollY / h * 100) : 0) + '%';
+  }
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  /* Mobile menu */
+  var burger = document.getElementById('burger'), panel = document.getElementById('mobilePanel');
+  burger.addEventListener('click', function(){
+    var open = panel.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  panel.addEventListener('click', function(e){ if(e.target === panel) panel.classList.remove('open'), burger.classList.remove('open'); });
+  document.querySelectorAll('.mobile-sheet a').forEach(function(a){
+    a.addEventListener('click', function(){ panel.classList.remove('open'); burger.classList.remove('open'); });
+  });
+
+  /* Marquee duplication for seamless loop */
+  var mq = document.getElementById('marquee');
+  mq.innerHTML += mq.innerHTML;
+
+  /* Reveal on scroll */
+  var rev = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){ rev.forEach(function(e){e.classList.add('in')}); }
+  else{
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+    rev.forEach(function(e){ io.observe(e); });
+  }
+
+  /* Hero network panel reveal */
+  var heroPanel = document.getElementById('heroPanel');
+  if('IntersectionObserver' in window){
+    var pio = new IntersectionObserver(function(entries){
+      entries.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in-view'); pio.unobserve(x.target); } });
+    }, {threshold:.3});
+    pio.observe(heroPanel);
+  } else { heroPanel.classList.add('in-view'); }
+
+  /* Counters */
+  function animCount(el){
+    var t = +el.getAttribute('data-count'), sfx = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = t + sfx; return; }
+    var dur = 1400, s = performance.now();
+    (function step(now){
+      var p = Math.min((now - s) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(t * e) + (p === 1 ? sfx : '');
+      if(p < 1) requestAnimationFrame(step);
+    })(s);
+  }
+  if('IntersectionObserver' in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(x){ if(x.isIntersecting){ animCount(x.target); cio.unobserve(x.target); } });
+    }, {threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(e){ cio.observe(e); });
+  } else { document.querySelectorAll('[data-count]').forEach(animCount); }
+
+  /* Bento card spotlight */
+  if(!reduce){
+    document.querySelectorAll('.b-card').forEach(function(c){
+      c.addEventListener('pointermove', function(e){
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+
+  /* Portfolio tabs */
+  var tabs = document.querySelectorAll('.pf-tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.setAttribute('aria-selected', 'false'); });
+      tab.setAttribute('aria-selected', 'true');
+      document.querySelectorAll('.pf-panel').forEach(function(p){ p.classList.remove('active'); });
+      document.getElementById(tab.getAttribute('data-target')).classList.add('active');
+    });
+  });
+
+  /* Multi-step brief form */
+  var track = document.getElementById('formTrack');
+  var fsteps = document.querySelectorAll('.fstep');
+  var fill = document.getElementById('pFill');
+  var form = document.getElementById('briefForm');
+  var success = document.getElementById('formSuccess');
+  var current = 0;
+  var TOTAL = 3;
+
+  function showStepError(id, show){
+    var el = document.getElementById(id);
+    if(el) el.style.display = show ? 'block' : 'none';
+  }
+
+  function validateStep(n){
+    if(n === 0){
+      var ok = !!document.querySelector('input[name="profile"]:checked');
+      showStepError('step0Error', !ok);
+      return ok;
+    }
+    if(n === 1){
+      var fleet = document.getElementById('fleetSize').value.trim();
+      var anyGoal = !!document.querySelector('#goalGrid input[type=checkbox]:checked');
+      var ok = fleet.length > 0 && anyGoal;
+      showStepError('step1Error', !ok);
+      var fleetField = document.getElementById('fleetSize').closest('.field');
+      if(fleetField) fleetField.classList.toggle('error', fleet.length === 0);
+      return ok;
+    }
+    if(n === 2){
+      var name = document.getElementById('cName');
+      var email = document.getElementById('cEmail');
+      var consent = document.getElementById('cConsent');
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+      var nameOk = name.value.trim().length > 1;
+      name.closest('.field').classList.toggle('error', !nameOk);
+      email.closest('.field').classList.toggle('error', !emailOk);
+      var ok = nameOk && emailOk && consent.checked;
+      showStepError('step2Error', !ok);
+      return ok;
+    }
+    return true;
+  }
+
+  function goToStep(n){
+    current = Math.max(0, Math.min(TOTAL - 1, n));
+    track.setAttribute('data-step', current);
+    track.style.transform = 'translateX(-' + (current * 33.3333) + '%)';
+    fill.style.width = ((current + 1) / TOTAL * 100) + '%';
+    document.querySelectorAll('.form-step').forEach(function(p, i){ p.classList.toggle('is-active', i === current); });
+    fsteps.forEach(function(fs, i){
+      fs.classList.toggle('active', i === current);
+      fs.classList.toggle('done', i < current);
+    });
+  }
+
+  document.querySelectorAll('[data-next]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(validateStep(current)) goToStep(current + 1);
+    });
+  });
+  document.querySelectorAll('[data-prev]').forEach(function(btn){
+    btn.addEventListener('click', function(){ goToStep(current - 1); });
+  });
+  document.querySelectorAll('#briefForm input, #briefForm select').forEach(function(el){
+    el.addEventListener('input', function(){
+      var field = el.closest('.field');
+      if(field) field.classList.remove('error');
+    });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validateStep(2)) return;
+    var card = form.closest('.form-card');
+    card.querySelector('.form-body').style.display = 'none';
+    card.querySelector('.form-progress').style.display = 'none';
+    success.classList.add('show');
+  });
+
+  goToStep(0);
+})();
+</script>
+</body>
+</html>
