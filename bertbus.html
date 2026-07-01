@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BertBus — Międzynarodowy przewóz osób i paczek w Europie</title>
+<meta name="description" content="BertBus — komfortowy i bezpieczny międzynarodowy przewóz osób oraz paczek busami door-to-door. Kursy z całej Polski do Niemiec, Francji, Austrii, Włoch, Szwajcarii, Danii i Belgii.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* ======================================================================
+   BERTBUS — PREMIUM · Liquid Glass · Trust Navy + Gold
+   ====================================================================== */
+:root{
+  --navy-900:#080d1a; --navy-800:#0b1220; --navy-700:#111a2e; --navy-600:#16213b;
+  --gold:#d4a24e; --gold-600:#b8862f; --gold-soft:rgba(212,162,78,.16);
+  --blue:#3b6ef5; --teal:#2dd4bf;
+  --primary:#0f172a; --secondary:#1e3a8a; --accent:var(--gold);
+
+  --bg:#070b16; --bg-2:#0b1220;
+  --surface:rgba(255,255,255,.055); --surface-2:rgba(255,255,255,.09);
+  --glass-border:rgba(255,255,255,.12); --glass-border-strong:rgba(255,255,255,.2);
+  --fg:#f4f7fc; --fg-muted:#aab6cc; --fg-soft:#7c8aa5;
+  --shadow-lg:0 30px 70px -25px rgba(0,0,0,.75);
+  --shadow-glow:0 20px 60px -18px rgba(212,162,78,.35);
+  --radius:18px; --radius-sm:12px; --radius-lg:28px;
+  --maxw:1220px; --nav-h:80px; --ease:cubic-bezier(.19,1,.22,1);
+}
+[data-theme="light"]{
+  --bg:#eef2f9; --bg-2:#e6ecf6;
+  --surface:rgba(255,255,255,.72); --surface-2:rgba(255,255,255,.9);
+  --glass-border:rgba(15,23,42,.09); --glass-border-strong:rgba(15,23,42,.14);
+  --fg:#0b1220; --fg-muted:#42506b; --fg-soft:#697894;
+  --shadow-lg:0 30px 70px -30px rgba(15,23,42,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--fg);
+  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+  transition:background .5s var(--ease),color .5s var(--ease);
+}
+h1,h2,h3,h4,.dsp{font-family:'Sora',sans-serif;line-height:1.1;letter-spacing:-.025em;font-weight:700}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 26px}
+section{position:relative;z-index:2}
+::selection{background:var(--gold-soft);color:var(--fg)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* ---- Aurora / mesh background ---- */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.aurora span{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
+.aurora .a1{width:52vw;height:52vw;left:-12vw;top:-16vw;background:radial-gradient(circle,#1e3a8a,transparent 68%);animation:drift1 26s var(--ease) infinite alternate}
+.aurora .a2{width:46vw;height:46vw;right:-10vw;top:6vw;background:radial-gradient(circle,rgba(212,162,78,.7),transparent 66%);opacity:.4;animation:drift2 30s var(--ease) infinite alternate}
+.aurora .a3{width:44vw;height:44vw;left:24vw;bottom:-18vw;background:radial-gradient(circle,#2dd4bf,transparent 68%);opacity:.28;animation:drift3 34s var(--ease) infinite alternate}
+[data-theme="light"] .aurora span{opacity:.3}
+@keyframes drift1{to{transform:translate(8vw,6vw) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-7vw,9vw) scale(1.1)}}
+@keyframes drift3{to{transform:translate(6vw,-7vw) scale(1.2)}}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+
+/* ---- Glass utility ---- */
+.glass{background:var(--surface);border:1px solid var(--glass-border);backdrop-filter:blur(22px) saturate(1.5);-webkit-backdrop-filter:blur(22px) saturate(1.5)}
+
+/* ---- Buttons ---- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:.6rem;font-family:'Sora',sans-serif;font-weight:600;font-size:.95rem;
+  padding:.95rem 1.7rem;border-radius:100px;cursor:pointer;border:1px solid transparent;overflow:hidden;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s,color .3s,border-color .3s;min-height:52px;white-space:nowrap}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-600));color:#1a1206;box-shadow:var(--shadow-glow)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 26px 60px -16px rgba(212,162,78,.55)}
+.btn-glass{background:var(--surface);border-color:var(--glass-border-strong);color:var(--fg);backdrop-filter:blur(14px)}
+.btn-glass:hover{background:var(--surface-2);transform:translateY(-3px)}
+.btn::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .7s var(--ease)}
+.btn:hover::after{left:140%}
+.btn:active{transform:translateY(-1px) scale(.98)}
+
+/* ---- NAV ---- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;transition:all .4s var(--ease)}
+.nav.scrolled{height:66px;background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--glass-border)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.7rem;font-family:'Sora',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.03em}
+.brand .mark{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--gold),var(--gold-600));display:grid;place-items:center;box-shadow:var(--shadow-glow);flex:none}
+.brand .mark svg{width:26px;height:26px;color:#1a1206}
+.brand b{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:.2rem;list-style:none}
+.nav-links a{color:var(--fg-muted);font-weight:500;font-size:.94rem;padding:.6rem .95rem;border-radius:100px;transition:color .25s,background .25s}
+.nav-links a:hover{color:var(--fg);background:var(--surface)}
+.nav-actions{display:flex;align-items:center;gap:.7rem}
+.tgl{width:46px;height:46px;border-radius:50%;border:1px solid var(--glass-border-strong);background:var(--surface);color:var(--fg);cursor:pointer;display:grid;place-items:center;transition:transform .4s var(--ease),background .3s}
+.tgl:hover{transform:rotate(40deg) scale(1.05)}
+.tgl svg{width:20px;height:20px}
+.tgl .moon{display:none}[data-theme="light"] .tgl .moon{display:block}[data-theme="light"] .tgl .sun{display:none}
+.burger{display:none;width:46px;height:46px;border-radius:12px;border:1px solid var(--glass-border-strong);background:var(--surface);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.burger span{width:20px;height:2px;background:var(--fg);border-radius:2px;transition:.3s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---- HERO ---- */
+.hero{min-height:100vh;min-height:100dvh;display:flex;align-items:center;padding-top:calc(var(--nav-h) + 2rem);padding-bottom:4rem}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;width:100%}
+.chip{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem 1rem;border-radius:100px;font-size:.82rem;font-weight:600;margin-bottom:1.6rem}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-size:clamp(2.6rem,6.2vw,5rem);font-weight:800;margin-bottom:1.5rem;letter-spacing:-.04em}
+.hero h1 .shine{background:linear-gradient(110deg,var(--gold) 20%,#ffe9c2 50%,var(--gold) 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.hero p.lead{font-size:clamp(1.05rem,2.2vw,1.28rem);color:var(--fg-muted);max-width:52ch;margin-bottom:2.2rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.4rem}
+.hero-trust{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;color:var(--fg-soft);font-size:.88rem}
+.hero-trust .flag-row{display:flex;gap:.4rem}
+.hero-trust .fl{width:26px;height:18px;border-radius:3px;background:var(--surface-2);border:1px solid var(--glass-border);font-size:.6rem;display:grid;place-items:center;font-weight:700;color:var(--fg-muted)}
+
+/* Hero visual: floating glass booking + image */
+.hero-visual{position:relative}
+.hero-photo{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-lg);position:relative}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent,rgba(8,13,26,.4))}
+.hero-float{position:absolute;padding:1.1rem 1.3rem;border-radius:var(--radius);box-shadow:var(--shadow-lg);animation:floaty 6s ease-in-out infinite}
+.hero-float.f1{top:8%;left:-8%;display:flex;align-items:center;gap:.8rem}
+.hero-float.f2{bottom:9%;right:-6%;animation-delay:1.5s;min-width:170px}
+.hero-float .ico{width:44px;height:44px;border-radius:12px;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;flex:none}
+.hero-float .ico svg{width:22px;height:22px}
+.hero-float small{color:var(--fg-soft);font-size:.72rem;display:block}
+.hero-float strong{font-family:'Sora';font-size:1.05rem}
+.hero-float .bars{display:flex;gap:4px;align-items:flex-end;height:34px;margin-top:.5rem}
+.hero-float .bars i{width:8px;background:linear-gradient(var(--gold),var(--gold-600));border-radius:3px;animation:eq 1.2s ease-in-out infinite}
+.hero-float .bars i:nth-child(2){animation-delay:.2s}.hero-float .bars i:nth-child(3){animation-delay:.4s}.hero-float .bars i:nth-child(4){animation-delay:.1s}.hero-float .bars i:nth-child(5){animation-delay:.3s}
+@keyframes eq{0%,100%{height:35%}50%{height:100%}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* ---- Marquee ---- */
+.marquee{overflow:hidden;padding:1.2rem 0;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);margin-top:2rem;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;gap:3.5rem;white-space:nowrap;width:max-content;animation:scrollx 28s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:'Sora';font-weight:600;font-size:1.05rem;color:var(--fg-soft);display:inline-flex;align-items:center;gap:.7rem}
+.marquee-track span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ---- Section head ---- */
+.section-pad{padding:clamp(4.5rem,9vw,8rem) 0}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;color:var(--gold);font-family:'Sora';font-weight:600;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.sec-head{max-width:680px;margin-bottom:3.6rem}
+.sec-head.center{margin:0 auto 3.6rem;text-align:center}
+.sec-head.center .eyebrow::before{display:none}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.3rem);margin-bottom:1.1rem}
+.sec-head p{color:var(--fg-muted);font-size:1.1rem}
+
+/* ---- Stats ---- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.stat{padding:2.2rem 1.5rem;border-radius:var(--radius-lg);text-align:center;transition:transform .4s var(--ease),border-color .4s}
+.stat:hover{transform:translateY(-8px);border-color:var(--gold)}
+.stat .n{font-family:'Sora';font-weight:800;font-size:clamp(2.4rem,4.5vw,3.4rem);line-height:1;background:linear-gradient(135deg,var(--gold),#ffe1a8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-variant-numeric:tabular-nums}
+.stat .l{margin-top:.7rem;color:var(--fg-muted);font-size:.94rem;font-weight:500}
+
+/* ---- Services ---- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.svc{position:relative;padding:2.4rem;border-radius:var(--radius-lg);overflow:hidden;transition:transform .45s var(--ease),border-color .4s;isolation:isolate}
+.svc:hover{transform:translateY(-10px);border-color:var(--gold)}
+.svc .glow{position:absolute;inset:0;z-index:-1;opacity:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),var(--gold-soft),transparent 60%);transition:opacity .4s}
+.svc:hover .glow{opacity:1}
+.svc .ico{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--gold-soft),transparent);border:1px solid var(--glass-border);color:var(--gold);display:grid;place-items:center;margin-bottom:1.5rem;transition:transform .4s var(--ease)}
+.svc:hover .ico{transform:rotate(-8deg) scale(1.08)}
+.svc .ico svg{width:32px;height:32px}
+.svc h3{font-size:1.4rem;margin-bottom:.7rem}
+.svc p{color:var(--fg-muted);font-size:.98rem;margin-bottom:1.3rem}
+.svc ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.svc li{display:flex;align-items:center;gap:.65rem;font-size:.92rem;color:var(--fg-muted)}
+.svc li svg{width:18px;height:18px;color:var(--teal);flex:none}
+.svc .num{position:absolute;top:1.6rem;right:1.8rem;font-family:'Sora';font-weight:800;font-size:2.6rem;color:var(--glass-border-strong);opacity:.6}
+
+/* ---- Destinations ---- */
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.dest{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4;cursor:pointer;box-shadow:var(--shadow-lg)}
+.dest img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);filter:saturate(1.05)}
+.dest:hover img{transform:scale(1.12)}
+.dest::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,13,26,.9) 8%,rgba(8,13,26,.15) 55%,transparent)}
+.dest .info{position:absolute;left:0;right:0;bottom:0;padding:1.3rem;z-index:2;transform:translateY(8px);transition:transform .4s var(--ease)}
+.dest:hover .info{transform:translateY(0)}
+.dest .info h4{color:#fff;font-size:1.3rem;margin-bottom:.15rem}
+.dest .info span{color:rgba(255,255,255,.75);font-size:.82rem;display:flex;align-items:center;gap:.4rem}
+.dest .arrow{position:absolute;top:1.1rem;right:1.1rem;z-index:2;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;opacity:0;transform:scale(.6) rotate(-45deg);transition:.4s var(--ease)}
+.dest:hover .arrow{opacity:1;transform:scale(1) rotate(0)}
+.dest .arrow svg{width:18px;height:18px;color:#fff}
+.dest.wide{grid-column:span 2;aspect-ratio:auto}
+
+/* ---- Split / Why ---- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.why-media{position:relative}
+.why-media .frame{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:5/6;box-shadow:var(--shadow-lg)}
+.why-media .frame img{width:100%;height:100%;object-fit:cover}
+.why-media .ring{position:absolute;inset:-16px;border:1px solid var(--gold);border-radius:calc(var(--radius-lg) + 16px);opacity:.4;pointer-events:none}
+.value-list{list-style:none;display:flex;flex-direction:column;gap:1.4rem;margin-top:2rem}
+.value-list li{display:flex;gap:1.1rem;padding:1.2rem;border-radius:var(--radius);transition:transform .4s var(--ease),background .3s}
+.value-list li:hover{transform:translateX(8px)}
+.value-list .vi{width:52px;height:52px;border-radius:14px;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;flex:none}
+.value-list .vi svg{width:26px;height:26px}
+.value-list h4{font-size:1.12rem;margin-bottom:.25rem}
+.value-list p{color:var(--fg-muted);font-size:.94rem;margin:0}
+
+/* ---- Process ---- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;counter-reset:s}
+.step{position:relative;padding:2rem;border-radius:var(--radius-lg);transition:transform .4s var(--ease)}
+.step:hover{transform:translateY(-8px)}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:'Sora';font-weight:800;font-size:1.4rem;color:var(--gold);display:block;margin-bottom:1rem}
+.step .si{width:52px;height:52px;border-radius:14px;background:var(--surface-2);border:1px solid var(--glass-border);color:var(--gold);display:grid;place-items:center;margin-bottom:1.1rem}
+.step .si svg{width:26px;height:26px}
+.step h4{font-size:1.15rem;margin-bottom:.5rem}
+.step p{color:var(--fg-muted);font-size:.92rem}
+.step .line{position:absolute;top:3.4rem;right:-.8rem;color:var(--glass-border-strong);z-index:3}
+.step .line svg{width:24px;height:24px}
+
+/* ---- Booking form ---- */
+.booking{position:relative;border-radius:var(--radius-lg);overflow:hidden}
+.booking .bk-inner{display:grid;grid-template-columns:.85fr 1.15fr}
+.bk-side{padding:clamp(2rem,4vw,3.2rem);background:linear-gradient(160deg,var(--navy-700),var(--navy-800));position:relative;overflow:hidden}
+[data-theme="light"] .bk-side{background:linear-gradient(160deg,#0f172a,#1e3a8a)}
+.bk-side::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,var(--gold-soft),transparent 65%);top:-60px;right:-60px}
+.bk-side *{position:relative;color:#fff}
+.bk-side h3{font-size:1.7rem;margin-bottom:1rem}
+.bk-side p{color:rgba(255,255,255,.7);font-size:.96rem;margin-bottom:1.8rem}
+.bk-side .contact-line{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;font-size:.95rem}
+.bk-side .contact-line svg{width:20px;height:20px;color:var(--gold);flex:none}
+.bk-side .contact-line a{color:#fff;font-weight:600}
+.bk-form{padding:clamp(2rem,4vw,3.2rem);background:var(--surface-2);backdrop-filter:blur(20px)}
+.bk-form h3{font-size:1.5rem;margin-bottom:.4rem}
+.bk-form .sub{color:var(--fg-muted);font-size:.92rem;margin-bottom:1.6rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-family:'Sora';font-weight:500;font-size:.84rem;margin-bottom:.45rem}
+.field label .req{color:var(--gold)}
+.field input,.field select{width:100%;padding:.85rem 1rem;border-radius:var(--radius-sm);border:1px solid var(--glass-border-strong);background:var(--bg);color:var(--fg);font-family:inherit;font-size:.95rem;min-height:50px;transition:border-color .25s,box-shadow .25s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.seg{display:flex;gap:.5rem;background:var(--bg);border:1px solid var(--glass-border-strong);border-radius:var(--radius-sm);padding:.35rem}
+.seg label{flex:1;margin:0;cursor:pointer}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.6rem;border-radius:9px;font-family:'Sora';font-weight:600;font-size:.9rem;color:var(--fg-muted);transition:.25s}
+.seg span svg{width:18px;height:18px}
+.seg input:checked+span{background:linear-gradient(135deg,var(--gold),var(--gold-600));color:#1a1206}
+.bk-success{display:none;align-items:center;gap:.7rem;background:var(--gold-soft);border:1px solid var(--gold);color:var(--gold);border-radius:var(--radius-sm);padding:.9rem 1rem;font-weight:600;font-size:.9rem;margin-bottom:1rem}
+.bk-success.show{display:flex;animation:fadeup .5s var(--ease)}
+.bk-success svg{width:20px;height:20px;flex:none}
+.bk-note{font-size:.78rem;color:var(--fg-soft);margin-top:.6rem}
+
+/* ---- Testimonials ---- */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.testi{padding:2rem;border-radius:var(--radius-lg);display:flex;flex-direction:column;gap:1rem}
+.testi .stars{display:flex;gap:3px;color:var(--gold)}
+.testi .stars svg{width:18px;height:18px}
+.testi p{color:var(--fg);font-size:1rem;font-style:italic;flex:1}
+.testi .who{display:flex;align-items:center;gap:.8rem}
+.testi .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-600));display:grid;place-items:center;font-family:'Sora';font-weight:700;color:#1a1206;flex:none}
+.testi .who strong{display:block;font-family:'Sora';font-size:.95rem}
+.testi .who span{color:var(--fg-soft);font-size:.82rem}
+
+/* ---- FAQ ---- */
+.faq{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:.9rem}
+.faq details{border-radius:var(--radius);overflow:hidden;transition:border-color .3s}
+.faq details[open]{border-color:var(--gold)}
+.faq summary{list-style:none;cursor:pointer;padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-family:'Sora';font-weight:600;font-size:1.05rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pl{width:26px;height:26px;flex:none;position:relative;transition:transform .3s var(--ease)}
+.faq summary .pl::before,.faq summary .pl::after{content:"";position:absolute;background:var(--gold);border-radius:2px}
+.faq summary .pl::before{top:50%;left:0;right:0;height:2px;transform:translateY(-50%)}
+.faq summary .pl::after{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);transition:opacity .3s}
+.faq details[open] summary .pl::after{opacity:0}
+.faq details[open] summary .pl{transform:rotate(90deg)}
+.faq .ans{padding:0 1.5rem 1.4rem;color:var(--fg-muted);font-size:.96rem}
+
+/* ---- CTA band ---- */
+.cta-band{position:relative;border-radius:var(--radius-lg);overflow:hidden;padding:clamp(3rem,6vw,5rem);text-align:center;background:linear-gradient(150deg,var(--navy-700),var(--navy-900))}
+[data-theme="light"] .cta-band{background:linear-gradient(150deg,#0f172a,#1e3a8a)}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(600px circle at 30% 20%,var(--gold-soft),transparent 55%),radial-gradient(500px circle at 80% 90%,rgba(45,212,191,.2),transparent 55%)}
+.cta-band>*{position:relative;color:#fff}
+.cta-band h2{font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:1rem}
+.cta-band p{color:rgba(255,255,255,.8);max-width:52ch;margin:0 auto 2rem;font-size:1.1rem}
+.cta-band .hero-cta{justify-content:center}
+
+/* ---- Footer ---- */
+.footer{padding:5rem 0 2rem;border-top:1px solid var(--glass-border);margin-top:2rem}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:2.5rem;margin-bottom:3rem}
+.footer p{color:var(--fg-muted);font-size:.93rem;margin-top:1rem}
+.footer h5{font-family:'Sora';font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-soft);margin-bottom:1.2rem}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.footer ul a,.footer ul span{color:var(--fg-muted);font-size:.93rem;transition:color .2s}
+.footer ul a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--glass-border);padding-top:1.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;color:var(--fg-soft);font-size:.85rem}
+
+/* ---- Reveal ---- */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.1s}.reveal[data-d="2"]{transition-delay:.2s}.reveal[data-d="3"]{transition-delay:.3s}.reveal[data-d="4"]{transition-delay:.4s}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---- Scroll progress ---- */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--teal));z-index:1100;transition:width .1s linear}
+
+/* ---- Responsive ---- */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-visual{max-width:440px;margin:0 auto;width:100%}
+  .dest-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step .line{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .nav-links{position:fixed;inset:var(--nav-h) 0 auto 0;flex-direction:column;align-items:stretch;padding:1rem;gap:.2rem;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);transform:translateY(-140%);transition:transform .45s var(--ease)}
+  .nav-links.open{transform:none}
+  .nav-links a{padding:.9rem 1rem}
+  .burger{display:flex}
+  .nav-actions .btn{display:none}
+  .svc-grid,.testi-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+  .split{grid-template-columns:1fr}
+  .booking .bk-inner{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .container{padding:0 18px}
+  .stats,.dest-grid{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:1fr}
+  .hero-float.f1{left:0}.hero-float.f2{right:0}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-cta .btn{flex:1;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="#top" class="brand" aria-label="BertBus — strona główna">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9H4z"/><path d="M17 8h2.5L22 11v4h-5"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M4 11h13"/></svg></span>
+      Bert<b>Bus</b>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#uslugi">Usługi</a></li>
+      <li><a href="#kierunki">Kierunki</a></li>
+      <li><a href="#o-nas">O nas</a></li>
+      <li><a href="#jak">Jak to działa</a></li>
+      <li><a href="#opinie">Opinie</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="tgl" id="tgl" aria-label="Przełącz motyw">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="#rezerwacja" class="btn btn-gold">Zarezerwuj przejazd</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="chip glass"><span class="dot"></span> Przewozy w całej Europie · door to door</span>
+        <h1>Podróżuj po Europie <span class="shine">wygodnie i bezpiecznie</span></h1>
+        <p class="lead">BertBus to komfortowy międzynarodowy przewóz osób i paczek busami. Odbieramy spod domu i dowozimy pod wskazany adres — z pasją, punktualnie i z indywidualnym podejściem do każdego klienta.</p>
+        <div class="hero-cta">
+          <a href="#rezerwacja" class="btn btn-gold">Zarezerwuj przejazd
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="tel:+48501163638" class="btn btn-glass">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg>
+            +48 501 163 638</a>
+        </div>
+        <div class="hero-trust">
+          <span>Kursujemy do:</span>
+          <div class="flag-row">
+            <span class="fl">DE</span><span class="fl">FR</span><span class="fl">AT</span><span class="fl">IT</span><span class="fl">CH</span><span class="fl">DK</span><span class="fl">BE</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=900&q=80" alt="Malownicza trasa przez europejskie góry — komfortowa podróż busem" fetchpriority="high">
+        </div>
+        <div class="hero-float f1 glass">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><small>Odbiór</small><strong>Spod Twojego domu</strong></div>
+        </div>
+        <div class="hero-float f2 glass">
+          <small>Zadowolenie klientów</small>
+          <strong style="color:var(--gold)">99%</strong>
+          <div class="bars"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee glass" style="background:transparent">
+      <div class="marquee-track">
+        <span>Niemcy</span><span>Francja</span><span>Austria</span><span>Włochy</span><span>Szwajcaria</span><span>Dania</span><span>Belgia</span>
+        <span>Niemcy</span><span>Francja</span><span>Austria</span><span>Włochy</span><span>Szwajcaria</span><span>Dania</span><span>Belgia</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STATS ============ -->
+<section class="section-pad" style="padding-top:clamp(3rem,6vw,5rem)">
+  <div class="container">
+    <div class="stats">
+      <div class="stat glass reveal"><div class="n"><span data-count="10" data-suffix="+">0</span></div><div class="l">Lat doświadczenia</div></div>
+      <div class="stat glass reveal" data-d="1"><div class="n"><span data-count="7">0</span></div><div class="l">Krajów w ofercie</div></div>
+      <div class="stat glass reveal" data-d="2"><div class="n"><span data-count="12" data-suffix="k+">0</span></div><div class="l">Zadowolonych klientów</div></div>
+      <div class="stat glass reveal" data-d="3"><div class="n"><span data-count="99" data-suffix="%">0</span></div><div class="l">Zadowolenia klienta</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ USŁUGI ============ -->
+<section class="section-pad" id="uslugi">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nasze usługi</span>
+      <h2>Wszystko, czego potrzebujesz w jednej podróży</h2>
+      <p>Niezależnie czy podróżujesz Ty, czy Twoja przesyłka — zadbamy o komfort, bezpieczeństwo i punktualność na każdym kilometrze.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc glass reveal" data-d="1">
+        <span class="num">01</span><span class="glow"></span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9H4z"/><path d="M17 8h2.5L22 11v4h-5"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></svg></div>
+        <h3>Międzynarodowy przewóz osób</h3>
+        <p>Regularne, komfortowe kursy busami z większości województw Polski do siedmiu krajów Europy Zachodniej.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Klimatyzowane busy</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Doświadczeni kierowcy</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Elastyczne terminy</li>
+        </ul>
+      </article>
+      <article class="svc glass reveal" data-d="2">
+        <span class="num">02</span><span class="glow"></span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></div>
+        <h3>Przewóz paczek</h3>
+        <p>Bezpiecznie dostarczamy przesyłki i paczki między Polską a Europą — szybko i pod wskazany adres.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Przesyłki różnych gabarytów</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Odbiór i dostawa door-to-door</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Krótkie terminy realizacji</li>
+        </ul>
+      </article>
+      <article class="svc glass reveal" data-d="3">
+        <span class="num">03</span><span class="glow"></span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Transport door-to-door</h3>
+        <p>Bez przesiadek i stresu. Odbieramy pasażerów i paczki spod domu i dowozimy dokładnie tam, gdzie trzeba.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Odbiór spod domu</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Dowóz pod adres</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Indywidualne podejście</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KIERUNKI ============ -->
+<section class="section-pad" id="kierunki">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" style="justify-content:center">Kierunki</span>
+      <h2>Dokąd Cię zabierzemy?</h2>
+      <p>Kursy z większości województw Polski do najczęściej wybieranych krajów Europy Zachodniej.</p>
+    </div>
+    <div class="dest-grid">
+      <a class="dest reveal" href="#rezerwacja"><img src="https://images.unsplash.com/photo-1599946347371-68eb71b16afc?auto=format&fit=crop&w=600&q=80" alt="Niemcy" loading="lazy"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div class="info"><h4>Niemcy</h4><span>Kursy regularne</span></div></a>
+      <a class="dest reveal" data-d="1" href="#rezerwacja"><img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80" alt="Francja" loading="lazy"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div class="info"><h4>Francja</h4><span>Kursy regularne</span></div></a>
+      <a class="dest reveal" data-d="2" href="#rezerwacja"><img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=600&q=80" alt="Austria" loading="lazy"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div class="info"><h4>Austria</h4><span>Kursy regularne</span></div></a>
+      <a class="dest reveal" data-d="3" href="#rezerwacja"><img src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?auto=format&fit=crop&w=600&q=80" alt="Włochy" loading="lazy"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div class="info"><h4>Włochy</h4><span>Kursy regularne</span></div></a>
+      <a class="dest reveal" href="#rezerwacja"><img src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&w=600&q=80" alt="Szwajcaria" loading="lazy"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div class="info"><h4>Szwajcaria</h4><span>Kursy regularne</span></div></a>
+      <a class="dest reveal" data-d="1" href="#rezerwacja"><img src="https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?auto=format&fit=crop&w=600&q=80" alt="Dania" loading="lazy"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div class="info"><h4>Dania</h4><span>Kursy regularne</span></div></a>
+      <a class="dest reveal wide" data-d="2" href="#rezerwacja" style="aspect-ratio:auto"><img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?auto=format&fit=crop&w=900&q=80" alt="Belgia" loading="lazy" style="min-height:100%"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div class="info"><h4>Belgia</h4><span>Kursy regularne</span></div></a>
+      <a class="dest reveal" data-d="3" href="#rezerwacja" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,var(--navy-700),var(--navy-800));aspect-ratio:3/4"><div style="text-align:center;padding:1.5rem;position:relative;z-index:3"><div style="font-family:Sora;font-weight:800;font-size:2rem;color:var(--gold)">+ Twój<br>kierunek</div><span style="color:var(--fg-muted);font-size:.85rem;display:block;margin-top:.6rem">Zapytaj o trasę</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O NAS / DLACZEGO ============ -->
+<section class="section-pad" id="o-nas">
+  <div class="container">
+    <div class="split">
+      <div class="why-media reveal">
+        <div class="ring"></div>
+        <div class="frame">
+          <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" alt="Komfortowy bus BertBus w trasie" loading="lazy">
+        </div>
+      </div>
+      <div class="reveal" data-d="1">
+        <span class="eyebrow">O nas</span>
+        <h2 style="font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:1rem">Dynamiczna firma z pasją do podróży</h2>
+        <p style="color:var(--fg-muted);font-size:1.08rem">BertBus to niezawodny przewoźnik, który łączy osoby i paczki w całej Europie — z regularnymi kursami i elastycznym podejściem. Naszą misją jest dostarczanie najwyższej jakości usług transportowych przy zachowaniu bezpieczeństwa i komfortu.</p>
+        <ul class="value-list">
+          <li class="glass">
+            <span class="vi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <div><h4>Bezpieczeństwo</h4><p>Sprawne, serwisowane pojazdy i kierowcy z doświadczeniem na trasach europejskich.</p></div>
+          </li>
+          <li class="glass">
+            <span class="vi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><path d="M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+            <div><h4>Komfort</h4><p>Klimatyzowane busy, przerwy na trasie i przyjazna atmosfera podczas całej podróży.</p></div>
+          </li>
+          <li class="glass">
+            <span class="vi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></span>
+            <div><h4>Rzetelność</h4><p>Punktualność i indywidualne podejście do każdego klienta — słowo, które dotrzymujemy.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JAK TO DZIAŁA ============ -->
+<section class="section-pad" id="jak">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" style="justify-content:center">Jak to działa</span>
+      <h2>Rezerwacja w 4 prostych krokach</h2>
+      <p>Wygodnie, przez intuicyjny formularz — bez kolejek i telefonów, choć zawsze możesz do nas zadzwonić.</p>
+    </div>
+    <div class="steps">
+      <div class="step glass reveal">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <h4>Wypełnij formularz</h4><p>Podaj datę, trasę i liczbę osób lub paczek.</p>
+        <span class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="step glass reveal" data-d="1">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg></div>
+        <h4>Potwierdzenie</h4><p>Oddzwaniamy, ustalamy szczegóły i cenę.</p>
+        <span class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="step glass reveal" data-d="2">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9H4z"/><path d="M17 8h2.5L22 11v4h-5"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="16.5" cy="17.5" r="1.6"/></svg></div>
+        <h4>Odbiór spod domu</h4><p>Przyjeżdżamy pod wskazany adres o umówionej porze.</p>
+        <span class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="step glass reveal" data-d="3">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h4>Dowóz na miejsce</h4><p>Bezpiecznie docierasz do celu — door to door.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REZERWACJA / FORMULARZ ============ -->
+<section class="section-pad" id="rezerwacja">
+  <div class="container">
+    <div class="booking glass reveal">
+      <div class="bk-inner">
+        <div class="bk-side">
+          <h3>Zarezerwuj swój przejazd</h3>
+          <p>Wypełnij formularz, a my skontaktujemy się z Tobą, aby potwierdzić szczegóły i cenę. To nic nie kosztuje.</p>
+          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+48501163638">+48 501 163 638</a></div>
+          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+48575005828">+48 575 005 828</a></div>
+          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg><a href="mailto:twarowskihubert@gmail.com">twarowskihubert@gmail.com</a></div>
+          <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>32-300 Olkusz, ul. Króla Kazimierza Wielkiego 71/9</span></div>
+        </div>
+        <form class="bk-form" id="bkForm" novalidate>
+          <h3>Formularz rezerwacji</h3>
+          <p class="sub">Odpowiadamy zwykle w ciągu kilku godzin.</p>
+          <div class="bk-success" id="bkSuccess" role="status" aria-live="polite">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Dziękujemy! Zgłoszenie zostało przygotowane — wkrótce się odezwiemy.
+          </div>
+          <div class="field">
+            <label>Co przewozimy? <span class="req">*</span></label>
+            <div class="seg">
+              <label><input type="radio" name="rodzaj" value="Osoby" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg> Osoby</span></label>
+              <label><input type="radio" name="rodzaj" value="Paczki"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5"/></svg> Paczki</span></label>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field"><label for="from">Skąd? <span class="req">*</span></label><input id="from" name="from" required placeholder="Miasto / adres"></div>
+            <div class="field"><label for="to">Dokąd? <span class="req">*</span></label><input id="to" name="to" required placeholder="Miasto / adres"></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label for="country">Kraj docelowy</label>
+              <select id="country" name="country">
+                <option value="">Wybierz…</option>
+                <option>Niemcy</option><option>Francja</option><option>Austria</option><option>Włochy</option><option>Szwajcaria</option><option>Dania</option><option>Belgia</option><option>Inny</option>
+              </select>
+            </div>
+            <div class="field"><label for="date">Data odbioru</label><input type="date" id="date" name="date"></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label for="qty">Ile osób / paczek?</label><input type="number" id="qty" name="qty" min="1" placeholder="np. 2"></div>
+            <div class="field"><label for="phone">Telefon <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+48 600 000 000"></div>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:.4rem">Wyślij zgłoszenie
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+          <p class="bk-note">Wysyłając formularz wyrażasz zgodę na kontakt w sprawie rezerwacji. Twoje dane nie są udostępniane osobom trzecim.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPINIE ============ -->
+<section class="section-pad" id="opinie">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" style="justify-content:center">Opinie</span>
+      <h2>Klienci, którzy nam zaufali</h2>
+      <p>Tysiące zrealizowanych kursów i przesyłek — a najważniejsze są dla nas relacje.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi glass reveal">
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+        <p>„Jeżdżę z BertBus do Niemiec regularnie. Punktualnie, czysto i miła obsługa. Odbiór spod domu to ogromna wygoda.”</p>
+        <div class="who"><span class="av">AK</span><div><strong>Anna K.</strong><span>Kraków → Monachium</span></div></div>
+      </div>
+      <div class="testi glass reveal" data-d="1">
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+        <p>„Wysyłałem paczkę do rodziny we Francji — dotarła szybko i w idealnym stanie. Polecam każdemu.”</p>
+        <div class="who"><span class="av">MP</span><div><strong>Marek P.</strong><span>Katowice → Lyon</span></div></div>
+      </div>
+      <div class="testi glass reveal" data-d="2">
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+        <p>„Komfortowy bus, spokojna jazda i kierowca, który zna trasę. Do Austrii tylko z nimi.”</p>
+        <div class="who"><span class="av">JW</span><div><strong>Joanna W.</strong><span>Wrocław → Wiedeń</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section-pad" id="faq">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" style="justify-content:center">FAQ</span>
+      <h2>Najczęstsze pytania</h2>
+    </div>
+    <div class="faq reveal">
+      <details class="glass"><summary>Z jakich miejscowości mogę pojechać?<span class="pl"></span></summary><div class="ans">Realizujemy kursy z większości województw Polski. Podaj adres odbioru w formularzu — potwierdzimy możliwość i godzinę odbioru spod domu.</div></details>
+      <details class="glass"><summary>Czy odbieracie i dowozicie pod sam adres?<span class="pl"></span></summary><div class="ans">Tak. Działamy w systemie door-to-door — odbieramy pasażerów oraz paczki spod wskazanego adresu i dowozimy dokładnie na miejsce docelowe.</div></details>
+      <details class="glass"><summary>Jak mogę zarezerwować przejazd?<span class="pl"></span></summary><div class="ans">Najwygodniej przez formularz rezerwacji na tej stronie. Możesz też zadzwonić pod +48 501 163 638 lub +48 575 005 828.</div></details>
+      <details class="glass"><summary>Czy mogę wysłać samą paczkę bez podróży?<span class="pl"></span></summary><div class="ans">Oczywiście. Obsługujemy międzynarodowy przewóz paczek różnych gabarytów — zaznacz „Paczki” w formularzu i podaj szczegóły.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section-pad" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>Gotowy na podróż bez stresu?</h2>
+      <p>Zarezerwuj przejazd lub nadaj paczkę już dziś. Odezwiemy się z potwierdzeniem i wyceną.</p>
+      <div class="hero-cta">
+        <a href="#rezerwacja" class="btn btn-gold">Zarezerwuj teraz<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="tel:+48501163638" class="btn btn-glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg>Zadzwoń</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="kontakt">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="brand"><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9H4z"/><path d="M17 8h2.5L22 11v4h-5"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M4 11h13"/></svg></span>Bert<b>Bus</b></a>
+        <p>Szybki i bezpieczny międzynarodowy przewóz osób i paczek busami w Europie. Rzetelność, komfort, bezpieczeństwo.</p>
+      </div>
+      <div><h5>Nawigacja</h5><ul><li><a href="#uslugi">Usługi</a></li><li><a href="#kierunki">Kierunki</a></li><li><a href="#o-nas">O nas</a></li><li><a href="#jak">Jak to działa</a></li><li><a href="#opinie">Opinie</a></li></ul></div>
+      <div><h5>Usługi</h5><ul><li><a href="#uslugi">Przewóz osób</a></li><li><a href="#uslugi">Przewóz paczek</a></li><li><a href="#uslugi">Door to door</a></li><li><a href="#rezerwacja">Rezerwacja</a></li></ul></div>
+      <div><h5>Kontakt</h5><ul>
+        <li><a href="tel:+48501163638">+48 501 163 638</a></li>
+        <li><a href="tel:+48575005828">+48 575 005 828</a></li>
+        <li><a href="mailto:twarowskihubert@gmail.com">twarowskihubert@gmail.com</a></li>
+        <li><span>32-300 Olkusz,<br>ul. Króla Kazimierza Wielkiego 71/9</span></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> BertBus. Wszelkie prawa zastrzeżone.</span>
+      <span>Projekt koncepcyjny — dane przeniesione z bertbus.pl</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* Theme */
+  var tgl = document.getElementById('tgl'), saved=null;
+  try{ saved = localStorage.getItem('bb-theme'); }catch(e){}
+  if(saved) root.setAttribute('data-theme', saved);
+  tgl.addEventListener('click', function(){
+    var n = root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme', n);
+    try{ localStorage.setItem('bb-theme', n); }catch(e){}
+  });
+
+  /* Nav + progress */
+  var nav = document.getElementById('nav'), prog = document.getElementById('progress');
+  function onScroll(){
+    nav.classList.toggle('scrolled', scrollY>30);
+    var h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h>0 ? (scrollY/h*100) : 0) + '%';
+  }
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  /* Mobile menu */
+  var burger=document.getElementById('burger'), links=document.getElementById('navLinks');
+  burger.addEventListener('click', function(){
+    var o=links.classList.toggle('open'); burger.classList.toggle('open',o); burger.setAttribute('aria-expanded',o);
+  });
+  links.addEventListener('click', function(e){ if(e.target.tagName==='A'){ links.classList.remove('open'); burger.classList.remove('open'); }});
+
+  /* Reveal */
+  var rev=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){ rev.forEach(function(e){e.classList.add('in')}); }
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+    rev.forEach(function(e){io.observe(e)});
+  }
+
+  /* Counters */
+  function anim(el){
+    var t=+el.getAttribute('data-count'), sfx=el.getAttribute('data-suffix')||'';
+    if(reduce){el.textContent=t+sfx;return;}
+    var dur=1600, s=performance.now();
+    (function step(now){var p=Math.min((now-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+(p===1?sfx:'');if(p<1)requestAnimationFrame(step);})(s);
+  }
+  if('IntersectionObserver' in window){
+    var cio=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){anim(x.target);cio.unobserve(x.target)}})},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(e){cio.observe(e)});
+  } else document.querySelectorAll('[data-count]').forEach(anim);
+
+  /* Card spotlight glow */
+  if(!reduce){
+    document.querySelectorAll('.svc').forEach(function(c){
+      c.addEventListener('pointermove', function(e){
+        var r=c.getBoundingClientRect();
+        c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+        c.style.setProperty('--my',(e.clientY-r.top)+'px');
+      });
+    });
+  }
+
+  /* Form */
+  var form=document.getElementById('bkForm'), ok=document.getElementById('bkSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var first=null;
+    ['from','to','phone'].forEach(function(id){
+      var f=document.getElementById(id);
+      if(!f.value.trim()){f.style.borderColor='var(--gold)';f.style.boxShadow='0 0 0 3px var(--gold-soft)';if(!first)first=f;}
+      else{f.style.borderColor='';f.style.boxShadow='';}
+    });
+    if(first){first.focus();return;}
+    ok.classList.add('show');
+    form.querySelector('button[type=submit]').textContent='Wysłano ✓';
+    ok.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    setTimeout(function(){form.reset();},500);
+  });
+  form.addEventListener('input',function(e){if(e.target.value.trim()){e.target.style.borderColor='';e.target.style.boxShadow='';}});
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
