@@ -256,6 +256,7 @@ header.nav.scrolled{
   position:relative;border-radius:var(--radius);overflow:hidden;min-height:340px;
   display:flex;flex-direction:column;justify-content:flex-end;padding:34px;color:#fff;
   box-shadow:var(--shadow-md);transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+  background:var(--grad-blue); /* fallback gdyby zdjęcie się nie wczytało */
 }
 .svc .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s var(--ease);z-index:0}
 .svc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,29,63,.05) 0%,rgba(7,29,63,.35) 45%,rgba(7,29,63,.9) 100%);z-index:1}
@@ -647,7 +648,7 @@ footer{background:#050f22;color:rgba(255,255,255,.72);padding:70px 0 34px}
     <div class="eco-visual reveal d2">
       <div class="eco-ring"></div>
       <div class="imgwrap">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80" alt="Zielona logistyka i zrównoważony transport" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80" alt="Zielona logistyka i zrównoważony transport" loading="lazy" style="background:var(--grad-eco)" onerror="this.style.opacity=0" />
       </div>
       <div class="eco-badge">
         <div class="big">-30%</div>
