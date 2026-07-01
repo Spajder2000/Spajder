@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optigo Transport sp. z o.o. — Transport, Spedycja i Logistyka Kontraktowa w Europie</title>
+<meta name="description" content="Optigo Transport sp. z o.o. — transport krajowy i międzynarodowy, spedycja, logistyka kontraktowa i magazynowanie. Nowoczesna flota Euro 6, śledzenie GPS 24/7, dostawy na czas 99,8%. Zapytaj o wycenę.">
+<meta name="theme-color" content="#0d121b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d121b'/%3E%3Cpath d='M14 40 L28 24 L36 34 L50 18' stroke='%2322d8e6' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+/* ==========================================================================
+   OPTIGO TRANSPORT — DESIGN TOKENS
+   ========================================================================== */
+:root{
+  --ink-950:#080b11; --ink-900:#0d121b; --ink-800:#141b27; --ink-700:#1d2635; --ink-600:#2b3648;
+  --signal-050:#eef4ff; --signal-100:#dde9ff; --signal-300:#8fb3ff; --signal-400:#5c8dff;
+  --signal-500:#2f68ff; --signal-600:#1a4de0; --signal-700:#123fb8;
+  --aqua-400:#3ee6d8; --aqua-500:#14cdbd; --aqua-600:#0aa89b;
+  --bg:#f6f8fb; --bg-soft:#eef2f7; --surface:#ffffff;
+  --fg:#0d121b; --fg-muted:#4b5670; --fg-soft:#7a869c;
+  --line:rgba(13,18,27,.09); --line-strong:rgba(13,18,27,.15);
+  --glass-bg:rgba(255,255,255,.62); --glass-bg-strong:rgba(255,255,255,.86);
+  --glass-line:rgba(255,255,255,.55);
+  --shadow-sm:0 2px 8px -2px rgba(13,18,27,.08);
+  --shadow-md:0 16px 40px -12px rgba(13,18,27,.14);
+  --shadow-lg:0 34px 80px -24px rgba(13,18,27,.22);
+  --shadow-glow:0 20px 50px -14px rgba(47,104,255,.35);
+  --radius-sm:12px; --radius:20px; --radius-lg:28px; --radius-xl:36px;
+  --maxw:1280px; --nav-h:84px;
+  --ease:cubic-bezier(.16,1,.3,1); --ease-soft:cubic-bezier(.22,.61,.36,1);
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;
+  --font-disp:'Plus Jakarta Sans','Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+#uslugi,#dlaczego,#flota,#wycena,footer{scroll-margin-top:104px}
+body{
+  font-family:var(--font-body);color:var(--fg);background:var(--bg);
+  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4,.disp{font-family:var(--font-disp);line-height:1.12;letter-spacing:-.02em;font-weight:700;color:var(--ink-900)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+ul{list-style:none}
+button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{position:relative}
+::selection{background:var(--signal-100);color:var(--ink-900)}
+:focus-visible{outline:2px solid var(--signal-500);outline-offset:3px;border-radius:6px}
+.disp{font-family:var(--font-disp)}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--signal-600)}
+.section-head{max-width:640px;margin-bottom:3.2rem}
+.section-head .eyebrow{margin-bottom:1rem}
+.section-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:1rem}
+.section-head p{color:var(--fg-muted);font-size:1.08rem}
+.section-pad{padding:6.5rem 0}
+@media(max-width:768px){.section-pad{padding:4.2rem 0}}
+
+/* ---- reveal on scroll ---- */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-scale{opacity:0;transform:scale(.94);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-scale.is-visible{opacity:1;transform:scale(1)}
+[data-delay="1"]{transition-delay:.08s}[data-delay="2"]{transition-delay:.16s}
+[data-delay="3"]{transition-delay:.24s}[data-delay="4"]{transition-delay:.32s}
+[data-delay="5"]{transition-delay:.4s}[data-delay="6"]{transition-delay:.48s}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal,.reveal-scale{opacity:1!important;transform:none!important}
+}
+
+/* ---- buttons ---- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  font-family:var(--font-disp);font-weight:700;font-size:.96rem;letter-spacing:-.01em;
+  padding:1rem 1.8rem;border-radius:100px;overflow:hidden;white-space:nowrap;min-height:54px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .3s,color .3s,border-color .3s}
+.btn svg{width:18px;height:18px;flex:none;transition:transform .35s var(--ease)}
+.btn-primary{background:linear-gradient(135deg,var(--signal-500),var(--signal-700));color:#fff;box-shadow:var(--shadow-glow)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 28px 60px -16px rgba(47,104,255,.5)}
+.btn-primary:hover svg{transform:translateX(3px)}
+.btn-ghost{background:var(--surface);border:1px solid var(--line-strong);color:var(--ink-900)}
+.btn-ghost:hover{background:var(--bg-soft);transform:translateY(-3px);border-color:var(--signal-400)}
+.btn-glass{background:var(--glass-bg);border:1px solid var(--glass-line);backdrop-filter:blur(16px) saturate(1.6);-webkit-backdrop-filter:blur(16px) saturate(1.6);color:var(--ink-900)}
+.btn-glass:hover{background:var(--glass-bg-strong);transform:translateY(-3px)}
+.btn-block{width:100%}
+.btn-sm{padding:.75rem 1.3rem;min-height:44px;font-size:.88rem}
+.btn:active{transform:translateY(-1px) scale(.98)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;transition:height .35s var(--ease)}
+.nav-inner{width:100%;max-width:calc(var(--maxw) + 40px);margin:0 auto;padding:0 20px}
+.nav-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1.1rem;border-radius:100px;
+  background:rgba(255,255,255,.62);border:1px solid var(--glass-line);backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);
+  box-shadow:0 8px 30px -12px rgba(13,18,27,.18);transition:all .45s var(--ease)}
+.nav.scrolled{top:14px}
+.nav.scrolled .nav-bar{background:rgba(255,255,255,.78);backdrop-filter:blur(22px) saturate(1.7);-webkit-backdrop-filter:blur(22px) saturate(1.7);
+  box-shadow:var(--shadow-md);border-color:var(--glass-line)}
+.brand{display:flex;align-items:center;gap:.65rem;font-family:var(--font-disp);font-weight:800;font-size:1.18rem;letter-spacing:-.02em;color:var(--ink-900);padding-left:.3rem}
+.brand .mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--signal-500),var(--aqua-500));display:grid;place-items:center;flex:none;box-shadow:0 8px 20px -6px rgba(47,104,255,.5)}
+.brand .mark svg{width:22px;height:22px;color:#fff}
+.brand small{display:block;font-family:var(--font-body);font-weight:600;font-size:.62rem;letter-spacing:.09em;color:var(--fg-soft);text-transform:uppercase;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:.15rem;list-style:none}
+.nav-links a{display:inline-block;color:var(--fg-muted);font-weight:600;font-size:.92rem;padding:.65rem 1rem;border-radius:100px;transition:color .25s,background .25s}
+.nav-links a:hover{color:var(--ink-900);background:rgba(13,18,27,.055)}
+.nav-actions{display:flex;align-items:center;gap:.6rem}
+.nav-phone{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.9rem;color:var(--ink-900);padding:0 .4rem}
+.nav-phone svg{width:17px;height:17px;color:var(--signal-500)}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line-strong);background:var(--surface);flex-direction:column;justify-content:center;align-items:center;gap:5px;flex:none}
+.burger span{width:19px;height:2px;background:var(--ink-900);border-radius:2px;transition:.32s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-panel{position:fixed;inset:0;z-index:999;background:rgba(8,11,17,.55);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .35s var(--ease);display:flex;justify-content:flex-end}
+.mobile-panel.open{opacity:1;visibility:visible}
+.mobile-sheet{width:min(340px,84vw);height:100%;background:var(--surface);padding:7rem 1.8rem 2rem;box-shadow:-30px 0 60px -20px rgba(0,0,0,.35);transform:translateX(100%);transition:transform .45s var(--ease)}
+.mobile-panel.open .mobile-sheet{transform:translateX(0)}
+.mobile-sheet a{display:block;padding:1rem 0;font-family:var(--font-disp);font-weight:700;font-size:1.2rem;border-bottom:1px solid var(--line);color:var(--ink-900)}
+.mobile-sheet .btn{margin-top:1.6rem}
+@media(max-width:920px){
+  .nav-links,.nav-phone{display:none}
+  .burger{display:flex}
+}
+@media(max-width:480px){
+  .nav-cta{display:none}
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero{min-height:100vh;min-height:100dvh;display:flex;align-items:center;position:relative;overflow:hidden;
+  padding-top:calc(var(--nav-h) + 1rem)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.hero-media::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(100deg, rgba(6,9,15,.94) 6%, rgba(8,12,20,.8) 32%, rgba(10,15,26,.42) 58%, rgba(10,15,26,.12) 78%, rgba(10,15,26,0) 100%),
+    linear-gradient(0deg, rgba(6,9,15,.55) 0%, rgba(6,9,15,0) 32%);}
+.hero-media::before{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(circle at 82% 78%, rgba(62,230,216,.28), transparent 55%)}
+.hero-content{position:relative;z-index:2;max-width:660px}
+.hero .chip{display:inline-flex;align-items:center;gap:.65rem;padding:.55rem 1.1rem 0.55rem .8rem;border-radius:100px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(14px);
+  color:#eef4ff;font-size:.82rem;font-weight:600;margin-bottom:1.8rem}
+.hero .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--aqua-400);box-shadow:0 0 14px var(--aqua-400);animation:pulseDot 2.2s infinite}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.4rem);color:#fff;margin-bottom:1.5rem;letter-spacing:-.03em}
+.hero h1 span{background:linear-gradient(100deg,var(--aqua-400) 10%,var(--signal-300) 50%,var(--aqua-400) 90%);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:220% center}}
+.hero p.lead{font-size:clamp(1.05rem,1.6vw,1.24rem);color:rgba(238,244,255,.82);max-width:50ch;margin-bottom:2.3rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:3rem}
+.hero-trust{display:flex;flex-wrap:wrap;gap:2rem;padding-top:1.8rem;border-top:1px solid rgba(255,255,255,.16)}
+.hero-trust div{display:flex;flex-direction:column;gap:.15rem}
+.hero-trust b{font-family:var(--font-disp);font-size:1.5rem;color:#fff;letter-spacing:-.02em}
+.hero-trust span{font-size:.78rem;color:rgba(238,244,255,.65);font-weight:500}
+.hero-scroll{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.6rem;color:rgba(255,255,255,.7);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.hero-scroll .line{width:1px;height:34px;background:linear-gradient(180deg,rgba(255,255,255,.8),transparent);position:relative;overflow:hidden}
+.hero-scroll .line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--aqua-400);animation:scrollLine 2.2s ease-in-out infinite}
+@keyframes scrollLine{0%{top:-100%}60%{top:100%}100%{top:100%}}
+@media(max-width:640px){.hero-trust{gap:1.4rem}.hero-trust b{font-size:1.25rem}}
+
+/* ==========================================================================
+   STATS
+   ========================================================================== */
+.stats{background:var(--ink-900);position:relative;overflow:hidden;padding:5rem 0}
+.stats-bg{position:absolute;inset:0;opacity:.24;filter:saturate(1.1)}
+.stats-bg img{width:100%;height:100%;object-fit:cover}
+.stats::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,18,27,.92),rgba(13,18,27,.88));z-index:1}
+.stats-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.stat-card{padding:1rem .5rem;text-align:center;border-right:1px solid rgba(255,255,255,.09)}
+.stat-card:last-child{border-right:none}
+.stat-num{font-family:var(--font-disp);font-size:clamp(2.1rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.03em;
+  background:linear-gradient(120deg,#fff,var(--aqua-400));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  display:inline-flex;align-items:baseline;gap:.15rem}
+.stat-label{color:rgba(238,244,255,.68);font-size:.92rem;font-weight:500;margin-top:.5rem}
+@media(max-width:820px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:2.2rem 1rem}.stat-card{border-right:none;border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:1.6rem}}
+
+/* ==========================================================================
+   BENTO — USŁUGI
+   ========================================================================== */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:210px 210px 210px;gap:1.4rem;
+  grid-template-areas:"k k g g" "k k e m" "w w s s"}
+.tile{grid-area:var(--area);position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);
+  background:var(--surface);box-shadow:var(--shadow-sm);transition:transform .5s var(--ease),box-shadow .5s var(--ease);isolation:isolate}
+.tile:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.tile.k{--area:k}.tile.g{--area:g}.tile.e{--area:e}.tile.m{--area:m}.tile.w{--area:w}.tile.s{--area:s}
+.tile-img{position:absolute;inset:0;z-index:0}
+.tile-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.tile:hover .tile-img img{transform:scale(1.08)}
+.tile-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,17,.05) 0%,rgba(8,11,17,.55) 62%,rgba(8,11,17,.88) 100%)}
+.tile-body{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:1.6rem;color:#fff}
+.tile-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);
+  display:grid;place-items:center;margin-bottom:auto;flex:none}
+.tile-icon svg{width:23px;height:23px;color:#fff}
+.tile h3{color:#fff;font-size:1.3rem;margin-bottom:.4rem;letter-spacing:-.01em}
+.tile p{color:rgba(255,255,255,.78);font-size:.9rem;max-width:34ch;margin-bottom:.9rem}
+.tile-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:700;color:var(--aqua-400)}
+.tile-link svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.tile:hover .tile-link svg{transform:translateX(4px)}
+.tile.k .tile h3, .tile.k h3{font-size:1.55rem}
+/* light (no-photo) tiles */
+.tile-light{background:linear-gradient(155deg,var(--ink-800),var(--ink-900))}
+.tile-light .tile-body{padding:1.5rem}
+.tile-light h3{font-size:1.12rem}
+.tile-light p{font-size:.84rem}
+.tile.g .tile-body{justify-content:space-between}
+.tile-map-mini{position:absolute;right:1.4rem;top:1.4rem;width:96px;height:96px;opacity:.9}
+.tile-map-mini svg{width:100%;height:100%}
+.pulse-ring{fill:none;stroke:var(--aqua-400);stroke-width:2;opacity:.7;transform-origin:center;animation:ringPulse 2.4s ease-out infinite}
+@keyframes ringPulse{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.tile.e .tile-body,.tile.m .tile-body{padding:1.3rem}
+.tile.e h3,.tile.m h3{font-size:1.05rem}
+@media(max-width:1024px){
+  .bento{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;grid-template-areas:"k k" "g g" "e m" "w w" "s s"}
+  .tile{min-height:260px}
+  .tile.k{min-height:340px}
+}
+@media(max-width:620px){
+  .bento{grid-template-columns:1fr;grid-template-areas:"k" "g" "e" "m" "w" "s"}
+}
+
+/* ==========================================================================
+   DLACZEGO OPTIGO
+   ========================================================================== */
+.why{background:var(--ink-900);position:relative;overflow:hidden;color:#fff}
+.why-bg{position:absolute;inset:0;opacity:.16}
+.why-bg img{width:100%;height:100%;object-fit:cover}
+.why::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,rgba(47,104,255,.28),transparent 45%),radial-gradient(circle at 85% 85%,rgba(20,205,189,.22),transparent 45%),linear-gradient(180deg,rgba(8,11,17,.85),rgba(8,11,17,.94))}
+.why .section-head h2,.why .section-head p{color:#fff}
+.why .section-head p{color:rgba(238,244,255,.72)}
+.why-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.why-card{padding:2rem 1.8rem;border-radius:var(--radius);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);transition:transform .45s var(--ease),background .45s var(--ease),border-color .45s}
+.why-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.09);border-color:rgba(62,230,216,.4)}
+.why-ic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;margin-bottom:1.3rem;
+  background:linear-gradient(135deg,rgba(47,104,255,.25),rgba(62,230,216,.25));border:1px solid rgba(255,255,255,.18);transition:transform .5s var(--ease)}
+.why-card:hover .why-ic{transform:rotate(-8deg) scale(1.08)}
+.why-ic svg{width:26px;height:26px;color:var(--aqua-400)}
+.why-card h3{color:#fff;font-size:1.15rem;margin-bottom:.55rem}
+.why-card p{color:rgba(238,244,255,.66);font-size:.92rem}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr}}
+
+/* ==========================================================================
+   FLOTA + MAPA
+   ========================================================================== */
+.fleet-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:start}
+@media(max-width:980px){.fleet-grid{grid-template-columns:1fr;gap:3.4rem}}
+
+.map-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.map-card .dotgrid{position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(circle,var(--line-strong) 1px,transparent 1.4px);background-size:22px 22px}
+.map-stage{position:relative;aspect-ratio:10/11;z-index:1}
+.map-stage svg{width:100%;height:100%;overflow:visible}
+.map-route{fill:none;stroke:var(--signal-400);stroke-width:1.6;stroke-dasharray:6 6;opacity:.55;stroke-linecap:round}
+.map-route-glow{fill:none;stroke:var(--signal-500);stroke-width:2.4;opacity:0;stroke-linecap:round;stroke-dasharray:340;stroke-dashoffset:340;transition:stroke-dashoffset 1.8s var(--ease),opacity .4s}
+.map-stage.in-view .map-route-glow{stroke-dashoffset:0;opacity:1}
+.map-pulse{fill:var(--aqua-500);r:3;offset-rotate:0deg}
+.map-node{cursor:pointer}
+.map-node circle.hit{fill:transparent}
+.map-node circle.core{fill:var(--ink-900);stroke:#fff;stroke-width:2;transition:transform .3s var(--ease)}
+.map-node circle.ring{fill:none;stroke:var(--signal-400);stroke-width:1.4;opacity:0;animation:ringPulse2 2.6s ease-out infinite}
+.map-node.hub circle.core{fill:var(--signal-500);r:8}
+.map-node.hub circle.ring{stroke:var(--aqua-400)}
+@keyframes ringPulse2{0%{transform:scale(.5);opacity:.8}100%{transform:scale(2.6);opacity:0}}
+.map-node:hover circle.core{transform:scale(1.35)}
+.map-label{font-family:var(--font-body);font-size:9.5px;font-weight:700;fill:var(--fg-muted);letter-spacing:.02em}
+.map-node:hover .map-label{fill:var(--ink-900)}
+.map-tooltip{position:absolute;pointer-events:none;background:var(--ink-900);color:#fff;font-size:.72rem;font-weight:600;
+  padding:.5rem .75rem;border-radius:10px;transform:translate(-50%,-130%);opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;z-index:5;box-shadow:var(--shadow-md)}
+.map-tooltip::after{content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;background:var(--ink-900);transform:translateX(-50%) rotate(45deg)}
+.map-tooltip.show{opacity:1;transform:translate(-50%,-145%)}
+.map-legend{display:flex;align-items:center;gap:.6rem;margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--fg-muted)}
+.map-legend b{color:var(--ink-900)}
+
+.gallery-wrap{position:relative}
+.gallery{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.5rem;scrollbar-width:none}
+.gallery::-webkit-scrollbar{display:none}
+.gallery-item{flex:0 0 78%;scroll-snap-align:start;border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:4/5;box-shadow:var(--shadow-sm)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.gallery-item:hover img{transform:scale(1.05)}
+.gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,11,17,.85))}
+.gallery-cap{position:absolute;left:1.3rem;right:1.3rem;bottom:1.2rem;z-index:1;color:#fff}
+.gallery-cap b{display:block;font-family:var(--font-disp);font-size:1.02rem;margin-bottom:.15rem}
+.gallery-cap span{font-size:.8rem;color:rgba(255,255,255,.75)}
+.gallery-nav{display:flex;gap:.7rem;margin-top:1.3rem;justify-content:flex-end}
+.gnav-btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);display:grid;place-items:center;transition:all .3s var(--ease)}
+.gnav-btn:hover{background:var(--ink-900);border-color:var(--ink-900)}
+.gnav-btn:hover svg{color:#fff}
+.gnav-btn svg{width:18px;height:18px;color:var(--ink-900)}
+@media(min-width:640px){.gallery-item{flex-basis:46%}}
+@media(min-width:980px){.gallery-item{flex-basis:64%}}
+
+/* ==========================================================================
+   WYCENA — MULTI-STEP FORM
+   ========================================================================== */
+.quote{background:linear-gradient(180deg,var(--bg-soft),var(--bg))}
+.quote-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem;align-items:start}
+@media(max-width:980px){.quote-grid{grid-template-columns:1fr;gap:2.6rem}}
+.quote-side .section-head{margin-bottom:2rem}
+.quote-points{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:2rem}
+.quote-point{display:flex;gap:.9rem;align-items:flex-start}
+.quote-point .ic{width:38px;height:38px;border-radius:11px;background:var(--signal-050);display:grid;place-items:center;flex:none}
+.quote-point .ic svg{width:18px;height:18px;color:var(--signal-600)}
+.quote-point b{display:block;font-size:.98rem;color:var(--ink-900);margin-bottom:.1rem}
+.quote-point span{font-size:.86rem;color:var(--fg-muted)}
+.quote-photo{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:16/10;box-shadow:var(--shadow-md);position:relative;margin-bottom:2rem}
+.quote-photo img{width:100%;height:100%;object-fit:cover}
+.quote-photo-badge{position:absolute;left:1.1rem;bottom:1.1rem;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);padding:.6rem .9rem;border-radius:12px;font-size:.78rem;font-weight:700;color:var(--ink-900);display:flex;align-items:center;gap:.5rem}
+.quote-photo-badge svg{width:15px;height:15px;color:var(--signal-500)}
+.quote-direct{display:flex;flex-direction:column;gap:.75rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.quote-direct a{display:flex;align-items:center;gap:.7rem;font-weight:700;font-size:.98rem;color:var(--ink-900)}
+.quote-direct a svg{width:18px;height:18px;color:var(--signal-500)}
+
+.form-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);overflow:hidden}
+.form-progress{position:sticky;top:0;z-index:3;padding:1.6rem 2rem 1.4rem;background:rgba(255,255,255,.72);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
+  border-bottom:1px solid var(--line)}
+.form-progress-bar{height:5px;border-radius:100px;background:var(--bg-soft);overflow:hidden;margin-bottom:1.3rem;position:relative}
+.form-progress-fill{position:absolute;inset:0;width:33.333%;border-radius:100px;background:linear-gradient(90deg,var(--signal-500),var(--aqua-400));transition:width .55s var(--ease)}
+.form-steps-row{display:flex;justify-content:space-between}
+.fstep{display:flex;align-items:center;gap:.6rem;flex:1}
+.fstep .num{width:30px;height:30px;border-radius:50%;background:var(--bg-soft);border:1.5px solid var(--line-strong);display:grid;place-items:center;
+  font-family:var(--font-disp);font-weight:700;font-size:.82rem;color:var(--fg-soft);flex:none;transition:all .4s var(--ease)}
+.fstep span{font-size:.8rem;font-weight:600;color:var(--fg-soft);transition:color .4s var(--ease)}
+.fstep.active .num{background:linear-gradient(135deg,var(--signal-500),var(--signal-700));border-color:transparent;color:#fff;box-shadow:0 4px 14px -3px rgba(47,104,255,.5)}
+.fstep.active span{color:var(--ink-900)}
+.fstep.done .num{background:var(--aqua-500);border-color:transparent;color:#fff}
+.fstep.done span{color:var(--ink-900)}
+.fstep .num svg{width:14px;height:14px}
+@media(max-width:560px){.fstep span{display:none}}
+
+.form-body{position:relative;overflow:hidden;transition:height .45s var(--ease)}
+.form-track{display:flex;width:300%;transition:transform .55s var(--ease)}
+.form-track[data-step="0"]{transform:translateX(0%)}
+.form-track[data-step="1"]{transform:translateX(-33.3333%)}
+.form-track[data-step="2"]{transform:translateX(-66.6666%)}
+.form-step{flex:0 0 33.3333%;padding:2.1rem 2.2rem 2.4rem;opacity:0;transition:opacity .5s var(--ease) .05s;min-width:0}
+.form-step.is-active{opacity:1}
+.form-step h3{font-size:1.28rem;margin-bottom:.35rem}
+.form-step .hint{color:var(--fg-muted);font-size:.9rem;margin-bottom:1.6rem}
+.recap-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--signal-050);color:var(--signal-700);font-size:.8rem;font-weight:700;
+  padding:.5rem .9rem;border-radius:100px;margin-bottom:1.5rem}
+.recap-pill svg{width:14px;height:14px}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.2rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.83rem;font-weight:700;color:var(--ink-900)}
+.field .req{color:var(--signal-500)}
+.field input,.field select,.field textarea{
+  width:100%;padding:.85rem 1rem;border-radius:12px;border:1.5px solid var(--line-strong);background:var(--bg-soft);
+  font-size:.95rem;color:var(--ink-900);transition:border-color .25s,box-shadow .25s,background .25s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--signal-500);background:var(--surface);box-shadow:0 0 0 4px var(--signal-050)}
+.field textarea{resize:vertical;min-height:88px}
+.field.error input,.field.error select{border-color:#e0483e;box-shadow:0 0 0 4px rgba(224,72,62,.1);animation:shakeField .4s}
+@keyframes shakeField{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.field-error-msg{font-size:.76rem;color:#e0483e;font-weight:600;display:none}
+.field.error .field-error-msg{display:block}
+.check-row{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:1.6rem}
+.check-row input[type=checkbox]{width:20px;height:20px;margin-top:1px;accent-color:var(--signal-500);flex:none}
+.check-row label{font-size:.84rem;color:var(--fg-muted);line-height:1.55}
+.form-actions{display:flex;justify-content:space-between;gap:1rem;padding-top:.4rem}
+.form-actions .spacer{flex:1}
+@media(max-width:600px){.field-grid{grid-template-columns:1fr}.form-step{padding:1.7rem 1.4rem 2rem}.form-progress{padding:1.3rem 1.4rem 1.1rem}}
+
+.form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:4.4rem 2.4rem}
+.form-success.show{display:flex}
+.success-check{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--aqua-500),var(--signal-500));display:grid;place-items:center;margin-bottom:1.6rem;box-shadow:0 20px 45px -14px rgba(20,205,189,.55)}
+.success-check svg{width:38px;height:38px;color:#fff;stroke-dasharray:40;stroke-dashoffset:40;animation:drawCheck .6s .2s var(--ease) forwards}
+@keyframes drawCheck{to{stroke-dashoffset:0}}
+.form-success h3{font-size:1.5rem;margin-bottom:.7rem}
+.form-success p{color:var(--fg-muted);max-width:38ch;margin-bottom:1.8rem}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.cta-band{background:linear-gradient(120deg,var(--ink-900),var(--ink-800));position:relative;overflow:hidden;padding:4.5rem 0}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 30%,rgba(62,230,216,.22),transparent 50%),radial-gradient(circle at 10% 80%,rgba(47,104,255,.25),transparent 50%)}
+.cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-inner h2{color:#fff;font-size:clamp(1.5rem,2.6vw,2.1rem);max-width:520px}
+.cta-inner p{color:rgba(238,244,255,.7);margin-top:.6rem;max-width:480px}
+
+footer{background:var(--ink-900);color:rgba(238,244,255,.72);padding:5rem 0 0}
+.foot-grid{display:grid;grid-template-columns:1.3fr .8fr .8fr 1.1fr;gap:2.6rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,.1)}
+@media(max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;gap:2.6rem 1.6rem}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand{display:flex;align-items:center;gap:.65rem;font-family:var(--font-disp);font-weight:800;font-size:1.15rem;color:#fff;margin-bottom:1rem}
+.foot-brand .mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--signal-500),var(--aqua-500));display:grid;place-items:center}
+.foot-brand .mark svg{width:19px;height:19px;color:#fff}
+.foot-desc{font-size:.92rem;max-width:32ch;margin-bottom:1.4rem}
+.foot-social{display:flex;gap:.7rem}
+.foot-social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;transition:all .3s var(--ease)}
+.foot-social a:hover{background:var(--signal-500);border-color:var(--signal-500);transform:translateY(-3px)}
+.foot-social svg{width:16px;height:16px;color:#fff}
+footer h4{color:#fff;font-family:var(--font-disp);font-size:.95rem;margin-bottom:1.2rem;letter-spacing:-.01em}
+.foot-links{display:flex;flex-direction:column;gap:.75rem}
+.foot-links a{font-size:.9rem;transition:color .25s,padding-left .25s}
+.foot-links a:hover{color:#fff;padding-left:4px}
+.foot-contact{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.4rem}
+.foot-contact a,.foot-contact div{display:flex;gap:.7rem;align-items:flex-start;font-size:.9rem}
+.foot-contact svg{width:17px;height:17px;color:var(--aqua-400);flex:none;margin-top:2px}
+.foot-contact a:hover{color:#fff}
+.mini-map{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.mini-map-visual{position:relative;height:120px;background:
+   linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/26px 26px,
+   linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/26px 26px,
+   linear-gradient(135deg,var(--ink-800),var(--ink-900));
+  display:grid;place-items:center}
+.mini-map-visual .pin{width:34px;height:34px;border-radius:50% 50% 50% 0;background:var(--aqua-400);transform:rotate(-45deg);position:relative;box-shadow:0 8px 20px -6px rgba(62,230,216,.6)}
+.mini-map-visual .pin::after{content:"";position:absolute;inset:9px;background:var(--ink-900);border-radius:50%}
+.mini-map-info{padding:1rem 1.1rem;font-size:.84rem;display:flex;justify-content:space-between;align-items:center;gap:.6rem}
+.mini-map-info a{color:var(--aqua-400);font-weight:700;white-space:nowrap}
+.foot-bottom{padding:1.8rem 0 2.2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;font-size:.8rem;color:rgba(238,244,255,.5)}
+.foot-legal{max-width:800px;font-size:.76rem;line-height:1.8;color:rgba(238,244,255,.42);padding:1.8rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-signature{text-align:center;padding:1.4rem 0 2.2rem;font-size:.78rem;color:rgba(238,244,255,.45)}
+.foot-signature b{color:rgba(238,244,255,.85);font-weight:700;letter-spacing:.02em}
+.foot-signature a{color:var(--aqua-400);font-weight:700}
+
+/* utility */
+.grow{flex-grow:1}
+.center-text{text-align:center;margin:0 auto}
+</style>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <div class="nav-bar">
+      <a href="#top" class="brand">
+        <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 15 L10 8 L14 12 L20 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>OPTIGO<small>TRANSPORT SP. Z O.O.</small></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#uslugi">Usługi</a></li>
+        <li><a href="#dlaczego">Dlaczego my</a></li>
+        <li><a href="#flota">Flota i zasięg</a></li>
+        <li><a href="#wycena">Wycena</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="tel:+48224601200" class="nav-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +48 22 460 12 00</a>
+        <a href="#wycena" class="btn btn-primary btn-sm nav-cta">Zapytaj o wycenę</a>
+        <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <nav class="mobile-sheet">
+    <a href="#uslugi">Usługi</a>
+    <a href="#dlaczego">Dlaczego my</a>
+    <a href="#flota">Flota i zasięg</a>
+    <a href="#wycena">Wycena</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#wycena" class="btn btn-primary btn-block">Zapytaj o wycenę</a>
+  </nav>
+</div>
+
+<main id="top">
+<!-- ============================== HERO ============================== -->
+<section class="hero">
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2400&q=80" alt="Nowoczesny ciągnik siodłowy w ruchu na autostradzie" loading="eager">
+  </div>
+  <div class="container hero-content">
+    <div class="chip"><span class="dot"></span> Lider transportu i logistyki w Europie</div>
+    <h1>Transport, który<br>wyznacza <span>standardy.</span></h1>
+    <p class="lead">Nowoczesna flota Euro 6, spedycja bez granic i logistyka kontraktowa dla firm, które nie akceptują opóźnień. Śledzenie GPS 24/7 i pełne bezpieczeństwo ładunku — od pierwszego do ostatniego kilometra.</p>
+    <div class="hero-cta">
+      <a href="#wycena" class="btn btn-primary">Zapytaj o wycenę
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#uslugi" class="btn btn-glass" style="color:#fff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.1)">Nasze usługi</a>
+    </div>
+    <div class="hero-trust">
+      <div><b data-count="18400000" data-suffix="+">0</b><span>km rocznie</span></div>
+      <div><b data-count="99.8" data-decimals="1" data-suffix="%">0</b><span>dostaw na czas</span></div>
+      <div><b data-count="24" data-suffix="">0</b><span>kraje Europy</span></div>
+      <div><b data-count="130" data-suffix="+">0</b><span>pojazdów flоty</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Przewiń</span><div class="line"></div></div>
+</section>
+
+<!-- ============================== STATS BAND ============================== -->
+<section class="stats" id="liczby">
+  <div class="stats-bg"><img src="https://images.unsplash.com/photo-1769697756411-63c1bb2d7031?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy"></div>
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal"><div class="stat-num"><span data-count="18.4" data-decimals="1" data-suffix=" mln">0</span></div><div class="stat-label">kilometrów przejechanych rocznie</div></div>
+      <div class="stat-card reveal" data-delay="1"><div class="stat-num"><span data-count="99.8" data-decimals="1" data-suffix="%">0</span></div><div class="stat-label">dostaw zrealizowanych na czas</div></div>
+      <div class="stat-card reveal" data-delay="2"><div class="stat-num"><span data-count="24" data-suffix="">0</span></div><div class="stat-label">kraje Europy w naszym zasięgu</div></div>
+      <div class="stat-card reveal" data-delay="3"><div class="stat-num"><span data-count="130" data-suffix="+">0</span></div><div class="stat-label">pojazdów spełniających normę Euro 6</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== BENTO USŁUGI ============================== -->
+<section class="section-pad" id="uslugi">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nasze usługi</span>
+      <h2>Cztery filary, jeden standard jakości</h2>
+      <p>Od codziennych dostaw krajowych po skomplikowaną spedycję międzynarodową — Optigo Transport zarządza całym łańcuchem dostaw Twojej firmy.</p>
+    </div>
+
+    <div class="bento reveal-scale">
+      <article class="tile k">
+        <div class="tile-img"><img src="https://images.unsplash.com/photo-1654365256618-3bd21f0d0335?auto=format&fit=crop&w=1200&q=75" alt="Naczepa plandekowa Optigo Transport na trasie krajowej" loading="lazy"></div>
+        <div class="tile-body">
+          <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h1a2 2 0 0 0 4 0h6a2 2 0 0 0 4 0h1v-5l-3-4h-4V6H4a1 1 0 0 0-1 1z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="17.5" cy="17.5" r="1.5"/></svg></div>
+          <h3>Transport Krajowy</h3>
+          <p>Codzienne, punktualne dostawy na terenie całej Polski — plandeki, izotermy i pojazdy dedykowane, monitorowane w czasie rzeczywistym.</p>
+          <span class="tile-link">Zobacz zasięg <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+
+      <article class="tile g tile-light">
+        <div class="tile-map-mini">
+          <svg viewBox="0 0 100 100"><circle class="pulse-ring" cx="50" cy="50" r="14"/><circle class="pulse-ring" cx="50" cy="50" r="14" style="animation-delay:.8s"/><circle cx="50" cy="50" r="5" fill="#3ee6d8"/></svg>
+        </div>
+        <div class="tile-body">
+          <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg></div>
+          <div>
+            <h3>Śledzenie GPS 24/7</h3>
+            <p>Pełna widoczność ładunku w czasie rzeczywistym — Ty i Twój klient zawsze wiecie, gdzie jest przesyłka.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile e tile-light">
+        <div class="tile-body">
+          <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5l-5-3-5 3M17 19l-5 3-5-3M2 12h20M5 5l-3 5 3 5M19 5l3 5-3 5"/></svg></div>
+          <h3>Eco-Driving &amp; Euro 6</h3>
+          <p>Kierowcy szkoleni w eco-drivingu i nowoczesna flota — niższy śład CO₂ na każdej trasie.</p>
+        </div>
+      </article>
+
+      <article class="tile m">
+        <div class="tile-img"><img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=75" alt="Terminal kontenerowy — spedycja międzynarodowa" loading="lazy"></div>
+        <div class="tile-body">
+          <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <h3>Spedycja Międzynarodowa</h3>
+          <p>Transport drogowy, morski i intermodalny z pełną obsługą dokumentacji CMR.</p>
+        </div>
+      </article>
+
+      <article class="tile w">
+        <div class="tile-img"><img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1400&q=75" alt="Magazyn wysokiego składowania Optigo Transport" loading="lazy"></div>
+        <div class="tile-body">
+          <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l9-6 9 6v12M3 21h18M9 21V13h6v8"/></svg></div>
+          <h3>Logistyka Kontraktowa i Magazynowanie</h3>
+          <p>Powierzchnie wysokiego składowania, cross-docking i zarządzanie zapasami skrojone pod cykl Twojego biznesu.</p>
+          <span class="tile-link">Poznaj możliwości <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+
+      <article class="tile s">
+        <div class="tile-img"><img src="https://images.unsplash.com/photo-1779517225512-ec62df745e7c?auto=format&fit=crop&w=1200&q=75" alt="Ciężarówka chłodnicza przy terminalu kontenerowym" loading="lazy"></div>
+        <div class="tile-body">
+          <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3M2 12h20M2 12l3-3M2 12l3 3M22 12l-3-3M22 12l-3 3M5 5l14 14M5 19L19 5"/></svg></div>
+          <h3>Ładunki Specjalne — Chłodnicze i Ponadgabarytowe</h3>
+          <p>Multi-temp, ADR i transport ponadgabarytowy z pełnym ubezpieczeniem cargo.</p>
+          <span class="tile-link">Zapytaj o transport <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== DLACZEGO OPTIGO ============================== -->
+<section class="section-pad why" id="dlaczego">
+  <div class="why-bg"><img src="https://images.unsplash.com/photo-1674794026966-eabd52a962e3?auto=format&fit=crop&w=2200&q=75" alt="" loading="lazy"></div>
+  <div class="container">
+    <div class="section-head reveal center-text" style="text-align:center">
+      <span class="eyebrow" style="color:var(--aqua-400)">Dlaczego Optigo</span>
+      <h2 style="margin:0 auto">Doświadczenie, które czuć na każdym kilometrze</h2>
+      <p style="margin:1rem auto 0">Sześć powodów, dla których firmy z całej Europy powierzają nam swoje ładunki.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5.5 4 9 9 10 5-1 9-4.5 9-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Bezpieczeństwo Ładunku</h3>
+        <p>Pełne ubezpieczenie cargo, elektroniczne plomby i restrykcyjne procedury ADR na każdym etapie transportu.</p>
+      </div>
+      <div class="why-card reveal" data-delay="1">
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg></div>
+        <h3>GPS Tracking 24/7</h3>
+        <p>Monitoring flоty i temperatury w czasie rzeczywistym — pełna transparentność dla Ciebie i Twojego klienta.</p>
+      </div>
+      <div class="why-card reveal" data-delay="2">
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5l-5-3-5 3M17 19l-5 3-5-3M2 12h20M5 5l-3 5 3 5M19 5l3 5-3 5"/></svg></div>
+        <h3>Nowoczesna Flota Euro 6</h3>
+        <p>Pojazdy spełniające najwyższe normy emisji, serwisowane cyklicznie i wyposażone w telematykę.</p>
+      </div>
+      <div class="why-card reveal" data-delay="3">
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Terminowość 99,8%</h3>
+        <p>Dedykowana dyspozytornia i optymalizacja trasy sprawiają, że opóźnienia są u nas wyjątkiem.</p>
+      </div>
+      <div class="why-card reveal" data-delay="4">
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <h3>Dedykowany Opiekun Klienta</h3>
+        <p>Jedna osoba kontaktowa, znająca specyfikę Twojej firmy i dostępna na każdym etapie zlecenia.</p>
+      </div>
+      <div class="why-card reveal" data-delay="5">
+        <div class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <h3>Wsparcie 24/7/365</h3>
+        <p>Dyspozytornia i wsparcie awaryjne działają całą dobę — również w święta i weekendy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FLOTA I ZASIĘG ============================== -->
+<section class="section-pad" id="flota">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Flota i zasięg</span>
+      <h2>Nasza flota. Twój zasięg w całej Europie.</h2>
+      <p>Codzienne połączenia z kluczowymi rynkami Europy Zachodniej, Południowej i Wschodniej — z bazą operacyjną w centrum Polski.</p>
+    </div>
+
+    <div class="fleet-grid">
+      <div class="map-card reveal">
+        <div class="dotgrid"></div>
+        <div class="map-stage" id="mapStage">
+          <svg viewBox="0 0 400 440" id="mapSvg">
+            <!-- routes from hub (Warszawa) -->
+            <path class="map-route" d="M200,190 C160,140 110,110 70,90"/>
+            <path class="map-route-glow" d="M200,190 C160,140 110,110 70,90"/>
+            <path class="map-route" d="M200,190 C150,190 100,190 55,190"/>
+            <path class="map-route-glow" d="M200,190 C150,190 100,190 55,190"/>
+            <path class="map-route" d="M200,190 C160,230 110,270 75,320"/>
+            <path class="map-route-glow" d="M200,190 C160,230 110,270 75,320"/>
+            <path class="map-route" d="M200,190 C210,240 220,300 210,360"/>
+            <path class="map-route-glow" d="M200,190 C210,240 220,300 210,360"/>
+            <path class="map-route" d="M200,190 C240,220 280,260 300,330"/>
+            <path class="map-route-glow" d="M200,190 C240,220 280,260 300,330"/>
+            <path class="map-route" d="M200,190 C250,170 300,150 335,110"/>
+            <path class="map-route-glow" d="M200,190 C250,170 300,150 335,110"/>
+            <path class="map-route" d="M200,190 C230,150 260,110 250,60"/>
+            <path class="map-route-glow" d="M200,190 C230,150 260,110 250,60"/>
+            <path class="map-route" d="M200,190 C230,170 260,150 330,175"/>
+            <path class="map-route-glow" d="M200,190 C230,170 260,150 330,175"/>
+
+            <g class="map-node hub" data-name="Warszawa — Centrum Operacyjne" data-info="Baza główna floty">
+              <circle class="hit" cx="200" cy="190" r="22"/>
+              <circle class="ring" cx="200" cy="190" r="8"/>
+              <circle class="core" cx="200" cy="190" r="8"/>
+              <text class="map-label" x="200" y="212" text-anchor="middle" font-weight="800">WARSZAWA</text>
+            </g>
+            <g class="map-node" data-name="Berlin, Niemcy" data-info="Dostawa 24–36h">
+              <circle class="hit" cx="70" cy="90" r="20"/>
+              <circle class="ring" cx="70" cy="90" r="6"/><circle class="core" cx="70" cy="90" r="5"/>
+              <text class="map-label" x="70" y="80" text-anchor="middle">BERLIN</text>
+            </g>
+            <g class="map-node" data-name="Amsterdam, Holandia" data-info="Dostawa 36–48h">
+              <circle class="hit" cx="55" cy="190" r="20"/>
+              <circle class="ring" cx="55" cy="190" r="6"/><circle class="core" cx="55" cy="190" r="5"/>
+              <text class="map-label" x="55" y="180" text-anchor="middle">AMSTERDAM</text>
+            </g>
+            <g class="map-node" data-name="Paryż, Francja" data-info="Dostawa 48–60h">
+              <circle class="hit" cx="75" cy="320" r="20"/>
+              <circle class="ring" cx="75" cy="320" r="6"/><circle class="core" cx="75" cy="320" r="5"/>
+              <text class="map-label" x="75" y="335" text-anchor="middle">PARYŻ</text>
+            </g>
+            <g class="map-node" data-name="Wiedeń, Austria" data-info="Dostawa 24–36h">
+              <circle class="hit" cx="210" cy="360" r="20"/>
+              <circle class="ring" cx="210" cy="360" r="6"/><circle class="core" cx="210" cy="360" r="5"/>
+              <text class="map-label" x="210" y="378" text-anchor="middle">WIEDEŃ</text>
+            </g>
+            <g class="map-node" data-name="Rzym, Włochy" data-info="Dostawa 48–72h">
+              <circle class="hit" cx="300" cy="330" r="20"/>
+              <circle class="ring" cx="300" cy="330" r="6"/><circle class="core" cx="300" cy="330" r="5"/>
+              <text class="map-label" x="300" y="348" text-anchor="middle">RZYM</text>
+            </g>
+            <g class="map-node" data-name="Praga, Czechy" data-info="Dostawa 18–24h">
+              <circle class="hit" cx="335" cy="110" r="20"/>
+              <circle class="ring" cx="335" cy="110" r="6"/><circle class="core" cx="335" cy="110" r="5"/>
+              <text class="map-label" x="335" y="100" text-anchor="middle">PRAGA</text>
+            </g>
+            <g class="map-node" data-name="Wilno, Litwa" data-info="Dostawa 12–18h">
+              <circle class="hit" cx="250" cy="60" r="20"/>
+              <circle class="ring" cx="250" cy="60" r="6"/><circle class="core" cx="250" cy="60" r="5"/>
+              <text class="map-label" x="250" y="50" text-anchor="middle">WILNO</text>
+            </g>
+            <g class="map-node" data-name="Lwów, Ukraina" data-info="Dostawa 12–20h">
+              <circle class="hit" cx="330" cy="175" r="20"/>
+              <circle class="ring" cx="330" cy="175" r="6"/><circle class="core" cx="330" cy="175" r="5"/>
+              <text class="map-label" x="330" y="165" text-anchor="middle">LWÓW</text>
+            </g>
+          </svg>
+          <div class="map-tooltip" id="mapTooltip"></div>
+        </div>
+        <div class="map-legend"><span style="width:8px;height:8px;border-radius:50%;background:var(--signal-500);display:inline-block"></span> Baza operacyjna &nbsp; <b>Warszawa</b> &nbsp;·&nbsp; najeżdżaj na punkty, aby zobaczyć czas dostawy</div>
+      </div>
+
+      <div class="gallery-wrap reveal" data-delay="1">
+        <div class="gallery" id="fleetGallery">
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?auto=format&fit=crop&w=1200&q=75" alt="Ciężarówka na trasie o zachodzie słońca" loading="lazy">
+            <figcaption class="gallery-cap"><b>Nowoczesne ciągniki siodłowe</b><span>Flota klasy Euro 6</span></figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1766785368863-f2188a8c8b32?auto=format&fit=crop&w=1200&q=75" alt="Ciężarówka na górskiej trasie o zmierzchu" loading="lazy">
+            <figcaption class="gallery-cap"><b>Transport międzynarodowy</b><span>Codzienne połączenia europejskie</span></figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1761133381018-aed5063d22fe?auto=format&fit=crop&w=1200&q=75" alt="Widok z drona na ciężarówkę na drodze wśród pól" loading="lazy">
+            <figcaption class="gallery-cap"><b>Optymalizacja trasy</b><span>Precyzyjne planowanie logistyczne</span></figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1734903251828-b8d4c0423e56?auto=format&fit=crop&w=1200&q=75" alt="Naczepa niskopodłogowa do ładunków ponadgabarytowych" loading="lazy">
+            <figcaption class="gallery-cap"><b>Ładunki ponadgabarytowe</b><span>Naczepy niskopodłogowe i HDS</span></figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1720811559371-7b0ebd219127?auto=format&fit=crop&w=1200&q=75" alt="Naczepy przy rampach przeładunkowych centrum logistycznego" loading="lazy">
+            <figcaption class="gallery-cap"><b>Centra logistyczne</b><span>Cross-docking i przeładunek</span></figcaption>
+          </figure>
+        </div>
+        <div class="gallery-nav">
+          <button class="gnav-btn" id="galPrev" aria-label="Poprzednie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="gnav-btn" id="galNext" aria-label="Następne"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CTA BAND ============================== -->
+<section class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="reveal">Gotowy na logistykę bez kompromisów?</h2>
+      <p class="reveal" data-delay="1">Wypełnij krótki formularz — odpowiemy z indywidualną wyceną w ciągu 24h roboczych.</p>
+    </div>
+    <a href="#wycena" class="btn btn-primary reveal" data-delay="2">Zapytaj o wycenę
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ============================== WYCENA (MULTI-STEP FORM) ============================== -->
+<section class="section-pad quote" id="wycena">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Zapytanie ofertowe</span>
+      <h2>Zapytaj o wycenę transportu</h2>
+      <p>Wypełnij formularz w 3 krokach — nasz specjalista przygotuje indywidualną ofertę dopasowaną do Twojego ładunku.</p>
+    </div>
+
+    <div class="quote-grid">
+      <div class="quote-side reveal">
+        <div class="quote-photo">
+          <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=900&q=75" alt="Terminal przeładunkowy Optigo Transport">
+          <div class="quote-photo-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Odpowiedź w 24h</div>
+        </div>
+        <div class="quote-points">
+          <div class="quote-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span><div><b>Indywidualny opiekun</b><span>Jedna osoba kontaktowa na cały czas trwania zlecenia.</span></div></div>
+          <div class="quote-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5.5 4 9 9 10 5-1 9-4.5 9-10V6z"/></svg></span><div><b>Pełne ubezpieczenie cargo</b><span>Twój ładunek jest zabezpieczony na każdym etapie transportu.</span></div></div>
+          <div class="quote-point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><b>Wycena bez zobowiązań</b><span>Otrzymasz konkretną ofertę w ciągu 24h roboczych.</span></div></div>
+        </div>
+        <div class="quote-direct">
+          <a href="tel:+48224601200"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +48 22 460 12 00 — dyspozytornia 24/7</a>
+          <a href="mailto:kontakt@optigotransport.pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> kontakt@optigotransport.pl</a>
+        </div>
+      </div>
+
+      <div class="form-card reveal" data-delay="1">
+        <div class="form-progress">
+          <div class="form-progress-bar"><div class="form-progress-fill" id="progressFill"></div></div>
+          <div class="form-steps-row">
+            <div class="fstep active" data-step-i="0"><span class="num">1</span><span>Szczegóły trasy</span></div>
+            <div class="fstep" data-step-i="1"><span class="num">2</span><span>Parametry ładunku</span></div>
+            <div class="fstep" data-step-i="2"><span class="num">3</span><span>Dane kontaktowe</span></div>
+          </div>
+        </div>
+
+        <form id="quoteForm" novalidate>
+          <div class="form-body" id="formBody">
+            <div class="form-track" id="formTrack" data-step="0">
+
+              <!-- STEP 1 — TRASA -->
+              <div class="form-step is-active" data-panel="0">
+                <h3>Szczegóły trasy</h3>
+                <p class="hint">Podaj miejsce nadania i odbioru ładunku.</p>
+                <div class="field-grid">
+                  <div class="field full">
+                    <label>Miejsce załadunku <span class="req">*</span></label>
+                    <input type="text" name="from" placeholder="np. Warszawa, Polska" required>
+                    <span class="field-error-msg">To pole jest wymagane.</span>
+                  </div>
+                  <div class="field full">
+                    <label>Miejsce rozładunku <span class="req">*</span></label>
+                    <input type="text" name="to" placeholder="np. Monachium, Niemcy" required>
+                    <span class="field-error-msg">To pole jest wymagane.</span>
+                  </div>
+                  <div class="field">
+                    <label>Rodzaj trasy <span class="req">*</span></label>
+                    <select name="routeType" required>
+                      <option value="">Wybierz…</option>
+                      <option>Transport krajowy</option>
+                      <option>Transport międzynarodowy</option>
+                      <option>Spedycja morska / intermodalna</option>
+                    </select>
+                    <span class="field-error-msg">Wybierz rodzaj trasy.</span>
+                  </div>
+                  <div class="field">
+                    <label>Preferowana data transportu <span class="req">*</span></label>
+                    <input type="date" name="date" required>
+                    <span class="field-error-msg">Wybierz datę.</span>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <span class="spacer"></span>
+                  <button type="button" class="btn btn-primary" data-next>Dalej: Ładunek
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- STEP 2 — ŁADUNEK -->
+              <div class="form-step" data-panel="1">
+                <h3>Parametry ładunku</h3>
+                <span class="recap-pill" data-recap><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <span data-recap-text="">Trasa</span></span>
+                <p class="hint">Opisz co i ile przewozimy.</p>
+                <div class="field-grid">
+                  <div class="field full">
+                    <label>Rodzaj towaru <span class="req">*</span></label>
+                    <input type="text" name="cargoType" placeholder="np. elektronika, palety FMCG, maszyny" required>
+                    <span class="field-error-msg">To pole jest wymagane.</span>
+                  </div>
+                  <div class="field">
+                    <label>Waga całkowita (kg) <span class="req">*</span></label>
+                    <input type="number" name="weight" min="1" placeholder="np. 4200" required>
+                    <span class="field-error-msg">Podaj wagę ładunku.</span>
+                  </div>
+                  <div class="field">
+                    <label>Liczba palet / jednostek</label>
+                    <input type="number" name="units" min="0" placeholder="np. 12">
+                  </div>
+                  <div class="field full">
+                    <label>Typ ładunku <span class="req">*</span></label>
+                    <select name="specialType" required>
+                      <option value="">Wybierz…</option>
+                      <option>Standardowy</option>
+                      <option>Chłodniczy (multi-temp)</option>
+                      <option>ADR — materiały niebezpieczne</option>
+                      <option>Ponadgabarytowy</option>
+                    </select>
+                    <span class="field-error-msg">Wybierz typ ładunku.</span>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="button" class="btn btn-ghost" data-back>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Wstecz
+                  </button>
+                  <button type="button" class="btn btn-primary" data-next>Dalej: Kontakt
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- STEP 3 — KONTAKT -->
+              <div class="form-step" data-panel="2">
+                <h3>Dane kontaktowe</h3>
+                <span class="recap-pill" data-recap><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <span data-recap-text="">Trasa</span></span>
+                <p class="hint">Ostatni krok — podaj dane do kontaktu z wyceną.</p>
+                <div class="field-grid">
+                  <div class="field">
+                    <label>Imię i nazwisko <span class="req">*</span></label>
+                    <input type="text" name="name" placeholder="Jan Kowalski" required>
+                    <span class="field-error-msg">To pole jest wymagane.</span>
+                  </div>
+                  <div class="field">
+                    <label>Nazwa firmy <span class="req">*</span></label>
+                    <input type="text" name="company" placeholder="Nazwa Sp. z o.o." required>
+                    <span class="field-error-msg">To pole jest wymagane.</span>
+                  </div>
+                  <div class="field">
+                    <label>E-mail <span class="req">*</span></label>
+                    <input type="email" name="email" placeholder="jan@firma.pl" required>
+                    <span class="field-error-msg">Podaj poprawny adres e-mail.</span>
+                  </div>
+                  <div class="field">
+                    <label>Telefon <span class="req">*</span></label>
+                    <input type="tel" name="phone" placeholder="+48 600 000 000" required>
+                    <span class="field-error-msg">Podaj numer telefonu.</span>
+                  </div>
+                  <div class="field full">
+                    <label>Uwagi do zapytania</label>
+                    <textarea name="message" placeholder="Dodatkowe informacje o zleceniu…"></textarea>
+                  </div>
+                </div>
+                <div class="check-row">
+                  <input type="checkbox" id="rodo" name="rodo" required>
+                  <label for="rodo">Wyrażam zgodę na przetwarzanie moich danych osobowych przez Optigo Transport sp. z o.o. w celu przygotowania i przesłania wyceny transportu, zgodnie z RODO. <span class="req">*</span></label>
+                </div>
+                <div class="form-actions">
+                  <button type="button" class="btn btn-ghost" data-back>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Wstecz
+                  </button>
+                  <button type="submit" class="btn btn-primary">Wyślij zapytanie o wycenę
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></div>
+          <h3>Zapytanie wysłane!</h3>
+          <p>Dziękujemy — nasz specjalista przygotuje indywidualną wycenę i skontaktuje się z Tobą w ciągu 24h roboczych.</p>
+          <button class="btn btn-ghost" id="resetForm">Wypełnij nowe zapytanie</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer id="kontakt">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 15 L10 8 L14 12 L20 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          OPTIGO TRANSPORT
+        </div>
+        <p class="foot-desc">Transport krajowy i międzynarodowy, spedycja oraz logistyka kontraktowa — z naciskiem na punktualność, bezpieczeństwo i nowoczesną, ekologiczną flotę.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Usługi</h4>
+        <ul class="foot-links">
+          <li><a href="#uslugi">Transport krajowy</a></li>
+          <li><a href="#uslugi">Spedycja międzynarodowa</a></li>
+          <li><a href="#uslugi">Logistyka kontraktowa</a></li>
+          <li><a href="#uslugi">Ładunki specjalne</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Firma</h4>
+        <ul class="foot-links">
+          <li><a href="#dlaczego">Dlaczego Optigo</a></li>
+          <li><a href="#flota">Flota i zasięg</a></li>
+          <li><a href="#wycena">Zapytanie ofertowe</a></li>
+          <li><a href="#">Kariera</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <div class="foot-contact">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ul. Logistyczna 14, 05-090 Raszyn</div>
+          <a href="tel:+48224601200"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +48 22 460 12 00</a>
+          <a href="mailto:kontakt@optigotransport.pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> kontakt@optigotransport.pl</a>
+        </div>
+        <div class="mini-map">
+          <div class="mini-map-visual"><div class="pin"></div></div>
+          <div class="mini-map-info">
+            <span>Raszyn, k. Warszawy</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=ul.+Logistyczna+14%2C+05-090+Raszyn" target="_blank" rel="noopener">Otwórz mapę →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="foot-legal">Optigo Transport sp. z o.o. z siedzibą w Raszynie (05-090), ul. Logistyczna 14 · NIP: 527-123-45-67 · REGON: 141234567 · KRS: 0000123456 · Sąd Rejonowy dla m.st. Warszawy w Warszawie, XIV Wydział Gospodarczy Krajowego Rejestru Sądowego · Kapitał zakładowy: 500 000 zł.</p>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Optigo Transport sp. z o.o. Wszystkie prawa zastrzeżone.</span>
+      <span style="display:flex;gap:1.4rem"><a href="#">Polityka prywatności</a><a href="#">Regulamin</a></span>
+    </div>
+
+    <div class="foot-signature">Projekt i realizacja: <b>PAJAKWEB</b> — <a href="#" onclick="return false">pajakweb.pl</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* NAV scroll state */
+  var nav = document.getElementById('siteNav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 30); }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* Mobile menu */
+  var burger = document.getElementById('burgerBtn'), panel = document.getElementById('mobilePanel');
+  burger.addEventListener('click', function(){
+    burger.classList.toggle('open');
+    panel.classList.toggle('open');
+  });
+  panel.addEventListener('click', function(e){
+    if(e.target === panel || e.target.tagName === 'A'){ burger.classList.remove('open'); panel.classList.remove('open'); }
+  });
+
+  /* Reveal on scroll */
+  var revealEls = document.querySelectorAll('.reveal, .reveal-scale');
+  if('IntersectionObserver' in window){
+    var rio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('is-visible'); rio.unobserve(en.target); }
+      });
+    }, {threshold:.15, rootMargin:'0px 0px -60px 0px'});
+    revealEls.forEach(function(el){ rio.observe(el); });
+  } else revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+
+  /* Counters */
+  function easeOutExpo(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+  function animateCounter(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var start = null, dur = 1900;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var val = target * easeOutExpo(p);
+      el.textContent = val.toLocaleString('pl-PL', {minimumFractionDigits:decimals, maximumFractionDigits:decimals}) + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    if(reduce){ el.textContent = target.toLocaleString('pl-PL', {minimumFractionDigits:decimals, maximumFractionDigits:decimals}) + suffix; }
+    else requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  if('IntersectionObserver' in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ animateCounter(en.target); cio.unobserve(en.target); } });
+    }, {threshold:.6});
+    counters.forEach(function(c){ cio.observe(c); });
+  } else counters.forEach(animateCounter);
+
+  /* Europe network map — tooltip + draw-in on view */
+  var mapStage = document.getElementById('mapStage'), tooltip = document.getElementById('mapTooltip');
+  if(mapStage){
+    if('IntersectionObserver' in window){
+      var mio = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ mapStage.classList.add('in-view'); mio.unobserve(en.target); } });
+      }, {threshold:.35});
+      mio.observe(mapStage);
+    } else mapStage.classList.add('in-view');
+
+    document.querySelectorAll('.map-node').forEach(function(node){
+      node.addEventListener('pointerenter', function(e){
+        var rect = mapStage.getBoundingClientRect();
+        var circle = node.querySelector('circle.core');
+        var cRect = circle.getBoundingClientRect();
+        tooltip.textContent = node.getAttribute('data-name') + ' · ' + node.getAttribute('data-info');
+        tooltip.style.left = (cRect.left - rect.left + cRect.width/2) + 'px';
+        tooltip.style.top = (cRect.top - rect.top) + 'px';
+        tooltip.classList.add('show');
+      });
+      node.addEventListener('pointerleave', function(){ tooltip.classList.remove('show'); });
+    });
+  }
+
+  /* Fleet gallery slider */
+  var gallery = document.getElementById('fleetGallery');
+  var galPrev = document.getElementById('galPrev'), galNext = document.getElementById('galNext');
+  function galScroll(dir){
+    var item = gallery.querySelector('.gallery-item');
+    var amount = item ? item.getBoundingClientRect().width + 18 : 320;
+    gallery.scrollBy({left: dir * amount, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  galPrev.addEventListener('click', function(){ galScroll(-1); });
+  galNext.addEventListener('click', function(){ galScroll(1); });
+  if(!reduce){
+    var galTimer = setInterval(function(){
+      if(gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 4){ gallery.scrollTo({left:0, behavior:'smooth'}); }
+      else galScroll(1);
+    }, 4800);
+    gallery.addEventListener('pointerenter', function(){ clearInterval(galTimer); });
+  }
+
+  /* ===================== MULTI-STEP QUOTE FORM ===================== */
+  var form = document.getElementById('quoteForm');
+  var track = document.getElementById('formTrack');
+  var body = document.getElementById('formBody');
+  var panels = Array.prototype.slice.call(form.querySelectorAll('.form-step'));
+  var fsteps = Array.prototype.slice.call(document.querySelectorAll('.fstep'));
+  var progressFill = document.getElementById('progressFill');
+  var successBox = document.getElementById('formSuccess');
+  var current = 0;
+  var TOTAL = panels.length;
+
+  function setHeight(){
+    var active = panels[current];
+    body.style.height = active.scrollHeight + 'px';
+  }
+
+  function updateRecap(){
+    var from = form.querySelector('[name=from]').value.trim();
+    var to = form.querySelector('[name=to]').value.trim();
+    var date = form.querySelector('[name=date]').value;
+    var txt = (from || 'Załadunek') + ' → ' + (to || 'Rozładunek');
+    if(date){
+      var d = new Date(date);
+      if(!isNaN(d)) txt += ' · ' + d.toLocaleDateString('pl-PL', {day:'2-digit', month:'2-digit', year:'numeric'});
+    }
+    document.querySelectorAll('[data-recap-text]').forEach(function(el){ el.textContent = txt; });
+  }
+
+  function goTo(step){
+    current = step;
+    track.setAttribute('data-step', step);
+    panels.forEach(function(p, i){
+      var active = i === step;
+      p.classList.toggle('is-active', active);
+      if(active) p.removeAttribute('inert'); else p.setAttribute('inert', '');
+    });
+    fsteps.forEach(function(fs, i){
+      fs.classList.toggle('active', i === step);
+      fs.classList.toggle('done', i < step);
+      var num = fs.querySelector('.num');
+      num.innerHTML = i < step ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg>' : (i + 1);
+    });
+    progressFill.style.width = (((step + 1) / TOTAL) * 100) + '%';
+    updateRecap();
+    setTimeout(setHeight, reduce ? 0 : 30);
+  }
+
+  function validatePanel(index){
+    var panel = panels[index];
+    var fields = panel.querySelectorAll('input[required], select[required]');
+    var valid = true, firstInvalid = null;
+    fields.forEach(function(f){
+      var wrap = f.closest('.field') || f.closest('.check-row');
+      var ok = true;
+      if(f.type === 'checkbox') ok = f.checked;
+      else if(f.type === 'email') ok = f.value.trim() !== '' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim());
+      else ok = f.value.trim() !== '';
+      if(wrap && wrap.classList.contains('field')) wrap.classList.toggle('error', !ok);
+      if(!ok){ valid = false; if(!firstInvalid) firstInvalid = f; }
+    });
+    if(firstInvalid) firstInvalid.focus();
+    return valid;
+  }
+
+  form.querySelectorAll('[data-next]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var idx = panels.indexOf(btn.closest('.form-step'));
+      if(validatePanel(idx) && idx < TOTAL - 1) goTo(idx + 1);
+    });
+  });
+  form.querySelectorAll('[data-back]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var idx = panels.indexOf(btn.closest('.form-step'));
+      if(idx > 0) goTo(idx - 1);
+    });
+  });
+  form.addEventListener('input', function(e){
+    var wrap = e.target.closest('.field');
+    if(wrap) wrap.classList.remove('error');
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validatePanel(TOTAL - 1)) return;
+    form.style.display = 'none';
+    successBox.classList.add('show');
+  });
+
+  document.getElementById('resetForm').addEventListener('click', function(){
+    form.reset();
+    form.style.display = '';
+    successBox.classList.remove('show');
+    goTo(0);
+  });
+
+  window.addEventListener('resize', setHeight);
+  goTo(0);
+
+  /* Footer year */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
