@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taleron — Fulfillment, magazyn i logistyka dla e-commerce | Koncepcja</title>
+<meta name="description" content="Taleron — magazyn przeładunkowy, fulfillment e-commerce i transport krajowy oraz międzynarodowy pod jednym dachem. Elastyczna powierzchnia 550–2750 m² w Robakowie k. Poznania.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+/* ======================================================================
+   TALERON — PREMIUM CONCEPT · Carbon & Molten Amber
+   Fulfillment / warehousing / logistics — desktop showcase, single page
+   ====================================================================== */
+:root{
+  --carbon-950:#08090b; --carbon-900:#0c0e11; --carbon-800:#131519; --carbon-700:#1b1e24;
+  --amber:#ffb020; --ember:#ff5a1f; --azure:#3aa0ff;
+  --accent:var(--ember); --accent-2:var(--azure);
+  --accent-glow:rgba(255,90,31,.32); --azure-glow:rgba(58,160,255,.28);
+  --grad-accent:linear-gradient(120deg,var(--ember),var(--amber));
+
+  --bg:#08090b; --bg-2:#0c0e11;
+  --surface:rgba(255,255,255,.045); --surface-2:rgba(255,255,255,.08); --surface-solid:#14161b;
+  --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.17);
+  --fg:#f6f4f0; --fg-muted:#a7a8ad; --fg-soft:#75767d;
+  --shadow-lg:0 30px 80px -30px rgba(0,0,0,.75);
+  --shadow-glow:0 20px 55px -16px var(--accent-glow);
+  --radius:20px; --radius-sm:13px; --radius-lg:28px;
+  --maxw:1260px; --nav-h:80px;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+[data-theme="light"]{
+  --bg:#f7f5f1; --bg-2:#efece5;
+  --surface:rgba(255,255,255,.72); --surface-2:rgba(255,255,255,.94); --surface-solid:#ffffff;
+  --border:rgba(20,18,13,.1); --border-strong:rgba(20,18,13,.18);
+  --fg:#141310; --fg-muted:#57544c; --fg-soft:#847f74;
+  --shadow-lg:0 30px 70px -32px rgba(20,18,13,.28);
+  --shadow-glow:0 20px 55px -18px rgba(255,90,31,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{
+  font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+  transition:background .5s var(--ease),color .5s var(--ease);
+}
+h1,h2,h3,h4,.dsp{font-family:'Space Grotesk',sans-serif;line-height:1.08;letter-spacing:-.02em;font-weight:600}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 32px}
+section{position:relative;z-index:2}
+::selection{background:var(--accent-glow);color:var(--fg)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* ---- Aurora mesh background ---- */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.aurora span{position:absolute;border-radius:50%;filter:blur(100px);opacity:.5;will-change:transform}
+.aurora .a1{width:50vw;height:50vw;left:-14vw;top:-18vw;background:radial-gradient(circle,var(--ember),transparent 68%);opacity:.28;animation:drift1 28s var(--ease) infinite alternate}
+.aurora .a2{width:44vw;height:44vw;right:-12vw;top:0;background:radial-gradient(circle,var(--azure),transparent 68%);opacity:.22;animation:drift2 32s var(--ease) infinite alternate}
+.aurora .a3{width:40vw;height:40vw;left:28vw;bottom:-20vw;background:radial-gradient(circle,var(--amber),transparent 70%);opacity:.16;animation:drift3 36s var(--ease) infinite alternate}
+[data-theme="light"] .aurora span{opacity:.18}
+@keyframes drift1{to{transform:translate(7vw,6vw) scale(1.12)}}
+@keyframes drift2{to{transform:translate(-6vw,8vw) scale(1.08)}}
+@keyframes drift3{to{transform:translate(4vw,-6vw) scale(1.15)}}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.3;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");}
+.floorgrid{position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 78%);pointer-events:none}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;font-family:'Space Grotesk',sans-serif;font-weight:600;
+  font-size:.95rem;padding:.95rem 1.7rem;border-radius:var(--radius-sm);cursor:pointer;border:1px solid transparent;
+  transition:transform .25s var(--ease),box-shadow .3s var(--ease),background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);
+  min-height:52px;white-space:nowrap;
+}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-primary{background:var(--grad-accent);color:#100800;box-shadow:var(--shadow-glow)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 24px 60px -14px var(--accent-glow)}
+.btn-ghost{background:var(--surface);color:var(--fg);border-color:var(--border);backdrop-filter:blur(10px)}
+.btn-ghost:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.btn-light{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.28);backdrop-filter:blur(10px)}
+.btn-light:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn-block{width:100%;justify-content:center}
+
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;
+  transition:background .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
+.nav.scrolled{background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(16px) saturate(1.4);border-bottom-color:var(--border)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.brand{display:flex;align-items:center;gap:.75rem}
+.brand .logo{width:42px;height:42px;border-radius:11px;background:var(--grad-accent);display:grid;place-items:center;box-shadow:var(--shadow-glow);flex:none}
+.brand .logo svg{width:23px;height:23px;color:#170b00}
+.brand .word{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.18rem;letter-spacing:-.01em;color:var(--fg)}
+.brand .word small{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-soft);margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:.2rem;list-style:none}
+.nav-links a{color:var(--fg-muted);font-weight:500;font-size:.93rem;padding:.6rem .95rem;border-radius:9px;transition:color .25s,background .25s}
+.nav-links a:hover{color:var(--fg);background:var(--surface)}
+.nav-actions{display:flex;align-items:center;gap:.7rem}
+.theme-toggle{width:46px;height:46px;border-radius:11px;border:1px solid var(--border);background:var(--surface);color:var(--fg);cursor:pointer;display:grid;place-items:center;transition:transform .35s var(--ease),border-color .25s}
+.theme-toggle:hover{transform:rotate(-16deg) scale(1.05);border-color:var(--border-strong)}
+.theme-toggle svg{width:20px;height:20px}
+.theme-toggle .moon{display:none}
+[data-theme="dark"] .theme-toggle .sun{display:none}
+[data-theme="dark"] .theme-toggle .moon{display:block}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--grad-accent);z-index:1001;width:0}
+
+/* ============ SECTION HEAD ============ */
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.1rem}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad-accent);box-shadow:0 0 0 4px var(--accent-glow)}
+.section-head{max-width:640px}
+.section-head h2{font-size:clamp(2.1rem,3.4vw,3.1rem);margin-bottom:1rem}
+.section-head p{color:var(--fg-muted);font-size:1.08rem;max-width:52ch}
+.section-head.center{margin-inline:auto;text-align:center}
+.section-head.center p{margin-inline:auto}
+
+/* ============ HERO ============ */
+.hero{min-height:96vh;display:flex;align-items:center;padding:calc(var(--nav-h) + 40px) 0 120px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--bg) 0%,rgba(8,9,11,.55) 38%,var(--bg) 100%),
+             linear-gradient(90deg,var(--bg) 0%,rgba(8,9,11,.2) 46%,rgba(8,9,11,.75) 100%);}
+[data-theme="light"] .hero-bg img{opacity:.22}
+[data-theme="light"] .hero-bg::after{background:linear-gradient(180deg,var(--bg) 0%,rgba(247,245,241,.6) 38%,var(--bg) 100%),linear-gradient(90deg,var(--bg) 0%,rgba(247,245,241,.35) 46%,rgba(247,245,241,.85) 100%)}
+.hero .container{position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.hero-copy h1{font-size:clamp(3rem,5.2vw,4.7rem);margin-bottom:1.4rem}
+.hero-copy h1 .grad{background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy .lede{font-size:1.18rem;color:var(--fg-muted);max-width:46ch;margin-bottom:2.2rem}
+.hero-cta{display:flex;gap:1rem;margin-bottom:3rem}
+.hero-meta{display:flex;gap:2.2rem;flex-wrap:wrap}
+.hero-meta div{display:flex;flex-direction:column;gap:.15rem}
+.hero-meta strong{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:var(--fg)}
+.hero-meta span{font-size:.82rem;color:var(--fg-soft)}
+
+.hero-visual{position:relative}
+.hero-frame{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;border:1px solid var(--border-strong);box-shadow:var(--shadow-lg)}
+.hero-frame img{width:100%;height:100%;object-fit:cover}
+.hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 40%,rgba(8,9,11,.7));}
+.hero-chip{position:absolute;display:flex;align-items:center;gap:.7rem;background:color-mix(in srgb,var(--surface-solid) 78%,transparent);backdrop-filter:blur(14px);border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.85rem 1.1rem;box-shadow:var(--shadow-lg)}
+.hero-chip .ic{width:38px;height:38px;border-radius:9px;background:var(--grad-accent);display:grid;place-items:center;flex:none}
+.hero-chip .ic svg{width:19px;height:19px;color:#170b00}
+.hero-chip strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.15rem;color:var(--fg)}
+.hero-chip span{font-size:.74rem;color:var(--fg-soft)}
+.hero-chip.c1{top:8%;left:-8%}
+.hero-chip.c2{bottom:20%;left:-11%}
+.hero-chip.c3{bottom:-6%;right:12%}
+
+/* ============ MARQUEE ============ */
+.partners{padding:64px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.partners .label{text-align:center;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-soft);margin-bottom:2rem}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee-track{display:flex;width:max-content;gap:4.5rem;animation:scroll 34s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.3rem;color:var(--fg-soft);letter-spacing:-.01em;white-space:nowrap;opacity:.75;transition:opacity .3s,color .3s}
+.marquee-track span:hover{opacity:1;color:var(--fg)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ============ BENTO SERVICES ============ */
+.services{padding:150px 0 130px}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:1.25rem;margin-top:4rem}
+.card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;overflow:hidden;backdrop-filter:blur(12px);transition:border-color .3s,transform .35s var(--ease),box-shadow .35s var(--ease);display:flex;flex-direction:column}
+.card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s;pointer-events:none;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),var(--accent-glow),transparent 65%)}
+.card:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.card:hover::before{opacity:1}
+.card .ic{width:46px;height:46px;border-radius:11px;background:var(--surface-2);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:1.2rem;flex:none;position:relative;z-index:1}
+.card .ic svg{width:22px;height:22px;color:var(--accent)}
+.card h3{font-size:1.18rem;margin-bottom:.5rem;position:relative;z-index:1}
+.card p{font-size:.92rem;color:var(--fg-muted);position:relative;z-index:1;max-width:38ch}
+.card .tags{margin-top:auto;padding-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;position:relative;z-index:1}
+.card .tags span{font-size:.72rem;font-weight:600;padding:.3rem .6rem;border-radius:7px;background:var(--surface-2);border:1px solid var(--border);color:var(--fg-soft)}
+.card.feature{grid-column:1/3;grid-row:1/3;justify-content:flex-end}
+.card.feature .ic{width:52px;height:52px}
+.card.feature .ic svg{width:25px;height:25px}
+.card.feature h3{font-size:1.55rem}
+.card.feature p{font-size:1rem;max-width:34ch}
+.card.wide{grid-column:span 2}
+.c-magazyn{grid-column:3/5;grid-row:1/2}
+.c-transport{grid-column:3/4;grid-row:2/3}
+.c-vans{grid-column:4/5;grid-row:2/3}
+.c-nadania{grid-column:1/3;grid-row:3/4}
+.c-targi{grid-column:3/4;grid-row:3/4}
+.c-monitoring{grid-column:4/5;grid-row:3/4}
+
+/* ============ WAREHOUSE SPLIT ============ */
+.warehouse{padding:130px 0}
+.wh-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:4.5rem;align-items:center}
+.wh-media{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:3/4;border:1px solid var(--border-strong);box-shadow:var(--shadow-lg)}
+.wh-media img{width:100%;height:100%;object-fit:cover}
+.wh-media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,9,11,.65),transparent 45%)}
+.wh-media .badge{position:absolute;left:1.5rem;bottom:1.5rem;right:1.5rem;display:flex;justify-content:space-between;align-items:flex-end}
+.wh-media .badge strong{font-family:'Space Grotesk',sans-serif;font-size:2.3rem;color:#fff;display:block}
+.wh-media .badge span{font-size:.78rem;color:rgba(255,255,255,.7)}
+.stat-chips{display:flex;flex-wrap:wrap;gap:.9rem;margin:2rem 0 2.4rem}
+.stat-chip{display:flex;align-items:center;gap:.6rem;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:.6rem 1.1rem .6rem .7rem}
+.stat-chip .ic{width:30px;height:30px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;flex:none}
+.stat-chip .ic svg{width:15px;height:15px;color:var(--accent-2)}
+.stat-chip strong{font-family:'Space Grotesk',sans-serif;font-size:.95rem;display:block;color:var(--fg)}
+.stat-chip span{font-size:.72rem;color:var(--fg-soft)}
+.equip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-bottom:2.2rem}
+.equip-item{display:flex;align-items:center;gap:.65rem;padding:.9rem 1rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface)}
+.equip-item svg{width:18px;height:18px;color:var(--accent);flex:none}
+.equip-item span{font-size:.84rem;color:var(--fg-muted);font-weight:500}
+.formats-strip{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;padding-top:1.6rem;border-top:1px solid var(--border)}
+.formats-strip .fs-label{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-soft);font-weight:600}
+.formats-strip .fs-item{display:flex;align-items:center;gap:.5rem;font-size:.87rem;color:var(--fg-muted)}
+.formats-strip .fs-item svg{width:18px;height:18px;color:var(--accent-2)}
+
+/* ============ PROCESS ============ */
+.process{padding:130px 0;background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4rem;position:relative}
+.steps::before{content:"";position:absolute;top:26px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--border-strong) 15%,var(--border-strong) 85%,transparent)}
+.step{position:relative;padding-top:0}
+.step .num{width:52px;height:52px;border-radius:50%;background:var(--surface-solid);border:1px solid var(--border-strong);display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--accent);margin-bottom:1.6rem;position:relative;z-index:1}
+.step h3{font-size:1.1rem;margin-bottom:.5rem}
+.step p{font-size:.9rem;color:var(--fg-muted);max-width:32ch}
+
+/* ============ WHY ============ */
+.why{padding:130px 0}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.why-card{padding:2.2rem;border-left:2px solid var(--border-strong);transition:border-color .3s}
+.why-card:hover{border-color:var(--accent)}
+.why-card .ic{width:44px;height:44px;border-radius:11px;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:1.4rem}
+.why-card .ic svg{width:21px;height:21px;color:var(--accent)}
+.why-card h3{font-size:1.25rem;margin-bottom:.6rem}
+.why-card p{color:var(--fg-muted);font-size:.95rem;max-width:34ch}
+
+/* ============ CTA / CONTACT ============ */
+.cta{padding:130px 0 140px}
+.cta-panel{background:var(--surface-solid);border:1px solid var(--border-strong);border-radius:var(--radius-lg);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:var(--shadow-lg);position:relative}
+.cta-form{padding:4rem}
+.cta-form h2{font-size:clamp(1.9rem,2.6vw,2.5rem);margin-bottom:.7rem}
+.cta-form>p{color:var(--fg-muted);margin-bottom:2.2rem}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.8rem;font-weight:600;color:var(--fg-muted);margin-bottom:.5rem}
+.field input,.field textarea{width:100%;padding:.9rem 1rem;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface);color:var(--fg);font-family:inherit;font-size:.95rem;transition:border-color .25s,box-shadow .25s}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.field textarea{resize:vertical;min-height:100px}
+.cta-success{display:none;align-items:center;gap:.6rem;margin-top:1rem;padding:.85rem 1rem;border-radius:var(--radius-sm);background:rgba(58,160,255,.12);border:1px solid rgba(58,160,255,.35);color:var(--accent-2);font-size:.88rem;font-weight:500}
+.cta-success.show{display:flex}
+.cta-success svg{width:18px;height:18px;flex:none}
+
+.cta-info{padding:4rem;background:linear-gradient(155deg,var(--carbon-900),var(--carbon-800));position:relative;color:#f6f4f0;display:flex;flex-direction:column}
+[data-theme="light"] .cta-info{background:linear-gradient(155deg,#1a1611,#241d15)}
+.cta-info::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at 85% 15%,var(--accent-glow),transparent 70%)}
+.cta-info>*{position:relative;z-index:1}
+.cta-info h3{font-size:1.3rem;margin-bottom:1.8rem;color:#fff}
+.info-row{display:flex;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.info-row .ic{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;flex:none}
+.info-row .ic svg{width:19px;height:19px;color:var(--amber)}
+.info-row strong{display:block;font-size:.95rem;color:#fff;margin-bottom:.15rem}
+.info-row span,.info-row a{font-size:.86rem;color:rgba(246,244,240,.65)}
+.info-row a:hover{color:#fff}
+.social-row{display:flex;gap:.7rem;margin-top:auto;padding-top:1.8rem}
+.social-row a{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;transition:background .25s,transform .25s}
+.social-row a:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.social-row svg{width:18px;height:18px;color:#fff}
+
+/* ============ FOOTER ============ */
+.footer{padding:70px 0 0;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr 1fr;gap:2.5rem;padding-bottom:56px}
+.footer-brand p{color:var(--fg-muted);font-size:.9rem;max-width:32ch;margin:1.1rem 0 1.6rem}
+.footer h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--fg-soft);margin-bottom:1.2rem}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.footer ul a{color:var(--fg-muted);font-size:.92rem;transition:color .25s}
+.footer ul a:hover{color:var(--accent)}
+.footer-bottom{border-top:1px solid var(--border);padding:1.6rem 0;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.footer-bottom p{font-size:.8rem;color:var(--fg-soft)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}.reveal.d6{transition-delay:.48s}
+</style>
+</head>
+<body>
+
+<div class="aurora"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="container">
+    <a href="#" class="brand">
+      <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3Z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5L12 21l9-4.5"/></svg></span>
+      <span class="word">TALERON<small>Fulfillment &amp; Logistyka</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#uslugi">Usługi</a></li>
+      <li><a href="#magazyn">Magazyn</a></li>
+      <li><a href="#proces">Proces</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="tgl" aria-label="Przełącz motyw">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <a href="#kontakt" class="btn btn-primary">Zapytaj o wycenę<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=80" alt="" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal">Fulfillment &amp; logistyka · Robakowo k. Poznania</span>
+        <h1 class="reveal d1">Przestań szukać<br>miejsca. <span class="grad">Zacznij się skalować.</span></h1>
+        <p class="lede reveal d2">Magazyn, kompletacja zamówień i transport pod jednym dachem. Elastyczna powierzchnia od 550 do 2750 m² — rośnie razem z Twoim biznesem.</p>
+        <div class="hero-cta reveal d3">
+          <a href="#kontakt" class="btn btn-primary">Zapytaj o wycenę<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#uslugi" class="btn btn-ghost">Zobacz możliwości</a>
+        </div>
+        <div class="hero-meta reveal d4">
+          <div><strong data-count="2750" data-suffix=" m²">0</strong><span>Maks. powierzchnia</span></div>
+          <div><strong data-count="11">0</strong><span>Firm kurierskich</span></div>
+          <div><strong>24/7</strong><span>Monitoring obiektu</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal d2">
+        <div class="hero-frame">
+          <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1000&q=80" alt="Regały wysokiego składowania w magazynie Taleron">
+        </div>
+        <div class="hero-chip c1">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a2 2 0 0 0-2 2v9.3a4 4 0 1 0 4 0V5a2 2 0 0 0-2-2Z"/></svg></span>
+          <span><strong>&gt;18°C</strong><span>Stała temperatura</span></span>
+        </div>
+        <div class="hero-chip c2">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.8 7-12.1A7 7 0 0 0 5 8.9C5 14.2 12 21 12 21Z"/></svg></span>
+          <span><strong>25–55%</strong><span>Kontrolowana wilgotność</span></span>
+        </div>
+        <div class="hero-chip c3">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.6c0 5-3 7.9-7 9.2-4-1.3-7-4.2-7-9.2V6.2L12 3Z"/></svg></span>
+          <span><strong>Bezpiecznie</strong><span>Ochrona 24/7</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS MARQUEE ============ -->
+<section class="partners">
+  <p class="label">Integrujemy się z liderami rynku kurierskiego i e-commerce</p>
+  <div class="marquee">
+    <div class="marquee-track" id="marquee">
+      <span>InPost</span><span>DHL</span><span>FedEx</span><span>DPD</span><span>GLS</span><span>Raben</span><span>Geis</span><span>Hermes</span><span>Geodis</span><span>Poczta Polska</span><span>Orlen Paczka</span><span>Baselinker</span><span>WMS Linker</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES BENTO ============ -->
+<section class="services" id="uslugi">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Usługi</span>
+      <h2>Jedno miejsce.<br>Pełna obsługa.</h2>
+      <p>Od przyjęcia towaru po dostawę do klienta — zajmujemy się każdym etapem Twojej logistyki.</p>
+    </div>
+
+    <div class="bento">
+      <article class="card feature reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></span>
+        <h3>Fulfillment e-commerce</h3>
+        <p>Kompletacja, pakowanie i wysyłka zamówień zintegrowane bezpośrednio z Twoim sklepem.</p>
+        <div class="tags"><span>Baselinker</span><span>WMS Linker</span></div>
+      </article>
+
+      <article class="card c-magazyn reveal d1">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M9 21v-6h6v6"/></svg></span>
+        <h3>Magazyn i przeładunek</h3>
+        <p>Elastyczne strefy składowania od 550 do 2750 m², skalowane pod bieżące potrzeby.</p>
+      </article>
+
+      <article class="card c-transport reveal d2">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11v9H2z"/><path d="M13 11h4l3 3v3h-7z"/><circle cx="6.5" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></span>
+        <h3>Transport</h3>
+        <p>Krajowy i międzynarodowy, ładunki pełne i częściowe.</p>
+      </article>
+
+      <article class="card c-vans reveal d3">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16V8a1 1 0 0 1 1-1h9l4 4v5"/><path d="M3 16h14"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="15.5" cy="17.5" r="1.6"/></svg></span>
+        <h3>Wynajem busów</h3>
+        <p>Z kierowcą lub bez, na godziny lub dni.</p>
+      </article>
+
+      <article class="card c-nadania reveal d4">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="6"/><circle cx="15" cy="15" r="6"/></svg></span>
+        <h3>Nadania paczek &amp; COD</h3>
+        <p>Nadania wszystkich gabarytów oraz płatności pobraniowe w całej Europie.</p>
+      </article>
+
+      <article class="card c-targi reveal d5">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 7-9 4-9-4 9-7Z"/><path d="M3 10v8l9 4 9-4v-8"/></svg></span>
+        <h3>Targi i eventy</h3>
+        <p>Logistyka i wsparcie magazynowe na czas wydarzeń.</p>
+      </article>
+
+      <article class="card c-monitoring reveal d6">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.6c0 5-3 7.9-7 9.2-4-1.3-7-4.2-7-9.2V6.2L12 3Z"/></svg></span>
+        <h3>Monitoring 24/7</h3>
+        <p>Pełne bezpieczeństwo towaru przez całą dobę.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WAREHOUSE SPLIT ============ -->
+<section class="warehouse" id="magazyn">
+  <div class="container">
+    <div class="wh-grid">
+      <div class="wh-media reveal">
+        <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1000&q=80" alt="Wózek widłowy pracujący między regałami magazynowymi">
+        <div class="badge"><span><strong>2750 m²</strong><span>Maksymalna powierzchnia</span></span></div>
+      </div>
+      <div class="wh-copy reveal d2">
+        <span class="eyebrow">Magazyn</span>
+        <h2>Przestrzeń skrojona<br>pod Twój biznes.</h2>
+        <p style="color:var(--fg-muted);font-size:1.05rem;max-width:48ch;margin-top:1rem">Regały wysokiego i niskiego składu w warunkach dopuszczonych do żywności, farmacji i suplementów diety.</p>
+
+        <div class="stat-chips">
+          <div class="stat-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/></svg></span><span><strong>550–2750 m²</strong><span>Modułowa skalowalność</span></span></div>
+          <div class="stat-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a2 2 0 0 0-2 2v9.3a4 4 0 1 0 4 0V5a2 2 0 0 0-2-2Z"/></svg></span><span><strong>&gt;18°C</strong><span>Stała temperatura</span></span></div>
+          <div class="stat-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.8 7-12.1A7 7 0 0 0 5 8.9C5 14.2 12 21 12 21Z"/></svg></span><span><strong>25–55%</strong><span>Kontrolowana wilgotność</span></span></div>
+          <div class="stat-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="10" rx="1"/><path d="M8 9V6h8v3"/></svg></span><span><strong>80×120 cm</strong><span>Standard palet</span></span></div>
+        </div>
+
+        <div class="equip-grid">
+          <div class="equip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11v9H2z"/><path d="M13 11h4l3 3v3h-7z"/></svg><span>Wózki widłowe 3,5 t</span></div>
+          <div class="equip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20V8l4-4 4 4v12"/><path d="M4 20h16"/></svg><span>Podnośniki 1,5 t</span></div>
+          <div class="equip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="7" rx="1"/><path d="M7 17v3M17 17v3"/></svg><span>Wózki paletowe elektr.</span></div>
+          <div class="equip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="1.4"/><rect x="7" y="14" width="10" height="6"/></svg><span>Drukarki etykiet</span></div>
+          <div class="equip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v4M8 4v10M12 4v14M16 4v10M20 4v4"/></svg><span>Kolektory danych</span></div>
+          <div class="equip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="4"/><path d="M8 7l1.4-3h5.2L16 7"/></svg><span>Foto produktu</span></div>
+        </div>
+
+        <div class="formats-strip">
+          <span class="fs-label">Wysyłamy</span>
+          <span class="fs-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Koperty</span>
+          <span class="fs-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/></svg>Kartony 10×10–60×60 cm</span>
+          <span class="fs-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="10" rx="1"/><path d="M8 9V6h8v3"/></svg>Palety 120×80 cm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process" id="proces">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Proces</span>
+      <h2>Od przyjęcia po dostawę.<br>Cztery kroki.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <h3>Dostawa do magazynu</h3>
+        <p>Przyjmujemy towar i wprowadzamy go do systemu WMS.</p>
+      </div>
+      <div class="step reveal d1">
+        <span class="num">02</span>
+        <h3>Magazynowanie</h3>
+        <p>Bezpieczne składowanie w kontrolowanych warunkach.</p>
+      </div>
+      <div class="step reveal d2">
+        <span class="num">03</span>
+        <h3>Kompletacja i pakowanie</h3>
+        <p>Realizujemy zamówienia zgodnie z zapotrzebowaniem klientów.</p>
+      </div>
+      <div class="step reveal d3">
+        <span class="num">04</span>
+        <h3>Wysyłka</h3>
+        <p>Wybieramy najkorzystniejszego kuriera i wysyłamy paczkę.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Dlaczego Taleron</span>
+      <h2>Zbudowani do skalowania.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M9 21v-6h6v6"/></svg></span>
+        <h3>Elastyczność</h3>
+        <p>Skaluj powierzchnię z miesiąca na miesiąc, bez długoterminowych zobowiązań.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="6"/><circle cx="15" cy="15" r="6"/></svg></span>
+        <h3>Koszty</h3>
+        <p>Korzystaj z naszych negocjowanych stawek kurierskich bez własnych umów.</p>
+      </div>
+      <div class="why-card reveal d3">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.8 7-12.1A7 7 0 0 0 5 8.9C5 14.2 12 21 12 21Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+        <h3>Zasięg</h3>
+        <p>Płatności COD i dostawy realizowane w całej Europie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA / CONTACT ============ -->
+<section class="cta" id="kontakt">
+  <div class="container">
+    <div class="cta-panel reveal">
+      <div class="cta-form">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Porozmawiajmy<br>o Twojej logistyce.</h2>
+        <p>Bezpłatna wycena w 24 godziny.</p>
+        <form id="qForm">
+          <div class="field-row">
+            <div class="field"><label for="name">Imię i nazwisko</label><input id="name" name="name" required placeholder="Jan Kowalski"></div>
+            <div class="field"><label for="company">Firma</label><input id="company" name="company" placeholder="Nazwa firmy"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required placeholder="jan@firma.pl"></div>
+            <div class="field"><label for="phone">Telefon</label><input type="tel" id="phone" name="phone" placeholder="+48 600 000 000"></div>
+          </div>
+          <div class="field"><label for="message">Wiadomość</label><textarea id="message" name="message" placeholder="Opisz krótko czego potrzebujesz — powierzchnia, wolumen zamówień, kierunki transportu…"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block">Wyślij zapytanie<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <div class="cta-success" id="ctaSuccess"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 7"/></svg>Dziękujemy! Odezwiemy się w ciągu 24 godzin.</div>
+        </form>
+      </div>
+      <div class="cta-info">
+        <h3>Dane kontaktowe</h3>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.8 7-12.1A7 7 0 0 0 5 8.9C5 14.2 12 21 12 21Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+          <span><strong>Magazyn i biuro</strong><span>Firmowa 18, 62-045 Robakowo (k. Poznania)</span></span>
+        </div>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h3l1.5 4-2 1.7a12.5 12.5 0 0 0 6 6l1.7-2 4 1.5V17a2 2 0 0 1-2 2C10.5 19 4 12.5 4 5a2 2 0 0 1 2-2Z"/></svg></span>
+          <span><strong>Telefon</strong><a href="tel:+48725118298">+48 725 118 298</a></span>
+        </div>
+        <div class="info-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+          <span><strong>Email</strong><a href="mailto:biuro@taleron.pl">biuro@taleron.pl</a></span>
+        </div>
+        <div class="info-row" style="border-bottom:none">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span><strong>Godziny pracy</strong><span>Pon–Pt, 8:00–16:00</span></span>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-3.5H13V8.5c0-1 .3-1.5 1.7-1.5H17V3.5c-.3 0-1.5-.1-2.8-.1-2.8 0-4.7 1.7-4.7 4.8V10.5H7V14h2.5v8H13Z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="9" width="4" height="12"/><circle cx="5" cy="4.5" r="2.2"/><path d="M11 9h4v2.2c.6-1.1 2-2.4 4.2-2.4 4 0 4.8 2.6 4.8 6V21h-4v-5.7c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21h-4V9Z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 4.5-9 4.5-9-4.5L12 3Z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5L12 21l9-4.5"/></svg></span>
+          <span class="word">TALERON</span>
+        </a>
+        <p>Fulfillment, magazynowanie i transport dla marek e-commerce, które rosną szybciej niż ich powierzchnia magazynowa.</p>
+      </div>
+      <div>
+        <h4>Usługi</h4>
+        <ul>
+          <li><a href="#uslugi">Fulfillment</a></li>
+          <li><a href="#uslugi">Magazyn przeładunkowy</a></li>
+          <li><a href="#uslugi">Transport</a></li>
+          <li><a href="#uslugi">Wynajem busów</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Firma</h4>
+        <ul>
+          <li><a href="#magazyn">Magazyn</a></li>
+          <li><a href="#proces">Proces</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+48725118298">+48 725 118 298</a></li>
+          <li><a href="mailto:biuro@taleron.pl">biuro@taleron.pl</a></li>
+          <li><span style="color:var(--fg-muted);font-size:.92rem">Firmowa 18, 62-045 Robakowo</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Taleron Sp. z o.o. · NIP 8971924538 · Wszelkie prawa zastrzeżone.</p>
+      <p>Koncepcja wizualna — demo</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* Theme */
+  var tgl = document.getElementById('tgl'), saved=null;
+  try{ saved = localStorage.getItem('taleron-theme'); }catch(e){}
+  if(saved) root.setAttribute('data-theme', saved);
+  tgl.addEventListener('click', function(){
+    var n = root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme', n);
+    try{ localStorage.setItem('taleron-theme', n); }catch(e){}
+  });
+
+  /* Nav + progress */
+  var nav = document.getElementById('nav'), prog = document.getElementById('progress');
+  function onScroll(){
+    nav.classList.toggle('scrolled', scrollY>30);
+    var h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h>0 ? (scrollY/h*100) : 0) + '%';
+  }
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  /* Marquee duplication for seamless loop */
+  var mq = document.getElementById('marquee');
+  mq.innerHTML += mq.innerHTML;
+
+  /* Reveal */
+  var rev=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){ rev.forEach(function(e){e.classList.add('in')}); }
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+    rev.forEach(function(e){io.observe(e)});
+  }
+
+  /* Counters */
+  function anim(el){
+    var t=+el.getAttribute('data-count'), sfx=el.getAttribute('data-suffix')||'';
+    if(reduce){el.textContent=t+sfx;return;}
+    var dur=1600, s=performance.now();
+    (function step(now){var p=Math.min((now-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+(p===1?sfx:'');if(p<1)requestAnimationFrame(step);})(s);
+  }
+  if('IntersectionObserver' in window){
+    var cio=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){anim(x.target);cio.unobserve(x.target)}})},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(e){cio.observe(e)});
+  } else document.querySelectorAll('[data-count]').forEach(anim);
+
+  /* Card spotlight glow */
+  if(!reduce){
+    document.querySelectorAll('.card').forEach(function(c){
+      c.addEventListener('pointermove', function(e){
+        var r=c.getBoundingClientRect();
+        c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+        c.style.setProperty('--my',(e.clientY-r.top)+'px');
+      });
+    });
+  }
+
+  /* Form */
+  var form=document.getElementById('qForm'), ok=document.getElementById('ctaSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var first=null;
+    ['name','email'].forEach(function(id){
+      var f=document.getElementById(id);
+      if(!f.value.trim()){f.style.borderColor='var(--accent)';f.style.boxShadow='0 0 0 3px var(--accent-glow)';if(!first)first=f;}
+      else{f.style.borderColor='';f.style.boxShadow='';}
+    });
+    if(first){first.focus();return;}
+    ok.classList.add('show');
+    form.querySelector('button[type=submit]').textContent='Wysłano ✓';
+    setTimeout(function(){form.reset();},500);
+  });
+  form.addEventListener('input',function(e){if(e.target.value.trim()){e.target.style.borderColor='';e.target.style.boxShadow='';}});
+})();
+</script>
+</body>
+</html>
