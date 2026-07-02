@@ -1,0 +1,1140 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+.fides-rent-page {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* ============================================== */
+/* HERO                                            */
+/* ============================================== */
+.rent-hero {
+    background: #0f203c;
+    padding: 110px 20px 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.rent-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(74, 116, 165, 0.25) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.rent-hero h1 {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 780px;
+    margin: 0 auto 18px;
+    letter-spacing: -1px;
+}
+
+.rent-hero h1 .rent-hero-tagline {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-top: 16px;
+    background: linear-gradient(90deg, #8fb3da, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.rent-hero p {
+    position: relative;
+    z-index: 2;
+    color: #b9c6dc;
+    font-size: 1.15rem;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============================================== */
+/* OŚ CZASU - element sygnaturowy strony           */
+/* ============================================== */
+.rent-timeline-section {
+    max-width: 900px;
+    margin: -45px auto 70px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.rent-timeline-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px 40px;
+    box-shadow: 0 25px 50px rgba(15, 32, 60, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.rent-timeline-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f203c;
+}
+
+.rent-timeline-track {
+    position: relative;
+    height: 8px;
+    background: #eef2f7;
+    border-radius: 10px;
+    overflow: visible;
+}
+
+.rent-timeline-fill-short {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 22%;
+    background: #4a74a5;
+    border-radius: 10px 0 0 10px;
+}
+
+.rent-timeline-fill-long {
+    position: absolute;
+    left: 22%;
+    top: 0;
+    height: 100%;
+    width: 78%;
+    background: #2f7a4f;
+    border-radius: 0 10px 10px 0;
+}
+
+.rent-timeline-marker {
+    position: absolute;
+    top: 50%;
+    left: 22%;
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    border: 4px solid #0f203c;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rent-timeline-caption {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.rent-timeline-caption span:first-child { color: #4a74a5; }
+.rent-timeline-caption span:last-child { color: #2f7a4f; }
+
+/* ============================================== */
+/* SEKCJE OGÓLNE                                   */
+/* ============================================== */
+.rent-section {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px 90px;
+}
+
+.rent-section-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 10px;
+}
+
+.rent-section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 7px 16px;
+    border-radius: 30px;
+}
+
+.tag-long { background: rgba(47, 122, 79, 0.1); color: #2f7a4f; }
+.tag-short { background: rgba(74, 116, 165, 0.1); color: #4a74a5; }
+
+.rent-section-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #0f203c;
+    margin: 14px 0 12px;
+    letter-spacing: -0.5px;
+}
+
+.rent-section-desc {
+    font-size: 1.05rem;
+    color: #5a6a80;
+    max-width: 700px;
+    margin: 0 0 45px;
+    font-weight: 500;
+}
+
+.rent-section-desc strong {
+    color: #0f203c;
+}
+
+/* ============================================== */
+/* SEKCJA DŁUGOTERMINOWA - kategorie pojazdów      */
+/* ============================================== */
+.rent-long-section {
+    background: linear-gradient(180deg, #0f203c 0%, #15294a 100%);
+    padding: 80px 20px 90px;
+    position: relative;
+    overflow: hidden;
+}
+
+.rent-long-section::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(47, 122, 79, 0.18) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.rent-long-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.rent-long-header .rent-section-title { color: #ffffff; }
+.rent-long-header .rent-section-desc { color: #b9c6dc; }
+.rent-long-header .rent-section-desc strong { color: #ffffff; }
+
+/* Grupa kategorii (np. "Vany") wewnątrz sekcji długoterminowej */
+.rent-category-group {
+    margin-bottom: 50px;
+}
+
+.rent-category-group:last-child {
+    margin-bottom: 0;
+}
+
+.rent-category-group-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.rent-category-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(47, 122, 79, 0.15);
+    border: 1px solid rgba(47, 122, 79, 0.3);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5fbf85;
+    flex-shrink: 0;
+}
+
+.rent-category-icon svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.rent-category-group-title h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 4px;
+}
+
+.rent-category-group-title span {
+    color: #8fb3da;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Grid kart pojazdów ze zdjęciem - wycentrowany, niezależny od liczby kart w grupie */
+.rent-long-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+
+.rent-long-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, background 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    flex-shrink: 0;
+}
+
+@media (hover: hover) {
+    .rent-long-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(47, 122, 79, 0.5);
+        background: rgba(255, 255, 255, 0.06);
+    }
+}
+
+.rent-long-photo {
+    width: 100%;
+    height: 210px;
+    background: #1c2d4a center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.rent-long-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: rgba(47, 122, 79, 0.9);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 7px 14px;
+    border-radius: 30px;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+/* Nakładka specyfikacji - wysuwa się po najechaniu na zdjęcie */
+.rent-spec-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 32, 60, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 3;
+}
+
+.rent-long-photo:hover .rent-spec-overlay,
+.rent-short-photo:hover .rent-spec-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.rent-long-photo:hover .rent-long-badge {
+    opacity: 0;
+}
+
+.rent-spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+.rent-spec-item {
+    background: rgba(255, 255, 255, 0.06);
+    border-left: 3px solid #5fbf85;
+    border-radius: 8px;
+    padding: 9px 12px;
+}
+
+.rent-spec-label {
+    display: block;
+    font-size: 0.62rem;
+    color: #8fa3bf;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.rent-spec-value {
+    display: block;
+    font-size: 0.82rem;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.rent-long-body {
+    padding: 22px 24px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.rent-long-body h4 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0 0 6px;
+}
+
+.rent-long-body p {
+    color: #aebcd1;
+    font-size: 0.9rem;
+    margin: 0;
+    font-weight: 500;
+    flex: 1;
+}
+
+.rent-min-note {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.12);
+    font-size: 0.82rem;
+    color: #8fa3bf;
+    font-weight: 500;
+}
+
+.rent-min-note strong {
+    color: #5fbf85;
+    font-weight: 700;
+}
+
+/* ============================================== */
+/* SEKCJA KRÓTKOTERMINOWA                          */
+/* ============================================== */
+.rent-short-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+}
+
+.rent-short-card {
+    background: #ffffff;
+    border-radius: 22px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 15px 35px rgba(15, 32, 60, 0.04);
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    flex-shrink: 0;
+}
+
+.rent-short-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px rgba(15, 32, 60, 0.1);
+}
+
+.rent-short-photo {
+    width: 100%;
+    height: 210px;
+    background: #e9eef5 center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.rent-short-price-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: #0f203c;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 30px;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.rent-short-photo:hover .rent-short-price-badge {
+    opacity: 0;
+}
+
+.rent-short-price-badge span {
+    color: #8fb3da;
+    font-weight: 500;
+}
+
+.rent-short-body {
+    padding: 24px 26px 28px;
+}
+
+.rent-short-body h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f203c;
+    margin: 0 0 6px;
+}
+
+.rent-short-body p {
+    font-size: 0.92rem;
+    color: #64748b;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* ============================================== */
+/* CTA - KONTAKT RENT CAR                          */
+/* ============================================== */
+.rent-cta-section {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px 100px;
+}
+
+.rent-cta-card {
+    background: #0f203c;
+    border-radius: 24px;
+    padding: 55px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.rent-cta-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: 10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(74, 116, 165, 0.3) 0%, transparent 70%);
+}
+
+.rent-cta-text {
+    position: relative;
+    z-index: 2;
+}
+
+.rent-cta-text h2 {
+    color: #ffffff;
+    font-size: 1.9rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+    letter-spacing: -0.5px;
+}
+
+.rent-cta-text p {
+    color: #b9c6dc;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+.rent-cta-phone {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    color: #0f203c;
+    padding: 18px 32px;
+    border-radius: 14px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.rent-cta-phone:hover {
+    transform: translateY(-3px);
+    background: #4a74a5;
+    color: #ffffff;
+}
+
+.rent-cta-phone svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.rent-cta-phone-label {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+.rent-cta-phone-label small {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    opacity: 0.6;
+}
+
+/* ============================================== */
+/* RESPONSYWNOŚĆ                                   */
+/* ============================================== */
+@media (max-width: 1024px) {
+    .rent-long-card { width: 320px; }
+    .rent-short-card { width: 320px; }
+}
+
+@media (max-width: 768px) {
+    .rent-hero { padding: 90px 20px 70px; }
+    .rent-hero h1 { font-size: 2.3rem; }
+    .rent-hero h1 .rent-hero-tagline { font-size: 1.15rem; margin-top: 12px; }
+    .rent-hero p { font-size: 1rem; }
+
+    .rent-timeline-section { margin: -30px auto 50px; }
+    .rent-timeline-card { padding: 24px 22px; }
+    .rent-timeline-labels { font-size: 0.8rem; }
+    .rent-timeline-caption { font-size: 0.72rem; }
+
+    .rent-section { padding: 0 20px 60px; }
+    .rent-section-title { font-size: 1.8rem; }
+    .rent-section-desc { margin-bottom: 30px; }
+
+    .rent-long-section { padding: 60px 20px 70px; }
+    .rent-long-grid { gap: 18px; }
+    .rent-long-card { width: 100%; max-width: 380px; }
+    .rent-category-group { margin-bottom: 40px; }
+    .rent-category-group-header { gap: 12px; }
+    .rent-category-icon { width: 44px; height: 44px; }
+    .rent-category-icon svg { width: 22px; height: 22px; }
+    .rent-category-group-title h3 { font-size: 1.25rem; }
+
+    .rent-short-grid { gap: 20px; }
+    .rent-short-card { width: 100%; max-width: 380px; }
+
+    .rent-cta-card {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 40px 28px;
+    }
+    .rent-cta-phone { justify-content: center; }
+}
+
+@media (max-width: 420px) {
+    .rent-timeline-labels { font-size: 0.72rem; }
+    .rent-hero h1 { font-size: 1.9rem; }
+    .rent-hero h1 .rent-hero-tagline { font-size: 1rem; margin-top: 10px; }
+}
+
+/* Urządzenia dotykowe: spec pojawia się po tapnięciu (klasa .is-active dodawana z JS) */
+@media (hover: none), (pointer: coarse) {
+    .rent-spec-overlay { opacity: 0; visibility: hidden; }
+    .rent-long-photo.is-active .rent-spec-overlay,
+    .rent-short-photo.is-active .rent-spec-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+    .rent-long-photo.is-active .rent-long-badge { opacity: 0; }
+    .rent-short-photo.is-active .rent-short-price-badge { opacity: 0; }
+}
+</style>
+
+<div class="fides-rent-page">
+
+    <!-- HERO -->
+    <header class="rent-hero">
+        <h1>Wynajem samochodów<span class="rent-hero-tagline">Lubimy długie historie, krótkie też piszemy</span></h1>
+        <p>Vany, SUV-y i pickupy dla firm i kierowców na miesiące. A jeśli potrzebujesz auta tylko na chwilę — sprawdź naszą flotę dostępną od ręki.</p>
+    </header>
+
+    <!-- OŚ CZASU -->
+    <section class="rent-timeline-section">
+        <div class="rent-timeline-card">
+            <div class="rent-timeline-labels">
+                <span>1 doba</span>
+                <span>1 miesiąc</span>
+                <span>i dłużej</span>
+            </div>
+            <div class="rent-timeline-track">
+                <div class="rent-timeline-fill-short"></div>
+                <div class="rent-timeline-fill-long"></div>
+                <div class="rent-timeline-marker"></div>
+            </div>
+            <div class="rent-timeline-caption">
+                <span>Wynajem krótkoterminowy</span>
+                <span>Wynajem długoterminowy — od 1 miesiąca</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKCJA DŁUGOTERMINOWA -->
+    <section class="rent-long-section">
+        <div class="rent-long-inner">
+            <div class="rent-long-header">
+                <div class="rent-section-header">
+                    <span class="rent-section-tag tag-long">Nasza specjalność</span>
+                </div>
+                <h2 class="rent-section-title">Wynajem długoterminowy</h2>
+                <p class="rent-section-desc">Dla wszystkich klientów, którzy potrzebują auta   <strong>powyżej jednego miesiąca</strong>. Trzy kategorie pojazdów dopasowane do różnych zadań — od transportu osób, przez pracę w terenie, po przewóz ładunków.</p>
+            </div>
+
+            <!-- VANY -->
+            <div class="rent-category-group">
+                <div class="rent-category-group-header">
+                    <div class="rent-category-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 17h13v-9H8.5L3 11.5z"></path><path d="M16 8h3l2 4v5h-5"></path><circle cx="7.5" cy="17.5" r="1.5"></circle><circle cx="17.5" cy="17.5" r="1.5"></circle></svg>
+                    </div>
+                    <div class="rent-category-group-title">
+                        <h3>Vany</h3>
+                        <span>Transport osób i ładunków</span>
+                    </div>
+                </div>
+                <div class="rent-long-grid">
+                    <div class="rent-long-card">
+                        <div class="rent-long-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-02-10-at-11.44.18.jpeg');">
+                            <span class="rent-long-badge">Van</span>
+                            <div class="rent-spec-overlay">
+                                <div class="rent-spec-grid">
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Silnik</span>
+                                        <span class="rent-spec-value">2.0 dCi / 150 KM</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Skrzynia</span>
+                                        <span class="rent-spec-value">Manualna (6)</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Liczba miejsc</span>
+                                        <span class="rent-spec-value">9 osób</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Ładowność</span>
+                                        <span class="rent-spec-value">do 1200 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-long-body">
+                            <h4>Renault Trafic</h4>
+                            <p>Pojemny van do transportu osób i przewozu towarów.</p>
+                            <div class="rent-min-note">Minimalny okres najmu: <strong>1 miesiąc</strong></div>
+                        </div>
+                    </div>
+                    <div class="rent-long-card">
+                        <div class="rent-long-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/06/day-exterior-04_edu.png');">
+                            <span class="rent-long-badge">Van</span>
+                            <div class="rent-spec-overlay">
+                                <div class="rent-spec-grid">
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Silnik</span>
+                                        <span class="rent-spec-value">2.0 D / 144 KM</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Skrzynia</span>
+                                        <span class="rent-spec-value">Manualna (6)</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Liczba miejsc</span>
+                                        <span class="rent-spec-value">8 osób</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Ładowność</span>
+                                        <span class="rent-spec-value">do 1400 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-long-body">
+                            <h4>Toyota Proace</h4>
+                            <p>Komfortowy i niezawodny van dla firm i kierowców flotowych.</p>
+                            <div class="rent-min-note">Minimalny okres najmu: <strong>1 miesiąc</strong></div>
+                        </div>
+                    </div>
+                    <div class="rent-long-card">
+                        <div class="rent-long-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/07/PODMIEN-toyota-proace-van-dostawczy.jpg');">
+                            <span class="rent-long-badge">Van dostawczy</span>
+                            <div class="rent-spec-overlay">
+                                <div class="rent-spec-grid">
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Silnik</span>
+                                        <span class="rent-spec-value">2.0 D / 144 KM</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Skrzynia</span>
+                                        <span class="rent-spec-value">Manualna (6)</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Liczba miejsc</span>
+                                        <span class="rent-spec-value">2 osoby</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Ładowność</span>
+                                        <span class="rent-spec-value">do 1400 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-long-body">
+                            <h4>Toyota Proace</h4>
+                            <p>Przestronny van dostawczy do transportu towarowego.</p>
+                            <div class="rent-min-note">Minimalny okres najmu: <strong>1 miesiąc</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUV -->
+            <div class="rent-category-group">
+                <div class="rent-category-group-header">
+                    <div class="rent-category-icon">
+                        <svg viewBox="0 0 24 24"><path d="M5 17h14v-5l-2-5H7L5 12z"></path><path d="M5 12h14"></path><circle cx="8" cy="17.5" r="1.5"></circle><circle cx="16" cy="17.5" r="1.5"></circle></svg>
+                    </div>
+                    <div class="rent-category-group-title">
+                        <h3>SUV 4x4</h3>
+                        <span>Komfort na każdą trasę</span>
+                    </div>
+                </div>
+                <div class="rent-long-grid">
+                    <div class="rent-long-card">
+                        <div class="rent-long-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/06/01.-Nowe-Renault-Koleos.jpg');">
+                            <span class="rent-long-badge">SUV 4x4</span>
+                            <div class="rent-spec-overlay">
+                                <div class="rent-spec-grid">
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Silnik</span>
+                                        <span class="rent-spec-value">2.0 Blue dCi / 190 KM</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Skrzynia</span>
+                                        <span class="rent-spec-value">Automat. (X-Tronic)</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Napęd</span>
+                                        <span class="rent-spec-value">4x4</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Bagażnik</span>
+                                        <span class="rent-spec-value">579 litrów</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-long-body">
+                            <h4>Renault Koleos</h4>
+                            <p>Przestronny SUV łączący komfort z praktycznością na długie trasy.</p>
+                            <div class="rent-min-note">Minimalny okres najmu: <strong>1 miesiąc</strong></div>
+                        </div>
+                    </div>
+                    <div class="rent-long-card">
+                        <div class="rent-long-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/03/images.jpeg');">
+                            <span class="rent-long-badge">SUV  · 4x4</span>
+                            <div class="rent-spec-overlay">
+                                <div class="rent-spec-grid">
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Silnik</span>
+                                        <span class="rent-spec-value">2.0 TDI / 200 KM</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Skrzynia</span>
+                                        <span class="rent-spec-value">Automat. DSG (7)</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Napęd</span>
+                                        <span class="rent-spec-value">AWD (4x4)</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Bagażnik</span>
+                                        <span class="rent-spec-value">835 litrów</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-long-body">
+                            <h4>Škoda Kodiaq</h4>
+                            <p>Wersja 4x4 — moc i przestrzeń, świetna sprawdzona kombinacja.</p>
+                            <div class="rent-min-note">Minimalny okres najmu: <strong>1 miesiąc</strong></div>
+                        </div>
+                    </div>
+                    <div class="rent-long-card">
+                        <div class="rent-long-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-02-10-at-11.42.24.jpeg');">
+                            <span class="rent-long-badge">SUV · 4x4</span>
+                            <div class="rent-spec-overlay">
+                                <div class="rent-spec-grid">
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Silnik</span>
+                                        <span class="rent-spec-value">2.8 D-4D / 204 KM</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Skrzynia</span>
+                                        <span class="rent-spec-value">Automat. (6)</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Napęd</span>
+                                        <span class="rent-spec-value">4x4</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Bagażnik</span>
+                                        <span class="rent-spec-value">701 litrów</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-long-body">
+                            <h4>Toyota Land Cruiser</h4>
+                            <p>Legendarna terenówka — niezawodność i moc w każdych warunkach.</p>
+                            <div class="rent-min-note">Minimalny okres najmu: <strong>1 miesiąc</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PICKUP -->
+            <div class="rent-category-group">
+                <div class="rent-category-group-header">
+                    <div class="rent-category-icon">
+                        <svg viewBox="0 0 24 24"><path d="M2 17h6v-6H5l-3 3z"></path><path d="M8 17V8h6l3 4h3v5h-2"></path><circle cx="6" cy="17.5" r="1.5"></circle><circle cx="16.5" cy="17.5" r="1.5"></circle></svg>
+                    </div>
+                    <div class="rent-category-group-title">
+                        <h3>Pickup</h3>
+                        <span>Moc i przestrzeń do pracy</span>
+                    </div>
+                </div>
+                <div class="rent-long-grid">
+                    <div class="rent-long-card">
+                        <div class="rent-long-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-02-10-at-11.47.46.jpeg');">
+                            <span class="rent-long-badge">Pickup</span>
+                            <div class="rent-spec-overlay">
+                                <div class="rent-spec-grid">
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Silnik</span>
+                                        <span class="rent-spec-value">2.4 D-4D / 150 KM</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Skrzynia</span>
+                                        <span class="rent-spec-value">Manualna / Automat.</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Napęd</span>
+                                        <span class="rent-spec-value">4x4</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Udźwig skrzyni</span>
+                                        <span class="rent-spec-value">do 1000 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-long-body">
+                            <h4>Toyota Hilux</h4>
+                            <p>Dostępny w różnych konfiguracjach — do zadań terenowych i transportowych.</p>
+                            <div class="rent-min-note">Minimalny okres najmu: <strong>1 miesiąc</strong></div>
+                        </div>
+                    </div>
+                    <div class="rent-long-card">
+                        <div class="rent-long-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/07/PODMIEN-isuzu-d-max.jpg');">
+                            <span class="rent-long-badge">Pickup</span>
+                            <div class="rent-spec-overlay">
+                                <div class="rent-spec-grid">
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Silnik</span>
+                                        <span class="rent-spec-value">1.9 D / 164 KM</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Skrzynia</span>
+                                        <span class="rent-spec-value">Automat. (6)</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Napęd</span>
+                                        <span class="rent-spec-value">4x4</span>
+                                    </div>
+                                    <div class="rent-spec-item">
+                                        <span class="rent-spec-label">Udźwig skrzyni</span>
+                                        <span class="rent-spec-value">do 1055 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rent-long-body">
+                            <h4>Isuzu D-Max</h4>
+                            <p>Solidny pickup do intensywnej pracy w trudnych warunkach terenowych.</p>
+                            <div class="rent-min-note">Minimalny okres najmu: <strong>1 miesiąc</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKCJA KRÓTKOTERMINOWA -->
+    <section class="rent-section">
+        <div class="rent-section-header">
+            <span class="rent-section-tag tag-short">Od ręki</span>
+        </div>
+        <h2 class="rent-section-title">Wynajem krótkoterminowy</h2>
+        <p class="rent-section-desc">Potrzebujesz auta tylko na chwilę? Te modele wynajmiesz <strong>już od jednej doby</strong>, w cenie od <strong>200 zł brutto za dobę</strong>.</p>
+
+        <div class="rent-short-grid">
+
+            <div class="rent-short-card">
+                <div class="rent-short-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-02-10-at-11.43.17.jpeg');">
+                    <div class="rent-short-price-badge">od 200 zł <span>/ doba</span></div>
+                    <div class="rent-spec-overlay">
+                        <div class="rent-spec-grid">
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Silnik</span>
+                                <span class="rent-spec-value">1.5 Hybrid / 122 KM</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Skrzynia</span>
+                                <span class="rent-spec-value">Automat. CVT</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Spalanie</span>
+                                <span class="rent-spec-value">~4,5 l/100km</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Bagażnik</span>
+                                <span class="rent-spec-value">471 litrów</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rent-short-body">
+                    <h3>Toyota Corolla</h3>
+                    <p>Klasyczny, oszczędny sedan/hatchback na każdy dzień.</p>
+                </div>
+            </div>
+
+            <div class="rent-short-card">
+                <div class="rent-short-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-02-10-at-11.44.38.jpeg');">
+                    <div class="rent-short-price-badge">od 200 zł <span>/ doba</span></div>
+                    <div class="rent-spec-overlay">
+                        <div class="rent-spec-grid">
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Silnik</span>
+                                <span class="rent-spec-value">1.5 Hybrid / 116 KM</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Skrzynia</span>
+                                <span class="rent-spec-value">Automat. CVT</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Spalanie</span>
+                                <span class="rent-spec-value">~4,7 l/100km</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Bagażnik</span>
+                                <span class="rent-spec-value">397 litrów</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rent-short-body">
+                    <h3>Toyota Yaris Cross</h3>
+                    <p>Zwrotny crossover, idealny w mieście i w trasie.</p>
+                </div>
+            </div>
+
+            <div class="rent-short-card">
+                <div class="rent-short-photo" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/06/corola-cros.jpg');">
+                    <div class="rent-short-price-badge">od 200 zł <span>/ doba</span></div>
+                    <div class="rent-spec-overlay">
+                        <div class="rent-spec-grid">
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Silnik</span>
+                                <span class="rent-spec-value">1.8 Hybrid / 140 KM</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Skrzynia</span>
+                                <span class="rent-spec-value">Automat. CVT</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Spalanie</span>
+                                <span class="rent-spec-value">~5,0 l/100km</span>
+                            </div>
+                            <div class="rent-spec-item">
+                                <span class="rent-spec-label">Bagażnik</span>
+                                <span class="rent-spec-value">487 litrów</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rent-short-body">
+                    <h3>Toyota Corolla Cross</h3>
+                    <p>Wyższe zawieszenie, więcej miejsca, ten sam komfort.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rent-cta-section">
+        <div class="rent-cta-card">
+            <div class="rent-cta-text">
+                <h2>Wybierz auto — zadzwoń do Działu Wypożyczalni</h2>
+                <p>Bez formularzy. Jeden telefon i ustalamy szczegóły wynajmu.</p>
+            </div>
+            <a href="tel:+48798289145" class="rent-cta-phone">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span class="rent-cta-phone-label">
+                    <small></small>
+                    798 289 145
+                </span>
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Na urządzeniach dotykowych ":hover" nie ujawnia nakładki specyfikacji w sposób
+    // niezawodny — tapnięcie w kartę przełącza widoczność specyfikacji.
+    const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (!isTouch) return;
+
+    const photos = document.querySelectorAll('.rent-long-photo, .rent-short-photo');
+    photos.forEach(photo => {
+        photo.addEventListener('click', (e) => {
+            const wasActive = photo.classList.contains('is-active');
+            photos.forEach(p => p.classList.remove('is-active'));
+            if (!wasActive) {
+                photo.classList.add('is-active');
+            }
+        });
+    });
+});
+</script>
