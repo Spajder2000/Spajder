@@ -1,0 +1,440 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+.fides-company-page {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- NAGŁÓWEK HERO (CZYSTA BIEL) --- */
+.fides-data-hero {
+    background: #ffffff;
+    padding: 100px 20px 160px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.fides-data-hero h1 {
+    position: relative;
+    z-index: 2;
+    color: #0f203c;
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    max-width: 1100px;
+    margin: 0 auto;
+    letter-spacing: -1px;
+}
+
+.fides-data-hero h1 span {
+    color: #4a74a5;
+    font-weight: 500;
+    font-size: 2.2rem;
+    display: block;
+    margin-top: 15px;
+}
+
+/* --- GŁÓWNY KONTENER (BEZ ZAKŁADEK - JEDNA SPÓŁKA) --- */
+.fides-data-container {
+    max-width: 1300px;
+    margin: -100px auto 100px;
+    position: relative;
+    z-index: 10;
+    padding: 0 20px;
+}
+
+/* --- KARTA TREŚCI --- */
+.fides-tab-content-wrapper {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 50px;
+    box-shadow: 0 30px 60px rgba(15, 32, 60, 0.08);
+    position: relative;
+    border: 1px solid rgba(74, 116, 165, 0.1);
+}
+
+.fides-content-header {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0f203c;
+    letter-spacing: -1px;
+    margin-bottom: 35px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 20px;
+}
+
+/* --- KAFELKI DANYCH --- */
+.fides-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.fides-info-item {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 16px;
+    border-left: 4px solid #4a74a5;
+}
+
+.fides-info-label {
+    display: block;
+    font-size: .85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #4a74a5;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.fides-info-value {
+    display: block;
+    font-size: 1.25rem;
+    color: #0f203c;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* --- NOTA PRAWNA --- */
+.fides-legal-note {
+    background: rgba(74, 116, 165, 0.05);
+    border: 1px solid rgba(74, 116, 165, 0.2);
+    padding: 20px 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.fides-legal-note svg {
+    width: 28px;
+    height: 28px;
+    color: #4a74a5;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.fides-legal-note p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #334155;
+    margin: 0;
+    font-weight: 500;
+}
+
+.fides-legal-note p strong {
+    color: #0f203c;
+    font-weight: 700;
+}
+
+/* --- CERTYFIKATY --- */
+.fides-certs-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f203c;
+    margin: 50px 0 25px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.fides-certs-title::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 4px;
+    background: #4a74a5;
+    border-radius: 2px;
+}
+
+.fides-certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+}
+
+.fides-cert-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(15, 32, 60, 0.08);
+    background: #ffffff;
+    cursor: zoom-in;
+}
+
+.fides-cert-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid transparent;
+    border-radius: 12px;
+    transition: border-color .3s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.fides-cert-item:hover::after {
+    border-color: #4a74a5;
+}
+
+.fides-cert-item:hover img {
+    transform: scale(1.05);
+}
+
+.fides-cert-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform .6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* --- CUSTOM LIGHTBOX (GALERIA Z HTML ENTITIES) --- */
+.fides-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 17, 26, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.fides-lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fides-lightbox-img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+    transform: scale(0.95);
+    user-select: none;
+    z-index: 999990;
+}
+
+.fides-lightbox.is-open .fides-lightbox-img {
+    transform: scale(1);
+}
+
+/* Przyciski nawigacji i zamknięcia - WIDOCZNE I WYRAŹNE ZNAKI HTML */
+.fides-lightbox-close,
+.fides-lightbox-prev,
+.fides-lightbox-next {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    z-index: 999999;
+    outline: none;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1;
+    font-family: Arial, sans-serif;
+}
+
+.fides-lightbox-close:hover,
+.fides-lightbox-prev:hover,
+.fides-lightbox-next:hover {
+    background: #4a74a5;
+    border-color: #ffffff;
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+.fides-lightbox-close {
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+}
+
+.fides-lightbox-prev {
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+}
+
+.fides-lightbox-next {
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+}
+
+.fides-lightbox-prev:hover { transform: translateY(-50%) scale(1.1); }
+.fides-lightbox-next:hover { transform: translateY(-50%) scale(1.1); }
+
+/* --- RESPONSYWNOŚĆ --- */
+@media (max-width: 1024px) {
+    .fides-data-container { margin-top: -60px; }
+    .fides-tab-content-wrapper { padding: 40px 30px; }
+}
+
+@media (max-width: 768px) {
+    .fides-data-hero { padding: 80px 20px 100px; }
+    .fides-data-hero h1 { font-size: 2.2rem; }
+    .fides-data-hero h1 span { font-size: 1.4rem; margin-top: 10px; }
+    .fides-tab-content-wrapper { padding: 35px 25px; }
+    .fides-content-header { font-size: 1.8rem; }
+    .fides-info-grid { grid-template-columns: 1fr; gap: 20px; }
+    .fides-legal-note { flex-direction: column; gap: 10px; padding: 20px; }
+    .fides-certs-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+
+    /* Lightbox mobile - POWIĘKSZONE KONTRASTY DLA PRZYCISKÓW */
+    .fides-lightbox-prev { left: 10px; width: 45px; height: 45px; font-size: 20px; background: rgba(0, 0, 0, 0.6); }
+    .fides-lightbox-next { right: 10px; width: 45px; height: 45px; font-size: 20px; background: rgba(0, 0, 0, 0.6); }
+    .fides-lightbox-close { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 24px; background: rgba(0, 0, 0, 0.6); }
+    .fides-lightbox-img { max-width: 85%; }
+}
+</style>
+
+<div class="fides-company-page">
+    <section class="fides-data-hero">
+        <h1>Przykładamy wielką wagę <br>do świadczonych przez nas usług <span>Świadczą o tym liczne certyfikaty oraz dyplomy uznania</span></h1>
+    </section>
+
+    <section class="fides-data-section">
+        <div class="fides-data-container">
+            <main class="fides-tab-content-wrapper">
+
+                <h2 class="fides-content-header">Dane Spółki</h2>
+                <div class="fides-info-grid">
+                    <div class="fides-info-item"><span class="fides-info-label">Adres Siedziby</span><span class="fides-info-value">Gola Grodkowska 5<br>49-200 Grodków</span></div>
+                    <div class="fides-info-item"><span class="fides-info-label">NIP</span><span class="fides-info-value">PL 7471914890</span></div>
+                    <div class="fides-info-item"><span class="fides-info-label">REGON</span><span class="fides-info-value">383609690</span></div>
+                    <div class="fides-info-item"><span class="fides-info-label">Telefon Kontaktowy</span><span class="fides-info-value">+48 77 415 69 34</span></div>
+                </div>
+                <div class="fides-legal-note">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <p>Sąd Rejonowy w Opolu, VIII Wydział Gospodarczy Krajowego Rejestru Sądowego, pod numerem KRS 0000790216. <br>Wysokość kapitału zakładowego: <strong>455 000 zł</strong> (wpłacony w całości).</p>
+                </div>
+
+                <h3 class="fides-certs-title">Certyfikaty Jakości i Dyplomy</h3>
+                <div class="fides-certs-grid">
+                    <div class="fides-cert-item"><img src="https://test.fides-logistics.com/wp-content/uploads/2026/03/Certyfikat-1.jpg" alt="Certyfikat"></div>
+                    <div class="fides-cert-item"><img src="https://test.fides-logistics.com/wp-content/uploads/2026/03/certyfikat-2.jpg" alt="Certyfikat"></div>
+                    <div class="fides-cert-item"><img src="https://test.fides-logistics.com/wp-content/uploads/2026/03/certyfikat-3.jpg" alt="Certyfikat"></div>
+                    <div class="fides-cert-item"><img src="https://test.fides-logistics.com/wp-content/uploads/2026/03/certyfikat-4.jpg" alt="Certyfikat"></div>
+                    <div class="fides-cert-item"><img src="https://test.fides-logistics.com/wp-content/uploads/2026/03/certyfikat-5.jpg" alt="Certyfikat"></div>
+                    <div class="fides-cert-item"><img src="https://test.fides-logistics.com/wp-content/uploads/2026/03/certyfikat-6.jpg" alt="Certyfikat"></div>
+                    <div class="fides-cert-item"><img src="https://test.fides-logistics.com/wp-content/uploads/2026/03/certyfikat-7.jpg" alt="Certyfikat"></div>
+                </div>
+
+            </main>
+        </div>
+    </section>
+
+    <div class="fides-lightbox" id="fides-lightbox">
+        <button class="fides-lightbox-close" id="lightbox-close" aria-label="Zamknij">&times;</button>
+        <button class="fides-lightbox-prev" id="lightbox-prev" aria-label="Poprzednie">&#10094;</button>
+        <img src="" alt="Powiększony Certyfikat" class="fides-lightbox-img" id="lightbox-img">
+        <button class="fides-lightbox-next" id="lightbox-next" aria-label="Następne">&#10095;</button>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // ZARZĄDZANIE GALERIĄ CERTYFIKATÓW (LIGHTBOX)
+    const lightbox = document.getElementById('fides-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const btnClose = document.getElementById('lightbox-close');
+    const btnPrev = document.getElementById('lightbox-prev');
+    const btnNext = document.getElementById('lightbox-next');
+
+    let currentGallery = [];
+    let currentIndex = 0;
+
+    // Przypinamy kliknięcie do każdego obrazka w siatce certyfikatów
+    document.querySelectorAll('.fides-cert-item img').forEach(img => {
+        img.addEventListener('click', function() {
+            const grid = this.closest('.fides-certs-grid');
+            if (!grid) return;
+
+            const imagesInGrid = Array.from(grid.querySelectorAll('img'));
+            currentGallery = imagesInGrid.map(image => image.src);
+            currentIndex = imagesInGrid.indexOf(this);
+
+            updateLightboxImage();
+            lightbox.classList.add('is-open');
+            document.body.style.overflow = 'hidden'; // Blokada scrollowania
+        });
+    });
+
+    function updateLightboxImage() {
+        if (currentGallery.length > 0) {
+            lightboxImg.src = currentGallery[currentIndex];
+            // Ukryj strzałki, jeśli w galerii jest tylko 1 zdjęcie
+            btnPrev.style.display = currentGallery.length > 1 ? 'flex' : 'none';
+            btnNext.style.display = currentGallery.length > 1 ? 'flex' : 'none';
+        }
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        document.body.style.overflow = ''; // Przywrócenie scrollowania
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % currentGallery.length;
+        updateLightboxImage();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+        updateLightboxImage();
+    }
+
+    // Obsługa zdarzeń dla Lightboxa
+    btnClose.addEventListener('click', closeLightbox);
+
+    btnNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+    btnPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+
+    // Zamknięcie po kliknięciu w zaciemnione tło (poza zdjęciem)
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Obsługa klawiatury
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight' && currentGallery.length > 1) showNext();
+        if (e.key === 'ArrowLeft' && currentGallery.length > 1) showPrev();
+    });
+});
+</script>
