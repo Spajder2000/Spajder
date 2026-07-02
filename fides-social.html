@@ -1,0 +1,335 @@
+<style>
+/* ============================================== */
+/* SEKCJA WIDEO / ROLKA FB (JASNY MOTYW LEWA STRONA)*/
+/* ============================================== */
+
+.fides-reel-section {
+    background-color: transparent;
+    padding: 120px 20px;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+.fides-reel-container {
+    max-width: 1200px; /* Zmniejszona wielkość kontenera, aby wyeliminować pustkę na środku */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Wymuszamy trzymanie elementów blisko siebie */
+    gap: 100px; /* Ciasny, estetyczny stały odstęp na komputerach */
+}
+
+.fides-reel-content {
+    flex: 1;
+    max-width: 520px; /* Zwężono szerokość tekstu dla lepszego łamania wierszy */
+    z-index: 3;
+}
+
+.fides-reel-badge {
+    display: inline-block;
+    background: rgba(74, 116, 165, 0.1);
+    color: #4a74a5;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(74, 116, 165, 0.2);
+}
+
+/* NOWE UŁOŻENIE NAGŁÓWKA ZE ZINTEGROWANYM LOGO FB */
+.fides-reel-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #0f203c;
+    line-height: 1.1;
+    margin: 0 0 25px 0;
+    letter-spacing: -1px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Odstęp między linijką 1 a 2 */
+}
+
+.fides-title-line-1 {
+    display: block;
+}
+
+.fides-title-line-2 {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #1877F2; /* Wyróżnienie słowa Facebook korporacyjnym kolorem Meta (opcjonalnie można zmienić na granatowy) */
+}
+
+.fides-fb-icon {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 8px 15px rgba(24, 119, 242, 0.25));
+}
+
+.fides-reel-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #334155;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.fides-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    color: #0f203c;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 16px 32px;
+    border: 2px solid #0f203c;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+}
+
+.fides-btn-outline:hover {
+    background-color: #0f203c;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(15, 32, 60, 0.2);
+    transform: translateY(-3px);
+}
+
+/* KONTENER MEDIÓW - Wylądował po LEWEJ */
+.fides-reel-media {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    max-width: 480px; /* Zredukowano szerokość filmu dla idealnej równowagi z tekstem */
+}
+
+.fides-reel-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 538 / 675;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    box-shadow: 0 35px 80px rgba(15, 32, 60, 0.15);
+    border: 6px solid #0f203c;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .fides-reel-frame:hover {
+        transform: scale(1.02) translateY(-10px);
+    }
+}
+
+.fides-facebook-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: auto !important;
+}
+
+/* Ambilight - poświata bije na niebiesko */
+.fides-reel-aura {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; height: 600px;
+    background: #8ba8cc;
+    filter: blur(140px);
+    border-radius: 50%;
+    z-index: -1;
+    animation: fidesAuraPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes fidesAuraPulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+    100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.35; }
+}
+
+/* ============================================== */
+/* SEKCJA INSTAGRAM (TEN SAM UKŁAD, KAFELEK IG)    */
+/* ============================================== */
+
+.fides-reel-section--instagram {
+    padding-top: 0;
+}
+
+.fides-title-line-2--instagram {
+    color: #d62976;
+}
+
+.fides-ig-icon {
+    filter: drop-shadow(0 8px 15px rgba(214, 41, 118, 0.25));
+}
+
+.fides-btn-outline--instagram:hover {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+    border-color: transparent;
+}
+
+.fides-instagram-frame {
+    background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.fides-instagram-visual {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    color: #ffffff;
+}
+
+.fides-instagram-visual-icon {
+    width: 90px;
+    height: 90px;
+}
+
+.fides-instagram-visual span {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.fides-reel-aura--instagram {
+    background: #d62976;
+}
+
+/* ============================================== */
+/* UKŁAD RESPONSYWNY I TELEFONY                   */
+/* ============================================== */
+
+@media (max-width: 1024px) {
+    .fides-reel-container { gap: 60px; max-width: 900px; }
+    .fides-reel-title { font-size: 2.8rem; }
+    .fides-fb-icon { width: 45px; height: 45px; }
+}
+
+@media (max-width: 768px) {
+    .fides-reel-section { padding: 60px 20px; }
+    .fides-reel-section--instagram { padding-top: 0; }
+
+    .fides-reel-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .fides-reel-title {
+        font-size: 2.6rem;
+        align-items: center; /* Wyśrodkowanie tekstu z ikoną na telefonie */
+    }
+
+    .fides-title-line-2 {
+        justify-content: center; /* Centrujemy znaczek FB dla widoku wertykalnego */
+    }
+
+    .fides-fb-icon { width: 40px; height: 40px; }
+
+    .fides-reel-content p { font-size: 1.1rem; }
+    .fides-reel-content { max-width: 100%; }
+
+    .fides-reel-frame { max-width: 100%; border-width: 4px; border-radius: 15px; }
+    .fides-reel-aura { width: 300px; height: 400px; }
+
+    .fides-instagram-visual-icon { width: 60px; height: 60px; }
+    .fides-instagram-visual span { font-size: 1.05rem; }
+}
+</style>
+
+<!-- KOMPLETNY WYBUDOWANY KOD CALUTKIEJ SEKCJI REEL -->
+<section class="fides-reel-section">
+    <div class="fides-reel-container">
+
+        <!-- ELEMENT NR 1: WIDEO -->
+        <div class="fides-reel-media">
+            <div class="fides-reel-frame">
+                <iframe
+                    src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2804335709917431&show_text=false&autoplay=1&mute=1&width=538"
+                    class="fides-facebook-iframe"
+                    scrolling="no"
+                    frameborder="0"
+                    allowtransparency="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen="true">
+                </iframe>
+            </div>
+            <div class="fides-reel-aura"></div>
+        </div>
+
+        <!-- ELEMENT NR 2: TEKST I PRZYCISKI -->
+        <div class="fides-reel-content">
+            <div class="fides-reel-badge">Social Media</div>
+
+            <!-- NOWY REFORMATOWANY NAGŁÓWEK Z IKONĄ INLINE -->
+            <h2 class="fides-reel-title">
+                <span class="fides-title-line-1">Śledź nas na</span>
+                <span class="fides-title-line-2">
+                    <svg viewBox="0 0 24 24" fill="#1877F2" class="fides-fb-icon">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Facebooku
+                </span>
+            </h2>
+
+            <p>Na bieżąco prezentujemy swoje usługi na Facebooku i dzielimy się nowościami naszej firmy.</p>
+            <a href="https://www.facebook.com/PPUH.FIDES" target="_blank" class="fides-btn-outline">Odwiedź Nasz Profil</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- SEKCJA INSTAGRAM - TEN SAM UKŁAD CO SEKCJA FACEBOOK -->
+<section class="fides-reel-section fides-reel-section--instagram">
+    <div class="fides-reel-container">
+
+        <!-- ELEMENT NR 1: WIZUALIZACJA -->
+        <div class="fides-reel-media">
+            <div class="fides-reel-frame fides-instagram-frame">
+                <div class="fides-instagram-visual">
+                    <svg viewBox="0 0 16 16" fill="#ffffff" class="fides-instagram-visual-icon">
+                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.703.01 5.556 0 5.829 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.828 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.172 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.232s-.008 2.389-.047 3.232c-.035.78-.166 1.204-.275 1.486a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.275-.843.039-1.096.047-3.232.047s-2.39-.008-3.233-.047c-.78-.035-1.203-.166-1.485-.275a2.478 2.478 0 0 1-.92-.599 2.48 2.48 0 0 1-.6-.919c-.109-.281-.24-.705-.275-1.486-.038-.843-.046-1.096-.046-3.232s.008-2.389.046-3.232c.035-.78.166-1.204.276-1.485.145-.374.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.046 3.232-.046zm0 2.988a4.14 4.14 0 1 0 0 8.28 4.14 4.14 0 0 0 0-8.28zm0 6.826a2.686 2.686 0 1 1 0-5.372 2.686 2.686 0 0 1 0 5.372zm5.27-7.026a.968.968 0 1 1-1.935 0 .968.968 0 0 1 1.935 0z"/>
+                    </svg>
+                    <span>@fides.logistics</span>
+                </div>
+            </div>
+            <div class="fides-reel-aura fides-reel-aura--instagram"></div>
+        </div>
+
+        <!-- ELEMENT NR 2: TEKST I PRZYCISKI -->
+        <div class="fides-reel-content">
+            <div class="fides-reel-badge">Social Media</div>
+
+            <h2 class="fides-reel-title">
+                <span class="fides-title-line-1">Śledź nas na</span>
+                <span class="fides-title-line-2 fides-title-line-2--instagram">
+                    <svg viewBox="0 0 16 16" class="fides-fb-icon fides-ig-icon">
+                        <defs>
+                            <linearGradient id="fidesIgGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#feda75"/>
+                                <stop offset="25%" stop-color="#fa7e1e"/>
+                                <stop offset="50%" stop-color="#d62976"/>
+                                <stop offset="75%" stop-color="#962fbf"/>
+                                <stop offset="100%" stop-color="#4f5bd5"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#fidesIgGradient)" d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.703.01 5.556 0 5.829 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.828 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.172 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.232s-.008 2.389-.047 3.232c-.035.78-.166 1.204-.275 1.486a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.275-.843.039-1.096.047-3.232.047s-2.39-.008-3.233-.047c-.78-.035-1.203-.166-1.485-.275a2.478 2.478 0 0 1-.92-.599 2.48 2.48 0 0 1-.6-.919c-.109-.281-.24-.705-.275-1.486-.038-.843-.046-1.096-.046-3.232s.008-2.389.046-3.232c.035-.78.166-1.204.276-1.485.145-.374.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.046 3.232-.046zm0 2.988a4.14 4.14 0 1 0 0 8.28 4.14 4.14 0 0 0 0-8.28zm0 6.826a2.686 2.686 0 1 1 0-5.372 2.686 2.686 0 0 1 0 5.372zm5.27-7.026a.968.968 0 1 1-1.935 0 .968.968 0 0 1 1.935 0z"/>
+                    </svg>
+                    Instagramie
+                </span>
+            </h2>
+
+            <p>Odkryj kulisy naszej pracy, flotę oraz najnowsze realizacje — dołącz do nas na Instagramie.</p>
+            <a href="https://www.instagram.com/fides.logistics/" target="_blank" rel="noopener" class="fides-btn-outline fides-btn-outline--instagram">Odwiedź Nasz Profil</a>
+        </div>
+
+    </div>
+</section>
