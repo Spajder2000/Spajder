@@ -1,0 +1,275 @@
+<style>
+/* Import nowoczesnego fontu */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap');
+
+.fides-bento-section {
+    background-color: #f8f9fa;
+    padding: 80px 20px;
+    font-family: 'Montserrat', sans-serif;
+    overflow: visible;
+}
+
+.fides-bento-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.fides-bento-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #0f203c;
+    margin: 0;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+}
+
+.fides-bento-subtitle {
+    color: #4a74a5;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* --- SIATKA BENTO (DESKTOP) - 3 KAFELKI --- */
+.fides-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 300px 240px;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* POJEDYNCZY KAFEL */
+.fides-bento-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: 0 15px 35px rgba(15, 32, 60, 0.05);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+}
+
+/* ROZMIESZCZENIE (3 KAFELKI) - DESKTOP */
+/* Górny rząd: dwa duże kafelki, 2 kolumny każdy */
+.card-transport  { grid-column: span 2; grid-row: 1; }
+.card-pojazdy    { grid-column: span 2; grid-row: 1; }
+/* Dolny rząd: pełna szerokość */
+.card-logistyka  { grid-column: span 4; grid-row: 2; }
+
+.fides-bento-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    transition: transform 0.8s ease;
+    z-index: 1;
+}
+
+/* Zdjęcie tego kafelka jest małe/wąskie - pokazujemy jego dolną część, żeby było widać co na nim jest */
+.card-logistyka .fides-bento-bg {
+    background-position: center bottom;
+}
+
+.fides-bento-overlay {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 60%;
+    background: linear-gradient(to top, rgba(15, 32, 60, 0.95) 0%, rgba(15, 32, 60, 0) 100%);
+    z-index: 2;
+    transition: height 0.5s ease, background 0.5s ease, backdrop-filter 0.5s ease;
+}
+
+.fides-bento-content {
+    position: relative;
+    z-index: 4;
+    padding: 30px;
+    width: 100%;
+    transform: translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fides-bento-content h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 800; margin: 0 0 10px 0; line-height: 1.2;
+}
+
+.card-transport .fides-bento-content h3,
+.card-pojazdy .fides-bento-content h3,
+.card-logistyka .fides-bento-content h3 { font-size: 2.3rem; }
+
+.fides-bento-action {
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 0.95rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s ease;
+    border-bottom: 2px solid #4a74a5;
+    padding-bottom: 3px;
+}
+
+.fides-arrow {
+    display: inline-block;
+    margin-left: 6px;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+/* ========================================================= */
+/* --- 1. HOVER EFEKTY (TYLKO DLA MYSZKI DLA DESKTOPU) --- */
+/* ========================================================= */
+@media (hover: hover) and (pointer: fine) {
+    .fides-bento-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 30px 60px rgba(15, 32, 60, 0.25);
+    }
+    .fides-bento-card:hover .fides-bento-bg { transform: scale(1.06); }
+    .fides-bento-card:hover .fides-bento-overlay {
+        height: 100%;
+        background: rgba(15, 32, 60, 0.85);
+        backdrop-filter: blur(5px);
+    }
+    .fides-bento-card:hover .fides-bento-content { transform: translateY(0); }
+    .fides-bento-card:hover .fides-bento-action { opacity: 1; transform: translateY(0); }
+    .fides-bento-card:hover .fides-arrow { transform: translateX(6px); }
+}
+
+/* ============================================================== */
+/* --- 2. STAŁA CZYTELNOŚĆ DLA URZĄDZEŃ DOTYKOWYCH (BEZ SKOKÓW) ---
+/* ============================================================== */
+@media (hover: none), (pointer: coarse) {
+    .fides-bento-content { transform: translateY(0); }
+    .fides-bento-action { opacity: 1; transform: translateY(0); }
+    .fides-bento-overlay {
+        height: 80%;
+        background: linear-gradient(to top, rgba(15, 32, 60, 0.95) 0%, rgba(15, 32, 60, 0) 100%);
+        backdrop-filter: none; /* Kompletne wyłączenie rozmywania na telefonach - oszczędność baterii */
+    }
+}
+
+/* ========================================================= */
+/* --- 3. RESPONSYWNOŚĆ TABLET --- */
+/* ========================================================= */
+@media (max-width: 1024px) {
+    .fides-bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 280px 280px 250px;
+    }
+    .card-transport { grid-column: span 1; grid-row: 1; }
+    .card-pojazdy   { grid-column: span 1; grid-row: 1; }
+    .card-logistyka { grid-column: span 2; grid-row: 2; }
+}
+
+/* ========================================================= */
+/* --- 4. RESPONSYWNOŚĆ MOBILE + EFEKT SCROLL FOCUS ---
+/* ========================================================= */
+@media (max-width: 768px) {
+    .fides-bento-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .fides-bento-card {
+        height: 350px;
+        grid-column: auto !important;
+        grid-row: auto !important;
+        position: relative !important;
+        top: auto !important;
+        box-shadow: 0 15px 35px rgba(15, 32, 60, 0.05) !important;
+        margin-bottom: 0 !important;
+
+        /* Baza dla efektu pół-przezroczystości (klasa dodawana z JS) */
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out !important;
+    }
+
+    /* Stan domyślny / "w fokusie" - musi być zdefiniowany jawnie,
+       żeby nie kolidować z transform z is-dimmed */
+    .fides-bento-card {
+        transform: scale(1) !important;
+    }
+
+    /* Klasa dynamiczna z JS - Gdy karta WYCHODZI ze środka ekranu na telefonie */
+    .fides-bento-card.is-dimmed {
+        opacity: 0.4; /* Delikatnie przyciemnione */
+        transform: scale(0.96) !important; /* Daje wrażenie chowania się z tyłu w tle */
+    }
+
+    /* Poprawki typograficzne pod kciuka */
+    .fides-bento-title { font-size: 2.2rem; }
+    .card-transport .fides-bento-content h3,
+    .card-pojazdy .fides-bento-content h3,
+    .card-logistyka .fides-bento-content h3 { font-size: 1.8rem; }
+}
+</style>
+
+<section class="fides-bento-section">
+    <div class="fides-bento-header">
+        <h2 class="fides-bento-title">Nasza Oferta</h2>
+        <p class="fides-bento-subtitle">Kompleksowe logistyczne rozwiązania dla Twojego biznesu</p>
+    </div>
+
+    <div class="fides-bento-grid">
+
+        <a href="https://test.fides-logistics.com/transport-i-spedycja-2/" class="fides-bento-card card-transport">
+            <div class="fides-bento-bg" style="background-image: url('https://fea-sztuka.pl/wp-content/uploads/2026/03/Transport-i-spedycja.png');"></div>
+            <div class="fides-bento-overlay"></div>
+            <div class="fides-bento-content">
+                <h3>Transport i spedycja</h3>
+                <span class="fides-bento-action">Sprawdź szczegóły <span class="fides-arrow">→</span></span>
+            </div>
+        </a>
+
+        <a href="https://test.fides-logistics.com/wypozyczalnia-samochodow/" class="fides-bento-card card-pojazdy">
+            <div class="fides-bento-bg" style="background-image: url('https://fea-sztuka.pl/wp-content/uploads/2026/03/Wynajem-pojazdow-1.png');"></div>
+            <div class="fides-bento-overlay"></div>
+            <div class="fides-bento-content">
+                <h3>Wypożyczalnia samochodów</h3>
+                <span class="fides-bento-action">Zobacz flotę <span class="fides-arrow">→</span></span>
+            </div>
+        </a>
+
+        <a href="https://test.fides-logistics.com/logistyka/" class="fides-bento-card card-logistyka">
+            <div class="fides-bento-bg" style="background-image: url('https://test.fides-logistics.com/wp-content/uploads/2026/07/IMG_20220110_122839-scaled.jpg');"></div>
+            <div class="fides-bento-overlay"></div>
+            <div class="fides-bento-content">
+                <h3>Usługi logistyczne</h3>
+                <span class="fides-bento-action">Zobacz szczegóły <span class="fides-arrow">→</span></span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll('.fides-bento-card');
+
+    // Ustawiamy strefę "Focus" na środek ekranu telefonu. Odcinamy górne i dolne 35%
+    const observerOptions = {
+        root: null,
+        rootMargin: "-35% 0px -35% 0px",
+        threshold: 0
+    };
+
+    const focusObserver = new IntersectionObserver((entries) => {
+        // Efekt z natury ma sens tylko i wyłącznie dla urzadzen mobilnych, wycinamy to na desktopy by nie psulo logiki siatki
+        if (window.innerWidth <= 768) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Karta wjeżdża przed oczy na idealny środek -> jest mocno wyostrzona
+                    entry.target.classList.remove('is-dimmed');
+                } else {
+                    // Karta mija kciuka, oddala się -> robi się wygaszona, by nakierować uwagę na tę ze środka
+                    entry.target.classList.add('is-dimmed');
+                }
+            });
+        }
+    }, observerOptions);
+
+    cards.forEach(card => focusObserver.observe(card));
+});
+</script>
