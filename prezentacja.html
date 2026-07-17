@@ -501,6 +501,79 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 @media(max-width:920px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
 
+/* ---- demo forms showcase ---- */
+input[type=date]{color-scheme:dark}
+.demo-tabs{margin:0 auto 2.6rem;display:flex;flex-wrap:wrap;justify-content:center}
+.demo-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:1.4rem;align-items:start}
+.demo-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(1.7rem,3vw,2.4rem);box-shadow:var(--shadow-md)}
+.demo-panel{display:none}
+.demo-panel.on{display:block;animation:fadein .5s var(--ease)}
+.demo-badge{position:absolute;top:-13px;left:26px;display:inline-flex;align-items:center;gap:.45rem;background:var(--grad);color:#04120c;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:.38rem .9rem;border-radius:100px;box-shadow:var(--shadow-glow)}
+.demo-card h3{font-size:1.25rem;margin:.4rem 0 .3rem}
+.demo-card .hint{color:var(--muted);font-size:.9rem;margin-bottom:1.7rem}
+.route-row{display:grid;grid-template-columns:1fr auto 1fr;gap:.8rem;align-items:end}
+.route-swap{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-2);background:rgba(255,255,255,.05);display:grid;place-items:center;margin-bottom:1.35rem;transition:transform .45s var(--ease),border-color .3s,background .3s;flex:none}
+.route-swap:hover{border-color:var(--emerald);background:rgba(0,231,143,.1)}
+.route-swap.spin{transform:rotate(180deg)}
+.route-swap svg{width:19px;height:19px;color:var(--emerald)}
+.chip-row{display:flex;flex-wrap:wrap;gap:.65rem;margin-bottom:1.5rem}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{display:inline-flex;align-items:center;gap:.5rem;padding:.62rem 1.05rem;border-radius:100px;border:1.5px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;font-size:.85rem;font-weight:600;color:var(--muted);transition:border-color .25s,background .25s,color .25s,box-shadow .25s}
+.chip label svg{width:15px;height:15px}
+.chip label:hover{border-color:var(--line-2);color:var(--fg)}
+.chip input:checked+label{border-color:var(--emerald);background:rgba(0,231,143,.1);color:var(--fg);box-shadow:0 0 0 3px rgba(0,231,143,.08)}
+.chip input:focus-visible+label{outline:2.5px solid var(--emerald);outline-offset:3px}
+.lbl-strong{display:block;font-size:.83rem;font-weight:700;margin-bottom:.7rem}
+.tgl-row{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.5rem}
+.tgl{position:relative;display:flex;align-items:center;gap:.85rem;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--muted)}
+.tgl input{position:absolute;opacity:0;pointer-events:none}
+.sw{position:relative;width:46px;height:26px;border-radius:100px;background:rgba(255,255,255,.12);transition:background .3s;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .3s var(--ease)}
+.tgl input:checked~.sw{background:var(--emerald)}
+.tgl input:checked~.sw::after{transform:translateX(20px)}
+.tgl input:checked~.t{color:var(--fg)}
+.tgl input:focus-visible~.sw{outline:2.5px solid var(--emerald);outline-offset:3px}
+.sub-reveal{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.sub-reveal.open{max-height:150px}
+.slider-field{margin-bottom:1.6rem}
+.slider-field .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.85rem;gap:1rem}
+.slider-field label{font-size:.9rem;font-weight:600}
+.slider-field output{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--emerald);white-space:nowrap}
+.veh-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem;margin-bottom:1.6rem}
+.veh-grid .choice-card label{flex-direction:row;align-items:center;gap:.9rem;padding:1rem 1.1rem}
+.veh-grid .choice-card strong{font-size:.92rem}
+.veh-grid .price{margin-left:auto;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.83rem;color:var(--emerald);white-space:nowrap}
+.upload{display:flex;align-items:center;gap:.9rem;padding:1.1rem 1.2rem;border:1.5px dashed var(--line-2);border-radius:var(--r-sm);cursor:pointer;transition:border-color .3s,background .3s;margin-bottom:1.6rem}
+.upload:hover{border-color:var(--emerald);background:rgba(0,231,143,.05)}
+.upload svg{width:20px;height:20px;color:var(--emerald);flex:none}
+.upload input{display:none}
+.upload .u-txt{font-size:.84rem;color:var(--muted)}
+.upload .u-txt strong{display:block;color:var(--fg);font-size:.9rem}
+.lead-card{position:sticky;top:calc(var(--nav-h) + 24px);background:linear-gradient(150deg,rgba(0,231,143,.1),rgba(74,123,255,.08));border:1px solid rgba(0,231,143,.25);border-radius:var(--r-xl);padding:1.8rem;box-shadow:var(--shadow-md)}
+.lead-head{display:flex;align-items:center;gap:.6rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.9rem}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--emerald);animation:pulseDot 1.6s infinite;flex:none}
+.lead-set{display:none}
+.lead-set.on{display:block;animation:fadein .4s var(--ease)}
+.lead-row{display:flex;justify-content:space-between;gap:1rem;padding:.74rem 0;border-bottom:1px dashed rgba(255,255,255,.13);font-size:.88rem}
+.lead-row .k{color:var(--muted-2);flex:none}
+.lead-row .v{font-weight:600;text-align:right}
+.lead-row .v.empty{color:var(--muted-2);font-weight:400}
+.lead-price{display:flex;flex-direction:column;padding:1.1rem 0 .3rem}
+.lead-price .k{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lead-price .v{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead-meter{margin-top:1.3rem}
+.lead-meter .row{display:flex;justify-content:space-between;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:.55rem}
+.lead-meter output{font-family:'Space Grotesk',sans-serif;color:var(--emerald);font-weight:700}
+.lead-meter .bar{height:6px;border-radius:100px;background:rgba(255,255,255,.1);overflow:hidden}
+.lead-meter .bar i{display:block;height:100%;width:0;background:var(--grad);border-radius:100px;transition:width .5s var(--ease)}
+.lead-note{margin-top:1.2rem;font-size:.78rem;color:var(--muted)}
+.demo-actions{display:flex;justify-content:flex-end;margin-top:.4rem}
+.demo-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,180%);z-index:2000;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(16px);border-radius:16px;padding:.9rem 1.5rem;font-size:.86rem;font-weight:600;box-shadow:var(--shadow-lg);transition:transform .5s var(--ease);text-align:center;max-width:92vw}
+.demo-toast.show{transform:translate(-50%,0)}
+.demo-toast .ok{color:var(--emerald)}
+@media(max-width:920px){.demo-wrap{grid-template-columns:1fr}.lead-card{position:static}.route-row{grid-template-columns:1fr;gap:0}.route-swap{display:none}.veh-grid{grid-template-columns:1fr}}
+
 /* ============ MOTION PACK ============ */
 /* preloader */
 .preloader{position:fixed;inset:0;z-index:3000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.7rem;transition:opacity .65s var(--ease),visibility .65s}
@@ -622,6 +695,9 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M5 16s-1-4 3-8 9-4 9-4 1 5-4 9-8 3-8 3Z"/><path d="M9 15l-3 3M9 9 6 6"/><circle cx="14.5" cy="9.5" r="1.5"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11v5"/></symbol>
   <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13M14 5l3 3-3 3M20 16H7M10 13l-3 3 3 3"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 3v18M5 6.5l14 11M19 6.5l-14 11M12 7l-2.5-2M12 7l2.5-2M12 17l-2.5 2M12 17l2.5 2"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5M7 9l5-5 5 5M4 19h16"/></symbol>
 </svg>
 
 <div class="bg-fx" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
@@ -921,6 +997,196 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       </div>
     </div>
   </div>
+</section>
+
+<!-- ============ DEMO FORMULARZE ============ -->
+<section class="section-pad" id="formularze" data-snap data-label="Formularze">
+  <span class="deco deco-ring" data-para=".24" style="top:7%;right:4%" aria-hidden="true"></span>
+  <span class="deco deco-dot" data-para="-.3" style="bottom:12%;left:5%" aria-hidden="true"></span>
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Pokaz możliwości</span>
+      <h2>Formularze, które kwalifikują<br>zlecenia za Ciebie.</h2>
+      <p>Trzy działające przykłady dla branży TSL. Wypełnij dowolne pole — po prawej zobaczysz na żywo, jak zapytanie samo układa się w gotową kartę dla Twojego dyspozytora lub działu HR.</p>
+    </div>
+    <div class="mt-switch demo-tabs reveal" data-d="1" role="tablist" aria-label="Przykładowe formularze">
+      <button class="on" data-demo="d1" role="tab" aria-selected="true"><svg class="ic"><use href="#i-truck"/></svg>Wycena frachtu</button>
+      <button data-demo="d2" role="tab" aria-selected="false"><svg class="ic"><use href="#i-car"/></svg>Rezerwacja pojazdu</button>
+      <button data-demo="d3" role="tab" aria-selected="false"><svg class="ic"><use href="#i-users"/></svg>Rekrutacja kierowcy</button>
+    </div>
+    <div class="demo-wrap reveal" data-d="2">
+      <div class="demo-forms">
+
+        <!-- DEMO 1: fracht -->
+        <form class="demo-card demo-panel on" id="d1" novalidate>
+          <span class="demo-badge">Interaktywne demo</span>
+          <h3>Zapytanie o fracht FTL / LTL</h3>
+          <p class="hint">Formularz zbiera komplet danych o transporcie, zanim ktokolwiek podniesie telefon.</p>
+          <div class="route-row">
+            <div class="field"><label for="d1From">Załadunek</label><input id="d1From" placeholder="np. Opole, PL"></div>
+            <button type="button" class="route-swap" id="d1Swap" aria-label="Zamień kierunek trasy"><svg class="ic"><use href="#i-swap"/></svg></button>
+            <div class="field"><label for="d1To">Rozładunek</label><input id="d1To" placeholder="np. Hamburg, DE"></div>
+          </div>
+          <div class="field"><label for="d1Cargo">Rodzaj ładunku</label>
+            <select id="d1Cargo">
+              <option value="">Wybierz rodzaj</option>
+              <option>Palety EUR</option>
+              <option>Drobnica / paczki</option>
+              <option>Maszyny i gabaryty</option>
+              <option>Spożywczy (chłodnia)</option>
+              <option>Materiały niebezpieczne ADR</option>
+            </select>
+          </div>
+          <span class="lbl-strong">Typ zabudowy</span>
+          <div class="chip-row" role="radiogroup" aria-label="Typ zabudowy">
+            <span class="chip"><input type="radio" name="d1Body" id="d1B1" value="Plandeka"><label for="d1B1">Plandeka</label></span>
+            <span class="chip"><input type="radio" name="d1Body" id="d1B2" value="Chłodnia"><label for="d1B2"><svg class="ic"><use href="#i-snow"/></svg>Chłodnia</label></span>
+            <span class="chip"><input type="radio" name="d1Body" id="d1B3" value="Izoterma"><label for="d1B3">Izoterma</label></span>
+            <span class="chip"><input type="radio" name="d1Body" id="d1B4" value="Mega / Jumbo"><label for="d1B4">Mega / Jumbo</label></span>
+            <span class="chip"><input type="radio" name="d1Body" id="d1B5" value="Dowolna"><label for="d1B5">Dowolna</label></span>
+          </div>
+          <div class="slider-field">
+            <div class="row"><label for="d1Pal">Liczba palet</label><output id="d1PalOut">8 palet</output></div>
+            <input type="range" id="d1Pal" min="1" max="33" step="1" value="8">
+          </div>
+          <div class="slider-field">
+            <div class="row"><label for="d1W">Waga ładunku</label><output id="d1WOut">6 t</output></div>
+            <input type="range" id="d1W" min="0.5" max="24" step="0.5" value="6">
+          </div>
+          <div class="tgl-row">
+            <label class="tgl"><input type="checkbox" id="d1Adr"><span class="sw" aria-hidden="true"></span><span class="t">Ładunek ADR (materiały niebezpieczne)</span></label>
+            <label class="tgl"><input type="checkbox" id="d1Temp"><span class="sw" aria-hidden="true"></span><span class="t">Kontrolowana temperatura</span></label>
+            <div class="sub-reveal" id="d1TempWrap">
+              <div class="slider-field" style="margin:0 0 .4rem">
+                <div class="row"><label for="d1TempV">Temperatura przewozu</label><output id="d1TempOut">+2°C</output></div>
+                <input type="range" id="d1TempV" min="-25" max="25" step="1" value="2">
+              </div>
+            </div>
+            <label class="tgl"><input type="checkbox" id="d1Cycl"><span class="sw" aria-hidden="true"></span><span class="t">Zlecenie cykliczne (stała trasa)</span></label>
+          </div>
+          <div class="field-grid">
+            <div class="field"><label for="d1Date">Data załadunku</label><input type="date" id="d1Date"></div>
+            <div class="field"><label for="d1Flex">Elastyczność terminu</label>
+              <select id="d1Flex"><option value="">Termin sztywny</option><option>±1 dzień</option><option>±3 dni</option><option>dowolny tydzień</option></select>
+            </div>
+          </div>
+          <div class="demo-actions"><button type="submit" class="btn btn-accent">Wyślij zapytanie o fracht<svg class="ic"><use href="#i-arrow"/></svg></button></div>
+        </form>
+
+        <!-- DEMO 2: rental -->
+        <form class="demo-card demo-panel" id="d2" novalidate hidden>
+          <span class="demo-badge">Interaktywne demo</span>
+          <h3>Rezerwacja pojazdu online</h3>
+          <p class="hint">Klient sam konfiguruje wynajem i od razu widzi szacunkową cenę — zero dzwonienia „ile kosztuje?”.</p>
+          <span class="lbl-strong">Wybierz pojazd</span>
+          <div class="veh-grid" role="radiogroup" aria-label="Pojazd">
+            <div class="choice-card"><input type="radio" name="d2Veh" id="d2V1" value="Bus 9-osobowy" data-price="350">
+              <label for="d2V1"><span class="ic-wrap"><svg class="ic"><use href="#i-users"/></svg></span><strong>Bus 9-osobowy</strong><span class="price">350 zł/doba</span></label></div>
+            <div class="choice-card"><input type="radio" name="d2Veh" id="d2V2" value="Dostawczy L2H2" data-price="280">
+              <label for="d2V2"><span class="ic-wrap"><svg class="ic"><use href="#i-car"/></svg></span><strong>Dostawczy L2H2</strong><span class="price">280 zł/doba</span></label></div>
+            <div class="choice-card"><input type="radio" name="d2Veh" id="d2V3" value="Chłodnia dostawcza" data-price="420">
+              <label for="d2V3"><span class="ic-wrap"><svg class="ic"><use href="#i-snow"/></svg></span><strong>Chłodnia dostawcza</strong><span class="price">420 zł/doba</span></label></div>
+            <div class="choice-card"><input type="radio" name="d2Veh" id="d2V4" value="Laweta" data-price="390">
+              <label for="d2V4"><span class="ic-wrap"><svg class="ic"><use href="#i-truck"/></svg></span><strong>Laweta</strong><span class="price">390 zł/doba</span></label></div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><label for="d2From">Odbiór</label><input type="date" id="d2From"></div>
+            <div class="field"><label for="d2To">Zwrot</label><input type="date" id="d2To"></div>
+          </div>
+          <span class="lbl-strong">Dodatki</span>
+          <div class="chip-row" aria-label="Dodatki">
+            <span class="chip"><input type="checkbox" id="d2E1" value="Pełne AC" data-price="45"><label for="d2E1">Pełne AC +45 zł</label></span>
+            <span class="chip"><input type="checkbox" id="d2E2" value="Wyjazd za granicę" data-price="30"><label for="d2E2">Wyjazd za granicę +30 zł</label></span>
+            <span class="chip"><input type="checkbox" id="d2E3" value="GPS + monitoring" data-price="15"><label for="d2E3">GPS +15 zł</label></span>
+            <span class="chip"><input type="checkbox" id="d2E4" value="Hak holowniczy" data-price="25"><label for="d2E4">Hak +25 zł</label></span>
+          </div>
+          <div class="tgl-row">
+            <label class="tgl"><input type="checkbox" id="d2Fv"><span class="sw" aria-hidden="true"></span><span class="t">Potrzebuję faktury VAT (wynajem firmowy)</span></label>
+          </div>
+          <div class="demo-actions"><button type="submit" class="btn btn-accent">Zarezerwuj pojazd<svg class="ic"><use href="#i-arrow"/></svg></button></div>
+        </form>
+
+        <!-- DEMO 3: rekrutacja -->
+        <form class="demo-card demo-panel" id="d3" novalidate hidden>
+          <span class="demo-badge">Interaktywne demo</span>
+          <h3>Zgłoszenie kierowcy</h3>
+          <p class="hint">Sekcja kariery, która sama filtruje kandydatów — zamiast skrzynki pełnej CV bez uprawnień.</p>
+          <span class="lbl-strong">Kategorie prawa jazdy</span>
+          <div class="chip-row" aria-label="Kategorie prawa jazdy">
+            <span class="chip"><input type="checkbox" id="d3C1" value="B"><label for="d3C1">B</label></span>
+            <span class="chip"><input type="checkbox" id="d3C2" value="C"><label for="d3C2">C</label></span>
+            <span class="chip"><input type="checkbox" id="d3C3" value="C+E"><label for="d3C3">C+E</label></span>
+            <span class="chip"><input type="checkbox" id="d3C4" value="D"><label for="d3C4">D</label></span>
+          </div>
+          <div class="slider-field">
+            <div class="row"><label for="d3Exp">Doświadczenie za kółkiem</label><output id="d3ExpOut">5 lat</output></div>
+            <input type="range" id="d3Exp" min="0" max="30" step="1" value="5">
+          </div>
+          <span class="lbl-strong">Dodatkowe uprawnienia</span>
+          <div class="chip-row" aria-label="Uprawnienia">
+            <span class="chip"><input type="checkbox" id="d3P1" value="ADR"><label for="d3P1">ADR</label></span>
+            <span class="chip"><input type="checkbox" id="d3P2" value="HDS"><label for="d3P2">HDS</label></span>
+            <span class="chip"><input type="checkbox" id="d3P3" value="Chłodnia (ATP)"><label for="d3P3"><svg class="ic"><use href="#i-snow"/></svg>Chłodnia</label></span>
+            <span class="chip"><input type="checkbox" id="d3P4" value="Karta kierowcy"><label for="d3P4">Karta kierowcy</label></span>
+          </div>
+          <span class="lbl-strong">Preferowane trasy</span>
+          <div class="chip-row" role="radiogroup" aria-label="Preferowane trasy">
+            <span class="chip"><input type="radio" name="d3Route" id="d3R1" value="Krajowe"><label for="d3R1">Krajowe</label></span>
+            <span class="chip"><input type="radio" name="d3Route" id="d3R2" value="Międzynarodowe"><label for="d3R2">Międzynarodowe</label></span>
+            <span class="chip"><input type="radio" name="d3Route" id="d3R3" value="System 3/1"><label for="d3R3">System 3/1</label></span>
+          </div>
+          <div class="field-grid">
+            <div class="field"><label for="d3Av">Dostępny od</label><input type="date" id="d3Av"></div>
+            <div class="slider-field" style="margin-top:.1rem">
+              <div class="row"><label for="d3Sal">Oczekiwania (netto)</label><output id="d3SalOut">8 000 zł</output></div>
+              <input type="range" id="d3Sal" min="5000" max="15000" step="250" value="8000" style="margin-top:.9rem">
+            </div>
+          </div>
+          <label class="upload" for="d3Cv">
+            <svg class="ic"><use href="#i-upload"/></svg>
+            <span class="u-txt"><strong id="d3CvName">Dodaj CV (PDF)</strong>albo wyślij zgłoszenie bez CV — oddzwonimy</span>
+            <input type="file" id="d3Cv" accept=".pdf,.doc,.docx">
+          </label>
+          <div class="demo-actions"><button type="submit" class="btn btn-accent">Wyślij zgłoszenie<svg class="ic"><use href="#i-arrow"/></svg></button></div>
+        </form>
+      </div>
+
+      <!-- live lead preview -->
+      <aside class="lead-card" aria-live="polite">
+        <div class="lead-head"><span class="live-dot" aria-hidden="true"></span>Tak widzi to Twój dyspozytor</div>
+        <div class="lead-set on" id="ls1">
+          <div class="lead-row"><span class="k">Trasa</span><span class="v empty" id="lr1Route">—</span></div>
+          <div class="lead-row"><span class="k">Ładunek</span><span class="v empty" id="lr1Cargo">—</span></div>
+          <div class="lead-row"><span class="k">Zabudowa</span><span class="v empty" id="lr1Body">—</span></div>
+          <div class="lead-row"><span class="k">Wolumen</span><span class="v empty" id="lr1Vol">—</span></div>
+          <div class="lead-row"><span class="k">Wymagania</span><span class="v empty" id="lr1Req">—</span></div>
+          <div class="lead-row"><span class="k">Załadunek</span><span class="v empty" id="lr1Date">—</span></div>
+        </div>
+        <div class="lead-set" id="ls2">
+          <div class="lead-row"><span class="k">Pojazd</span><span class="v empty" id="lr2Veh">—</span></div>
+          <div class="lead-row"><span class="k">Okres</span><span class="v empty" id="lr2Days">—</span></div>
+          <div class="lead-row"><span class="k">Dodatki</span><span class="v empty" id="lr2Ext">—</span></div>
+          <div class="lead-row"><span class="k">Faktura VAT</span><span class="v empty" id="lr2Fv">—</span></div>
+          <div class="lead-price"><span class="k">Szacunkowy koszt</span><span class="v" id="lr2Price">0 zł</span></div>
+        </div>
+        <div class="lead-set" id="ls3">
+          <div class="lead-row"><span class="k">Kandydat</span><span class="v empty" id="lr3Cat">—</span></div>
+          <div class="lead-row"><span class="k">Doświadczenie</span><span class="v empty" id="lr3Exp">—</span></div>
+          <div class="lead-row"><span class="k">Uprawnienia</span><span class="v empty" id="lr3Perm">—</span></div>
+          <div class="lead-row"><span class="k">Trasy</span><span class="v empty" id="lr3Route">—</span></div>
+          <div class="lead-row"><span class="k">Dostępny od</span><span class="v empty" id="lr3Av">—</span></div>
+          <div class="lead-row"><span class="k">Oczekiwania</span><span class="v empty" id="lr3Sal">—</span></div>
+          <div class="lead-row"><span class="k">CV</span><span class="v empty" id="lr3Cv">—</span></div>
+        </div>
+        <div class="lead-meter">
+          <div class="row"><span>Kompletność zapytania</span><output id="leadPct">0%</output></div>
+          <div class="bar"><i id="leadFill"></i></div>
+        </div>
+        <p class="lead-note">Komplet danych trafia na Twój e-mail, do arkusza lub CRM — koniec z telefonami „dopytującymi” o wagę i termin.</p>
+      </aside>
+    </div>
+  </div>
+  <div class="demo-toast" id="demoToast" role="status"><span class="ok">✓</span> To działające demo — Twój formularz zaprojektujemy pod Twoje procesy i flotę.</div>
 </section>
 
 <!-- ============ PORTFOLIO ============ -->
@@ -1771,6 +2037,136 @@ function calc(){
 }
 [cV, cA].forEach(function(el){ el.addEventListener('input', calc); });
 calc();
+
+/* ---------- demo forms showcase ---------- */
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var demoTabs = document.querySelectorAll('.demo-tabs button');
+  if(!demoTabs.length) return;
+  var panels = { d1: $('d1'), d2: $('d2'), d3: $('d3') };
+  var sets = { d1: $('ls1'), d2: $('ls2'), d3: $('ls3') };
+  var active = 'd1';
+  var plDate = function(v){ return v ? new Date(v + 'T00:00:00').toLocaleDateString('pl-PL') : ''; };
+  function put(id, val){
+    var el = $(id);
+    if(val){ el.textContent = val; el.classList.remove('empty'); }
+    else{ el.textContent = '—'; el.classList.add('empty'); }
+  }
+  function meter(filled, total){
+    var pct = Math.round(filled / total * 100);
+    $('leadPct').textContent = pct + '%';
+    $('leadFill').style.width = pct + '%';
+  }
+
+  /* D1: fracht */
+  function upd1(){
+    var from = $('d1From').value.trim(), to = $('d1To').value.trim();
+    put('lr1Route', (from || to) ? (from || '?') + ' → ' + (to || '?') : '');
+    put('lr1Cargo', $('d1Cargo').value);
+    var body = document.querySelector('input[name="d1Body"]:checked');
+    put('lr1Body', body ? body.value : '');
+    $('d1PalOut').textContent = $('d1Pal').value + (+$('d1Pal').value === 1 ? ' paleta' : ' palet');
+    $('d1WOut').textContent = $('d1W').value + ' t';
+    put('lr1Vol', $('d1Pal').value + ' pal. · ' + $('d1W').value + ' t');
+    var tv = +$('d1TempV').value;
+    $('d1TempOut').textContent = (tv > 0 ? '+' : '') + tv + '°C';
+    $('d1TempWrap').classList.toggle('open', $('d1Temp').checked);
+    var req = [];
+    if($('d1Adr').checked) req.push('ADR');
+    if($('d1Temp').checked) req.push('temp. ' + (tv > 0 ? '+' : '') + tv + '°C');
+    if($('d1Cycl').checked) req.push('zlecenie cykliczne');
+    put('lr1Req', req.join(' · '));
+    var date = $('d1Date').value, flex = $('d1Flex').value;
+    put('lr1Date', date ? plDate(date) + (flex ? ' (' + flex + ')' : '') : '');
+    if(active === 'd1') meter([from, to, $('d1Cargo').value, body, date].filter(Boolean).length, 5);
+  }
+  $('d1Swap').addEventListener('click', function(){
+    var a = $('d1From'), b = $('d1To'), t = a.value;
+    a.value = b.value; b.value = t;
+    this.classList.toggle('spin');
+    upd1();
+  });
+
+  /* D2: rental */
+  function upd2(){
+    var veh = document.querySelector('input[name="d2Veh"]:checked');
+    put('lr2Veh', veh ? veh.value : '');
+    var f = $('d2From').value, t = $('d2To').value, days = 0;
+    if(f && t) days = Math.max(1, Math.round((new Date(t) - new Date(f)) / 86400000));
+    else if(f || t) days = 1;
+    put('lr2Days', days ? (f ? plDate(f) : '?') + ' → ' + (t ? plDate(t) : '?') + ' (' + days + (days === 1 ? ' doba' : ' dób') + ')' : '');
+    var extras = [], extraSum = 0;
+    ['d2E1','d2E2','d2E3','d2E4'].forEach(function(id){
+      if($(id).checked){ extras.push($(id).value); extraSum += +$(id).getAttribute('data-price'); }
+    });
+    put('lr2Ext', extras.join(' · '));
+    put('lr2Fv', $('d2Fv').checked ? 'tak' : '');
+    var base = veh ? +veh.getAttribute('data-price') : 0;
+    var total = (days || 1) * (base + extraSum) * (veh ? 1 : 0);
+    tweenNum($('lr2Price'), total, function(n){ return fmt.format(n) + ' zł'; });
+    if(active === 'd2') meter([veh, f, t].filter(Boolean).length, 3);
+  }
+
+  /* D3: rekrutacja */
+  function upd3(){
+    var cats = ['d3C1','d3C2','d3C3','d3C4'].filter(function(id){ return $(id).checked; }).map(function(id){ return $(id).value; });
+    put('lr3Cat', cats.length ? 'kat. ' + cats.join(' + ') : '');
+    $('d3ExpOut').textContent = $('d3Exp').value + ($('d3Exp').value === '1' ? ' rok' : ' lat');
+    put('lr3Exp', $('d3Exp').value + ' lat za kółkiem');
+    var perms = ['d3P1','d3P2','d3P3','d3P4'].filter(function(id){ return $(id).checked; }).map(function(id){ return $(id).value; });
+    put('lr3Perm', perms.join(' · '));
+    var route = document.querySelector('input[name="d3Route"]:checked');
+    put('lr3Route', route ? route.value : '');
+    put('lr3Av', $('d3Av').value ? plDate($('d3Av').value) : '');
+    $('d3SalOut').textContent = fmt.format(+$('d3Sal').value) + ' zł';
+    put('lr3Sal', fmt.format(+$('d3Sal').value) + ' zł netto');
+    var cv = $('d3Cv').files && $('d3Cv').files[0];
+    if(cv) $('d3CvName').textContent = cv.name;
+    put('lr3Cv', cv ? cv.name : '');
+    if(active === 'd3') meter([cats.length, route, $('d3Av').value, cv].filter(Boolean).length, 4);
+  }
+
+  var upds = { d1: upd1, d2: upd2, d3: upd3 };
+  Object.keys(panels).forEach(function(k){
+    panels[k].querySelectorAll('input,select').forEach(function(el){
+      el.addEventListener('input', upds[k]);
+      el.addEventListener('change', upds[k]);
+    });
+    panels[k].querySelectorAll('input[type=range]').forEach(function(r){
+      rangeFill(r);
+      r.addEventListener('input', function(){ rangeFill(r); });
+    });
+    panels[k].addEventListener('submit', function(e){
+      e.preventDefault();
+      var b = panels[k].querySelector('button[type=submit]');
+      var old = b.innerHTML;
+      b.innerHTML = '✓ Zapytanie skompletowane';
+      var toast = $('demoToast');
+      toast.classList.add('show');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(function(){ toast.classList.remove('show'); }, 4500);
+      setTimeout(function(){ b.innerHTML = old; }, 2600);
+    });
+  });
+  function setTab(id){
+    active = id;
+    demoTabs.forEach(function(b){
+      var on = b.getAttribute('data-demo') === id;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-selected', String(on));
+    });
+    Object.keys(panels).forEach(function(k){
+      panels[k].classList.toggle('on', k === id);
+      panels[k].hidden = k !== id;
+      sets[k].classList.toggle('on', k === id);
+    });
+    upds[id]();
+  }
+  demoTabs.forEach(function(b){
+    b.addEventListener('click', function(){ setTab(b.getAttribute('data-demo')); });
+  });
+  upd1(); upd2(); upd3(); meter(0, 5);
+})();
 
 /* ---------- portfolio tabs + autoplay ---------- */
 var tabs = Array.prototype.slice.call(document.querySelectorAll('.pf-tab'));
