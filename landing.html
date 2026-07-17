@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecureBiz — Legalne oprogramowanie dla firm | Bezpieczeństwo cyfrowe i optymalizacja kosztów IT</title>
+<meta name="description" content="Legalne oprogramowanie biurowe dla firm z oficjalnej dystrybucji. Pełna zgodność z przepisami, faktura VAT, wsparcie techniczne i optymalizacja budżetu IT.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="SecureBiz — Legalne oprogramowanie dla firm">
+<meta property="og:description" content="Bezpieczne wdrożenie cyfrowe bez przepłacania. Wyłącznie zweryfikowane, w pełni legalne oprogramowanie z oficjalnej dystrybucji.">
+<meta property="og:type" content="website">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: {
+            50:'#f5f7fa', 100:'#eaeef4', 200:'#d0d9e6', 300:'#a7b8cf',
+            400:'#7791b3', 500:'#556f97', 600:'#41577c', 700:'#364765',
+            800:'#2f3c55', 900:'#1e2740', 950:'#131a2e'
+          }
+        },
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
+        },
+        keyframes: {
+          'pulse-ring': {
+            '0%':   { boxShadow: '0 0 0 0 rgba(65,87,124,0.45)' },
+            '70%':  { boxShadow: '0 0 0 14px rgba(65,87,124,0)' },
+            '100%': { boxShadow: '0 0 0 0 rgba(65,87,124,0)' }
+          },
+          'fade-up': {
+            '0%':   { opacity: '0', transform: 'translateY(16px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' }
+          }
+        },
+        animation: {
+          'pulse-ring': 'pulse-ring 2.2s cubic-bezier(0.4,0,0.6,1) infinite',
+          'fade-up': 'fade-up 0.7s ease-out both'
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html, body { font-family: 'Inter', system-ui, sans-serif; }
+  /* Subtle grid backdrop for the hero */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(65,87,124,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(65,87,124,0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .reveal { opacity: 0; }
+  .reveal.is-visible { animation: fade-up 0.7s ease-out both; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal.is-visible { opacity: 1 !important; animation: none !important; }
+    .animate-pulse-ring { animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body class="bg-white text-ink-900 antialiased selection:bg-ink-900 selection:text-white">
+
+  <!-- ============ HEADER ============ -->
+  <header class="sticky top-0 z-40 border-b border-ink-100 bg-white/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+      <a href="#" class="flex items-center gap-2.5" aria-label="SecureBiz — strona główna">
+        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-ink-900 text-white">
+          <!-- shield icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </span>
+        <span class="text-lg font-bold tracking-tight text-ink-900">SecureBiz</span>
+      </a>
+      <nav class="hidden items-center gap-8 text-sm font-medium text-ink-600 md:flex">
+        <a href="#korzysci" class="transition hover:text-ink-900">Korzyści</a>
+        <a href="#zaufanie" class="transition hover:text-ink-900">Bezpieczeństwo</a>
+      </nav>
+      <a href="https://www.bezpiecznysoft.pl"
+         data-cta
+         class="hidden rounded-lg bg-ink-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-ink-800 md:inline-flex">
+        Odbierz ofertę
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="relative overflow-hidden">
+      <div class="grid-bg absolute inset-0"></div>
+      <div class="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-ink-50 to-transparent"></div>
+      <div class="relative mx-auto max-w-4xl px-5 pt-20 pb-16 text-center md:pt-28 md:pb-24">
+
+        <span class="reveal inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink-600 shadow-sm">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          Oprogramowanie z oficjalnej dystrybucji
+        </span>
+
+        <h1 class="reveal mt-7 text-4xl font-extrabold leading-[1.1] tracking-tight text-ink-950 sm:text-5xl md:text-6xl">
+          Zoptymalizuj pracę firmy<br class="hidden sm:block">
+          w oparciu o <span class="text-ink-600">w pełni legalne</span> oprogramowanie
+        </h1>
+
+        <p class="reveal mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-600">
+          Bezpieczne wdrożenie cyfrowe bez przepłacania. Dostarczamy sprawdzone pakiety biurowe
+          i narzędzia produktywności zgodne ze standardami branżowymi — z pełną zgodnością z przepisami
+          i fakturą VAT.
+        </p>
+
+        <div class="reveal mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="https://www.bezpiecznysoft.pl"
+             data-cta
+             class="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-ink-900 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-ink-900/20 animate-pulse-ring transition duration-200 hover:-translate-y-0.5 hover:bg-ink-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-ink-300 sm:w-auto">
+            Sprawdź bezpieczne rozwiązania
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#korzysci"
+             class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-ink-200 bg-white px-8 py-4 text-base font-semibold text-ink-700 transition hover:border-ink-300 hover:bg-ink-50 sm:w-auto">
+            Dowiedz się więcej
+          </a>
+        </div>
+
+        <p class="reveal mt-6 text-sm text-ink-500">
+          Bez zobowiązań • Faktura VAT • Wsparcie na każdym etapie
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ KORZYŚCI ============ -->
+    <section id="korzysci" class="border-t border-ink-100 bg-ink-50/40">
+      <div class="mx-auto max-w-6xl px-5 py-20 md:py-24">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-ink-950 sm:text-4xl">
+            Dlaczego firmy nam ufają
+          </h2>
+          <p class="mt-4 text-lg text-ink-600">
+            Trzy filary bezpiecznej i opłacalnej cyfryzacji Twojego biznesu.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-3">
+
+          <!-- Benefit 1 -->
+          <article class="reveal group rounded-2xl border border-ink-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-ink-200 hover:shadow-xl">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-900 text-white transition group-hover:scale-105">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="mt-6 text-xl font-bold text-ink-900">100% legalność i bezpieczeństwo</h3>
+            <p class="mt-3 leading-relaxed text-ink-600">
+              Pełna zgodność z przepisami i licencjonowaniem producenta. Do każdego zamówienia
+              wystawiamy fakturę VAT — masz porządek w dokumentacji i spokojną głowę podczas audytu.
+            </p>
+          </article>
+
+          <!-- Benefit 2 -->
+          <article class="reveal group rounded-2xl border border-ink-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-ink-200 hover:shadow-xl">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-900 text-white transition group-hover:scale-105">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <h3 class="mt-6 text-xl font-bold text-ink-900">Wsparcie techniczne</h3>
+            <p class="mt-3 leading-relaxed text-ink-600">
+              Pomagamy przy instalacji i konfiguracji oprogramowania biurowego. Nasi specjaliści
+              prowadzą wdrożenie krok po kroku, aby zespół mógł ruszyć do pracy bez przestojów.
+            </p>
+          </article>
+
+          <!-- Benefit 3 -->
+          <article class="reveal group rounded-2xl border border-ink-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-ink-200 hover:shadow-xl">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-900 text-white transition group-hover:scale-105">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v16a2 2 0 0 0 2 2h16"/>
+                <path d="m19 9-5 5-4-4-3 3"/>
+              </svg>
+            </div>
+            <h3 class="mt-6 text-xl font-bold text-ink-900">Optymalizacja budżetu</h3>
+            <p class="mt-3 leading-relaxed text-ink-600">
+              Dobieramy rozwiązania dopasowane do skali biznesu — od jednoosobowej działalności
+              po większe zespoły. Płacisz wyłącznie za to, czego naprawdę potrzebujesz.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA STRIP ============ -->
+    <section class="bg-ink-950">
+      <div class="mx-auto max-w-4xl px-5 py-16 text-center md:py-20">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Gotowy na bezpieczną cyfryzację?
+        </h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-ink-200">
+          Poznaj rozwiązania dopasowane do Twojej firmy i zoptymalizuj koszty IT
+          bez kompromisów w kwestii legalności.
+        </p>
+        <a href="https://www.bezpiecznysoft.pl"
+           data-cta
+           class="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-semibold text-ink-950 shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-ink-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/40">
+          Dowiedz się więcej i odbierz ofertę
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ TRUST SIGNALS ============ -->
+    <section id="zaufanie" class="border-t border-ink-100 bg-white">
+      <div class="mx-auto max-w-4xl px-5 py-16 text-center md:py-20">
+        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-700">
+          Dostarczamy <span class="font-semibold text-ink-900">wyłącznie zweryfikowane i w pełni legalne
+          oprogramowanie</span> pochodzące z oficjalnej dystrybucji. Każde wdrożenie jest zgodne
+          z warunkami licencyjnymi producentów oraz obowiązującymi przepisami.
+        </p>
+
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-medium text-ink-500">
+          <span class="inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Oficjalna dystrybucja
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Faktura VAT
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Zgodność z przepisami
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Wsparcie techniczne
+          </span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-ink-100 bg-ink-50/60">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 text-sm text-ink-500 sm:flex-row">
+      <div class="flex items-center gap-2.5">
+        <span class="flex h-7 w-7 items-center justify-center rounded-md bg-ink-900 text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <span class="font-semibold text-ink-700">SecureBiz</span>
+      </div>
+      <p>&copy; <span id="year"></span> SecureBiz. Legalne oprogramowanie dla firm.</p>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT (vanilla, no libraries) ============ -->
+  <script>
+    (function () {
+      'use strict';
+
+      var CTA_URL = 'https://www.bezpiecznysoft.pl';
+
+      // Current year in footer
+      var yearEl = document.getElementById('year');
+      if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+
+      // Smooth, deliberate CTA handling: brief press feedback, then navigate.
+      var ctas = document.querySelectorAll('[data-cta]');
+      ctas.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          btn.style.transition = 'transform 120ms ease';
+          btn.style.transform = 'scale(0.97)';
+          window.setTimeout(function () {
+            btn.style.transform = '';
+            window.location.href = CTA_URL;
+          }, 150);
+        });
+      });
+
+      // Reveal-on-scroll for elements marked .reveal
+      var revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(function (el, i) {
+          el.style.animationDelay = (i % 4) * 90 + 'ms';
+          io.observe(el);
+        });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+    })();
+  </script>
+</body>
+</html>
