@@ -83,7 +83,7 @@ section{position:relative;z-index:2}
 @keyframes drift3{to{transform:translate(5vw,-6vw) scale(1.14)}}
 .bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
   background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:72px 72px;
+  background-size:72px 72px;animation:gridPan 16s linear infinite;
   mask-image:radial-gradient(ellipse 90% 65% at 50% 0%,#000 30%,transparent 82%)}
 .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:1400;box-shadow:0 0 14px var(--emerald-glow)}
 
@@ -113,7 +113,7 @@ section{position:relative;z-index:2}
 .sec-head h2{font-size:clamp(2rem,4vw,3.1rem);margin-bottom:1.05rem}
 .sec-head p{color:var(--muted);font-size:1.08rem;max-width:58ch}
 .sec-head.center p{margin:0 auto}
-.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.grad-text{background:var(--grad);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 5.5s ease-in-out infinite}
 
 /* ---- buttons ---- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-family:'Space Grotesk',sans-serif;font-weight:600;
@@ -501,6 +501,59 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 @media(max-width:920px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
 
+/* ============ MOTION PACK ============ */
+/* preloader */
+.preloader{position:fixed;inset:0;z-index:3000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.7rem;transition:opacity .65s var(--ease),visibility .65s}
+.preloader.done{opacity:0;visibility:hidden;pointer-events:none}
+.preloader svg{width:92px;height:92px;animation:plPop .9s var(--ease) both}
+@keyframes plPop{from{opacity:0;transform:scale(.55) rotate(-10deg)}to{opacity:1;transform:none}}
+.preloader svg circle{animation:plNode 2.2s ease-in-out infinite}
+@keyframes plNode{0%,100%{opacity:1}50%{opacity:.3}}
+.pl-word{display:flex;gap:.45rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.18em}
+.pl-word span{display:inline-block;opacity:0;transform:translateY(16px);animation:plUp .55s var(--ease) forwards}
+@keyframes plUp{to{opacity:1;transform:none}}
+.pl-bar{width:190px;height:3px;border-radius:100px;background:rgba(255,255,255,.1);overflow:hidden}
+.pl-bar i{display:block;height:100%;background:var(--grad);transform:translateX(-101%);animation:plBar 1.7s var(--ease) forwards .25s}
+@keyframes plBar{to{transform:none}}
+/* custom cursor glow */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:4000;pointer-events:none;border-radius:50%;opacity:0}
+.cursor-dot{width:7px;height:7px;background:var(--emerald);box-shadow:0 0 14px 3px rgba(0,231,143,.55);transition:opacity .3s}
+.cursor-ring{width:38px;height:38px;border:1.5px solid rgba(0,231,143,.5);transition:opacity .3s,width .25s var(--ease),height .25s var(--ease),border-color .25s,background .25s}
+.cursor-ring.hovering{width:60px;height:60px;border-color:rgba(74,123,255,.85);background:rgba(74,123,255,.08)}
+@media(hover:none),(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+/* kinetic typography */
+.kin .kin-w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em;margin-bottom:-.1em}
+.kin .kin-w>span{display:inline-block;transform:translateY(118%);transition:transform .85s var(--ease)}
+.kin.go .kin-w>span{transform:none}
+/* animated road divider */
+.road{position:relative;height:112px;overflow:hidden;background:var(--bg-2);border-top:1px solid var(--line);z-index:2}
+.road-lane{position:absolute;left:0;right:0;top:64%;height:3px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 34px,transparent 34px 72px);animation:lane .8s linear infinite}
+@keyframes lane{to{background-position:-72px 0}}
+.road-truck{position:absolute;top:50%;left:0;width:96px;height:48px;color:var(--emerald);filter:drop-shadow(0 0 14px rgba(0,231,143,.4));animation:drive 15s linear infinite}
+@keyframes drive{from{transform:translate(-140px,-64%)}to{transform:translate(calc(100vw + 140px),-64%)}}
+.road-truck.r2{width:60px;height:30px;color:var(--blue);filter:drop-shadow(0 0 10px rgba(74,123,255,.4));animation:driveBack 21s linear infinite;animation-delay:-8s;top:30%}
+@keyframes driveBack{from{transform:translate(calc(100vw + 120px),-50%) scaleX(-1)}to{transform:translate(-120px,-50%) scaleX(-1)}}
+/* parallax deco shapes */
+.deco{position:absolute;pointer-events:none;z-index:1;will-change:transform}
+.deco::before{content:"";display:block}
+.deco-ring::before{width:110px;height:110px;border:1.5px dashed rgba(0,231,143,.32);border-radius:50%;animation:spin 42s linear infinite}
+.deco-dot::before{width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 20px 5px rgba(74,123,255,.4);animation:pulseDot 3.2s infinite}
+.deco-glow::before{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,231,143,.13),transparent 70%)}
+.deco-x::before{width:18px;height:18px;opacity:.55;background:linear-gradient(var(--emerald),var(--emerald)) center/100% 2px no-repeat,linear-gradient(var(--emerald),var(--emerald)) center/2px 100% no-repeat;animation:spin 14s linear infinite}
+/* timeline delivery truck */
+.tl-truck{position:absolute;left:27px;top:8px;width:46px;height:24px;color:var(--emerald);transform:translate(-50%,-50%) rotate(90deg);filter:drop-shadow(0 0 10px rgba(0,231,143,.55));z-index:2}
+.tl-truck svg{width:100%;height:100%}
+@media(max-width:640px){.tl-truck{left:21px;width:38px;height:20px}}
+/* living screenshots: slow pan through the page capture */
+.pf-mock .pf-shot{animation:shotPan 17s ease-in-out infinite alternate}
+.cw-shot{animation:shotPan 21s ease-in-out infinite alternate}
+@keyframes shotPan{from{object-position:center top}to{object-position:center bottom}}
+/* reversed second marquee row */
+.marquee-track.rev{animation-direction:reverse;animation-duration:42s}
+/* ambient */
+@keyframes gridPan{to{background-position:72px 72px}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
 /* ---- reveal ---- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.in{opacity:1;transform:none}
@@ -518,6 +571,24 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 </style>
 </head>
 <body>
+<!-- preloader -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+    <defs><linearGradient id="plGrad" x1="0" y1="0" x2="64" y2="64"><stop offset="0" stop-color="#00e78f"/><stop offset="1" stop-color="#4a7bff"/></linearGradient></defs>
+    <path d="M32 14 L14 26 M32 14 L50 26 M32 14 L32 32 M14 26 L14 44 M50 26 L50 44 M32 32 L14 44 M32 32 L50 44 M14 26 L50 26 M14 44 L50 44" stroke="url(#plGrad)" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="32" cy="14" r="3.6" fill="#00e78f"/>
+    <circle cx="14" cy="26" r="2.8" fill="#4a7bff" style="animation-delay:.3s"/>
+    <circle cx="50" cy="26" r="2.8" fill="#4a7bff" style="animation-delay:.6s"/>
+    <circle cx="32" cy="32" r="2.8" fill="#4a7bff" style="animation-delay:.9s"/>
+    <circle cx="14" cy="44" r="2.8" fill="#00e78f" style="animation-delay:1.2s"/>
+    <circle cx="50" cy="44" r="2.8" fill="#00e78f" style="animation-delay:1.5s"/>
+  </svg>
+  <span class="pl-word"><span style="animation-delay:.4s">P</span><span style="animation-delay:.46s">A</span><span style="animation-delay:.52s">J</span><span style="animation-delay:.58s">A</span><span style="animation-delay:.64s">K</span><span style="animation-delay:.7s">W</span><span style="animation-delay:.76s">E</span><span style="animation-delay:.82s">B</span></span>
+  <span class="pl-bar"><i></i></span>
+</div>
+<!-- custom cursor -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 <a class="skip-link" href="#manifest">Przejdź do treści</a>
 
 <svg class="icon-sprite" aria-hidden="true">
@@ -600,7 +671,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 <section class="hero" id="start" data-snap data-label="Start">
   <canvas id="web" aria-hidden="true"></canvas>
   <div class="container hero-grid">
-    <div class="hero-copy">
+    <div class="hero-copy" data-para=".07">
       <span class="hero-chip reveal"><span class="dot" aria-hidden="true"></span> Jedyna agencja w Polsce wyłącznie dla TSL i Rentalu</span>
       <h1 class="reveal" data-d="1">Strony, które rozumieją<br>Twoją <span class="rot-wrap" id="rotWrap">flotę.<span class="rot-word" id="rotWord">flotę.</span></span></h1>
       <p class="lead reveal" data-d="2">Nie robimy stron „dla każdego”. Projektujemy systemy wizerunkowo-sprzedażowe wyłącznie dla <strong>transportu, logistyki i wypożyczalni pojazdów</strong> — takie, które mówią językiem giełd transportowych, tachografów i rekrutacji kierowców.</p>
@@ -647,6 +718,21 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   <div class="scroll-cue" aria-hidden="true">Przewiń<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
 </section>
 
+<!-- ============ ROAD DIVIDER ============ -->
+<div class="road" aria-hidden="true">
+  <div class="road-lane"></div>
+  <svg class="road-truck" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="6" width="32" height="15" rx="2"/>
+    <path d="M34 10h9l7 7v4H34z"/>
+    <circle cx="11" cy="25" r="3"/><circle cx="21" cy="25" r="3"/><circle cx="44" cy="25" r="3"/>
+  </svg>
+  <svg class="road-truck r2" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="6" width="32" height="15" rx="2"/>
+    <path d="M34 10h9l7 7v4H34z"/>
+    <circle cx="11" cy="25" r="3"/><circle cx="21" cy="25" r="3"/><circle cx="44" cy="25" r="3"/>
+  </svg>
+</div>
+
 <!-- ============ MARQUEE ============ -->
 <section class="marquee-wrap" aria-label="Nasi klienci">
   <p class="label">Systemy zaprojektowane dla</p>
@@ -655,10 +741,17 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       <span>GROSTRANS</span><span>OPTIGO TRANSPORT</span><span>PRIMEBUS</span><span>FIDES</span><span>TALERON</span><span>BERTBUS</span>
     </div>
   </div>
+  <div class="marquee" style="margin-top:1.3rem">
+    <div class="marquee-track rev">
+      <span>STRONY B2B</span><span>SYSTEMY REZERWACJI</span><span>REKRUTACJA KIEROWCÓW</span><span>SEO POD TRASY</span><span>AUDYT TRASY CYFROWEJ</span><span>AUTOMATYZACJA AI</span>
+    </div>
+  </div>
 </section>
 
 <!-- ============ MANIFEST ============ -->
 <section class="section-pad" id="manifest" data-snap data-label="Manifest">
+  <span class="deco deco-ring" data-para=".3" style="top:10%;right:5%" aria-hidden="true"></span>
+  <span class="deco deco-x" data-para="-.25" style="bottom:14%;left:4%" aria-hidden="true"></span>
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Manifest specjalizacji</span>
@@ -727,6 +820,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
 <!-- ============ ATUTY / BENTO ============ -->
 <section class="section-pad" id="atuty" data-snap data-label="Atuty" style="background:rgba(255,255,255,.015);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <span class="deco deco-glow" data-para=".22" style="top:6%;left:2%" aria-hidden="true"></span>
+  <span class="deco deco-dot" data-para="-.35" style="top:18%;right:8%" aria-hidden="true"></span>
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Dlaczego Pajakweb</span>
@@ -780,6 +875,9 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
 <!-- ============ KALKULATOR ============ -->
 <section class="section-pad" id="kalkulator" data-snap data-label="Kalkulator">
+  <span class="deco deco-ring" data-para="-.28" style="top:14%;left:3%" aria-hidden="true"></span>
+  <span class="deco deco-dot" data-para=".4" style="bottom:18%;right:5%" aria-hidden="true"></span>
+  <span class="deco deco-x" data-para=".2" style="top:8%;right:12%" aria-hidden="true"></span>
   <div class="container">
     <div class="sec-head center reveal">
       <span class="eyebrow">Policzmy razem</span>
@@ -913,6 +1011,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
 <!-- ============ PROCES ============ -->
 <section class="section-pad" id="proces" data-snap data-label="Proces">
+  <span class="deco deco-dot" data-para=".3" style="top:12%;left:6%" aria-hidden="true"></span>
+  <span class="deco deco-ring" data-para="-.2" style="bottom:10%;right:4%" aria-hidden="true"></span>
   <div class="container">
     <div class="sec-head center reveal">
       <span class="eyebrow">Jak wygląda współpraca</span>
@@ -921,6 +1021,13 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
     </div>
     <div class="tl" id="timeline">
       <div class="tl-line" aria-hidden="true"><i id="tlFill"></i></div>
+      <span class="tl-truck" id="tlTruck" aria-hidden="true">
+        <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="6" width="32" height="15" rx="2"/>
+          <path d="M34 10h9l7 7v4H34z"/>
+          <circle cx="11" cy="25" r="3"/><circle cx="21" cy="25" r="3"/><circle cx="44" cy="25" r="3"/>
+        </svg>
+      </span>
       <div class="tl-step reveal">
         <span class="marker"><svg class="ic"><use href="#i-doc"/></svg></span>
         <div class="card">
@@ -972,6 +1079,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
 <!-- ============ GWARANCJA ============ -->
 <section class="section-pad guarantee" id="gwarancja" data-snap data-label="Gwarancja">
+  <span class="deco deco-x" data-para="-.3" style="top:16%;right:7%" aria-hidden="true"></span>
+  <span class="deco deco-glow" data-para=".25" style="bottom:6%;left:5%" aria-hidden="true"></span>
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Zero ryzyka wdrożenia</span>
@@ -1007,6 +1116,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 
 <!-- ============ FAQ ============ -->
 <section class="section-pad" id="faq" data-snap data-label="FAQ">
+  <span class="deco deco-dot" data-para="-.25" style="top:10%;right:10%" aria-hidden="true"></span>
   <div class="container">
     <div class="sec-head center reveal">
       <span class="eyebrow">Najczęstsze pytania</span>
@@ -1218,6 +1328,120 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 "use strict";
 var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* ---------- preloader ---------- */
+var pre = document.getElementById('preloader');
+var kinStart = null;
+function hidePre(){
+  if(pre && !pre.classList.contains('done')) pre.classList.add('done');
+  if(kinStart){ kinStart(); kinStart = null; }
+}
+if(reduce){ hidePre(); }
+else{
+  setTimeout(hidePre, 2800);
+  if(document.readyState === 'complete'){ setTimeout(hidePre, 1400); }
+  else addEventListener('load', function(){ setTimeout(hidePre, 900); });
+  if(pre) pre.addEventListener('click', hidePre);
+}
+
+/* ---------- custom cursor glow ---------- */
+var cDot = document.getElementById('cursorDot'), cRing = document.getElementById('cursorRing');
+if(cDot && cRing && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
+  var ccx = -100, ccy = -100, crx = -100, cry = -100, cOn = false;
+  addEventListener('pointermove', function(e){
+    ccx = e.clientX; ccy = e.clientY;
+    if(!cOn){ cOn = true; cDot.style.opacity = '1'; cRing.style.opacity = '1'; }
+    cDot.style.transform = 'translate(' + ccx + 'px,' + ccy + 'px) translate(-50%,-50%)';
+  }, {passive:true});
+  (function ringLoop(){
+    crx += (ccx - crx) * .17; cry += (ccy - cry) * .17;
+    cRing.style.transform = 'translate(' + crx + 'px,' + cry + 'px) translate(-50%,-50%)';
+    requestAnimationFrame(ringLoop);
+  })();
+  document.querySelectorAll('a,button,input,select,label,.compare-widget').forEach(function(el){
+    el.addEventListener('pointerenter', function(){ cRing.classList.add('hovering'); });
+    el.addEventListener('pointerleave', function(){ cRing.classList.remove('hovering'); });
+  });
+  document.documentElement.addEventListener('pointerleave', function(){
+    cOn = false; cDot.style.opacity = '0'; cRing.style.opacity = '0';
+  });
+}
+
+/* ---------- kinetic typography: headlines assemble word by word ---------- */
+if(!reduce){
+  var kinTargets = [document.querySelector('.hero h1')].concat(Array.prototype.slice.call(document.querySelectorAll('.sec-head h2')));
+  kinTargets = kinTargets.filter(Boolean);
+  kinTargets.forEach(function(h){
+    h.classList.add('kin');
+    Array.prototype.slice.call(h.childNodes).forEach(function(node){
+      if(node.nodeType !== 3 || !node.textContent.trim()) return;
+      var frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(function(part){
+        if(!part) return;
+        if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(part)); return; }
+        var w = document.createElement('span'); w.className = 'kin-w';
+        var inner = document.createElement('span'); inner.textContent = part;
+        w.appendChild(inner); frag.appendChild(w);
+      });
+      h.replaceChild(frag, node);
+    });
+    h.querySelectorAll('.kin-w>span').forEach(function(s, i){ s.style.transitionDelay = (i * 65) + 'ms'; });
+  });
+  kinStart = function(){
+    if(!('IntersectionObserver' in window)){ kinTargets.forEach(function(h){ h.classList.add('go'); }); return; }
+    var kio = new IntersectionObserver(function(entries){
+      entries.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('go'); kio.unobserve(x.target); } });
+    }, {threshold:.35});
+    kinTargets.forEach(function(h){ kio.observe(h); });
+  };
+  if(pre && pre.classList.contains('done')){ kinStart(); kinStart = null; }
+}
+
+/* ---------- eyebrow decode/scramble effect ---------- */
+if(!reduce && 'IntersectionObserver' in window){
+  var glyphs = 'ABCDEFGHIJKLMNPRSTUWXYZ0123456789#/';
+  var sio = new IntersectionObserver(function(entries){
+    entries.forEach(function(x){
+      if(!x.isIntersecting) return;
+      sio.unobserve(x.target);
+      var el = x.target, fin = el.getAttribute('data-scramble') || '', frames = 0, total = 24;
+      (function scr(){
+        frames++;
+        var prog = frames / total, out = '';
+        for(var i = 0; i < fin.length; i++){
+          if(fin[i] === ' '){ out += ' '; continue; }
+          out += (i < fin.length * prog) ? fin[i] : glyphs[(Math.random() * glyphs.length) | 0];
+        }
+        el.textContent = out;
+        if(prog < 1) requestAnimationFrame(scr); else el.textContent = fin;
+      })();
+    });
+  }, {threshold:.6});
+  document.querySelectorAll('.eyebrow').forEach(function(el){
+    el.setAttribute('data-scramble', el.textContent.trim());
+    sio.observe(el);
+  });
+}
+
+/* ---------- scroll parallax for deco shapes + hero copy ---------- */
+var paras = Array.prototype.slice.call(document.querySelectorAll('[data-para]'));
+if(!reduce && paras.length){
+  var pPend = false;
+  var paraUpdate = function(){
+    var vh2 = innerHeight / 2;
+    paras.forEach(function(el){
+      var sp = parseFloat(el.getAttribute('data-para')) || .2;
+      var prev = el._py || 0;
+      var r = el.getBoundingClientRect();
+      var y = (vh2 - (r.top + r.height / 2 - prev)) * sp;
+      el._py = y;
+      el.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0)';
+    });
+    pPend = false;
+  };
+  addEventListener('scroll', function(){ if(!pPend){ pPend = true; requestAnimationFrame(paraUpdate); } }, {passive:true});
+  paraUpdate();
+}
+
 /* ---------- nav scroll state + progress ---------- */
 var nav = document.getElementById('nav'), prog = document.getElementById('progress');
 function onScroll(){
@@ -1239,9 +1463,8 @@ panel.querySelectorAll('a').forEach(function(a){
   a.addEventListener('click', function(){ panel.classList.remove('open'); burger.classList.remove('open'); });
 });
 
-/* ---------- marquee loop ---------- */
-var mq = document.getElementById('marquee');
-mq.innerHTML += mq.innerHTML;
+/* ---------- marquee loops (both directions) ---------- */
+document.querySelectorAll('.marquee-track').forEach(function(t){ t.innerHTML += t.innerHTML; });
 
 /* ---------- reveal on scroll ---------- */
 var rev = document.querySelectorAll('.reveal');
@@ -1524,15 +1747,26 @@ function rangeFill(el){
   var p = (el.value - el.min) / (el.max - el.min) * 100;
   el.style.setProperty('--p', p + '%');
 }
+function tweenNum(el, to, render){
+  if(reduce){ el.textContent = render(to); el._v = to; return; }
+  var from = el._v || 0, s = performance.now();
+  el._v = to;
+  if(el._raf) cancelAnimationFrame(el._raf);
+  (function st(now){
+    var p = Math.min((now - s) / 450, 1), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = render(Math.round(from + (to - from) * e));
+    if(p < 1) el._raf = requestAnimationFrame(st);
+  })(s);
+}
 function calc(){
   var v = +cV.value, a = +cA.value;
   var leads = Math.max(1, Math.round(v * 0.015));
   var monthly = Math.round(leads * 0.2 * a);
   cVO.textContent = fmt.format(v);
   cAO.textContent = fmt.format(a) + ' zł';
-  crL.textContent = '+' + leads + ' / mies.';
-  crM.textContent = '+' + fmt.format(monthly) + ' zł / mies.';
-  crY.textContent = fmt.format(monthly * 12) + ' zł';
+  tweenNum(crL, leads, function(n){ return '+' + n + ' / mies.'; });
+  tweenNum(crM, monthly, function(n){ return '+' + fmt.format(n) + ' zł / mies.'; });
+  tweenNum(crY, monthly * 12, function(n){ return fmt.format(n) + ' zł'; });
   rangeFill(cV); rangeFill(cA);
 }
 [cV, cA].forEach(function(el){ el.addEventListener('input', calc); });
@@ -1587,7 +1821,7 @@ if('IntersectionObserver' in window){
 }
 
 /* ---------- process timeline scroll fill ---------- */
-var tl = document.getElementById('timeline'), tlFill = document.getElementById('tlFill');
+var tl = document.getElementById('timeline'), tlFill = document.getElementById('tlFill'), tlTruck = document.getElementById('tlTruck');
 var tlSteps = Array.prototype.slice.call(document.querySelectorAll('.tl-step'));
 function tlUpdate(){
   if(!tl) return;
@@ -1596,6 +1830,7 @@ function tlUpdate(){
   var p = (focus - r.top) / r.height;
   p = Math.max(0, Math.min(1, p));
   tlFill.style.height = (p * 100) + '%';
+  if(tlTruck) tlTruck.style.transform = 'translate(-50%,-50%) translateY(' + (p * tlFill.parentElement.offsetHeight).toFixed(1) + 'px) rotate(90deg)';
   tlSteps.forEach(function(s){
     var sr = s.getBoundingClientRect();
     s.classList.toggle('on', sr.top < focus);
