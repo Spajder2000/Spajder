@@ -1,317 +1,323 @@
-<!DOCTYPE html>
-<html lang="pl" class="scroll-smooth">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SecureBiz — Legalne oprogramowanie dla firm | Bezpieczeństwo cyfrowe i optymalizacja kosztów IT</title>
-<meta name="description" content="Legalne oprogramowanie biurowe dla firm z oficjalnej dystrybucji. Pełna zgodność z przepisami, faktura VAT, wsparcie techniczne i optymalizacja budżetu IT.">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="SecureBiz — Legalne oprogramowanie dla firm">
-<meta property="og:description" content="Bezpieczne wdrożenie cyfrowe bez przepłacania. Wyłącznie zweryfikowane, w pełni legalne oprogramowanie z oficjalnej dystrybucji.">
-<meta property="og:type" content="website">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          ink: {
-            50:'#f5f7fa', 100:'#eaeef4', 200:'#d0d9e6', 300:'#a7b8cf',
-            400:'#7791b3', 500:'#556f97', 600:'#41577c', 700:'#364765',
-            800:'#2f3c55', 900:'#1e2740', 950:'#131a2e'
-          }
-        },
-        fontFamily: {
-          sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
-        },
-        keyframes: {
-          'pulse-ring': {
-            '0%':   { boxShadow: '0 0 0 0 rgba(65,87,124,0.45)' },
-            '70%':  { boxShadow: '0 0 0 14px rgba(65,87,124,0)' },
-            '100%': { boxShadow: '0 0 0 0 rgba(65,87,124,0)' }
-          },
-          'fade-up': {
-            '0%':   { opacity: '0', transform: 'translateY(16px)' },
-            '100%': { opacity: '1', transform: 'translateY(0)' }
-          }
-        },
-        animation: {
-          'pulse-ring': 'pulse-ring 2.2s cubic-bezier(0.4,0,0.6,1) infinite',
-          'fade-up': 'fade-up 0.7s ease-out both'
-        }
-      }
-    }
-  }
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- =========================================================
+     GOTOWY KOD (wersja widoczna BEZ JavaScriptu)
+     Kopiuj i wklej CAŁOŚĆ do fragmentu WPCode typu "HTML".
+     Treść pokazuje się od razu; skrypt tylko dodaje animacje.
+     ========================================================= -->
+
 <style>
-  html, body { font-family: 'Inter', system-ui, sans-serif; }
-  /* Subtle grid backdrop for the hero */
-  .grid-bg {
-    background-image:
-      linear-gradient(to right, rgba(65,87,124,0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(65,87,124,0.05) 1px, transparent 1px);
-    background-size: 44px 44px;
-  }
-  .reveal { opacity: 0; }
-  .reveal.is-visible { animation: fade-up 0.7s ease-out both; }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal, .reveal.is-visible { opacity: 1 !important; animation: none !important; }
-    .animate-pulse-ring { animation: none !important; }
-    html { scroll-behavior: auto; }
-  }
+.pjw-landing{
+  --ink-50:#f5f7fa; --ink-100:#eaeef4; --ink-200:#d0d9e6; --ink-300:#a7b8cf;
+  --ink-400:#7791b3; --ink-500:#556f97; --ink-600:#41577c; --ink-700:#364765;
+  --ink-800:#2f3c55; --ink-900:#1e2740; --ink-950:#131a2e;
+  --emerald:#059669; --emerald-50:#ecfdf5; --emerald-600:#047857;
+  --brand-50:#ecfdf5; --brand-100:#d1fae5; --brand-200:#a7f3d0;
+  --brand-400:#34d399; --brand-500:#10b981; --brand-600:#059669;
+  --brand-700:#047857; --brand-800:#065f46; --brand-900:#064e3b; --brand-950:#052e26;
+  --shadow-sm:0 1px 2px rgba(19,26,46,.06),0 1px 3px rgba(19,26,46,.08);
+  --shadow-md:0 10px 30px -8px rgba(19,26,46,.18),0 4px 10px -4px rgba(19,26,46,.10);
+  --shadow-lg:0 24px 60px -14px rgba(19,26,46,.28);
+  font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink-900);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;
+  max-width:100%;overflow-x:hidden;
+}
+.pjw-landing *{box-sizing:border-box}
+.pjw-landing h1,.pjw-landing h2,.pjw-landing h3,.pjw-landing h4{
+  margin:0;padding:0;text-transform:none !important;font-family:inherit;font-weight:800;line-height:1.1}
+.pjw-landing p{margin:0;padding:0;text-transform:none}
+.pjw-landing a{text-decoration:none;color:inherit;text-transform:none}
+.pjw-landing ul,.pjw-landing ol{margin:0;padding:0;list-style:none}
+.pjw-landing img,.pjw-landing svg{max-width:100%;display:inline-block;vertical-align:middle}
+.pjw-landing button,.pjw-landing summary{margin:0;font-family:inherit;text-transform:none;-webkit-appearance:none;appearance:none}
+.pjw-landing section{width:100%}
+
+.pjw-wrap{max-width:1120px;margin:0 auto;padding:0 20px;width:100%}
+.pjw-narrow{max-width:820px;margin:0 auto;padding:0 20px;width:100%}
+
+.pjw-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;
+  font-weight:600;font-size:15px;border-radius:12px;padding:12px 20px;transition:transform .18s ease,background .18s ease,box-shadow .18s ease;font-family:inherit;line-height:1.2;text-decoration:none}
+.pjw-btn-primary{background:var(--brand-600) !important;color:#fff !important;box-shadow:var(--shadow-sm)}
+.pjw-btn-primary:hover{background:var(--brand-700) !important;color:#fff !important;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.pjw-btn-ghost{background:#fff;color:var(--ink-700) !important;border:1px solid var(--ink-200)}
+.pjw-btn-ghost:hover{background:var(--ink-50);border-color:var(--ink-300)}
+.pjw-btn-lg{padding:16px 30px;font-size:16px;border-radius:14px}
+
+.pjw-hero{position:relative;overflow:hidden;text-align:center;padding:70px 0 60px}
+.pjw-gridbg{position:absolute;inset:0;
+  background-image:linear-gradient(to right,rgba(5,150,105,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(5,150,105,.06) 1px,transparent 1px);
+  background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 40%,transparent 100%)}
+.pjw-heroglow{position:absolute;left:0;right:0;top:-40px;height:280px;background:radial-gradient(ellipse at center,rgba(5,150,105,.12),transparent 70%)}
+.pjw-heroinner{position:relative}
+.pjw-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--ink-200);border-radius:999px;
+  padding:7px 16px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-600);box-shadow:var(--shadow-sm)}
+.pjw-dot{width:7px;height:7px;border-radius:999px;background:var(--emerald);box-shadow:0 0 0 4px rgba(5,150,105,.15);flex:0 0 auto}
+.pjw-landing h1{margin-top:26px;font-size:clamp(32px,6vw,58px);line-height:1.08;letter-spacing:-.03em;color:var(--ink-950)}
+.pjw-landing h1 .pjw-accent{color:var(--brand-600)}
+.pjw-sub{margin:22px auto 0;max-width:640px;font-size:clamp(16px,2.4vw,19px);color:var(--ink-600)}
+.pjw-ctarow{margin-top:34px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
+@media(min-width:560px){.pjw-ctarow{flex-direction:row}}
+.pjw-ctanote{margin-top:18px;font-size:13.5px;color:var(--ink-500)}
+.pjw-arrow{transition:transform .18s ease}
+.pjw-btn:hover .pjw-arrow{transform:translateX(4px)}
+
+@keyframes pjw-ring{0%{box-shadow:0 0 0 0 rgba(5,150,105,.45)}70%{box-shadow:0 0 0 16px rgba(5,150,105,0)}100%{box-shadow:0 0 0 0 rgba(5,150,105,0)}}
+.pjw-pulse{animation:pjw-ring 2.2s cubic-bezier(.4,0,.6,1) infinite}
+
+.pjw-stats{border-top:1px solid var(--ink-100);border-bottom:1px solid var(--ink-100);background:var(--ink-50)}
+.pjw-statsgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:30px 0;text-align:center}
+.pjw-statnum{font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--ink-900);letter-spacing:-.02em}
+.pjw-statlbl{font-size:12.5px;color:var(--ink-500);margin-top:4px;font-weight:500}
+
+.pjw-landing .pjw-head{max-width:640px;margin:0 auto;text-align:center}
+.pjw-landing h2{font-size:clamp(26px,4vw,38px);letter-spacing:-.02em;color:var(--ink-950)}
+.pjw-lead{margin-top:14px;font-size:17px;color:var(--ink-600)}
+.pjw-pad{padding:72px 0}
+
+.pjw-cards{margin-top:52px;display:grid;gap:22px}
+@media(min-width:820px){.pjw-cards{grid-template-columns:repeat(3,1fr)}}
+.pjw-card{background:#fff;border:1px solid var(--ink-100);border-radius:18px;padding:30px;box-shadow:var(--shadow-sm);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.pjw-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--ink-200)}
+.pjw-ic{display:grid;place-items:center;width:50px;height:50px;border-radius:13px;background:var(--brand-600);color:#fff;transition:transform .25s ease}
+.pjw-card:hover .pjw-ic{transform:scale(1.08) rotate(-3deg)}
+.pjw-landing .pjw-card h3{margin-top:22px;font-size:20px;font-weight:700;color:var(--ink-900)}
+.pjw-landing .pjw-card p{margin-top:10px;color:var(--ink-600);font-size:15px}
+
+.pjw-steps{background:var(--ink-50);border-top:1px solid var(--ink-100);border-bottom:1px solid var(--ink-100)}
+.pjw-stepper{margin-top:46px;display:grid;gap:26px}
+@media(min-width:820px){.pjw-stepper{grid-template-columns:repeat(4,1fr)}}
+.pjw-step{position:relative;background:#fff;border:1px solid var(--ink-100);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease}
+.pjw-step:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.pjw-stepn{display:grid;place-items:center;width:44px;height:44px;margin:0 auto;border-radius:999px;background:var(--brand-600) !important;color:#fff !important;font-weight:800;font-size:18px}
+.pjw-landing .pjw-step h4{margin-top:16px;font-size:16px;font-weight:700;color:var(--ink-900)}
+.pjw-landing .pjw-step p{margin-top:8px;font-size:14px;color:var(--ink-600)}
+@media(min-width:820px){
+  .pjw-step:not(:last-child)::after{content:"";position:absolute;top:48px;right:-16px;width:32px;height:2px;
+    background:linear-gradient(to right,var(--ink-300),transparent)}
+}
+
+.pjw-faq{margin:44px auto 0;display:grid;gap:12px;max-width:760px}
+.pjw-qa{border:1px solid var(--ink-100);border-radius:14px;background:#fff;overflow:hidden;box-shadow:var(--shadow-sm)}
+.pjw-landing .pjw-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  cursor:pointer;padding:18px 22px;font-size:16px;font-weight:600;color:var(--ink-900);list-style:none}
+.pjw-landing .pjw-q::-webkit-details-marker{display:none}
+.pjw-landing .pjw-q::marker{content:""}
+.pjw-q:hover{background:var(--ink-50)}
+.pjw-chev{flex:0 0 auto;transition:transform .25s ease;color:var(--ink-500)}
+.pjw-qa[open] .pjw-chev{transform:rotate(180deg)}
+.pjw-ainner{padding:0 22px 20px;color:var(--ink-600);font-size:15px}
+
+.pjw-ctastrip{background:linear-gradient(135deg,var(--brand-800),var(--brand-950));color:#fff;text-align:center}
+.pjw-landing .pjw-ctastrip h2{color:#fff}
+.pjw-landing .pjw-ctastrip p{margin:14px auto 0;max-width:540px;color:var(--brand-100);font-size:17px}
+.pjw-btn-white{background:#fff !important;color:var(--brand-700) !important}
+.pjw-btn-white:hover{background:var(--ink-50) !important;color:var(--brand-700) !important;transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+
+.pjw-trust{text-align:center}
+.pjw-seal{display:grid;place-items:center;width:60px;height:60px;margin:0 auto;border-radius:999px;background:var(--emerald-50);color:var(--emerald-600)}
+.pjw-landing .pjw-trust p.pjw-big{margin:22px auto 0;max-width:640px;font-size:18px;color:var(--ink-700)}
+.pjw-badges{margin-top:32px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 26px;font-size:14px;font-weight:500;color:var(--ink-600)}
+.pjw-badge{display:inline-flex;align-items:center;gap:8px}
+.pjw-check{color:var(--emerald);flex:0 0 auto}
+
+.pjw-footer{border-top:1px solid var(--ink-100);background:var(--ink-50)}
+.pjw-foot{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:space-between;padding:28px 0;font-size:13.5px;color:var(--ink-500);text-align:center}
+@media(min-width:640px){.pjw-foot{flex-direction:row;text-align:left}}
+.pjw-credit{border-top:1px solid var(--ink-100);padding:16px 0;text-align:center;font-size:13px;color:var(--ink-400)}
+.pjw-credit a{font-weight:600;color:var(--ink-600)}
+
+/* Cała treść zawsze widoczna (bez animacji chowania) */
+.pjw-landing .pjw-reveal{opacity:1 !important;transform:none !important}
+/* Twarde wyśrodkowanie sekcji, gdyby motyw wymuszał wyrównanie do lewej */
+.pjw-landing .pjw-hero,
+.pjw-landing .pjw-head,
+.pjw-landing .pjw-statsgrid,
+.pjw-landing .pjw-step,
+.pjw-landing .pjw-ctastrip,
+.pjw-landing .pjw-trust{text-align:center !important}
+.pjw-landing .pjw-stepn{margin-left:auto !important;margin-right:auto !important}
+@media(prefers-reduced-motion:reduce){.pjw-pulse{animation:none}}
 </style>
-</head>
-<body class="bg-white text-ink-900 antialiased selection:bg-ink-900 selection:text-white">
 
-  <!-- ============ HEADER ============ -->
-  <header class="sticky top-0 z-40 border-b border-ink-100 bg-white/80 backdrop-blur-md">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-      <a href="#" class="flex items-center gap-2.5" aria-label="SecureBiz — strona główna">
-        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-ink-900 text-white">
-          <!-- shield icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="m9 12 2 2 4-4"/>
-          </svg>
-        </span>
-        <span class="text-lg font-bold tracking-tight text-ink-900">SecureBiz</span>
-      </a>
-      <nav class="hidden items-center gap-8 text-sm font-medium text-ink-600 md:flex">
-        <a href="#korzysci" class="transition hover:text-ink-900">Korzyści</a>
-        <a href="#zaufanie" class="transition hover:text-ink-900">Bezpieczeństwo</a>
-      </nav>
-      <a href="https://www.bezpiecznysoft.pl"
-         data-cta
-         class="hidden rounded-lg bg-ink-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-ink-800 md:inline-flex">
-        Odbierz ofertę
-      </a>
-    </div>
-  </header>
-
+<div class="pjw-landing">
   <main>
-    <!-- ============ HERO ============ -->
-    <section class="relative overflow-hidden">
-      <div class="grid-bg absolute inset-0"></div>
-      <div class="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-ink-50 to-transparent"></div>
-      <div class="relative mx-auto max-w-4xl px-5 pt-20 pb-16 text-center md:pt-28 md:pb-24">
-
-        <span class="reveal inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink-600 shadow-sm">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-          Oprogramowanie z oficjalnej dystrybucji
-        </span>
-
-        <h1 class="reveal mt-7 text-4xl font-extrabold leading-[1.1] tracking-tight text-ink-950 sm:text-5xl md:text-6xl">
-          Zoptymalizuj pracę firmy<br class="hidden sm:block">
-          w oparciu o <span class="text-ink-600">w pełni legalne</span> oprogramowanie
-        </h1>
-
-        <p class="reveal mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-600">
-          Bezpieczne wdrożenie cyfrowe bez przepłacania. Dostarczamy sprawdzone pakiety biurowe
-          i narzędzia produktywności zgodne ze standardami branżowymi — z pełną zgodnością z przepisami
-          i fakturą VAT.
-        </p>
-
-        <div class="reveal mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a href="https://www.bezpiecznysoft.pl"
-             data-cta
-             class="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-ink-900 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-ink-900/20 animate-pulse-ring transition duration-200 hover:-translate-y-0.5 hover:bg-ink-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-ink-300 sm:w-auto">
-            Sprawdź bezpieczne rozwiązania
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="#korzysci"
-             class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-ink-200 bg-white px-8 py-4 text-base font-semibold text-ink-700 transition hover:border-ink-300 hover:bg-ink-50 sm:w-auto">
+    <section class="pjw-hero">
+      <div class="pjw-gridbg"></div>
+      <div class="pjw-heroglow"></div>
+      <div class="pjw-wrap pjw-heroinner">
+        <span class="pjw-pill pjw-reveal"><span class="pjw-dot"></span> Zaufany, legalny sprzedawca • Faktura VAT</span>
+        <h1 class="pjw-reveal">Nowoczesne narzędzia,<br><span class="pjw-accent">które napędzają Twoją firmę</span></h1>
+        <p class="pjw-sub pjw-reveal">Prostsze wdrożenie, niższe koszty i pełen spokój. Sprawdź, jak dopasować rozwiązanie do skali Twojego biznesu — bez zobowiązań i bez przepłacania.</p>
+        <div class="pjw-ctarow pjw-reveal">
+          <a href="https://www.bezpiecznysoft.pl" data-pjw-cta class="pjw-btn pjw-btn-primary pjw-btn-lg pjw-pulse">
             Dowiedz się więcej
+            <svg class="pjw-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#pjw-jak" class="pjw-btn pjw-btn-ghost pjw-btn-lg">Zobacz, jak to działa</a>
+        </div>
+        <p class="pjw-ctanote pjw-reveal">✓ Bez zobowiązań &nbsp;•&nbsp; ✓ Faktura VAT &nbsp;•&nbsp; ✓ Wsparcie na każdym etapie</p>
+      </div>
+    </section>
+
+    <section class="pjw-stats">
+      <div class="pjw-wrap pjw-statsgrid">
+        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="4200" data-pjw-suffix="+">4 200+</div><div class="pjw-statlbl">Obsłużonych firm</div></div>
+        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="98" data-pjw-suffix="%">98%</div><div class="pjw-statlbl">Poleca nas dalej</div></div>
+        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="24" data-pjw-suffix="h">24h</div><div class="pjw-statlbl">Czas reakcji wsparcia</div></div>
+      </div>
+    </section>
+
+    <section id="pjw-korzysci" class="pjw-pad">
+      <div class="pjw-wrap">
+        <div class="pjw-head pjw-reveal">
+          <h2>Dlaczego firmy nam ufają</h2>
+          <p class="pjw-lead">Trzy filary spokojnej i opłacalnej współpracy.</p>
+        </div>
+        <div class="pjw-cards">
+          <article class="pjw-card pjw-reveal">
+            <div class="pjw-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <h3>Pełna legalność</h3>
+            <p>Działamy zgodnie z warunkami producentów. Do każdego zamówienia otrzymujesz dowód zakupu i fakturę VAT — masz porządek w dokumentacji i spokój podczas audytu.</p>
+          </article>
+          <article class="pjw-card pjw-reveal">
+            <div class="pjw-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>Wsparcie techniczne</h3>
+            <p>Pomagamy przy każdym kroku — od wyboru rozwiązania po konfigurację. Realni ludzie, szybka reakcja, jasne odpowiedzi.</p>
+          </article>
+          <article class="pjw-card pjw-reveal">
+            <div class="pjw-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+            <h3>Optymalizacja budżetu</h3>
+            <p>Dobieramy rozwiązania do skali biznesu — płacisz tylko za to, czego naprawdę potrzebujesz. Bez ukrytych kosztów.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pjw-jak" class="pjw-steps pjw-pad">
+      <div class="pjw-wrap">
+        <div class="pjw-head pjw-reveal">
+          <h2>Zakup krok po kroku</h2>
+          <p class="pjw-lead">Przejrzysty proces — wiesz dokładnie, czego się spodziewać na każdym etapie.</p>
+        </div>
+        <div class="pjw-stepper">
+          <div class="pjw-step pjw-reveal">
+            <div class="pjw-stepn">1</div>
+            <h4>Kliknij „Dowiedz się więcej"</h4>
+            <p>Przejdziesz na naszą stronę bezpiecznysoft.pl, gdzie poznasz pełną ofertę i szczegóły.</p>
+          </div>
+          <div class="pjw-step pjw-reveal">
+            <div class="pjw-stepn">2</div>
+            <h4>Wybierz rozwiązanie</h4>
+            <p>Dopasuj pakiet do wielkości firmy. W razie wątpliwości pomoże Ci nasz konsultant.</p>
+          </div>
+          <div class="pjw-step pjw-reveal">
+            <div class="pjw-stepn">3</div>
+            <h4>Złóż zamówienie</h4>
+            <p>Bezpieczna płatność online. Podajesz dane do faktury VAT — wszystko w jednym miejscu.</p>
+          </div>
+          <div class="pjw-step pjw-reveal">
+            <div class="pjw-stepn">4</div>
+            <h4>Otrzymaj dostęp i wsparcie</h4>
+            <p>Dostajesz dowód zakupu, fakturę oraz pomoc przy instalacji i konfiguracji.</p>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:40px" class="pjw-reveal">
+          <a href="https://www.bezpiecznysoft.pl" data-pjw-cta class="pjw-btn pjw-btn-primary pjw-btn-lg">
+            Rozpocznij — Dowiedz się więcej
+            <svg class="pjw-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
-
-        <p class="reveal mt-6 text-sm text-ink-500">
-          Bez zobowiązań • Faktura VAT • Wsparcie na każdym etapie
-        </p>
       </div>
     </section>
 
-    <!-- ============ KORZYŚCI ============ -->
-    <section id="korzysci" class="border-t border-ink-100 bg-ink-50/40">
-      <div class="mx-auto max-w-6xl px-5 py-20 md:py-24">
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-ink-950 sm:text-4xl">
-            Dlaczego firmy nam ufają
-          </h2>
-          <p class="mt-4 text-lg text-ink-600">
-            Trzy filary bezpiecznej i opłacalnej cyfryzacji Twojego biznesu.
-          </p>
+    <section id="pjw-faq" class="pjw-pad">
+      <div class="pjw-wrap">
+        <div class="pjw-head pjw-reveal">
+          <h2>Najczęstsze pytania</h2>
+          <p class="pjw-lead">Transparentność to podstawa zaufania.</p>
         </div>
-
-        <div class="mt-14 grid gap-6 md:grid-cols-3">
-
-          <!-- Benefit 1 -->
-          <article class="reveal group rounded-2xl border border-ink-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-ink-200 hover:shadow-xl">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-900 text-white transition group-hover:scale-105">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <path d="m9 12 2 2 4-4"/>
-              </svg>
-            </div>
-            <h3 class="mt-6 text-xl font-bold text-ink-900">100% legalność i bezpieczeństwo</h3>
-            <p class="mt-3 leading-relaxed text-ink-600">
-              Pełna zgodność z przepisami i licencjonowaniem producenta. Do każdego zamówienia
-              wystawiamy fakturę VAT — masz porządek w dokumentacji i spokojną głowę podczas audytu.
-            </p>
-          </article>
-
-          <!-- Benefit 2 -->
-          <article class="reveal group rounded-2xl border border-ink-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-ink-200 hover:shadow-xl">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-900 text-white transition group-hover:scale-105">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-              </svg>
-            </div>
-            <h3 class="mt-6 text-xl font-bold text-ink-900">Wsparcie techniczne</h3>
-            <p class="mt-3 leading-relaxed text-ink-600">
-              Pomagamy przy instalacji i konfiguracji oprogramowania biurowego. Nasi specjaliści
-              prowadzą wdrożenie krok po kroku, aby zespół mógł ruszyć do pracy bez przestojów.
-            </p>
-          </article>
-
-          <!-- Benefit 3 -->
-          <article class="reveal group rounded-2xl border border-ink-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-ink-200 hover:shadow-xl">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-900 text-white transition group-hover:scale-105">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v16a2 2 0 0 0 2 2h16"/>
-                <path d="m19 9-5 5-4-4-3 3"/>
-              </svg>
-            </div>
-            <h3 class="mt-6 text-xl font-bold text-ink-900">Optymalizacja budżetu</h3>
-            <p class="mt-3 leading-relaxed text-ink-600">
-              Dobieramy rozwiązania dopasowane do skali biznesu — od jednoosobowej działalności
-              po większe zespoły. Płacisz wyłącznie za to, czego naprawdę potrzebujesz.
-            </p>
-          </article>
-
+        <div class="pjw-faq">
+          <details class="pjw-qa pjw-reveal">
+            <summary class="pjw-q">Czy oferta jest w pełni legalna?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="pjw-ainner">Tak. Działamy jako zweryfikowany sprzedawca i do każdego zamówienia dołączamy dowód zakupu oraz fakturę VAT. Wszystko jest zgodne z warunkami licencyjnymi producentów.</div>
+          </details>
+          <details class="pjw-qa pjw-reveal">
+            <summary class="pjw-q">Czy dostanę fakturę VAT?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="pjw-ainner">Oczywiście. Fakturę VAT wystawiamy do każdego zamówienia — wystarczy podać dane firmy podczas składania zamówienia.</div>
+          </details>
+          <details class="pjw-qa pjw-reveal">
+            <summary class="pjw-q">Czy pomożecie przy instalacji?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="pjw-ainner">Tak. Nasz zespół wsparcia prowadzi Cię krok po kroku przez instalację i konfigurację, aby wszystko działało od razu.</div>
+          </details>
+          <details class="pjw-qa pjw-reveal">
+            <summary class="pjw-q">Co jeśli mam więcej pytań przed zakupem?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="pjw-ainner">Kliknij „Dowiedz się więcej" — na stronie bezpiecznysoft.pl znajdziesz pełne dane kontaktowe i konsultanta, który odpowie na wszystkie pytania przed decyzją.</div>
+          </details>
         </div>
       </div>
     </section>
 
-    <!-- ============ CTA STRIP ============ -->
-    <section class="bg-ink-950">
-      <div class="mx-auto max-w-4xl px-5 py-16 text-center md:py-20">
-        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          Gotowy na bezpieczną cyfryzację?
-        </h2>
-        <p class="mx-auto mt-4 max-w-xl text-lg text-ink-200">
-          Poznaj rozwiązania dopasowane do Twojej firmy i zoptymalizuj koszty IT
-          bez kompromisów w kwestii legalności.
-        </p>
-        <a href="https://www.bezpiecznysoft.pl"
-           data-cta
-           class="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-semibold text-ink-950 shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-ink-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/40">
-          Dowiedz się więcej i odbierz ofertę
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-          </svg>
-        </a>
+    <section class="pjw-ctastrip pjw-pad">
+      <div class="pjw-narrow pjw-reveal">
+        <h2>Zrób pierwszy krok już dziś</h2>
+        <p>Poznaj rozwiązania dopasowane do Twojej firmy i przekonaj się, jak proste może być bezpieczne wdrożenie.</p>
+        <div style="margin-top:28px">
+          <a href="https://www.bezpiecznysoft.pl" data-pjw-cta class="pjw-btn pjw-btn-white pjw-btn-lg">
+            Dowiedz się więcej i odbierz ofertę
+            <svg class="pjw-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- ============ TRUST SIGNALS ============ -->
-    <section id="zaufanie" class="border-t border-ink-100 bg-white">
-      <div class="mx-auto max-w-4xl px-5 py-16 text-center md:py-20">
-        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="m9 12 2 2 4-4"/>
-          </svg>
-        </div>
-        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-700">
-          Dostarczamy <span class="font-semibold text-ink-900">wyłącznie zweryfikowane i w pełni legalne
-          oprogramowanie</span> pochodzące z oficjalnej dystrybucji. Każde wdrożenie jest zgodne
-          z warunkami licencyjnymi producentów oraz obowiązującymi przepisami.
-        </p>
-
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-medium text-ink-500">
-          <span class="inline-flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            Oficjalna dystrybucja
-          </span>
-          <span class="inline-flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            Faktura VAT
-          </span>
-          <span class="inline-flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            Zgodność z przepisami
-          </span>
-          <span class="inline-flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            Wsparcie techniczne
-          </span>
+    <section id="pjw-zaufanie" class="pjw-pad pjw-trust">
+      <div class="pjw-narrow pjw-reveal">
+        <div class="pjw-seal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <p class="pjw-big">Jesteśmy <strong style="color:var(--ink-900)">zweryfikowanym sprzedawcą</strong>. Do każdego zamówienia dołączamy dowód zakupu i fakturę VAT, a nasze działania są zgodne z warunkami licencyjnymi producentów i obowiązującymi przepisami.</p>
+        <div class="pjw-badges">
+          <span class="pjw-badge"><svg class="pjw-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Dowód zakupu</span>
+          <span class="pjw-badge"><svg class="pjw-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Faktura VAT</span>
+          <span class="pjw-badge"><svg class="pjw-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Zgodność z przepisami</span>
+          <span class="pjw-badge"><svg class="pjw-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Wsparcie techniczne</span>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="border-t border-ink-100 bg-ink-50/60">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 text-sm text-ink-500 sm:flex-row">
-      <div class="flex items-center gap-2.5">
-        <span class="flex h-7 w-7 items-center justify-center rounded-md bg-ink-900 text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        </span>
-        <span class="font-semibold text-ink-700">SecureBiz</span>
+  <footer class="pjw-footer">
+    <div class="pjw-wrap pjw-foot">
+      <div class="pjw-brand" style="display:flex;align-items:center;gap:10px;font-weight:800">
+        <span style="display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--brand-600);color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
       </div>
-      <p>&copy; <span id="year"></span> SecureBiz. Legalne oprogramowanie dla firm.</p>
+      <p>&copy; <span data-pjw-year>2026</span> Zweryfikowany sprzedawca oprogramowania dla firm.</p>
+    </div>
+    <div class="pjw-wrap pjw-credit">
+      Realizacja strony: <a href="#">PAJAKWEB</a>
     </div>
   </footer>
+</div>
 
-  <!-- ============ JAVASCRIPT (vanilla, no libraries) ============ -->
-  <script>
-    (function () {
-      'use strict';
-
-      var CTA_URL = 'https://www.bezpiecznysoft.pl';
-
-      // Current year in footer
-      var yearEl = document.getElementById('year');
-      if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
-
-      // Smooth, deliberate CTA handling: brief press feedback, then navigate.
-      var ctas = document.querySelectorAll('[data-cta]');
-      ctas.forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          btn.style.transition = 'transform 120ms ease';
-          btn.style.transform = 'scale(0.97)';
-          window.setTimeout(function () {
-            btn.style.transform = '';
-            window.location.href = CTA_URL;
-          }, 150);
-        });
-      });
-
-      // Reveal-on-scroll for elements marked .reveal
-      var revealEls = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries, obs) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        revealEls.forEach(function (el, i) {
-          el.style.animationDelay = (i % 4) * 90 + 'ms';
-          io.observe(el);
-        });
-      } else {
-        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-      }
-    })();
-  </script>
-</body>
-</html>
+<script>
+(function(){
+  'use strict';
+  var root=document.querySelector('.pjw-landing');
+  if(!root)return;
+  root.classList.add('pjw-js');
+  var CTA_URL='https://www.bezpiecznysoft.pl';
+  var y=root.querySelector('[data-pjw-year]'); if(y)y.textContent=new Date().getFullYear();
+  root.querySelectorAll('[data-pjw-cta]').forEach(function(btn){
+    btn.addEventListener('click',function(e){e.preventDefault();btn.style.transition='transform 120ms ease';btn.style.transform='scale(.96)';setTimeout(function(){btn.style.transform='';window.location.href=CTA_URL;},150);});
+  });
+  root.querySelectorAll('a[href^="#pjw-"]').forEach(function(link){
+    link.addEventListener('click',function(e){var t=document.getElementById(this.getAttribute('href').slice(1));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});
+  });
+  function runCount(scope){(scope||root).querySelectorAll('[data-pjw-count]').forEach(function(el){
+    if(el.dataset.pjwDone)return;el.dataset.pjwDone='1';
+    var target=+el.dataset.pjwCount,suffix=el.dataset.pjwSuffix||'',dur=1400,start=performance.now();
+    function tick(now){var p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3);el.textContent=Math.floor(eased*target).toLocaleString('pl-PL')+suffix;if(p<1)requestAnimationFrame(tick);}
+    requestAnimationFrame(tick);});}
+  var reveals=root.querySelectorAll('.pjw-reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries,obs){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('pjw-show');obs.unobserve(en.target);if(en.target.querySelector('[data-pjw-count]'))runCount(en.target);}});},{threshold:.14,rootMargin:'0px 0px -30px 0px'});
+    reveals.forEach(function(el,i){el.style.transitionDelay=(i%3)*80+'ms';io.observe(el);});
+  }else{reveals.forEach(function(el){el.classList.add('pjw-show');});runCount(root);}
+})();
+</script>
