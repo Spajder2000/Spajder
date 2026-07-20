@@ -152,6 +152,14 @@ button {
   margin: 0;
 }
 
+.hl {
+  color: var(--red);
+}
+
+.section--dark .hl {
+  color: var(--orange);
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -654,9 +662,15 @@ button {
 
 .map-wrap {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.28fr);
+  gap: clamp(1.5rem, 3.5vw, 2.6rem);
+  align-items: start;
+}
+
+.map-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
 }
 
 .map-panel {
@@ -664,7 +678,7 @@ button {
   background: linear-gradient(165deg, #FBFAF9, #F1EFF3);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: clamp(1rem, 2.5vw, 2rem);
+  padding: clamp(1rem, 2.5vw, 1.6rem);
   box-shadow: var(--shadow-card);
   overflow: hidden;
 }
@@ -685,77 +699,98 @@ button {
   transition: fill 0.25s;
 }
 
+/* rynki docelowe: nieaktywne w jasnej czerwieni, aktywny w mocnej */
 .map-target {
-  fill: url(#targetGrad);
-  fill: var(--red);
+  fill: #EBA9AF;
   cursor: pointer;
   transition: fill 0.25s, filter 0.25s;
 }
 
 .map-target:hover {
   fill: var(--red-bright);
-  filter: drop-shadow(0 4px 10px rgba(148, 24, 36, 0.4));
 }
 
 .map-target.is-active {
-  fill: var(--red-dark);
-  filter: drop-shadow(0 4px 12px rgba(92, 5, 13, 0.5));
+  fill: var(--red);
+  filter: drop-shadow(0 4px 12px rgba(148, 24, 36, 0.45));
 }
 
+/* pinezka w kształcie kropli */
 .map-marker {
   position: absolute;
-  transform: translate(-50%, -50%);
-  width: 40px;
+  transform: translate(-50%, -100%);
+  width: 30px;
   height: 40px;
   border: 0;
-  border-radius: 50%;
   background: transparent;
-  display: grid;
-  place-items: center;
   padding: 0;
+  cursor: pointer;
 }
 
 .map-marker .pin {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
   background: var(--red);
-  border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(92, 5, 13, 0.55);
+  border: 2px solid #fff;
+  box-shadow: 0 3px 8px rgba(92, 5, 13, 0.4);
   transition: transform 0.2s var(--ease-out), background-color 0.2s;
+}
+
+.map-marker .pin::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: #fff;
 }
 
 .map-marker::before {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 14px;
+  left: 50%;
+  top: 11px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
   border-radius: 50%;
-  background: rgba(148, 24, 36, 0.45);
-  animation: marker-pulse 2.2s infinite;
+  background: rgba(148, 24, 36, 0.4);
+  animation: marker-pulse 2.4s infinite;
 }
 
 @keyframes marker-pulse {
   0% {
     transform: scale(1);
-    opacity: 0.8;
+    opacity: 0.7;
   }
   75%,
   100% {
-    transform: scale(3.1);
+    transform: scale(3);
     opacity: 0;
   }
 }
 
-.map-marker:hover .pin,
+.map-marker:hover .pin {
+  transform: rotate(-45deg) scale(1.12);
+}
+
 .map-marker.is-active .pin {
-  transform: scale(1.35);
-  background: var(--orange);
+  background: var(--red-dark);
+  transform: rotate(-45deg) scale(1.18);
 }
 
 .map-marker .label {
   position: absolute;
-  bottom: calc(100% + 2px);
+  bottom: calc(100% + 4px);
   left: 50%;
   transform: translateX(-50%);
   background: var(--ink);
@@ -803,102 +838,428 @@ button {
   background: var(--red);
 }
 
-/* karta kraju */
-.country-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--ink);
-  color: #F5F4F6;
-  border-radius: var(--radius);
-  padding: clamp(1.4rem, 3vw, 2rem);
-  box-shadow: var(--shadow-pop);
-}
-
-.country-card .flag {
-  width: 44px;
-  height: 31px;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
-  margin-bottom: 1rem;
-}
-
-.country-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.35rem;
-}
-
-.country-card .country-tag {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 0.9rem;
-}
-
-.country-card p {
-  color: rgba(245, 244, 246, 0.78);
-  font-size: 0.98rem;
-}
-
-.country-card ul {
-  list-style: none;
-  margin: 0 0 1.4rem;
-  padding: 0;
+/* przełącznik rynków (nad mapą, na jasnym tle) */
+.country-switch {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
 }
 
-.country-card li {
-  display: flex;
-  gap: 0.55rem;
-  align-items: flex-start;
-  font-size: 0.93rem;
-  color: rgba(245, 244, 246, 0.85);
-}
-
-.country-card li svg {
-  width: 17px;
-  height: 17px;
-  color: var(--orange);
-  flex: none;
-  margin-top: 3px;
-}
-
-.country-card .btn {
-  margin-top: auto;
-}
-
-.country-switch {
-  display: flex;
-  gap: 0.4rem;
-  margin-bottom: 1.2rem;
-}
-
 .country-switch button {
-  flex: 1;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(245, 244, 246, 0.8);
-  border-radius: 9px;
-  padding: 0.45rem 0.2rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 12px;
+  padding: 0.55rem 0.8rem;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.country-switch button .flag {
+  width: 24px;
+  height: 17px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .country-switch button:hover {
-  border-color: var(--orange);
-  color: #fff;
+  border-color: var(--red);
+  transform: translateY(-2px);
 }
 
 .country-switch button.is-active {
   background: linear-gradient(135deg, var(--red), var(--red-dark));
   border-color: transparent;
   color: #fff;
+  box-shadow: 0 10px 22px -10px rgba(148, 24, 36, 0.6);
+}
+
+.country-switch button.is-active .flag {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+/* kafelki korzyści pod mapą */
+.market-perks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.market-perk {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.85rem 0.9rem;
+  transition: transform 0.2s var(--ease-out), border-color 0.2s;
+}
+
+.market-perk:hover {
+  transform: translateY(-3px);
+  border-color: rgba(148, 24, 36, 0.35);
+}
+
+.market-perk-icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(148, 24, 36, 0.1), rgba(241, 137, 32, 0.14));
+  color: var(--red);
+}
+
+.market-perk-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.market-perk strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+}
+
+.market-perk span {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+/* bogata karta rynku */
+.market-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.market-card-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(120deg, var(--red-dark) 0%, var(--red) 100%);
+  color: #fff;
+}
+
+.market-card-head .flag {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.market-card-head .flag svg {
+  width: 46px;
+  height: 33px;
+}
+
+.market-card-title {
+  margin-right: auto;
+  min-width: 0;
+}
+
+.market-card-title h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.market-card-title p {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.market-potential {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: none;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #FFCB8C;
+}
+
+.market-potential svg {
+  width: 16px;
+  height: 16px;
+}
+
+.market-card-body {
+  padding: clamp(1.2rem, 2.5vw, 1.7rem);
+}
+
+.market-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 3vw, 2rem);
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.market-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.market-block h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.98rem;
+  margin-bottom: 0.7rem;
+}
+
+.market-block h4 svg {
+  width: 19px;
+  height: 19px;
+  color: var(--red);
+  flex: none;
+}
+
+.market-block > p {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.market-sub {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.5rem;
+}
+
+.market-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.market-list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.market-list li svg {
+  width: 17px;
+  height: 17px;
+  color: var(--green-ok);
+  flex: none;
+  margin-top: 2px;
+}
+
+.market-list--industries {
+  gap: 0.32rem;
+}
+
+.market-list--industries li {
+  font-size: 0.86rem;
+}
+
+.market-list--industries li::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.market-card-foot {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: center;
+  padding-top: 1.4rem;
+}
+
+.market-amount {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.market-amount-icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(148, 24, 36, 0.1), rgba(241, 137, 32, 0.14));
+  color: var(--red);
+}
+
+.market-amount-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.market-amount strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--red-dark);
+}
+
+.market-amount strong b {
+  color: var(--red);
+}
+
+.market-amount > div > span {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+}
+
+.market-amount .market-term {
+  margin-top: 0.25rem;
+  color: var(--ink);
+}
+
+.market-amount .market-term b {
+  color: var(--red);
+}
+
+.market-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.market-cta .btn {
+  width: 100%;
+}
+
+.market-cta-note {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+/* dolny pas: dlaczego warto */
+.consult-band {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.consult-band-head {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  margin-bottom: 1.4rem;
+}
+
+.consult-band-icon {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
+  color: #fff;
+}
+
+.consult-band-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.consult-band-head h3 {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  margin: 0 0 0.15rem;
+}
+
+.consult-band-head p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.consult-band-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.consult-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.1rem;
+}
+
+.consult-item .ci-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(148, 24, 36, 0.08);
+  color: var(--red);
+  margin-bottom: 0.7rem;
+}
+
+.consult-item .ci-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.consult-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  margin-bottom: 0.3rem;
+}
+
+.consult-item p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.consult-band-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
 }
 
 /* ------------------------------------------------------------
@@ -1913,6 +2274,10 @@ button {
   .booking {
     position: static;
   }
+
+  .consult-band-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 860px) {
@@ -1967,6 +2332,14 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .country-switch {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .market-perks {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   .compare {
     grid-template-columns: 1fr;
   }
@@ -1991,6 +2364,21 @@ button {
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .market-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .country-switch,
+  .market-perks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .consult-band-cta .btn {
+    flex: 1 1 auto;
   }
 }
 
@@ -2023,6 +2411,21 @@ button {
 
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .market-grid-2,
+  .market-card-foot,
+  .market-perks,
+  .consult-band-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-card-head {
+    flex-wrap: wrap;
+  }
+
+  .market-potential {
+    order: 3;
   }
 }
 
@@ -2190,13 +2593,20 @@ button {
       <div class="container">
         <div class="section-head section-head--center reveal">
           <p class="eyebrow">Mapa zasięgu dotacji</p>
-          <h2 id="rynki-title">Wybierz rynek docelowy</h2>
-          <p>Aktualny nabór obejmuje cztery największe rynki gamingowe świata poza UE.
-             Kliknij państwo na mapie, aby sprawdzić, dlaczego warto tam wejść z dotacją PMT.</p>
+          <h2 id="rynki-title">Wybierz <span class="hl">rynek docelowy</span> i sprawdź możliwości</h2>
+          <p>Program PMT wspiera wejście z polskim produktem na rynki poza Unią Europejską.
+             Wybierz kraj, aby zobaczyć jego potencjał i dowiedzieć się, jak możemy Ci pomóc.</p>
         </div>
 
         <div class="map-wrap">
-          <div class="map-panel reveal">
+          <div class="map-col reveal">
+            <div class="country-switch" id="countrySwitch" role="tablist" aria-label="Wybór rynku docelowego">
+              <button type="button" data-country="jp" role="tab"><span class="flag"><svg viewBox="0 0 28 20" aria-hidden="true"><use href="#flag-jp"/></svg></span> Japonia</button>
+              <button type="button" data-country="cn" role="tab"><span class="flag"><svg viewBox="0 0 28 20" aria-hidden="true"><use href="#flag-cn"/></svg></span> Chiny</button>
+              <button type="button" data-country="us" role="tab" class="is-active"><span class="flag"><svg viewBox="0 0 28 20" aria-hidden="true"><use href="#flag-us"/></svg></span> USA</button>
+              <button type="button" data-country="gb" role="tab"><span class="flag"><svg viewBox="0 0 28 20" aria-hidden="true"><use href="#flag-gb"/></svg></span> Wielka Brytania</button>
+            </div>
+            <div class="map-panel">
             <div class="map-stage" id="mapStage">
               <svg id="worldMap" viewBox="0 0 1000 394.4" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa świata z zaznaczonymi rynkami: USA, Wielka Brytania, Chiny, Japonia"><path class="map-country" d="M994.8 282.0l0.7 -0.5l0.9 0.8l-0.4 1.5l-1.7 0.3l-1.6 -0.3l-0.2 -1.2l1 -1l1.3 0.4zM0.0 278.0l0.6 -0.2l-0.4 1.4l-0.2 0.1M998.2 280.0l-1.7 0.6l-0.4 -1l1.4 -0.6l0.9 -0.2l1.6 -0.8M0.0 278.0z"/><path class="map-country" d="M594.2 236.0l0.4 0.3l10.1 5.6l0.2 1.6l4 2.8l-1.3 3.4l0.2 1.6l1.8 1v0.8l-0.7 1.6l0.1 0.9l-0.1 1.3l0.9 1.7l1.2 2.8l1 0.6l-2.2 1.6l-3.1 1.1l-1.6 -0.1l-1 0.9h-1.9l-0.8 0.4l-3.3 -0.8l-2.1 0.2l-0.8 -3.7l-0.9 -1.3l-0.6 -0.8l-2.7 -0.5l-1.6 -0.9l-1.7 -0.4l-1.2 -0.5l-1.1 -0.7l-1.5 -3.5l-1.6 -1.6l-0.6 -1.6l0.3 -1.4l-0.5 -2.6l1.1 -0.1l1.1 -1l1 -1.5l0.7 -0.5v-0.9l-0.6 -0.7l-0.2 -1.1l0.8 -0.3l0.2 -1.6l-1.1 -1.6l1 -0.3h3l5.7 -0.2z"/><path class="map-country" d="M475.9 156.5v0.2v0.5v4.2l-9.1 -0.1v7.1l-2.6 0.3l-0.6 1.4l0.5 4h-10.9l-0.6 0.9l0.1 -1.2h0.1l6.2 -0.2l0.4 -1l1.1 -1.2l0.9 -3.9l3.9 -3l1.3 -3.5l0.8 -0.2l1 -2.1l2.3 -0.3l1 0.3h1.3l0.9 -0.6l1.7 -0.1l-0.1 -1.5h0.4z"/><path class="map-country" d="M158.8 97.2h-0.4l-5.4 -2.7l-2 -1.2l-5 -1.2l-1.5 -2.4l0.4 -1.7l-3.6 -1.2l-0.5 -2.2l-3.3 -2.1l-0.1 -1.4l1.5 -1.3v-1.8l-4.8 -1.8l-2.8 -3.1l-1.7 -2l-2.6 -1.3l-1.8 -1.1l-1.5 -1.4l-2.8 0.9l-2.7 1.5l-2.5 -1.8l-1.9 -1.2l-2.7 -0.8l-2.8 -0.1l0.1 -15.8v-10.3l5.2 0.7l4.3 1.3l2.9 0.3l2.5 -1.2l3.3 -0.9l4.2 0.4l4.1 -1.3l4.6 -0.7l1.9 1.2l2 -0.6l0.7 -1.4l1.9 0.3l4.7 2.5l3.7 -1.9l0.4 2.2l3.4 -0.5l1 -0.8l3.4 0.1l4.2 1.2l6.5 1l3.9 0.5l2.7 -0.2l3.7 1.4l-3.9 1.4l5 0.6l7.5 -0.3l2.4 -0.5l3 1.7l3 -1.4l-2.9 -1.2l1.8 -1l3.4 -0.1l2.2 -0.3l2.3 0.7l2.8 1.5l3.1 -0.2l4.9 1.2l4.3 -0.4h4l-0.3 -1.7l2.5 -0.5l4.3 1v2.6l1.8 -2.2l2.2 0.1l1.2 -2.8l-2.9 -1.7l-3.3 -1.2l0.2 -3l3.3 -2l3.7 0.4l2.8 1.2l3.8 3.2l-2.5 1.3l5.2 0.6v2.8l3.7 -2.2l3.3 1.8l-0.8 2.1l2.7 1.9l2.9 -2l2 -2.4l0.1 -3.1l4 0.2l4.1 0.4l3.7 1.4l0.2 1.4l-2.1 1.5l2 1.5l-0.4 1.3l-5.4 2l-3.9 0.4l-2.8 -0.9l-0.9 1.4l-2.7 2.4l-0.8 1.2l-3.2 1.9l-4 0.2l-2.2 1.1l-0.1 1.8l-3.3 0.4l-3.4 2.2l-3 3.2l-1.1 2.2l-0.1 3.2l4.1 0.5l1.2 2.6l1.3 2.1l3.9 -0.6l5.2 1.2l2.7 1.1l2 1.3l3.5 0.7l3 1.2l4.5 0.2l3.1 0.2l-0.5 2.4l0.9 2.8l2 3.1l4.1 2.7l2.2 -0.9l1.5 -2.9l-1.5 -4.4l-1.9 -1.4l4.4 -1.3l3.1 -2l1.6 -1.9l-0.2 -1.9l-1.9 -2.3l-3.4 -2.1l3.3 -2.9l-1.2 -2.5l-1 -4.4l2 -0.6l4.7 0.7l2.9 0.3l2.3 -0.7l2.6 0.9l3.4 1.6l0.8 1.1l5 0.2l-0.1 2.4l0.9 3.5l2.6 0.4l2 1.6l4 -1.5l2.7 -3.1l1.8 -1.3l2.2 2.5l3.6 3.6l3.1 3.3l-1.2 1.7l3.7 1.6l2.5 1.6l4.5 0.7l1.7 0.9l1.1 2.3l2.2 0.4l1.1 1.1l0.2 3.1l-2 1l-2 1l-4.6 1l-3.5 2.3l-4.7 0.4l-5.9 -0.6h-4.2l-2.8 0.2l-2.4 2l-3.5 1.2l-4 3.7l-3.2 2.6l2.3 -0.5l4.5 -3.6l5.8 -2.3l4.2 -0.3l2.4 1.3l-2.6 1.9l0.9 3l0.9 2.1l3.6 1.4l4.6 -0.4l2.8 -3.1l0.2 2l1.8 1l-3.5 1.8l-6.1 1.6l-2.8 1.2l-3.1 2l-2.1 -0.2l-0.1 -2.4l4.8 -2.3l-4.4 0.1l-3.1 0.4l-1.8 -1.6v-3.8l-1.2 -0.8l-1.9 0.5l-0.9 -0.8l-2.1 2.1l-0.9 2.2l-1 1.3l-1.2 0.4l-0.8 0.1l-0.3 0.7h-5.1h-4.3l-1.2 0.5l-3 2l-0.3 0.3l-0.9 1h-2.5l-2.8 0.1l-1.2 0.4l0.4 0.5l0.3 0.9l-0.1 0.3l-3.6 1.3l-2.9 0.5l-3.2 1.5h-0.7l-0.9 -0.5l-0.3 -0.4v-0.3l0.6 -0.9l1.3 -1.6l0.8 -1.6l-0.5 -2.4l-0.6 -2.5l-2.9 -1.3l0.3 -0.5l-0.4 -0.4h-0.7l-0.6 -0.4l-0.1 -0.7l-0.6 0.3l-0.7 -0.1l0.2 -0.2l-0.7 -0.3l-0.3 -0.7l-2.1 -0.9l-2.3 -1l-2.7 -1l-2.6 -1l-2.5 0.7l-0.9 0.1l-3.4 -0.8l-2.3 0.4l-2.6 -0.9l-2.9 -0.4l-1.9 -0.2l-0.9 -0.4l-0.5 -1.6l-0.9 0.1v1h-5.8h-9.5h-9.4h-8.4h-8.3h-8.2h-8.5h-2.7h-8.2h-7.9zM266.7 59.9l2.1 -1.3h3.8l-0.1 0.5l-3.2 1.6l-2 -0.1l-0.6 -0.7zM278.4 31.1l-3.1 -1.5l0.2 -1l1.3 -0.2l6.4 0.3l4.7 1.6l0.3 0.7h-3l-3 -0.1l-3 0.4l-0.8 -0.2zM276.9 60.9l1.1 -0.9l1.1 0.1l0.7 0.6l-1.1 1.4l-1.2 -0.2l-0.7 -0.8l0.1 -0.2zM240.0 25.1l-1.5 1l-4.1 -0.2l-3.3 -0.7l1.4 -1.3l4 -0.7l2.5 1l1 0.9zM239.3 18.0l-1.2 0.1l-5.2 -0.2l-0.8 -0.8l5.6 0.1l2 0.5l-0.4 0.3zM231.2 14.5l3.4 1l-0.8 1l-4.1 0.6l-2.3 -0.7l-1.2 -1l-0.2 -1.2l3.6 0.2l1.6 0.1zM255.1 26.7l-4.4 -0.4l-7.4 -0.8l-1 -1.6l-0.3 -1.4l-2.8 -1.2l-5.8 -0.3l-3.2 -0.9l1.1 -1.1l5.7 0.2l3.1 0.9h5.4l2.4 0.9l-0.6 1l3.2 0.6l1.8 0.7l3.7 0.1l4.1 0.3l4.4 -0.6l5.6 -0.3l4.5 0.2l3 1.1l0.6 1.1l-1.7 0.8l-4.1 0.5l-3.6 -0.3l-8 0.4l-5.7 0.1zM190.9 16.2l4 0.5l-1 0.8l-5.2 0.8l-4.1 -0.9l2.3 -0.9l4 -0.3zM191.8 14.4l3.6 0.6l-3.4 0.5h-4.6v-0.4l2.9 -0.8l1.5 0.1zM345.6 90.8l-1.5 1.7l-1.9 2.5l1.8 -1l1.9 0.6l-1 1l2.5 0.8l1.3 -0.7l2.8 0.8l-0.9 2.1l1.9 -0.5l0.4 1.5l0.9 1.7l-1.2 2.4l-1.3 0.1l-1.8 -0.5l0.6 -2.3l-0.8 -0.3l-3.2 2.4l-1.6 -0.1l1.9 -1.3l-2.7 -0.7l-2.9 0.2l-5.4 -0.1l-0.5 -0.8l1.8 -1l-1.2 -0.8l2.3 -1.6l2.9 -4.5l1.7 -1.5l2.4 -1l1.3 0.1l-0.5 0.8zM267.0 52.5l3 0.9l3.2 0.9l0.3 1.3l2 -0.2l2 0.9l-2.5 0.9l-4.3 -0.7l-1.6 -1.2l-2.7 1.5l-4 1.4l-0.9 -1.6l-3.8 0.2l2.4 -1.3l0.4 -2.2l0.9 -2.6l2 0.3l0.6 1.2l1.4 -0.5l1.6 0.8zM281.2 32.4l2.6 -1.2l6.2 1.5l3.8 1.3l0.4 1.2l5.1 -0.6l2.9 1.7l6.7 1.1l2.4 1.2l2.7 2.6l-5.1 1.2l6.5 1.9l4.4 0.6l4 2.5l4.4 0.2l-0.9 2l-4.8 3.2l-3.5 -1.2l-4.3 -2.7l-3.6 0.4l-0.4 1.6l2.9 1.6l3.8 1.3l1.2 0.7l1.8 2.7l-1 2l-3.5 -0.7l-7 -2.2l4 2.4l2.9 1.6l0.4 1l-7.5 -1.1l-6 -1.6l-3.4 -1.4l1 -0.8l-4.1 -1.4l-4.1 -1.3l0.1 0.8l-8.1 0.4l-2.3 -0.9l1.8 -2.1h5.2l5.8 -0.4l-1 -1l1 -1.4l3.6 -2.7l-0.8 -1.2l-1 -1l-4.3 -1.3l-5.6 -0.9l1.8 -0.7l-3 -1.8l-2.4 -0.1l-2.2 -1l-1.5 0.8l-5 0.4l-10.2 -0.6l-5.8 -0.8l-4.5 -0.5l-2.3 -0.9l2.9 -1.3h-4l-0.9 -2.8l2.2 -2.5l2.8 -1.1l7.2 -0.8l-2 1.8l2.1 1.8l2.6 -2.3l7 -1.1l4.8 2.8l-0.4 1.9l5.5 -0.8zM237.5 27.4l5.8 0.1l5.3 0.7l-4.2 2.4l-3.3 0.6l-3 2.1l-3.1 -0.1l-1.8 -2.5l0.1 -1.4l1.4 -1.1l2.8 -0.8zM158.7 21.9l4.8 -2.1l5.7 -1.8l4.2 0.1l3.8 -0.4l-0.4 2.1l-2.1 1l-2.6 0.1l-5.2 1.2l-4.4 0.4l-3.8 -0.6zM131.4 83.2l2.6 -0.2l-0.8 3.2l2.4 2.2h-1.1l-1.7 -1.3l-1 -1.3l-1.4 -0.8l-0.5 -1.3l0.2 -0.8l1.3 0.3zM207.0 13.0l5.4 0.4l7.5 1l2.2 1.4l1 1.1l-4.5 -0.3l-4.6 -0.9l-6.2 -0.1l2.7 -0.8l-3.3 -0.7l-0.2 -1.1zM156.9 98.6l-1.4 0.4l-4.5 -1.3l-0.9 -1l-2.5 -0.9l-0.5 -0.8l-2.8 -0.5l-1.1 -1.6l0.3 -0.6l2.9 0.6l1.7 0.4l2.6 0.3l0.9 1l1.4 1.3l2.8 1.1l1.1 1.6zM162.4 26.5l4 0.6l7.1 0.2l2.7 0.8l2.9 1.1l-3.5 0.7l-6.8 2l-3.4 1.9v1.2l-7.3 1.4l-1.5 -1.2l-6.4 -1.5l1.2 -1.2l1.9 -2l2.4 -1.8l-2.7 -1.7l9.4 -0.5zM200.5 22.7l2.5 -0.5l2.9 0.1l0.5 1.4l-1.7 1.3l-9.4 0.4l-7 1.2l-4.3 0.1l-0.3 -0.9l5.8 -1.3l-12.6 0.4l-3.9 -0.5l3.8 -2.7l2.6 -0.8l7.9 0.9l4.9 1.7l4.8 0.2l-3.9 -2.7l2.5 -1l2.9 0.3l0.9 1.4l1.1 1zM204.1 30.3l3.1 1.2l1.8 2.7l0.8 1.9l4.7 1.4l5 1.3l-0.3 1.2l-4.6 0.3l1.8 1l-0.9 1.1l-5.1 -0.5l-4.7 -0.7l-3.3 0.1l-5.2 1l-7 0.4l-5 0.3l-1.5 -1.4l-3.8 -0.7l-2.4 0.3l-3.4 -2.2l1.8 -0.3l4.3 -0.5l3.9 0.2l3.6 -0.5l-5.3 -0.7l-6 0.2h-3.9l-1.5 -1l6.5 -1.1h-4.3l-4.9 -0.7l2.4 -2.1l1.9 -1.1l7.4 -1.7l2.9 0.5l-1.4 1.3l6.2 -0.8l3.8 1.4l3.2 -1.4l2.5 0.9l2.3 2.7l1.4 -1.1l-2 -2.9l2.4 -0.4l2.8 0.4zM221.0 31.4l-3.1 -1.8l3.3 -1.4l3.3 0.6l5 -0.4l0.7 0.9l-2.6 1.3l4.2 1.2l-0.5 2.5l-4.5 1.1l-2.7 -0.3l-1.9 -1l-6.9 -2.2v-0.9l5.7 0.4zM203.9 28.9l3.7 -0.1l2.1 0.6l-2.4 1.8l-4.4 -1.9l1 -0.4zM226.4 20.2l2.1 1.3l0.1 1.4l-1.3 2.1l-4.5 0.3l-3 -0.5v-1.6l-4.5 0.2l-0.2 -2.1l3 0.1l4.2 -1l3.9 0.2l0.2 -0.4zM233.3 9.4l1.9 -0.8l2.9 -0.2l-1.3 -0.6l6.5 -0.2l3.6 1.5l4.6 0.6l4.6 0.5l2.2 1.9l3.3 0.9l-3.8 0.8l-5.1 2.1l-4.9 0.2l-5.8 -0.4l-3 -1.1l0.1 -1l2.2 -0.8l-5.1 0.1l-3.1 -1l-1.7 -1.2l1.9 -1.3zM245.6 5.8l4.1 -0.5l3.3 -0.1l5.4 -0.4l4.1 -1.1l3.4 0.2l3 0.8l2.2 -1.5l3.6 -0.5l5 -0.3l8.5 -0.1l1.5 0.3l8 -0.5l6 0.2l6 0.2l7.4 0.2l6 0.4l5.1 0.7l-0.1 0.7l-6.8 1.3l-6.7 0.5l-2.5 0.6h6l-6.5 1.7l-4.6 0.8l-4.7 2.3l-5.8 0.4l-1.7 0.6l-8.4 0.3l3.8 0.3l-1.9 0.5l2.3 1.4l-2.7 1l-4.3 0.7l-1.3 1.1l-3.9 0.9l0.4 0.6l4.8 -0.1v0.7l-7.4 1.6l-7.2 -0.7l-8.2 0.4l-4.1 -0.3l-5.3 -0.2l-0.3 -1.3l5.1 -0.6l-1.4 -2.1l1.7 -0.1l7.5 1.1l-3.8 -1.7l-4.5 -0.6l2.2 -1l4.9 -0.7l0.8 -1l-3.9 -1.1l-1.2 -1.4l7.6 0.1l2.2 0.3l4.3 -1l-6.2 -0.3l-9.7 0.2l-4.9 -1l-2.4 -1.1l-3.2 -0.8l-0.6 -1zM291.1 46.0l-1.8 0.8l-3.2 0.1l-0.6 -1.3l1.1 -1.6l2.6 -0.4l2.2 0.8v1.2l-0.3 0.4zM232.6 40.3l1.7 1.1l-1.7 0.9l-3.8 -0.8l-2.2 0.3l-3.8 -1.2l2.4 -0.9l2 -1.2l2.9 0.8l1.7 0.5l0.8 0.5zM320.8 94.8l0.9 -0.2l3.7 0.7l2.8 1.1l0.1 0.5l-1.3 0.1l-3.6 -0.9l-2.6 -1.3zM322.2 102.7l1 1.3l2 0.4l2.5 -0.1l-1.3 1.2l-1 0.1l-3.6 -1.1l-0.7 -1l1.1 -0.8z"/><path class="map-country map-target" id="map-us" data-country="us" d="M158.8 97.2h7.9h8.2h2.7h8.5h8.2h8.3h8.4h9.4h9.5h5.8v-1l0.9 -0.1l0.5 1.6l0.9 0.4l1.9 0.2l2.9 0.4l2.6 0.9l2.3 -0.4l3.4 0.8l0.9 -0.1l2.5 -0.7l2.6 1l2.7 1l2.3 1l2.1 0.9l0.3 0.7l0.7 0.3l-0.2 0.2l0.7 0.1l0.6 -0.3l0.1 0.7l0.6 0.4h0.7l0.4 0.4l-0.3 0.5l2.9 1.3l0.6 2.5l0.5 2.4l-0.8 1.6l-1.3 1.6l-0.6 0.9v0.3l0.3 0.4l0.9 0.5h0.7l3.2 -1.5l2.9 -0.5l3.6 -1.3l0.1 -0.3l-0.3 -0.9l-0.4 -0.5l1.2 -0.4l2.8 -0.1h2.5l0.9 -1l0.3 -0.3l3 -2l1.2 -0.5h4.3h5.1l0.3 -0.7l0.8 -0.1l1.2 -0.4l1 -1.3l0.9 -2.2l2.1 -2.1l0.9 0.8l1.9 -0.5l1.2 0.8v3.8l1.8 1.6l0.5 0.9l-3 1.3l-2.8 1l-3 0.8l-1.4 1.6l-0.5 0.7v1.4l0.9 1.5l1.1 0.1l-0.3 -1l0.9 0.6l-0.2 0.8l-1.9 0.4h-1.4l-2 0.5l-1.2 0.1l-1.6 0.1l-2.3 0.8l4 -0.5l0.9 0.5l-3.9 0.9h-1.8l0.1 -0.4l-0.9 0.8l0.9 0.1l-0.6 2l-2.1 2.2l-0.2 -0.7l-0.6 -0.2l-0.9 -0.7l0.6 1.5l0.7 0.5v1.1l-0.9 1l-1.5 2.3l-0.3 -0.2l0.9 -1.8l-1.5 -1.1l-0.3 -2.3l-0.5 1.2l0.6 1.7l-1.9 -0.4l2 0.9l0.1 2.6l0.8 0.2l0.3 1l0.3 2.8l-1.7 2l-2.9 0.9l-1.8 1.6l-1.4 0.2l-1.4 1l-0.4 0.9l-3.1 1.8l-1.5 1.4l-1.3 1.6l-0.5 2l0.5 1.9l1 2.4l1.2 1.9v1.2l1.3 3.3l-0.1 1.8l-0.1 1.1l-0.7 1.7l-0.8 0.4l-1.4 -0.4l-0.4 -1.2l-1.1 -0.6l-1.4 -2.4l-1.3 -2.1l-0.5 -1.1l0.6 -1.9l-0.8 -1.5l-2.1 -2.3l-1.1 -0.4l-2.8 1.2l-0.5 -0.1l-1.4 -1.3l-1.7 -0.7l-3.1 0.3l-2.5 -0.3l-2.1 0.2l-1.2 0.5l0.5 0.7v1.1l0.6 0.6l-0.6 0.3l-1 -0.4l-1 0.6l-2 -0.1l-2.1 -1.5l-2.4 0.3l-2.1 -0.6l-1.7 0.2l-2.3 0.6l-2.6 2.1l-2.7 1.2l-1.5 1.3l-0.7 1.3v1.9l0.1 1.3l0.6 1l-1.1 0.1l-2 -0.7l-2.2 -0.8l-0.7 -1.3l-0.6 -2l-1.7 -1.6l-0.9 -1.6l-1.4 -1.9l-2 -1.1l-2.3 0.1l-1.7 2.2l-2.3 -0.9l-1.5 -0.8l-0.6 -1.5l-1 -1.5l-1.6 -1.2l-1.4 -0.9l-1.1 -1h-4.8v1.2h-2.2h-5.5l-6.3 -2l-4.2 -1.3l0.2 -0.6l-3.5 0.3l-3.2 0.3l-0.4 -1.5l-1.8 -1.6l-1.3 -0.3l-0.3 -0.8l-1.6 -0.1l-1 -0.8l-2.6 -0.3l-0.7 -0.4l-0.3 -1.5l-2.7 -2.8l-2.3 -3.9l0.1 -0.6l-1.2 -0.9l-2.2 -2.4l-0.4 -2.2l-1.4 -1.5l0.6 -2.3l-0.1 -2.4l-0.9 -2.2l1.1 -2.6l0.3 -2.5l0.3 -2.5l-0.5 -3.7l-0.8 -2.4l-0.8 -1.3l0.3 -0.6l4 1l1.5 2.6l0.7 -0.7l-0.5 -2.3l-0.9 -2.3zM68.3 177.6l0.5 0.2l0.5 0.4l0.7 0.9l-0.1 0.2l-1.1 0.6l-0.9 0.4l-0.4 0.5l-0.7 -0.4l0.1 -0.8l-0.4 -1l0.1 -0.3l0.5 -0.5l-0.2 -0.5l0.2 -0.3l0.2 0.1l1 0.5zM66.7 175.7l-0.2 0.3l-1 0.2l-0.5 -0.6l-0.3 -0.2v-0.2l0.3 -0.2l1 0.2l0.7 0.5zM64.6 174.5l-0.1 0.3l-1.5 -0.1l0.2 -0.3l1.4 0.1zM61.0 173.0l0.3 0.2l0.8 0.9l-0.2 0.2l-0.2 -0.1l-0.9 -0.1l-0.4 -0.6l-0.1 -0.1l0.7 -0.4zM57.3 171.6l0.1 0.7l-0.4 0.2l-0.9 -0.5l0.2 -0.2l0.4 -0.2h0.6zM37.6 65.6l2.2 0.3l0.3 1l-1.7 0.4l-1.9 -0.5l-1.6 -0.7l2.7 -0.5zM74.4 72.3l1.8 0.2l1.2 0.9l-2.4 1.3l-2.8 1l-1.4 -0.7l-0.4 -1.3l2.5 -1l1.5 -0.4zM108.4 39.7v10.3l-0.1 15.8l2.8 0.1l2.7 0.8l1.9 1.2l2.5 1.8l2.7 -1.5l2.8 -0.9l1.5 1.4l1.8 1.1l2.6 1.3l1.7 2l2.8 3.1l4.8 1.8v1.8l-1.5 1.3l-1.5 -1l-2.5 -0.9l-0.8 -2.4l-3.5 -2.3l-1.5 -2.6l-2.7 -0.2l-4.4 -0.1l-3.3 -0.8l-5.7 -2.9l-2.7 -0.5l-4.8 -1l-3.9 0.3l-5.4 -1.3l-3.3 -1.2l-3.1 0.6l0.5 1.9l-1.5 0.2l-3.2 0.6l-2.5 0.9l-3 0.6l-0.4 -1.6l1.2 -2.8l3 -0.8l-0.8 -0.7l-3.5 1.5l-1.9 1.9l-4 2l2 1.3l-2.6 2l-3 1.2l-2.8 0.8l-0.7 1.3l-4.3 1.4l-0.9 1.3l-3.2 1.2l-1.9 -0.2l-2.6 0.7l-2.9 1l-2.3 0.9l-4.7 0.8l-0.5 -0.5l3.1 -1.3l2.7 -0.8l2.9 -1.5l3.5 -0.3l1.4 -1.2l3.8 -1.6l0.6 -0.6l2.1 -1l0.5 -2.1l1.4 -1.6l-3.2 0.8l-0.9 -0.5l-1.5 1l-1.8 -1.4l-0.8 1l-1 -1.4l-2.8 1.2h-1.7l-0.2 -1.7l0.5 -1l-1.8 -1l-3.6 0.5l-2.4 -1.3l-1.9 -0.6v-1.6l-2.1 -1.2l1 -1.6l2.3 -1.5l1 -1.5l2.2 -0.2l1.9 0.5l2.3 -1.4l2 0.3l2.1 -0.9l-0.5 -1.3l-1.6 -0.5l2.1 -1h-1.7l-3 0.6l-0.8 0.6l-2.2 -0.6l-3.9 0.3l-4.1 -0.7l-1.2 -1.1l-3.5 -1.6l3.9 -1.1l6.2 -1.4h2.3l-0.4 1.4l5.9 -0.1l-2.3 -1.7l-3.4 -1.1l-1.9 -1.4l-2.7 -1.2l-3.8 -0.9l1.5 -1.4l5 -0.1l3.5 -1.3l0.6 -1.3l2.9 -1.3l2.7 -0.4l5.2 -1.2l2.6 0.2l4.3 -1.5l4.2 0.6l2 1.3l1.2 -0.6l4.7 0.2l-0.2 0.6l4.3 0.5l2.8 -0.3l5.9 0.9l5.3 0.3l2.1 0.3l3.7 -0.4l4.3 0.8l3 0.4zM23.0 56.2l1.7 0.5l1.7 -0.3l2.3 0.7l2.7 0.4l-0.2 0.3l-2.1 0.6l-2.1 -0.6l-1.1 -0.5l-2.4 0.2l-0.7 -0.3l0.2 -1z"/><path class="map-country" d="M742.7 96.6l-2.2 1.9l-2.3 0.2l-0.1 2.8l-1.5 1.3l-5.5 -0.9l-2 4.9l-1.5 0.7l-5.5 1.1l2.5 4.8l-1.9 0.7l0.2 1.6l-1.7 -0.4l-1.4 -1l-4.1 -0.3l-4.6 -0.1l-1 0.3l-4 -1.1l-1.5 0.5l-0.5 1.7l-4.5 -1l-1.9 0.4l-0.6 1.2l-1.6 0.5l-3.6 2l-1.3 2h-1l-0.8 -1.3l-3.5 -0.1l-0.6 -2.3h-1.3l0.2 -2.8l-3.3 -2l-4.8 0.2l-3.2 0.4l-2.7 -2.5l-2.3 -1.1l-4.3 -2l-0.5 -0.2l-7.1 1.6l0.1 10.3l-1.5 0.1l-1.9 -2.2l-1.9 -0.7l-3.1 0.5l-1.3 1l-0.1 -0.7l0.7 -1.2l-0.6 -0.9l-3.2 -1l-1.2 -2.5l-1.6 -0.7l-0.1 -0.9l2.7 0.3l0.1 -2.1l2.4 -0.4l2.4 0.4l0.5 -2.7l-0.5 -1.7l-2.7 0.1l-2.4 -0.7l-3.2 1.3l-2.6 0.5l-1.4 -0.4l0.3 -1.4l-1.8 -1.9l-2.1 0.1l-2.3 -1.9l1.6 -2.1l-0.8 -0.6l2.2 -3l2.8 1.6l0.4 -2l5.7 -3.1h4.4l6.1 1.9l3.3 1.1l2.9 -1.2h4.4l3.6 1.4l0.8 -0.8l3.9 0.1l0.7 -1.3l-4.5 -1.9l2.6 -1.4l-0.5 -0.7l2.7 -0.7l-2 -1.9l1.3 -1l10.3 -0.9l1.4 -0.7l7 -1.1l2.5 -1.1l4.9 0.6l0.9 2.9l2.9 -0.7l3.6 0.9l-0.2 1.5l2.6 -0.1l7 -2.6l-1 0.8l3.5 2.2l6.2 7l1.5 -1.4l3.8 1.6l4 -0.7l1.6 0.5l1.3 1.6l1.9 0.5l1.2 1.2l3.6 -0.4l1.5 1.7z"/><path class="map-country" d="M655.5 118.6l-0.1 -10.3l7.1 -1.6l0.5 0.2l4.3 2l2.3 1.1l2.7 2.5l3.2 -0.4l4.8 -0.2l3.3 2l-0.2 2.8h1.3l0.6 2.3l3.5 0.1l0.8 1.3h1l1.3 -2l3.6 -2l1.6 -0.5l0.8 0.3l-2.3 1.8l2.1 1l1.9 -0.6l3.3 1.4l-3.5 2l-2.1 -0.3l-1.2 0.1l-0.4 -0.8l0.6 -1.2l-3.7 0.6l-0.9 1.8l-1.3 1.5l-2.3 -0.1l-0.8 1.2l2.1 0.7l0.6 2l-1.6 2.9l-2.1 -0.6l-1.5 -0.1v-1.7l-3.6 -1.1l-3 -1.4l-1.8 -1.3l-3.1 -1.9l-1.4 -2.9l-0.9 -0.5l-3 0.1l-1.1 -0.5l-0.3 -2.3l-3.7 -1.4l-2.4 1.6l-2.4 1l0.5 1.3l-3.1 0.1z"/><path class="map-country" d="M891.7 240.6l4.8 1.9l5.1 1.6l1.9 1.4l1.6 1.4l0.4 1.6l4.6 1.7l0.7 1.5l-2.6 0.3l0.7 1.9l2.4 1.8l1.8 2.9l1.6 -0.1l-0.1 1.3l2.2 0.4l-0.9 0.6l3 1.1l-0.3 0.8l-1.9 0.2l-0.6 -0.7l-2.4 -0.3l-2.8 -0.4l-2.2 -1.8l-1.6 -1.5l-1.4 -2.5l-3.6 -1.2l-2.4 0.8l-1.7 0.9l0.4 2.1l-2.2 0.9l-1.6 -0.4l-2.8 -0.1l-0.1 -9.1v-9zM924.0 243.5l1.1 0.9l0.3 1.4l-0.9 0.8l-0.5 -1.7l-0.7 -1l-1.2 -0.9l-1.6 -1.2l-2 -0.9l0.8 -0.6l1.5 0.8l0.9 0.6l1.2 0.6l1.1 1.2zM920.3 249.6l-1.5 0.6l-1.5 0.7h-1.4l-2.3 -0.8l-1.6 -0.8l0.2 -0.9l2.5 0.4l1.5 -0.2l0.5 -1.3l0.4 -0.1l0.2 1.5l1.6 -0.2l0.8 -1l1.5 -1l-0.3 -1.6h1.7l0.6 0.4l-0.1 1.6l-0.9 1.7l-1.5 0.2l-0.4 0.8zM929.9 248.2l0.8 0.6l1.4 1.8l1.3 0.9l-0.4 0.8l-0.8 0.3l-1.2 -1.1l-1.2 -1.8l-0.6 -2.1l0.4 -0.3l0.3 0.9z"/><path class="map-country" d="M891.7 240.6v9l0.1 9.1l-2.5 -2.3l-2.8 -0.6l-0.7 0.8l-3.5 0.1l1.1 -2.3l1.8 -0.7l-0.7 -3.1l-1.4 -2.3l-5.4 -2.3l-2.2 -0.3l-4.2 -2.5l-0.8 1.3l-1.1 0.3l-0.6 -1.1v-1.2l-2.2 -1.3l3 -1h2l-0.2 -0.7h-4.1l-1.1 -1.7l-2.5 -0.5l-1.1 -1.4l3.7 -0.6l1.4 -0.9l4.5 1.1l0.4 1l0.8 4.5l2.9 1.7l2.3 -3l3.2 -1.6h2.4l2.4 0.9l2.1 1l3 0.6zM847.1 258.0l0.3 0.6l0.1 0.8l-1.8 2.1l-2.4 0.6l-0.4 -0.3l0.3 -1l1.2 -1.7l2.7 -1.1zM872.8 252.5l-0.3 -2.1l0.5 -1l0.6 -0.9l0.6 0.8v1.3l-1.4 1.9zM827.4 221.8l-1.5 2.5l2 2.7l-0.5 1.3l3.1 2.5l-3.2 0.4l-1 1.8l0.1 2.6l-2.6 1.9l-0.1 2.7l-1.1 4.3l-0.4 -1l-3.1 1.2l-1.1 -1.7l-2 -0.1l-1.4 -0.9l-3.3 1l-1 -1.3l-1.8 0.1l-2.3 -0.3l-0.5 -3.7l-1.3 -0.8l-1.4 -2.4l-0.4 -2.4l0.4 -2.6l1.6 -1.8l0.5 1.8l1.9 1.6l1.8 -0.6l1.7 0.2l1.7 -1.4l1.3 -0.2l2.6 0.8l2.3 -0.6l1.4 -3.9l1.1 -1l0.9 -3.1h3.2l2.4 0.4zM859.4 241.1l3 0.8l1 2.2l-2.3 -1.2l-2.3 -0.2l-1.6 0.2l-1.9 -0.1l0.6 -1.6l3.5 -0.1zM852.4 243.9l-1.9 -0.5l-0.5 -1.2l2.8 -0.2l0.7 0.9l-1.1 1zM855.4 227.3l0.2 1.5l1.6 0.3l0.3 1.1l-0.2 2.4l-1.4 -0.3l-0.4 1.7l1.1 1.5l-0.8 0.3l-1.1 -1.7l-0.8 -3.6l0.5 -2.2l1 -1zM841.5 230.9l3.2 -0.1l2.7 -2l0.5 0.6l-2.2 2.7l-2.1 0.6l-2.7 -0.6l-4.6 0.2l-2.5 0.4l-0.4 2.1l2.5 2.4l1.5 -1.2l5.2 -1l-0.2 1.3l-1.2 -0.4l-1.2 1.6l-2.5 1.1l2.6 3.6l-0.5 0.9l2.5 3.2v1.9l-1.5 0.8l-1.1 -1l1.4 -2.3l-2.7 1.1l-0.7 -0.8l0.3 -1l-2 -1.7l0.2 -2.7l-1.8 0.9l0.2 3.2l0.1 4l-1.7 0.4l-1.2 -0.8l0.8 -2.6l-0.5 -2.7h-1.1l-0.9 -1.9l1.2 -1.8l0.4 -2.2l1.3 -4.2l0.6 -1.1l2.4 -2.1l2.2 0.8l3.5 0.4zM834.1 261.8l-3.6 -1.9l2.6 -0.6l1.4 0.9l1 0.8l-0.2 0.8h-1.2zM837.1 257.0l1.8 -0.2l2.5 -1l-0.4 1.6l-4.2 0.8l-3.7 -0.4v-1l2.2 -0.6l1.8 0.8zM828.5 256.6l1.7 -0.3l0.7 1.2l-3.2 0.6l-1.9 0.3h-1.5l0.9 -1.6h1.6l0.7 -1l1 0.8zM801.3 251.2l0.4 1l5.4 0.2l0.6 -1.1l5.1 1.3l1 1.8l4.2 0.5l3.4 1.7l-3.2 1l-3 -1.1l-2.5 0.1l-2.9 -0.2l-2.6 -0.5l-3.2 -1.1l-2.1 -0.2l-1.1 0.3l-5.1 -1.1l-0.5 -1.2l-2.5 -0.2l1.9 -2.7l3.4 0.2l2.2 1.1l1.1 0.2zM789.9 236.3l0.5 2l1 1.5l2 0.3l1.3 1.7l-0.7 3.5l-0.1 4.3h-3l-2.4 -2.3l-3.5 -2.2l-1.2 -1.7l-2.1 -2.3l-1.4 -2.1l-2.1 -3.9l-2.5 -2.3l-0.8 -2.4l-1 -2.1l-2.5 -1.8l-1.5 -2.4l-2.1 -1.5l-2.9 -3.1l-0.2 -1.4l1.8 0.1l4.3 0.6l2.4 2.7l2.2 1.9l1.5 1.1l2.7 3h2.8l2.3 1.9l1.6 2.4l2.1 1.2l-1.1 2.3l1.6 1h1z"/><path class="map-country" d="M309.4 379.5l1 1.3l1.4 2.1l3.6 1.7l3.9 0.7l-1.2 1.4l-2.7 0.1l-1.4 -1h-1.7l-2.9 -0.1v-6.2zM339.9 317.3l-0.7 2.2l-0.7 2.8v2.8l-0.6 0.6l-0.2 1.8l-0.2 1.5l3.5 2.4l-0.3 1.9l1.7 1.2l-0.1 1.3l-2.7 3.6l-4.1 1.5l-5.6 0.6l-3.1 -0.3l0.6 1.6l-0.5 2.1l0.5 1.4l-1.7 1l-2.8 0.4l-2.7 -1l-1.1 0.7l0.4 2.8l1.9 0.8l1.5 -0.9l0.8 1.5l-2.5 0.8l-2.3 1.8l-0.4 2.7l-0.6 1.5h-2.6l-2.2 1.5l-0.8 2l2.7 2.1l2.7 0.5l-1 2.5l-3.3 1.6l-1.8 3.3l-2.5 1.1l-1.1 1.3l0.8 2.8l1.9 1.7l-1.2 -0.2l-2.5 -0.4l-6.8 -0.4l-1.1 -1.6v-2.1l-1.8 0.2l-1 -1l-0.2 -3l2.1 -1.2l0.9 -1.8l-0.3 -1.4l1.4 -2.3l1 -3.7l-0.3 -1.6l1.3 -0.6l-0.3 -1l-1.3 -0.6l0.9 -1.1l-1.3 -1.1l-0.6 -3.2l1.1 -0.6l-0.5 -3.3l0.7 -2.9l0.7 -2.5l1.7 -1l-0.8 -2.7l-0.1 -2.5l2.1 -1.9v-2.3l1.6 -2.7v-2.5l-0.7 -0.5l-1.3 -4.8l1.7 -2.9l-0.3 -2.7l1 -2.5l1.8 -2.6l2 -1.7l-0.8 -1.1l0.5 -0.9v-4.7l3 -1.3l0.9 -2.9l-0.3 -0.7l2.3 -2.5l3.6 0.7l1.7 2l1.1 -2.3l3.1 0.1l0.5 0.6l5.1 4.6l2.3 0.4l3.3 2l2.9 1.1l0.4 1.3l-2.7 4.2l2.8 0.7l3.1 0.5l2.2 -0.5l2.5 -2.1l0.5 -2.5l1.3 -0.5l1.4 1.6v2.2l-2.4 1.6l-1.8 1.1l-3.2 2.7l-3.7 3.8z"/><path class="map-country" d="M309.4 379.5v6.2l2.9 0.1h1.7l-0.9 1.2l-2.4 0.8l-1.4 -0.1l-1.6 -0.2l-2 -0.8l-2.9 -0.4l-3.5 -1.6l-2.9 -1.5l-3.8 -3.1l2.3 0.6l3.9 1.8l3.7 1l1.4 -1.2l0.9 -1.9l2.6 -1.2l2 0.3zM306.7 282.2l1.4 1.9l0.3 2l1.5 1.1l-0.9 2.7l1.5 3.1l1.1 3.9l2 -0.4l0.3 0.7l-0.9 2.9l-3 1.3v4.7l-0.5 0.9l0.8 1.1l-2 1.7l-1.8 2.6l-1 2.5l0.3 2.7l-1.7 2.9l1.3 4.8l0.7 0.5v2.5l-1.6 2.7v2.3l-2.1 1.9l0.1 2.5l0.8 2.7l-1.7 1l-0.7 2.5l-0.7 2.9l0.5 3.3l-1.1 0.6l0.6 3.2l1.3 1.1l-0.9 1.1l1.3 0.6l0.3 1l-1.3 0.6l0.3 1.6l-1 3.7l-1.4 2.3l0.3 1.4l-0.9 1.8l-2.1 1.2l0.2 3l1 1l1.8 -0.2v2.1l1.1 1.6l6.8 0.4l2.5 0.4h-2.4l-1.4 0.7l-2.5 1l-0.4 2.6h-1.2l-3.1 -0.9l-3.2 -1.9l-3.5 -1.6l-0.9 -1.8l0.8 -1.6l-1.4 -1.8l-0.3 -4.8l1.2 -2.6l2.9 -2.2l-4.2 -0.8l2.6 -2.4l1 -4.7l3.1 1l1.4 -5.7l-1.9 -0.8l-0.8 3.5l-1.8 -0.4l0.9 -4l0.9 -5.1l1.3 -1.9l-0.8 -2.7l-0.2 -3.2h1.2l1.7 -4.5l1.9 -4.5l1.2 -4.1l-0.7 -4.2l0.9 -2.3l-0.4 -3.4l1.6 -3.4l0.5 -5.4l0.9 -5.7l0.9 -6.2l-0.2 -4.6l-0.6 -3.9l1.5 -0.7l0.7 -1.4z"/><path class="map-country" d="M581.5 245.8l0.5 2.6l-0.3 1.4l0.6 1.6l1.6 1.6l1.5 3.5l-1.1 -0.3l-3.7 0.5l-0.8 0.3l-0.8 1.8l0.6 1.2l-0.4 3.3l-0.4 2.8l0.8 0.5l1.9 1.1l0.8 -0.5l0.2 3l-2.1 -0.1l-1.2 -1.5l-1 -1.2l-2.1 -0.4l-0.6 -1.4l-1.7 0.9l-2.3 -0.4l-0.9 -1.3l-1.8 -0.2h-1.3l-0.1 -0.8l-1 -0.1l-1.2 -0.2l-1.8 0.4h-1.2l-0.7 0.2l0.2 -3.3l-0.9 -1l-0.2 -1.7l0.4 -1.7l-0.6 -1.1v-1.7h-3.4l0.2 -1h-1.4l-0.1 0.5l-1.8 0.1l-0.7 1.6l-0.4 0.7l-1.5 -0.4l-0.9 0.4l-1.9 0.2l-1 -1.4l-0.7 -0.9l-0.8 -1.7l-0.6 -2l-8.2 -0.1l-1 0.4l-0.8 -0.1l-1.2 0.4l-0.4 -0.9l0.7 -0.3l0.1 -1.2l0.5 -0.7l1 -0.6l0.7 0.3l1 -1.1l1.5 0.1l0.2 0.7l1 0.5l1.6 -1.7l1.7 -1.4l0.7 -0.8l-0.1 -2.3l1.2 -2.7l1.2 -1.5l1.9 -1.3l0.3 -0.9l0.1 -1l0.4 -1l-0.1 -1.5l0.3 -2.5l0.6 -1.7l0.8 -1.5l0.2 -1.7l0.2 -1.9l1.1 -1.4l1.5 -0.9l2.3 0.9l1.7 1l2.1 0.3l2 0.5l0.9 -1.6l0.3 -0.3l1.3 0.3l3.1 -1.4l1.1 0.6l0.9 -0.1l0.4 -0.6l1.1 -0.3l2 0.3l1.8 0.1l0.9 -0.3l1.7 2.3l1.3 0.3l0.7 -0.4l1.3 0.1l1.5 -0.5l0.7 1.1l2.4 1.9l-0.1 3.2l1.1 0.4l-0.9 1l-1.1 0.7l-1 1.5l-0.6 1.3l-0.2 2.2l-0.6 1.1v2.1l-0.8 0.7l-0.1 1.7l-0.4 0.2l-0.3 1.5l0.7 1.3l0.2 3.3z"/><path class="map-country" d="M615.5 238.0l-1.6 -2.3l-0.1 -10.1l2.5 -3.2l0.7 -0.8l1.8 -0.1l2.5 -1.9l3.6 -0.2l7.8 -8.3l2 -2.3l1.2 -1.7v-1.5v-2.8v-1.1l0.1 -0.1h0.9l1.2 -0.4l1.5 -0.3l1.3 -1h1.1v0.8l-0.2 1.6v1.5l-0.6 1l-0.8 3l-1.3 3.1l-1.7 3.5l-2.4 4.1l-2.4 3.1l-3.3 3.8l-2.7 2.3l-4.2 2.7l-2.6 2.1l-3 3.4l-0.7 1.5l-0.6 0.6z"/><path class="map-country" d="M608.9 246.3l-4 -2.8l-0.2 -1.6l-10.1 -5.6l-0.4 -0.3l-0.1 -3l0.8 -1.1l1.4 -1.8l1 -2.1l-1.2 -3.1l-0.3 -1.4l-1.3 -2l1.7 -1.6l1.8 -1.9l1.5 0.5v1.6l0.9 0.9h2l3.5 2.3l0.9 0.1l0.6 -0.1l0.6 0.3l1.9 0.2l0.8 -1.1l2.5 -1.2l1.2 0.9h1.9l-2.5 3.2l0.1 10.1l1.6 2.3l-1.9 1.1l-0.7 1.2l-1.1 0.2l-0.4 1.9l-0.8 1.2l-0.6 1.8l-1.1 0.9z"/><path class="map-country" d="M568.2 210.5l-2.1 -1.2l-0.9 -0.8l-0.2 -0.9l0.4 -1.2v-1.1l-1.6 -1.7l-0.3 -1.2v-0.7l-1 -0.8v-1.6l-0.6 -1.1l-1 0.2l0.3 -1.1l0.7 -1.1l-0.3 -1.2l0.9 -0.8l-0.5 -0.7l0.7 -1.7l1.3 -2l2.4 0.2l-0.2 -11.1v-1.1h3.2v-5.6h11.2h10.8h11l0.9 2.7l-0.6 0.6l0.4 2.8l1 3.3l1.1 0.7l1.5 1l-1.4 1.6l-2.1 0.5l-0.8 0.8l-0.3 1.9l-1.2 4.1l0.3 1.1l-0.5 2.4l-1.1 2.7l-1.7 1.4l-1.1 2.1l-0.3 1.1l-1.3 0.8l-0.9 2.9l0.1 2.5l-0.1 -2.2h-0.3v-1.4l-0.3 -0.9l-1.5 -1.1l-0.3 -2l0.3 -2.1l-1.2 -0.2l-0.2 0.6l-1.7 0.2l0.7 0.8l0.2 1.7l-1.5 1.5l-1.4 2l-1.4 0.3l-2.4 -1.7l-1 0.6l-0.3 0.8l-1.4 0.6l-0.1 0.5h-2.8l-0.4 -0.5l-2 -0.1l-1 0.4l-0.8 -0.2l-1.4 -1.6l-0.5 -0.8l-2 0.4l-0.7 1.3l-0.7 2.5l-1 0.5l-0.8 0.3l1.8 1.1z"/><path class="map-country" d="M566.2 178.9l0.2 11.1l-2.4 -0.2l-1.3 2l-0.7 1.7l0.5 0.7l-0.9 0.8l0.3 1.2l-0.7 1.1l-0.3 1.1l1 -0.2l0.6 1.1v1.6l1 0.8v0.7l-1.7 0.5l-1.5 1.1l-2 3l-2.6 1.3l-2.7 -0.2l-0.7 0.3l0.2 1l-1.4 0.9l-1.2 1.1l-3.5 1.1l-0.7 -0.7h-0.4l-0.6 0.7l-2.3 0.2l0.5 -0.7l-0.9 -2l-0.4 -1.1l-1.2 -0.5l-1.6 -1.6l0.6 -1.3l1.2 0.3l0.8 -0.2h1.6l-1.5 -2.5l0.1 -1.9l-0.2 -1.8l-1.1 -1.8l0.2 -1.3l-1.7 -0.1v-1.7l-1.2 -1.1l1.2 -3.6l3.6 -2.7l0.1 -3.6l1.1 -5.6l0.6 -1.2l-1.2 -1v-0.8l-1.1 -0.8l-0.6 -4.3l2.8 -1.5l11 5.3l11.1 5.3z"/><path class="map-country" d="M300.8 178.6l0.2 1.5l-0.2 1.1l-0.6 0.4l0.7 0.9l-0.1 0.7l-1.8 -0.5l-1.3 0.2l-1.7 -0.2l-1.3 0.5l-1.5 -0.8l0.2 -0.9l2.6 0.4l2.1 0.2l1 -0.6l-1.3 -1.2v-1.1l-1.7 -0.4l0.6 -0.8l1.7 0.1l2.4 0.5z"/><path class="map-country" d="M300.8 183.2l0.1 -0.7l-0.7 -0.9l0.6 -0.4l0.2 -1.1l-0.2 -1.5l0.3 -0.5h2.2l1.7 0.7h0.7l0.5 0.9h1.5l-0.1 0.8l1.3 0.1l1.3 1l-1 1.2l-1.3 -0.6l-1.3 0.1l-0.9 -0.2l-0.5 0.5l-1.1 0.2l-0.4 -0.7l-0.9 0.4l-1.1 1.9l-0.7 -0.4l-0.2 -0.8z"/><path class="map-country" d="M760.5 8.3l6 -0.7l5.4 1.4l6.4 2.7l-0.7 2.5l-6.1 0.4l-7.7 -0.8l-4.6 -1.1l-2.1 -2l-3.8 -0.5l7.2 -1.9zM785.7 13.1l7 1.6l-0.8 1.1l-15.7 1.1l5.1 -3.7l2.3 -0.3l2.1 0.2zM885.6 21.8l7.4 0.2l10 1.4l-2.2 2.1l-10.2 -0.1l-4.6 0.7l-5.5 -1.8l1.5 -1.9l3.6 -0.6zM911.7 24.0l7 0.8l-3.2 1.1l-4.5 -0.3l-5.1 -1.1l0.6 -0.9l5.2 0.4zM888.5 29.5l2.6 -1.1l3.5 -0.2l4 1l0.3 0.8h-4.2l-5.7 -0.3l-0.5 -0.2zM624.6 9.5l5.4 -0.5l4.2 -0.1l0.6 0.8l1.6 -0.7l2.6 -0.4l4.1 0.6l-1.1 0.4l-3.7 0.4l-2.5 0.2l-0.4 0.4l-3.2 0.5l-3 -0.7l1.6 -0.8l-6.2 -0.1zM563.1 82.4l-5.1 0.1l-3.4 -0.4l0.6 -1.2l3.9 -0.9l2.9 0.5l1.2 0.5l-0.3 0.7l0.2 0.7zM648.6 28.5l6.7 -2.5l-0.8 -1.2l6.2 -1.5l9.2 -1.8l9.3 -0.5l4.7 -1l5.4 -0.4l2 1.1l-1.9 0.9l-9.9 1.4l-8.4 1.3l-8.7 2.6l-4.1 2.7l-4.4 2.7l0.6 2.3l5.3 2.3l-1.6 0.2l-9.1 -0.3l-0.7 -1.3l-5.1 -0.7l-0.4 -1.5l2.9 -0.6l-0.1 -1.5l5.5 -2.4l-2.6 -0.3zM897.0 84.2l0.9 2.6v2.8l1.1 2.8l2.8 4.9l-4.1 -0.9l-1.7 4l2.7 2.8l-0.1 2l-2.1 -1.7l-1.8 2.1l-0.5 -2.3l0.3 -2.7l-0.3 -3l0.6 -2.1l0.1 -3.7l-1.6 -2.7l0.3 -3.8l2.5 -1.3l-1.1 -1.3l1.3 -0.4l0.7 1.9zM863.3 116.1l-0.4 -0.5v-1.4l1.4 -0.1l0.4 -3.3l-0.7 -2.4l2.3 -1l3.4 0.5l1.9 -2.7l0.9 -3l1.1 -1l1.5 -2.5l-4.6 0.8l-2.4 1.1h-4.3l-1.1 -2.6l-3.3 -2l-4.8 -0.9l-1 -2.7l-1 -1.7l-1 -1.2l-1.8 -2.8l-2.4 -1l-4.1 -0.9l-3.7 0.1l-3.5 0.5l-2.3 1.4l1.5 0.7l0.1 1.5l-1.6 0.9l-2.5 2.9l0.1 1.2l-4 1.8l-3.3 -1l-3.3 0.2l-1.5 -0.9l-1.6 -0.3l-4.1 1.9l-3.7 0.5l-2.5 0.7l-3.5 -0.5h-2.6l-1.7 -1.4l-2.7 -1.3l-2.8 -0.4l-3.5 0.4l-2.6 0.5l-4 -1.2l-0.5 -2.1l-3.3 -0.7l-2.5 -0.3l-3.1 -1.1l-2.9 2.8l1.2 1.7l-2.7 1.9l-4.1 -0.7l-2.7 -0.1l-1.9 -1.3h-2.9l-2.4 -0.9l-4.2 1.3l-5.3 2.4l-2.9 0.5l-1.1 0.2l-1.5 -1.7l-3.6 0.4l-1.2 -1.2l-1.9 -0.5l-1.3 -1.6l-1.6 -0.5l-4 0.7l-3.8 -1.6l-1.5 1.4l-6.2 -7l-3.5 -2.2l1 -0.8l-7 2.6l-2.6 0.1l0.2 -1.5l-3.6 -0.9l-2.9 0.7l-0.9 -2.9l-4.9 -0.6l-2.5 1.1l-7 1.1l-1.4 0.7l-10.3 0.9l-1.3 1l2 1.9l-2.7 0.7l0.5 0.7l-2.6 1.4l4.5 1.9l-0.7 1.3l-3.9 -0.1l-0.8 0.8l-3.6 -1.4h-4.4l-2.9 1.2l-3.3 -1.1l-6.1 -1.9h-4.4l-5.7 3.1l-0.4 2l-2.8 -1.6l-2.2 3l0.8 0.6l-1.6 2.1l2.3 1.9l2.1 -0.1l1.8 1.9l-0.3 1.4l1.4 0.4l-1.3 1.7l-2.7 0.4l-2.7 2.9l2.5 2.7l-0.3 1.8l3.1 3.3l-1.7 1.1l-0.5 0.7l-1.2 -0.2l-1.9 -1.7h-0.8l-1.7 -0.7l-0.9 -1.1l-2.6 -0.6l-1.7 0.4l-0.5 -0.5l-3.7 -1.3l-4.1 -0.5l-2.4 -0.4l-0.3 0.3l-3.6 -2.4l-3.1 -1l-2.4 -1.6l2 -0.5l2.3 -2.3l-1.6 -1.1l4.1 -1.1v-0.7l-2.5 0.5l0.1 -1.2l1.4 -0.8l2.7 -0.2l0.4 -0.9l-0.6 -1.6l1.1 -1.4v-0.8l-4.1 -0.9h-1.6l-1.7 -1.3l-2.2 0.4l-3.5 -1l0.1 -0.5l-1 -1.2l-2.2 -0.1l-0.3 -0.9l0.7 -0.6l-1.7 -1.5l-2.9 0.2l-0.9 -0.1l-0.7 0.6l-1 -0.1l-0.7 -1.8l-0.6 -0.9l0.5 -0.3l2.2 0.1l1.1 -0.6l-0.8 -0.7l-1.9 -0.5l0.2 -0.5l-1.1 -0.5l-1.8 -1.8l0.6 -0.8l-0.2 -1.3l-2.8 -0.6l-1.4 0.3l-0.4 -0.7l-2.9 -0.7l-0.9 -1.6l-0.3 -1.4l-1.3 -0.6l1.2 -0.9l-0.8 -2.6l1.9 -1.6l-0.4 -0.5l3.2 -1.5l-2.9 -1.3l5.9 -3.6l2.6 -1.6l1 -1.4l-4.1 -1.9l1.2 -1.8l-2.5 -2.1l1.8 -2.4l-3.2 -3.1l2.6 -2.1l-4.3 -1.9l0.4 -1.9l2.3 -0.3l4.7 -1.1l2.9 -1l4.5 1.7l7.6 0.7l10.5 3.1l2.2 1.4l0.1 1.8l-3 1.5l-4.6 0.7l-12.4 -2.1l-2 0.3l4.5 2.1l0.2 1.3l0.2 2.8l3.5 0.9l2.2 0.7l0.4 -1.4l-1.7 -1.2l1.8 -1l6.7 1.7l2.3 -0.7l-1.8 -2l6.4 -2.7l2.6 0.1l2.6 1l1.6 -1.9l-2.3 -1.7l1.3 -1.6l-2 -1.7l7.8 0.9l1.6 1.5l-3.6 0.4l0.1 1.5l2.1 0.9l4.3 -0.6l0.7 -1.7l5.8 -1.4l9.7 -2.3l2.1 0.1l-2.7 1.7l3.4 0.3l2 -1l5.2 -0.1l4.1 -1.1l3.2 1.7l3.2 -1.9l-3 -1.6l1.5 -0.9l8.2 0.8l3.8 0.9l10.1 3.2l1.9 -1.5l-2.9 -1.4v-0.6l-3.4 -0.3l0.9 -1.3l-1.5 -2.2v-0.9l5.1 -2.5l1.8 -2.5l2.1 -0.6l7.3 0.8l0.6 1.5l-2.6 2.3l1.7 0.9l0.9 1.9l-0.6 3.8l3 1.7l-1.2 1.9l-5.4 3.9l3.2 0.4l1.1 -1l3 -0.7l0.8 -1.4l2.4 -1.3l-1.6 -1.6l1.3 -1.8l-3.1 -0.2l-0.7 -1.6l2.3 -2.8l-3.6 -2.2l4.9 -1.9l-0.6 -2h1.4l1.4 1.5l-1.1 2.7l3 0.5l-1.3 -2l4.7 -1.1l5.8 -0.2l5.1 1.6l-2.5 -2.3l-0.3 -2.9l4.9 -0.6l6.7 0.1l6 -0.3l-2.3 -1.5l3.2 -1.8l3.2 -0.1l5.4 -1.4l7.4 -0.3l0.9 -0.8l7.3 -0.3l2.2 0.7l6.3 -1.5h5.1l0.8 -1.2l2.6 -1.2l6.6 -1.1l4.7 0.9l-3.8 0.7l6.3 0.4l0.8 1.4l2.5 -0.7h8.1l6.3 1.4l2.2 1l-0.7 1.5l-3 0.8l-7.3 1.6l-2.1 0.8l3.4 0.4l4.1 0.7l2.5 -0.6l1.5 1.8l1.2 -0.7l4.4 -0.4l8.9 0.4l0.7 1.3l11.6 0.4l0.2 -2.1l5.9 0.5h4.4l4.5 1.5l1.3 1.7l-1.7 1.2l3.5 2.2l4.4 1.1l2.7 -2.9l4.4 1.2l4.8 -0.7l5.3 0.8l2.1 -0.7l4.5 0.4l-2 -2.6l3.7 -1.2l25.1 1.8l2.3 1.6l7.3 2.1l11.2 -0.5l5.6 0.5l2.3 1.1l-0.4 2.1l3.5 0.8l3.7 -0.6l4.9 -0.1l5.2 0.6l5.3 -0.4l4.8 2.5l3.5 -0.9l-2.3 -1.7l1.3 -1.3l8.8 0.8l5.8 -0.2l8 1.4M0.0 41.8l6.8 2.1l7.3 2.8l-0.2 1.7l1.8 0.7l-0.6 -2l7.5 0.4l5.5 2.6l-2.8 1.2l-4.5 0.3l-0.1 2.7l-1.1 0.6l-2.6 -0.1l-2.1 -1l-3.7 -0.8l-0.7 -1.2l-2.8 -0.5l-3.1 0.4l-1.5 -1l0.6 -1l-3.4 0.6l1.3 1.4l-1.6 1.1M1000.0 52.8l-3.6 1.3l-3.6 -0.2l2.5 1.4l1.7 2.3l1.2 0.8l0.4 1.1l-0.7 0.8l-5.2 -0.6l-7.8 2.1l-2.5 0.3l-4.2 1.9l-4 1.7l-1.1 1.3l-3.9 -1.9l-7.3 2.2l-1.2 -1.1l-2.7 1.2l-3.7 -0.4l-0.9 1.9l-3.4 2.6l0.1 1.2l3.2 0.6l-0.4 4l-2.5 0.1l-1.2 2.4l1.1 1.2l-4.8 1.4l-1 3.1l-4.1 0.7l-0.9 2.8l-4 2.6l-1 -1.9l-1.2 -4l-1.5 -6.2l1.3 -3.9l2.3 -1.6l0.2 -1.3l4.3 -0.6l5 -3.5l4.7 -2.9l5 -2.2l2.3 -3.9l-3.4 0.2l-1.7 2.3l-7 3.1l-2.3 -3.5l-7.2 1l-6.9 4.6l2.3 1.7l-6.2 0.8l-4.3 0.3l0.2 -2.1l-4.3 -0.4l-3.5 1.4l-8.5 -0.5l-9.1 0.8l-9 5.5l-10.7 6.5l4.4 0.4l1.4 1.7l2.7 0.6l1.8 -1.4l3 0.2l4 3.1l0.1 2.3l-2.2 2.8l-0.2 3.3l-1.2 4.5l-4.2 4l-1 1.9l-3.7 3.2l-3.8 3.2l-1.8 1.7l-3.7 1.6h-1.7l-1.8 -1.3l-3.7 2l-0.4 1zM0.0 34.7l0.4 -0.1h2.3l4 0.8l-0.2 0.3l-2.9 0.7l-3.6 0.2M996.9 36.7l-0.4 -0.9M0.0 34.7zM592.9 105.6l0.7 -0.7l2 0.6l0.9 0.2l0.3 0.5l0.5 0.1v0.2l1.3 0.7l2.9 -0.2l-0.6 1l-3 0.5l-3.8 1.6l-1.5 -0.6l0.6 -1.3l-3.1 -0.8l0.5 -0.5l2.7 -0.9l-0.4 -0.4z"/><path class="map-country" d="M280.6 158.9l1.3 -0.2l1.9 0.1v0.7l-3 0.4l-0.2 -1zM283.9 158.2l2.2 1.3l-0.5 1.9l-0.5 -0.3l0.1 -1.5l-1.3 -1.1v-0.3zM282.8 163.3l0.8 0.1l1 2.3v1.6l-0.7 0.2l-0.7 -1.6l-1 -0.8l0.6 -1.8z"/><path class="map-country" d="M330.0 377.4l3.3 -1.7l2.4 0.7l1.7 -1.1l2.2 1.2l-0.8 1l-3.8 0.8l-1.2 -0.9l-2.4 1.2l-1.4 -1.2z"/><path class="map-country" d="M542.1 12.0l1 -0.9l4.1 -0.1l3.5 0.9l9.1 2.1l-6.9 1.1l-1.6 2l-2.4 0.6l-1.3 2.3l-3.4 0.1l-6 -1.7l2.5 -1l-4.1 -0.8l-5.4 -2.3l-2.2 -2.2l7.6 -1l1.5 1l4 -0.1zM586.4 40.1l-4.7 1.1l-2.3 0.3l1.2 -2l-3.6 -1.1l-4.3 1l-1.3 2l-2.7 1.2l-3 -0.6l-3.6 0.1l-3.1 -1.5l-1.7 0.8l-1.7 0.1l-0.4 1.8l-5.2 -0.4l-0.8 1.5h-2.6l-1.9 2l-2.7 3.1l-4.3 3.9l1 0.9l-1 1.1h-2.8l-1.8 2.6l0.2 3.7l1.8 1.4l-0.9 3.2l-2.3 1.9l-1.3 1.6l-1.8 -1.7l-5.5 3.3l-3.7 0.6l-3.9 -1.4l-1 -3l-0.8 -6.4l2.5 -1.8l7.4 -2.3l5.4 -2.9l5.1 -3.9l6.7 -5.3l4.7 -2.1l7.6 -3.5l6.1 -1.2l4.6 0.1l4.2 -2.3l5 0.1l5 -0.5l8.7 2l-3.6 0.8l3.1 1.7zM576.1 11.0l-4.1 1.4l-8 0.4l-8.2 -0.5l-0.5 -0.7l-4 -0.1l-3.1 -1.3l8.6 -0.8l4.1 0.7l2.8 -0.8l7 0.7l5.4 1zM568.7 17.1l-6.2 1.1l-4.9 -0.6l1.9 -0.8l-1.7 -0.8l5.8 -0.6l1.1 1l4 0.7z"/><path class="map-country" d="M370.1 3.8l9.3 -1.6l9.8 0.1l3.5 -1l9.8 -0.3l22.2 0.3l17.4 2.2l-5.1 1.1l-10.7 0.1l-14.9 0.3l1.4 0.5l9.8 -0.3l8.4 0.9l5.4 -0.8l2.3 1l-3.1 1.6l7.1 -1l13.5 -1.1l8.3 0.5l1.6 1.2l-11.3 2l-1.6 0.6l-8.9 0.5l6.4 0.2l-3.2 2l-2.2 1.8l0.1 3.1l3.3 1.8l-4.4 0.1l-4.5 0.9l5.1 1.4l0.7 2.4l-3 0.3l3.6 2.4l-6.2 0.2l3.2 1.1l-0.9 1l-3.9 0.4h-3.9l3.5 1.9l0.1 1.2l-5.5 -1.1l-1.5 0.7l3.8 0.7l3.6 1.7l1.1 2.2l-5 0.6l-2.1 -1.1l-3.5 -1.6l1 1.9l-3.2 1.5l7.3 0.1l3.8 0.1l-7.4 2.4l-7.6 2.2l-8.1 1h-3.1l-2.8 1.1l-3.9 2.9l-6 2l-1.9 0.1l-3.7 0.7l-4 0.6l-2.4 1.7v2l-1.4 1.8l-4.5 2.2l1.1 2.2l-1.3 2.3l-1.4 2.7l-3.9 0.2l-4.1 -2.3h-5.6l-2.7 -1.5l-1.8 -2.8l-4.8 -3.4l-1.4 -1.8l-0.4 -2.5l-3.9 -2.6l1 -2l-1.8 -1l2.7 -3.2l4.2 -1.1l1.1 -1.1l0.6 -2.2l-3.2 1l-1.5 0.4l-2.5 0.4l-3.4 -0.9l-0.2 -1.9l1.1 -1.5h2.6l5.7 0.7l-4.8 -1.8l-2.5 -0.9l-2.8 0.4l-2.3 -0.7l3.1 -2.6l-1.7 -1l-2.2 -2l-3.3 -2.9l-3.6 -1.1l0.1 -1.1l-7.5 -1.7l-5.9 -0.2l-7.4 0.1l-6.8 0.3l-3.2 -0.9l-4.8 -1.8l7.3 -0.9l5.5 -0.1l-11.8 -0.7l-6.3 -1.2l0.4 -1l10.5 -1.4l10.2 -1.3l1 -1l-7.5 -1l2.5 -1.1l9.6 -2l4 -0.3l-1.1 -1.2l6.6 -0.7l8.5 -0.5h8.5l3.1 0.9l7.3 -1.6l6.7 1.1l3.9 0.2l5.7 0.9l-6.6 -1.5l0.4 -1.2z"/><path class="map-country" d="M691.5 368.4l1.8 0.9l2.6 0.3l0.1 0.6l-0.8 1.2l-4.2 0.2l-0.1 -1.5l0.4 -1.1l0.2 -0.6z"/><path class="map-country" d="M847.1 258.0l0.4 -0.6l2.3 -0.6l2 -0.1l0.9 -0.4l1 0.4l-1 0.7l-2.9 1.2l-2.3 0.8l-0.1 -0.8l-0.3 -0.6z"/><path class="map-country" d="M545.4 312.7l1.3 -1.4l1.1 0.8l0.5 1.2l1.2 0.2l1.8 0.5l1.5 -0.2l2.5 -1.4v-10.3l0.7 0.4l1.7 2.7l-0.3 1.7l0.6 1l2 -0.3l1.4 -1.3l1.3 -0.8l0.7 -1.3l1.4 -0.7l1.1 0.4l1.4 0.7l2.2 0.2l1.8 -0.7l0.3 -0.8l0.5 -1.4l1.5 -0.2l0.8 -1l0.9 -1.9l2.5 -2.1l4 -2h1.1l1.3 0.5l1 -0.3l1.4 0.2l1.4 4l0.7 1.9l-0.5 3.1l0.2 1l-1.4 -0.5l-0.8 0.2l-0.2 0.8l-0.8 1.1v0.9l1.7 1.5l1.6 -0.3l0.6 -1.2h2.1l-0.7 2l-0.3 2.3l-0.7 1.3l-1.9 1.4l-0.6 0.4l-1.2 1.4l-0.7 1.4l-1.6 2l-3.2 2.9l-1.9 1.7l-2.1 1.2l-2.9 1.1l-1.4 0.2l-0.4 0.7l-1.7 -0.4l-1.4 0.5l-3 -0.5l-1.6 0.3l-1.2 -0.1l-2.9 1.1l-2.3 0.4l-1.7 1.1l-1.3 0.1l-1.2 -1l-0.9 -0.1l-1.2 -1.2l-0.2 0.4l-0.3 -0.8v-1.6l-0.9 -1.9l0.9 -0.5l-0.1 -2.1l-1.8 -2.6l-1.4 -2.4l-2 -3.6zM580.5 313.8l-1.2 -0.9l-1.3 0.6l-1.5 1.1l-1.5 1.7l2.1 2.2l1 -0.3l0.5 -0.9l1.5 -0.4l0.5 -0.9l0.9 -1.4l-1 -0.8z"/><path class="map-country" d="M580.5 313.8l1 0.8l-0.9 1.4l-0.5 0.9l-1.5 0.4l-0.5 0.9l-1 0.3l-2.1 -2.2l1.5 -1.7l1.5 -1.1l1.3 -0.6l1.2 0.9z"/><path class="map-country" d="M174.6 143.0l3.2 -0.3l3.5 -0.3l-0.2 0.6l4.2 1.3l6.3 2h5.5h2.2v-1.2h4.8l1.1 1l1.4 0.9l1.6 1.2l1 1.5l0.6 1.5l1.5 0.8l2.3 0.9l1.7 -2.2l2.3 -0.1l2 1.1l1.4 1.9l0.9 1.6l1.7 1.6l0.6 2l0.7 1.3l2.2 0.8l2 0.7l1.1 -0.1l-1.1 2.4l-0.5 2l-0.2 3.7l-0.3 1.4l0.5 1.5l0.9 1.4l0.5 2.1l1.9 2.1l0.6 1.6l1.1 1.3l3 0.8l1.1 1.1l2.4 -0.7l2.2 -0.3l2 -0.5l1.8 -0.5l1.8 -1.1l0.6 -1.7l0.2 -2.3l0.5 -0.8l1.9 -0.7l2.9 -0.7l2.5 0.1l1.7 -0.2l0.7 0.6l-0.1 1.3l-1.5 1.7l-0.7 1.7l0.5 0.4l-0.4 1.2l-0.7 2.2l-0.7 -0.7h-0.6l-0.5 0.1l-1 1.7l-0.5 -0.4l-0.3 0.2v0.4l-2.6 -0.1h-2.6v1.6h-1.2l1 0.9l1 0.7l0.3 0.6l0.5 0.2l-0.1 0.9h-3.6l-1.3 2.3l0.4 0.5l-0.3 0.6l-0.1 0.8l-3.1 -2.9l-1.5 -0.9l-2.2 -0.8l-1.6 0.2l-2.2 1.1l-1.4 0.3l-2 -0.8l-2.1 -0.5l-2.6 -1.3l-2 -0.4l-3.2 -1.3l-2.3 -1.3l-0.7 -0.7l-1.6 -0.2l-2.8 -0.9l-1.2 -1.2l-2.9 -1.6l-1.4 -1.8l-0.7 -1.3l0.9 -0.3l-0.3 -0.8l0.7 -0.7v-1l-0.9 -1.2l-0.3 -1.1l-0.9 -1.4l-2.5 -2.8l-2.8 -2.2l-1.3 -1.7l-2.4 -1.1l-0.5 -0.7l0.4 -1.7l-1.4 -0.7l-1.6 -1.3l-0.7 -2l-1.5 -0.2l-1.6 -1.4l-1.3 -1.4l-0.2 -0.9l-1.5 -2.1l-0.9 -2.1v-1.1l-2 -1.1l-0.9 0.2l-1.6 -0.8l-0.5 1.1l0.5 1.4l0.3 2.1l0.9 1.1l2.1 1.9l0.4 0.7l0.5 0.2l0.3 0.9h0.5l0.6 1.8l0.8 0.7l0.6 1l1.8 1.4l0.9 2.6l0.8 1.2l0.8 1.3l0.1 1.4l1.4 0.1l1.1 1.3l1 1.2l-0.1 0.5l-1.1 1.1l-0.5 -0.1l-0.8 -1.7l-1.8 -1.5l-2 -1.4l-1.4 -0.7l0.1 -2l-0.4 -1.5l-1.4 -0.9l-1.9 -1.2l-0.3 0.3l-0.7 -0.7l-1.8 -0.7l-1.6 -1.6l0.2 -0.2l1.2 0.2l1 -1.1l0.1 -1.2l-2.2 -2l-1.6 -0.8l-1 -1.7l-1 -1.8l-1.3 -2.2l-1.2 -2.5z"/><path class="map-country" d="M339.9 317.3l1.8 -0.3l2.8 2.1l1.1 -0.1l2.8 1.8l2.2 1.6l1.6 1.8l-1.2 1.4l0.7 1.5l-1.2 1.8l-3.1 1.5l-2 -0.5l-1.6 0.3l-2.5 -1.2l-1.9 0.1l-1.7 -1.6l0.2 -1.8l0.6 -0.6v-2.8l0.7 -2.8l0.7 -2.2z"/><path class="map-country" d="M351.7 327.1l-0.7 -1.5l1.2 -1.4l-1.6 -1.8l-2.2 -1.6l-2.8 -1.8l-1.1 0.1l-2.8 -2.1l-1.8 0.3l3.7 -3.8l3.2 -2.7l1.8 -1.1l2.4 -1.6v-2.2l-1.4 -1.6l-1.3 0.5l0.5 -1.6l0.4 -1.6v-1.5l-1 -0.5l-1.1 0.4l-1 -0.1l-0.3 -1.1l-0.3 -2.5l-0.5 -0.9l-1.9 -0.7l-1.1 0.5l-2.9 -0.5l0.1 -3.8l-0.8 -1.5l0.9 -0.6l-0.3 -1.6l0.8 -1.2l0.5 -2.2l-0.7 -1.7l-1.5 -0.8l-0.3 -1.1l0.4 -1.6l-5.3 -0.1l-1.1 -3.2l0.8 -0.1v-1.2l-0.5 -0.8l-0.2 -1.6l-1.6 -0.8h-1.7l-1.2 -0.8l-1.9 -0.6l-1 -1l-3.2 -0.5l-3 -2.4l0.3 -1.9l-0.4 -1.1l0.3 -2l-3.6 0.4l-1.5 1.1l-2.4 1.1l-0.6 0.8l-1.5 0.1l-2 -0.2l-1.6 0.4l-1.3 -0.3l0.2 -4.2l-2.3 1.6h-2.4l-1.1 -1.5l-1.8 -0.2l0.6 -1.2l-1.6 -1.7l-1.1 -2.5l0.7 -0.5v-1.1l1.7 -0.9l-0.3 -1.5l0.7 -0.9l0.2 -1.3l3.2 -1.9l2.3 -0.5l0.3 -0.5l2.6 0.2l1.2 -7.6l0.1 -1.2l-0.5 -1.6l-1.2 -1.1v-2l1.6 -0.4l0.5 0.3l0.1 -1.1l-1.6 -0.3v-1.7h5.4l0.9 -0.9l0.8 0.9l0.5 1.6l0.5 -0.3l1.6 1.4l2.1 -0.2l0.6 -0.8l2 -0.7l1.2 -0.4l0.3 -1.2l2 -0.8l-0.2 -0.6l-2.3 -0.2l-0.4 -1.8l0.1 -1.8l-1.2 -0.7l0.5 -0.3l2 0.4l2.2 0.7l0.8 -0.7l2 -0.4l3.1 -1.1l1.1 -1l-0.4 -0.8l1.4 -0.1l0.7 0.6l-0.4 1.2l1 0.4l0.6 1.3l-0.8 1l-0.4 2.4l0.7 1.4l0.2 1.3l1.7 1.3l1.4 0.1l0.3 -0.5l0.9 -0.2l1.2 -0.4l0.9 -0.8l1.6 0.3l0.6 -0.1l1.6 0.2l0.2 -0.6l-0.5 -0.5l0.3 -0.8l1.1 0.2l1.4 -0.3l1.5 0.6l1.3 0.6l0.8 -0.8l0.6 0.1l0.4 0.8l1.3 -0.2l1.1 -1l0.9 -2.1l1.6 -2.5l1 -0.1l0.6 1.5l1.6 4.9l1.5 0.4l0.1 1.9l-2.1 2.3l0.8 0.9l4.9 0.4l0.1 2.8l2.2 -1.9l3.4 1l4.7 1.7l1.3 1.7l-0.4 1.5l3.2 -0.8l5.4 1.4l4.1 -0.1l4.2 2.3l3.5 3.1l2.1 0.8l2.4 0.1l1 0.9l1 3.5l0.4 1.7l-1.1 4.6l-1.4 1.8l-3.9 3.9l-1.8 3.1l-2 2.5h-0.7l-0.8 2l0.2 5.3l-0.8 4.2l-0.3 1.9l-0.9 1.1l-0.4 3.7l-2.9 3.6l-0.4 2.9l-2.3 1.2l-0.6 1.6h-3.1l-4.3 1.1l-2 1.2l-3.1 0.8l-3.3 2.3l-2.3 2.7l-0.4 2.1l0.4 1.5l-0.5 2.8l-0.6 1.4l-1.9 1.5l-3.1 4.9l-2.5 2.2l-1.9 1.3l-1.2 2.6l-1.9 1.6z"/><path class="map-country" d="M306.9 263.8l2 0.2l1.5 -0.1l0.6 -0.8l2.4 -1.1l1.5 -1.1l3.6 -0.4l-0.3 2l0.4 1.1l-0.3 1.9l3 2.4l3.2 0.5l1 1l1.9 0.6l1.2 0.8h1.7l1.6 0.8l0.2 1.6l0.5 0.8v1.2l-0.8 0.1l1.1 3.2l5.3 0.1l-0.4 1.6l0.3 1.1l1.5 0.8l0.7 1.7l-0.5 2.2l-0.8 1.2l0.3 1.6l-0.9 0.6v-0.9l-2.6 -1.4h-2.6l-4.8 0.8l-1.4 2.4v1.5l-1.1 3.3l-0.5 -0.6l-3.1 -0.1l-1.1 2.3l-1.7 -2l-3.6 -0.7l-2.3 2.5l-2 0.4l-1.1 -3.9l-1.5 -3.1l0.9 -2.7l-1.5 -1.1l-0.3 -2l-1.4 -1.9l1.7 -3l-1.1 -2.4l0.6 -0.9l-0.5 -1l1.1 -1.4v-2.4l0.2 -1.9l0.6 -1l-2.4 -4.4z"/><path class="map-country" d="M305.9 245.3l-2.6 -0.2l-0.3 0.5l-2.3 0.5l-3.2 1.9l-0.2 1.3l-0.7 0.9l0.3 1.5l-1.7 0.9v1.1l-0.7 0.5l1.1 2.5l1.6 1.7l-0.6 1.2l1.8 0.2l1.1 1.5h2.4l2.3 -1.6l-0.2 4.2l1.3 0.3l1.6 -0.4l2.4 4.4l-0.6 1l-0.2 1.9v2.4l-1.1 1.4l0.5 1l-0.6 0.9l1.1 2.4l-1.7 3l-0.7 1.4l-1.5 0.7l-2.8 -1.6l-0.2 -1.1l-5.5 -2.8l-5 -3.1l-2.1 -1.7l-1.2 -2.3l0.5 -0.8l-2.4 -3.6l-2.7 -5.1l-2.6 -5.6l-1.2 -1.2l-0.9 -2.1l-2.1 -1.8l-2 -1.1l0.9 -1.3l-1.3 -2.6l0.8 -2l2.2 -1.7l0.4 1.1l-0.8 0.7l0.1 1l1.1 -0.2l1.1 0.3l1.2 1.4l1.6 -1.1l0.5 -1.9l1.7 -2.4l3.3 -1.1l3.1 -2.9l0.8 -1.8l-0.4 -2.1l0.8 -0.3l1.8 1.3l0.9 1.3l1.3 0.7l1.6 2.9l2.1 0.4l1.5 -0.7l1 0.4l1.7 -0.2l2.1 1.3l-1.8 2.8l0.9 0.1l1.4 1.5z"/><path class="map-country" d="M314.2 229.9l-0.5 0.3l-0.5 -1.6l-0.8 -0.9l-0.9 0.9h-5.4v1.7l1.6 0.3l-0.1 1.1l-0.5 -0.3l-1.6 0.4v2l1.2 1.1l0.5 1.6l-0.1 1.2l-1.2 7.6l-1.4 -1.5l-0.9 -0.1l1.8 -2.8l-2.1 -1.3l-1.7 0.2l-1 -0.4l-1.5 0.7l-2.1 -0.4l-1.6 -2.9l-1.3 -0.7l-0.9 -1.3l-1.8 -1.3l-0.8 0.3l-1.2 -0.7l-1.3 -0.9l-0.8 0.4l-2.4 -0.4l-0.6 -1.2l-0.6 0.1l-2.7 -1.6l-0.4 -0.9l1 -0.2l-0.1 -1.4l0.6 -1l1.4 -0.2l1.2 -1.7l1.1 -1.5l-1.1 -0.6l0.6 -1.6l-0.7 -2.6l0.6 -0.7l-0.4 -2.4l-1.1 -1.4l0.3 -1.4l0.9 0.2l0.5 -0.8l-0.6 -1.6l0.3 -0.4h1.5l2.1 -1.9l1.1 -0.3v-0.9l0.5 -2.4l1.6 -1.3h1.8l0.2 -0.6l2.2 0.2l2.2 -1.4l1 -0.6l1.4 -1.3l1 0.2l0.7 0.7l-0.5 0.9l-1.8 0.5l-0.7 1.4l-1.1 0.8l-0.8 1l-0.4 2l-0.7 1.6l1.4 0.2l0.4 1.3l0.6 0.6l0.2 1.1l-0.3 1l0.1 0.6l0.7 0.2l0.6 1l3.6 -0.3l1.6 0.4l2 2.4l1.1 -0.3l2 0.1l1.6 -0.3l0.9 0.5l-0.5 1.5l-0.6 0.9l-0.2 2l0.6 1.9l0.8 0.8v0.6l-1.4 1.4l1 0.6l0.8 1l0.8 2.8z"/><path class="map-country" d="M285.1 209.3l-0.3 0.4l0.6 1.6l-0.5 0.8l-0.9 -0.2l-0.3 1.4l-1 -0.8l-0.6 -1.5l0.7 -0.8l-0.7 -0.2l-0.5 -0.9l-1.4 -0.8l-1.2 0.2l-0.6 1l-1.1 0.7l-0.6 0.1l-0.3 0.6l1.4 1.5l-0.8 0.3l-0.4 0.4l-1.3 0.2l-0.5 -1.7l-0.3 0.5l-0.9 -0.2l-0.6 -1.1l-1.1 -0.2l-0.8 -0.3h-1.2v0.6l-0.4 -0.4l0.2 -0.6l0.2 -0.5l-0.1 -0.5l0.4 -0.4l-0.6 -0.4v-1.1l1.1 -0.2l1 1l-0.1 0.5l1.2 0.2l0.2 -0.3l0.8 0.7l1.3 -0.2l1.2 -0.7l1.7 -0.5l1 -0.9l1.5 0.2l-0.1 0.3l1.5 0.1l1.3 0.4l0.9 0.9l1 0.8z"/><path class="map-country" d="M270.7 206.8l-1.1 0.2v1.1l0.6 0.4l-0.4 0.4l0.1 0.5l-0.2 0.5l-0.2 0.6l-1.5 -0.6l-0.5 -0.6l0.3 -0.5l-0.1 -0.6l-0.8 -0.7l-1.1 -0.5l-0.9 -0.4l-0.2 -0.8l-0.7 -0.5l0.1 0.8l-0.5 0.7l-0.7 -0.8l-0.8 -0.3l-0.4 -0.5v-0.9l0.4 -0.8l-0.8 -0.4l0.6 -0.6l0.4 -0.3l1.9 0.7l0.6 -0.4l0.9 0.3l0.4 0.5l0.9 0.2l0.6 -0.6l0.7 1.6l1.1 1.1l1.3 1.2z"/><path class="map-country" d="M267.6 202.9l-0.6 0.6l-0.9 -0.2l-0.4 -0.5l-0.9 -0.3l-0.6 0.4l-1.9 -0.7l-0.4 0.3l-0.9 -0.8l-1.3 -1.2l-0.7 -0.9l-1.1 -0.9l-1.4 -1.2l0.3 -0.5l0.4 0.5l0.3 -0.2l0.8 -0.2l0.4 -0.6h0.4l-0.1 -1.4h0.7h0.5l0.6 -0.8l0.9 0.6l0.3 -0.3l0.5 -0.4l0.9 -0.7l0.1 -0.6h0.2l0.4 -0.7h0.3l0.5 0.4l0.5 0.1l0.6 -0.3h0.7l1 -0.4l0.4 -0.4l0.9 0.1l-0.2 0.2l-0.1 0.7l0.2 1l-0.6 0.9l-0.3 1.1l-0.1 1.3l0.2 0.7v1.2l-0.4 0.3l-0.3 1.2l0.2 0.7l-0.5 0.7l0.1 0.8l0.4 0.4z"/><path class="map-country" d="M269.0 191.7l-0.9 -0.1l-0.4 0.4l-1 0.4h-0.7l-0.6 0.3l-0.5 -0.1l-0.5 -0.4h-0.3l-0.4 0.7h-0.2l-0.1 0.6l-0.9 0.7l-0.5 0.4l-0.3 0.3l-0.9 -0.6l-0.6 0.8h-0.5h-0.7l0.1 1.4h-0.4l-0.4 0.6l-0.8 0.2l-0.5 -0.9l-0.9 -0.2l0.2 -1.2l-0.4 -0.3l-0.5 -0.2l-1.2 0.4l-0.1 -0.4l-0.9 -0.4l-0.6 -0.6l-0.8 -0.2l0.6 -0.7l-0.2 -0.6l0.2 -0.5l1.3 -0.8l1.2 -1.1l0.3 0.2l0.6 -0.5l0.8 -0.1l0.3 0.3l0.4 -0.2l1.3 0.3l1.3 -0.1l0.9 -0.3l0.3 -0.3l0.9 0.1l0.7 0.2l0.7 -0.1l0.5 -0.2l1.3 0.4h0.4l0.9 0.6l0.8 0.6l1 0.4l0.7 0.8z"/><path class="map-country" d="M251.8 193.3l0.8 0.2l0.6 0.6l0.9 0.4l0.1 0.4l1.2 -0.4l0.5 0.2l0.4 0.3l-0.2 1.2l-0.3 0.6h-1.6l-1 -0.3l-1.1 -0.6l-1.6 -0.1l-0.8 -0.6l0.1 -0.4l1 -0.7l0.5 -0.3l-0.2 -0.4l0.7 -0.1z"/><path class="map-country" d="M243.8 192.9l0.1 -0.8l0.3 -0.6l-0.4 -0.5l1.3 -2.3h3.6l0.1 -0.9l-0.5 -0.2l-0.3 -0.6l-1 -0.7l-1 -0.9h1.2v-1.6h2.6l2.6 0.1v2.2l-0.3 3.1h0.9l0.9 0.5l0.2 -0.4l0.8 0.3l-1.2 1.1l-1.3 0.8l-0.2 0.5l0.2 0.6l-0.6 0.7l-0.7 0.1l0.2 0.4l-0.5 0.3l-1 0.7l-0.1 0.4l-1.4 -0.5l-1.7 -0.1l-1.3 -0.5l-1.5 -1.2z"/><path class="map-country" d="M252.4 183.9v-0.4l0.3 -0.2l0.5 0.4l1 -1.7l0.5 -0.1v0.5h0.6l-0.1 0.7l-0.4 1.2l0.2 0.5l-0.3 0.9l0.2 0.3l-0.3 1.4l-0.6 0.7l-0.5 0.1l-0.5 1h-0.9l0.3 -3.1v-2.2z"/><path class="map-country" d="M331.3 218.9l0.4 0.8l-1.1 1l-3.1 1.1l-2 0.4l-0.8 0.7l-2.2 -0.7l-2 -0.4l-0.5 0.3l1.2 0.7l-0.1 1.8l0.4 1.8l2.3 0.2l0.2 0.6l-2 0.8l-0.3 1.2l-1.2 0.4l-2 0.7l-0.6 0.8l-2.1 0.2l-1.6 -1.4l-0.8 -2.8l-0.8 -1l-1 -0.6l1.4 -1.4v-0.6l-0.8 -0.8l-0.6 -1.9l0.2 -2l0.6 -0.9l0.5 -1.5l-0.9 -0.5l-1.6 0.3l-2 -0.1l-1.1 0.3l-2 -2.4l-1.6 -0.4l-3.6 0.3l-0.6 -1l-0.7 -0.2l-0.1 -0.6l0.3 -1l-0.2 -1.1l-0.6 -0.6l-0.4 -1.3l-1.4 -0.2l0.7 -1.6l0.4 -2l0.8 -1l1.1 -0.8l0.7 -1.4l1.8 -0.5l-0.1 0.7l-1.7 0.3l1 1.3l-0.1 1.4l-1.2 1.6l1 2.2l1.2 -0.1l0.7 -2.1l-0.9 -0.9l-0.1 -2.1l3.4 -1.2l-0.4 -1.3l1 -0.8l1 1.9h2l1.8 1.6l0.1 0.9h2.5l2.9 -0.2l1.6 1.2l2.2 0.3l1.5 -0.8v-0.7l3.5 -0.2h3.3l-2.3 0.8l0.9 1.3l2.2 0.2l2.1 1.4l0.5 2.2l1.4 -0.1l1.1 0.7l-2.2 1.6l-0.2 1l0.9 1.1l-0.7 0.5l-1.7 0.4l0.1 1.3l-0.8 0.8l1.9 2.1z"/><path class="map-country" d="M342.9 228.1l-0.6 0.1l-1.6 -0.3l-0.9 0.8l-1.2 0.4l-0.9 0.2l-0.3 0.5l-1.4 -0.1l-1.7 -1.3l-0.2 -1.3l-0.7 -1.4l0.4 -2.4l0.8 -1l-0.6 -1.3l-1 -0.4l0.4 -1.2l-0.7 -0.6l-1.4 0.1l-1.9 -2.1l0.8 -0.8l-0.1 -1.3l1.7 -0.4l0.7 -0.5l-0.9 -1.1l0.2 -1l2.2 -1.6l1.8 1l1.7 1.8l0.1 1.5h1.1l1.5 1.4l1.1 0.9l-0.5 2.5l-1.7 0.8l0.2 0.6l-0.5 1.5l1.2 2h0.9l0.4 1.5l1.6 2.5z"/><path class="map-country" d="M348.5 226.9l-1.5 -0.6l-1.4 0.3l-1.1 -0.2l-0.3 0.8l0.5 0.5l-0.2 0.6l-1.6 -0.2l-1.6 -2.5l-0.4 -1.5h-0.9l-1.2 -2l0.5 -1.5l-0.2 -0.6l1.7 -0.8l0.5 -2.5l3.3 0.6l0.3 -0.5l2.2 -0.2l3 0.7l-1.4 2.4l0.2 1.9l1.1 1.7l-0.5 1.2l-0.2 1.2l-0.8 1.2z"/><path class="map-country" d="M356.5 221.8l-1.6 2.5l-0.9 2.1l-1.1 1l-1.3 0.2l-0.4 -0.8l-0.6 -0.1l-0.8 0.8l-1.3 -0.6l0.8 -1.2l0.2 -1.2l0.5 -1.2l-1.1 -1.7l-0.2 -1.9l1.4 -2.4l1 0.3l2 0.7l2.9 2.4l0.5 1.1zM517.2 95.9l1.3 0.8l4 0.5l-1.4 1.9l-0.4 2l-0.7 0.4l-1.3 -0.2l0.1 0.7l-2 1.5l-0.1 1.3l1.4 -0.4l0.9 1.2l-0.1 0.8l0.8 1l-1 0.9l0.8 2.1l1.5 0.4l-0.3 1.2l-2.6 1.5l-5.4 -0.7l-4.1 0.9l-0.3 1.7l-3.2 0.3l-3.2 -1.2l-1 0.6l-5.1 -1.3l-1.1 -1.1l1.5 -1.7l0.5 -5.5l-2.9 -2.9l-2 -1.4l-4.3 -1.1l-0.3 -2l3.6 -0.6l4.7 0.7l-0.9 -3.1l2.7 1.2l6.4 -2.2l0.9 -2.3l2.4 -0.5l0.4 0.9l1.3 0.1l1.3 1.1l1.9 1.3l1.4 -0.2l2.5 1.3l0.6 0.2l0.8 -0.1zM524.3 114.9l1.8 -1l0.5 2.3l-1 2.2l-1.2 -0.6l-0.7 -1.8l0.6 -1.1z"/><path class="map-country" d="M290.6 233.8l0.4 2.1l-0.8 1.8l-3.1 2.9l-3.3 1.1l-1.7 2.4l-0.5 1.9l-1.6 1.1l-1.2 -1.4l-1.1 -0.3l-1.1 0.2l-0.1 -1l0.8 -0.7l-0.4 -1.1l1.5 -2.1l-0.6 -1.2l-1 1.3l-1.7 -1.2l0.6 -0.8l-0.5 -2.5l1 -0.4l0.5 -1.8l1 -1.8l-0.2 -1.1l1.6 -0.6l1.9 -1.1l2.7 1.6l0.6 -0.1l0.6 1.2l2.4 0.4l0.8 -0.4l1.3 0.9l1.2 0.7z"/><path class="map-country" d="M315.9 181.9l1.4 0.2l0.5 0.6l-0.7 0.7h-2.1l-1.6 0.1l-0.2 -1.2l0.4 -0.4h2.3z"/><path class="map-country" d="M284.5 182.0l1.9 0.2l1.5 0.7l0.4 0.7l-1.9 0.1l-0.9 0.5l-1.5 -0.5l-1.6 -1l0.3 -0.6l1.2 -0.2l0.6 0.1z"/><path class="map-country" d="M271.5 168.9l2.4 0.2l2.2 0.1l2.6 0.9l1.1 1l2.6 -0.3l1 0.6l2.3 1.8l1.7 1.2h1l1.6 0.6l-0.2 0.7l2.1 0.2l2.1 1.1l-0.4 0.6l-1.8 0.4l-1.9 0.1l-1.9 -0.2l-4 0.3l1.9 -1.6l-1.2 -0.7l-1.7 -0.2l-1 -0.8l-0.7 -1.6l-1.5 0.1l-2.6 -0.7l-0.9 -0.6l-3.6 -0.4l-0.9 -0.6l1 -0.6l-2.7 -0.2l-2 1.5h-1.2l-0.4 0.7l-1.4 0.3l-1.1 -0.3l1.4 -0.8l0.6 -1l1.3 -0.7l1.4 -0.5l2.1 -0.3l0.7 -0.3z"/><path class="map-country" d="M586.6 295.1l-1.4 -0.2l-1 0.3l-1.3 -0.5h-1.1l-1.8 -1.3l-2.2 -0.4l-0.8 -1.7v-1l-1.2 -0.3l-3.1 -3.1l-0.9 -1.6l-0.6 -0.5l-1 -2.2l3.1 0.3l0.9 0.3h0.9l1.6 -1.8l2.4 -2.3l1 -0.2l0.3 -1l1.6 -1.1l2.1 -0.4l0.2 1h2.3l1.3 0.6l0.6 0.7l1.3 0.2l1.4 0.9v3.5l-0.5 1.9l-0.1 2.1l0.4 0.8l-0.3 1.6l-0.4 0.3l-0.7 2l-3 3.1z"/><path class="map-country" d="M581.8 294.7l-4 2l-2.5 2.1l-0.9 1.9l-0.8 1l-1.5 0.2l-0.5 1.4l-0.3 0.8l-1.8 0.7l-2.2 -0.2l-1.4 -0.7l-1.1 -0.4l-1.4 0.7l-0.7 1.3l-1.3 0.8l-1.4 1.3l-2 0.3l-0.6 -1l0.3 -1.7l-1.7 -2.7l-0.7 -0.4v-8.1l2.7 -0.1l0.1 -9.9l2.1 -0.1l4.2 -0.9l1.1 1.1l1.8 -1.1h0.8l1.6 -0.6l0.5 0.2l1 2.2l0.6 0.5l0.9 1.6l3.1 3.1l1.2 0.3v1l0.8 1.7l2.2 0.4l1.8 1.3z"/><path class="map-country" d="M555.3 302.1v10.3l-2.5 1.4l-1.5 0.2l-1.8 -0.5l-1.2 -0.2l-0.5 -1.2l-1.1 -0.8l-1.3 1.4l-2.1 -2.1l-1 -2l-0.7 -2.7l-0.6 -2l-1 -4.3v-3.3l-0.4 -1.5l-1.1 -1.2l-1.4 -2.3l-1.5 -3.3l-0.6 -1.8l-2.2 -2.7l-0.2 -2.1l1.3 -0.5l1.7 -0.5l1.8 0.1l1.7 1.2l0.4 -0.2l11.2 -0.1l2 1.3l6.7 0.4l5.1 -1.1l2.3 -0.6l1.8 0.1l1.1 0.7v0.2l-1.6 0.6h-0.8l-1.8 1.1l-1.1 -1.1l-4.2 0.9l-2.1 0.1l-0.1 9.9l-2.7 0.1v8.1z"/><path class="map-country" d="M453.6 195.6l-1.2 -2.2l-1.4 -1l1.3 -0.5l1.3 -2l0.7 -1.4l0.9 -0.9l1.4 0.3l1.4 -0.6l1.5 -0.1l1.3 0.8l1.9 0.8l1.7 2l1.8 1.9l0.1 1.8l0.6 1.5l1 0.8l0.2 1.1l-0.1 0.9l-0.4 0.1l-1.5 -0.2l-0.2 0.3l-0.6 0.1l-2 -0.7h-1.4l-5.1 -0.1l-0.7 0.3l-1 -0.1l-1.4 0.4l-0.5 -2.1l2.5 0.1l0.7 -0.4l0.5 -0.1l1 -0.6l1.2 0.6h1.2l1.2 -0.6l-0.5 -0.8l-0.9 0.5h-0.9l-1.1 -0.7h-0.9l-0.6 0.7l-3 0.1z"/><path class="map-country" d="M468.0 198.8l0.1 -0.9l-0.2 -1.1l-1 -0.8l-0.6 -1.5l-0.1 -1.8l0.9 -0.5l0.5 -1.6l0.9 -0.1l1.9 0.8l1.6 -0.6l1.1 0.2l0.4 -0.6h11.1l0.6 -2l-0.4 -0.3l-1.4 -12l-1.3 -12h4.2l9.4 6l9.4 6.1l0.6 1.3l1.8 0.8l1.2 0.4l0.1 1.8l3.1 -0.3v6.4l-1.6 1.9l-0.2 1.7l-2.5 0.4l-3.8 0.3l-1 1l-1.8 0.1h-1.7l-0.7 -0.6l-1.6 0.4l-2.6 1.2l-0.5 0.9l-2.1 1.2l-0.4 0.7l-1.2 0.6l-1.3 -0.4l-0.8 0.7l-0.4 1.9l-2.2 2.3l0.1 0.9l-0.8 1.2l0.2 1.6l-1.2 0.4l-0.6 0.4l-0.4 -1.2l-0.8 0.3h-0.5l-0.5 0.8l-2.2 -0.1l-0.7 -0.4l-0.4 0.3l-0.9 -0.8l0.2 -0.8l-0.4 -0.4l-0.5 0.3l0.1 -0.9l0.5 -0.7l-1.1 -1.2l-0.3 -0.7l-0.7 -0.7h-0.5l-0.7 0.4l-0.9 0.3l-0.7 0.6l-1.2 -0.2l-0.8 -0.7l-0.5 -0.1l-0.7 0.4h-0.4l-0.2 -1z"/><path class="map-country" d="M452.6 175.0l0.6 -0.9h10.9l-0.5 -4l0.6 -1.4l2.6 -0.3v-7.1l9.1 0.1v-4.2l10.4 6.8h-4.2l1.3 12l1.4 12l0.4 0.3l-0.6 2h-11.1l-0.4 0.6l-1.1 -0.2l-1.6 0.6l-1.9 -0.8l-0.9 0.1l-0.5 1.6l-0.9 0.5l-1.8 -1.9l-1.7 -2l-1.9 -0.8l-1.3 -0.8l-1.5 0.1l-1.4 0.6l-1.4 -0.3l-0.9 0.9l-0.3 -1.5l0.8 -1.4l0.3 -2.6l-0.3 -2.7l-0.3 -1.4l0.3 -1.4l-0.7 -1.3l-1.5 -1.2z"/><path class="map-country" d="M507.5 215.9l-2.3 0.4l-0.7 -1.9l0.1 -6.4l-0.5 -0.6l-0.1 -1.4l-1 -0.9l-0.9 -0.9l0.4 -1.4l1 -0.3l0.5 -1.2l1.4 -0.3l0.6 -0.8l0.9 -0.8l1 -0.1l2.1 1.6l-0.1 1l0.6 1.6l-0.5 1.1l0.3 0.8l-1.4 1.7l-0.8 0.9l-0.5 1.7v1.8l-0.1 4.4z"/><path class="map-country" d="M541.3 169.8l0.6 4.3l1.1 0.8v0.8l1.2 1l-0.6 1.2l-1.1 5.6l-0.1 3.6l-3.6 2.7l-1.2 3.6l1.2 1.1v1.7l1.7 0.1l-0.2 1.3l-0.8 0.2l-0.1 0.9h-0.5l-1.9 -3l-0.7 -0.1l-2.1 1.5l-2.2 -0.8l-1.5 -0.2l-0.8 0.4h-1.6l-1.6 1.1l-1.5 0.1l-3.3 -1.4l-1.3 0.7l-1.5 -0.1l-1 -1l-2.8 -1.1l-3 0.3l-0.7 0.6l-0.4 1.6l-0.8 1.2l-0.2 2.4l-2.1 -1.6l-1 0.1l-0.9 0.8v-1.9l-3.2 -0.7v-1.3l-1.6 -1.8l-0.4 -1.3l0.2 -1.3l1.8 -0.1l1 -1l3.8 -0.3l2.5 -0.4l0.2 -1.7l1.6 -1.9v-6.4l3.9 -1.2l8 -5.5l9.5 -5.3l4.4 1.2l1.6 1.6l2 -1.1z"/><path class="map-country" d="M507.5 215.9l0.1 -4.4v-1.8l0.5 -1.7l0.8 -0.9l1.4 -1.7l-0.3 -0.8l0.5 -1.1l-0.6 -1.6l0.1 -1l0.2 -2.4l0.8 -1.2l0.4 -1.6l0.7 -0.6l3 -0.3l2.8 1.1l1 1l1.5 0.1l1.3 -0.7l3.3 1.4l1.5 -0.1l1.6 -1.1h1.6l0.8 -0.4l1.5 0.2l2.2 0.8l2.1 -1.5l0.7 0.1l1.9 3h0.5l1.1 1.1l-0.3 0.5l-0.2 0.9l-2.3 2.1l-0.7 1.8l-0.4 1.5l-0.6 0.6l-0.6 1.9l-1.5 1.2l-0.4 1.4l-0.6 1.1l-0.3 1.1l-1.9 1l-1.5 -1.2l-1.1 0.1l-1.6 1.6h-0.9l-1.3 2.7l-0.7 2l-2.9 1l-1 -0.2l-1.1 0.7l-2.2 -0.1l-1.5 -1.7l-0.9 -2.1l-2 -1.8l-2.1 0.1l-2.4 -0.1z"/><path class="map-country" d="M540.3 197.6l1.1 1.8l0.2 1.8l-0.1 1.9l1.5 2.5h-1.6l-0.8 0.2l-1.2 -0.3l-0.6 1.3l1.6 1.6l1.2 0.5l0.4 1.1l0.9 2l-0.5 0.7l-1.4 2.8l-0.6 0.5l-0.2 2.2l0.2 1.2l-0.2 0.8l1.3 1.4l0.3 1l1 1.5l1.3 0.9l0.1 1.2l0.3 0.8l-0.2 1.5l-2.2 -0.6l-2.3 -0.8l-3.5 -0.1l-0.3 -0.1l-1.7 0.3l-1.7 -0.3l-1.3 0.2l-4.5 -0.1l0.4 -2.2l-1.1 -1.8l-1.2 -0.5l-0.6 -1.3l-0.7 -0.4v-0.7l0.7 -2l1.3 -2.7h0.9l1.6 -1.6l1.1 -0.1l1.5 1.2l1.9 -1l0.3 -1.1l0.6 -1.1l0.4 -1.4l1.5 -1.2l0.6 -1.9l0.6 -0.6l0.4 -1.5l0.7 -1.8l2.3 -2.1l0.2 -0.9l0.3 -0.5l-1.1 -1.1l0.1 -0.9l0.8 -0.2z"/><path class="map-country" d="M502.5 202.8l-0.4 1.4l0.9 0.9l1 0.9l0.1 1.4l0.5 0.6l-0.1 6.4l0.7 1.9l-2.3 0.6l-0.6 -1l-0.7 -1.8l-0.2 -1.4l0.6 -2.5l-0.7 -1l-0.3 -2.2v-2l-1.1 -1.4l0.2 -0.9l2.4 0.1z"/><path class="map-country" d="M500.1 202.7l-0.2 0.9l1.1 1.4v2l0.3 2.2l0.7 1l-0.6 2.5l0.2 1.4l0.7 1.8l0.6 1l-4.3 1.6l-1.6 0.9l-2.5 0.8l-2.4 -0.7l0.1 -1.1l-1.2 -2.4l0.7 -3.2l1.2 -2.3l-0.8 -4l-0.3 -2v-1.6l4.9 -0.1l1.2 0.2l0.9 -0.5l1.3 0.2z"/><path class="map-country" d="M477.7 205.0l0.4 -0.3l0.7 0.4l2.2 0.1l0.5 -0.8h0.5l0.8 -0.3l0.4 1.2l0.6 -0.4l1.2 -0.4l1.2 0.6l0.5 0.9l1.3 0.6l0.9 -0.7l1.3 -0.1l1.9 0.7l0.8 4l-1.2 2.3l-0.7 3.2l1.2 2.4l-0.1 1.1h-1.3l-1.9 -0.6l-1.8 0.1l-3.3 0.5l-1.9 0.8l-2.8 1l-0.5 -0.1l0.2 -2.3l0.3 -0.3l-0.1 -1.1l-1.2 -1.2l-0.9 -0.2l-0.8 -0.7l0.6 -1.3l-0.3 -1.3l0.2 -0.8h0.4l0.2 -1.2l-0.3 -0.6l0.3 -0.4l1 -0.3l-0.6 -2.2l-0.7 -1.2l0.2 -0.9l0.6 -0.2z"/><path class="map-country" d="M461.9 198.4h1.4l2 0.7l0.6 -0.1l0.2 -0.3l1.5 0.2l0.4 -0.1l0.2 1h0.4l0.7 -0.4l0.5 0.1l0.8 0.7l1.2 0.2l0.7 -0.6l0.9 -0.3l0.7 -0.4h0.5l0.7 0.7l0.3 0.7l1.1 1.2l-0.5 0.7l-0.1 0.9l0.5 -0.3l0.4 0.4l-0.2 0.8l0.9 0.8l-0.6 0.2l-0.2 0.9l0.7 1.2l0.6 2.2l-1 0.3l-0.3 0.4l0.3 0.6l-0.2 1.2h-0.4l-0.8 -0.1l-0.6 1.1h-0.8l-0.5 -0.6l0.2 -1.1l-1.2 -1.7l-0.7 0.3l-0.6 0.1l-0.8 0.1v-1l-0.4 -0.7l0.1 -0.8l-0.6 -1.2l-0.8 -1h-2.2l-0.7 0.5l-0.7 0.1l-0.5 0.6l-0.3 0.8l-1.5 1.2l-1.2 -1.6l-1.1 -1.1l-0.7 -0.4l-0.7 -0.5l-0.3 -1.3l-0.4 -0.6l-0.8 -0.4l1.2 -1.4l0.8 0.1l0.8 -0.5h0.6l0.4 -0.4l-0.2 -0.9l0.3 -0.3v-0.9z"/><path class="map-country" d="M453.7 198.9l1.4 -0.4l1 0.1l0.7 -0.3l5.1 0.1v0.9l-0.3 0.3l0.2 0.9l-0.4 0.4h-0.6l-0.8 0.5l-0.8 -0.1l-1.2 1.4l-1.5 -1.2l-1.2 -0.2l-0.6 -0.8v-0.4l-0.8 -0.6l-0.2 -0.6z"/><path class="map-country" d="M476.6 212.0l-0.2 0.8l0.3 1.3l-0.6 1.3l0.8 0.7l0.9 0.2l1.2 1.2l0.1 1.1l-0.3 0.3l-0.2 2.3h-0.8l-2.8 -1.3l-2.5 -2.1l-2.4 -1.5l-1.9 -1.8l0.7 -0.9l0.1 -0.8l1.3 -1.5l1.3 -1.3l0.6 -0.1l0.7 -0.3l1.2 1.7l-0.2 1.1l0.5 0.6h0.8l0.6 -1.1l0.8 0.1z"/><path class="map-country" d="M463.2 208.6l1.5 -1.2l0.3 -0.8l0.5 -0.6l0.7 -0.1l0.7 -0.5h2.2l0.8 1l0.6 1.2l-0.1 0.8l0.4 0.7v1l0.8 -0.1l-1.3 1.3l-1.3 1.5l-0.1 0.8l-0.7 0.9l-0.7 -0.2l-2 -1.1l-1.5 -1.5l-0.5 -1l-0.3 -2.1z"/><path class="map-country" d="M485.0 204.5l-0.2 -1.6l0.8 -1.2l-0.1 -0.9l2.2 -2.3l0.4 -1.9l0.8 -0.7l1.3 0.4l1.2 -0.6l0.4 -0.7l2.1 -1.2l0.5 -0.9l2.6 -1.2l1.6 -0.4l0.7 0.6h1.7l-0.2 1.3l0.4 1.3l1.6 1.8v1.3l3.2 0.7v1.9l-0.6 0.8l-1.4 0.3l-0.5 1.2l-1 0.3l-2.4 -0.1l-1.3 -0.2l-0.9 0.5l-1.2 -0.2l-4.9 0.1v1.6l0.3 2l-1.9 -0.7l-1.3 0.1l-0.9 0.7l-1.3 -0.6l-0.5 -0.9l-1.2 -0.6z"/><path class="map-country" d="M576.0 218.8l-0.9 0.3l-1.8 -0.1l-2 -0.3l-1.1 0.3l-0.4 0.6l-0.9 0.1l-1.1 -0.6l-3.1 1.4l-1.3 -0.3l-0.3 0.3l-0.9 1.6l-2 -0.5l-2.1 -0.3l-1.7 -1l-2.3 -0.9l-1.5 0.9l-1.1 1.4l-0.2 1.9l-1.8 -0.2l-1.9 -0.4l-1.7 1.5l-1.4 2.5l-0.3 -0.8l-0.1 -1.2l-1.3 -0.9l-1 -1.5l-0.3 -1l-1.3 -1.4l0.2 -0.8l-0.2 -1.2l0.2 -2.2l0.6 -0.5l1.4 -2.8l2.3 -0.2l0.6 -0.7h0.4l0.7 0.7l3.5 -1.1l1.2 -1.1l1.4 -0.9l-0.2 -1l0.7 -0.3l2.7 0.2l2.6 -1.3l2 -3l1.5 -1.1l1.7 -0.5l0.3 1.2l1.6 1.7v1.1l-0.4 1.2l0.2 0.9l0.9 0.8l2.1 1.2l1.6 1.1v0.9l1.9 1.4l1.1 1.2l0.7 1.7l2.1 1.1l0.4 0.9z"/><path class="map-country" d="M551.3 223.6l-0.2 1.7l-0.8 1.5l-0.6 1.7l-0.3 2.5l0.1 1.5l-0.4 1l-0.1 1l-0.3 0.9l-1.9 1.3l-1.2 1.5l-1.2 2.7l0.1 2.3l-0.7 0.8l-1.7 1.4l-1.6 1.7l-1 -0.5l-0.2 -0.7l-1.5 -0.1l-1 1.1l-0.7 -0.3l-1 -0.9l-0.9 0.4l-1.1 1.2l-2.3 -2.9l2.1 -1.5l-1 -1.9l0.9 -0.7l1.9 -0.3l0.2 -1.3l1.5 1.4l2.5 0.1l0.8 -1.3l0.4 -1.9l-0.3 -2.1l-1.3 -1.7l1.2 -3.2l-0.7 -0.5l-2.1 0.2l-0.8 -1.5l0.2 -1.2l3.5 0.1l2.3 0.8l2.2 0.6l0.2 -1.5l1.4 -2.5l1.7 -1.5l1.9 0.4l1.8 0.2z"/><path class="map-country" d="M531.3 227.1l1.3 -0.2l1.7 0.3l1.7 -0.3l0.3 0.1l-0.2 1.2l0.8 1.5l2.1 -0.2l0.7 0.5l-1.2 3.2l1.3 1.7l0.3 2.1l-0.4 1.9l-0.8 1.3l-2.5 -0.1l-1.5 -1.4l-0.2 1.3l-1.9 0.3l-0.9 0.7l1 1.9l-2.1 1.5l-2.8 -2.8l-1.9 -2.3l-1.7 -2.9l0.1 -0.9l0.6 -0.9l0.7 -2l0.6 -2.1l0.9 -0.1h4v-3.3z"/><path class="map-country" d="M526.8 227.0l4.5 0.1v3.3h-4l-0.9 0.1l-0.6 -0.4l1 -3.1z"/><path class="map-country" d="M585.4 256.5l1.1 0.7l1.2 0.5l1.7 0.4l1.6 0.9l1.3 1.2l0.7 2.4l-0.5 0.7l-0.5 2.3l0.5 2.3l-0.9 0.9l-0.8 2.6l1.5 0.7l-8.5 2.3l0.3 2l-2.1 0.4l-1.6 1.1l-0.3 1l-1 0.2l-2.4 2.3l-1.6 1.8h-0.9l-0.9 -0.3l-3.1 -0.3l-0.5 -0.2v-0.2l-1.1 -0.7l-1.8 -0.1l-2.3 0.6l-1.8 -1.7l-1.9 -2.3l0.1 -8.8h5.8l-0.2 -1l0.4 -1l-0.5 -1.3l0.3 -1.3l-0.3 -0.9l1 0.1l0.1 0.8h1.3l1.8 0.2l0.9 1.3l2.3 0.4l1.7 -0.9l0.6 1.4l2.1 0.4l1 1.2l1.2 1.5l2.1 0.1l-0.2 -3l-0.8 0.5l-1.9 -1.1l-0.8 -0.5l0.4 -2.8l0.4 -3.3l-0.6 -1.2l0.8 -1.8l0.8 -0.3l3.7 -0.5l1.1 0.3z"/><path class="map-country" d="M591.0 259.0l2.7 0.5l0.6 0.8l0.9 1.3l0.8 3.7l-0.8 2.1l0.8 3.7l1 -0.1l1 0.9l1.1 2l0.3 3.6l-1.2 0.6l-0.9 1.9l-1.8 -1.7l-0.2 -2l0.6 -1.3l-0.2 -1.1l-1.1 -0.7l-0.7 0.3l-1.6 -1.4l-1.5 -0.7l0.8 -2.6l0.9 -0.9l-0.5 -2.3l0.5 -2.3l0.5 -0.7l-0.7 -2.4l-1.3 -1.2z"/><path class="map-country" d="M596.0 265.3l2.1 -0.2l3.3 0.8l0.8 -0.4h1.9l1 -0.9l1.6 0.1l3.1 -1.1l2.2 -1.6l0.4 1.2l-0.1 2.8l0.4 2.4l0.1 4.4l0.5 1.3l-0.9 2l-1 2l-1.8 1.7l-2.6 1l-3.1 1.4l-3.1 3l-1.1 0.5l-1.9 1.9l-1.2 0.7l-0.2 2l1.3 2.1l0.6 1.6v0.8l0.5 -0.1l-0.1 2.7l-0.4 1.3l0.6 0.5l-0.4 1.1l-1.2 1l-2.3 1l-3.3 1.5l-1.2 1l0.2 1.2l0.7 0.2l-0.2 1.4h-2.1l-0.3 -1.2l-0.4 -1.3l-0.2 -1l0.5 -3.1l-0.7 -1.9l-1.4 -4l3 -3.1l0.7 -2l0.4 -0.3l0.3 -1.6l-0.4 -0.8l0.1 -2.1l0.5 -1.9v-3.5l-1.4 -0.9l-1.3 -0.2l-0.6 -0.7l-1.3 -0.6h-2.3l-0.2 -1l-0.3 -2l8.5 -2.3l1.6 1.4l0.7 -0.3l1.1 0.7l0.2 1.1l-0.6 1.3l0.2 2l1.8 1.7l0.9 -1.9l1.2 -0.6l-0.3 -3.6l-1.1 -2l-1 -0.9l-1 0.1l-0.8 -3.7l0.8 -2.1z"/><path class="map-country" d="M589.1 307.6l-0.6 1.2l-1.6 0.3l-1.7 -1.5v-0.9l0.8 -1.1l0.2 -0.8l0.8 -0.2l1.4 0.5l0.4 1.3l0.3 1.2z"/><path class="map-country" d="M536.1 246.6l-1 0.6l-0.5 0.7l-0.1 1.2l-0.7 0.3l-0.7 -2.1l1.1 -1.2l0.9 -0.4l1 0.9zM534.2 250.3l1.2 -0.4l0.8 0.1l1 -0.4l8.2 0.1l0.6 2l0.8 1.7l0.7 0.9l1 1.4l1.9 -0.2l0.9 -0.4l1.5 0.4l0.4 -0.7l0.7 -1.6l1.8 -0.1l0.1 -0.5h1.4l-0.2 1h3.4v1.7l0.6 1.1l-0.4 1.7l0.2 1.7l0.9 1l-0.2 3.3l0.7 -0.2h1.2l1.8 -0.4l1.2 0.2l0.3 0.9l-0.3 1.3l0.5 1.3l-0.4 1l0.2 1h-5.8l-0.1 8.8l1.9 2.3l1.8 1.7l-5.1 1.1l-6.7 -0.4l-2 -1.3l-11.2 0.1l-0.4 0.2l-1.7 -1.2l-1.8 -0.1l-1.7 0.5l-1.3 0.5l-0.3 -1.8l0.4 -2.4l1 -2.5l0.1 -1.2l0.9 -2.5l0.7 -1.2l1.6 -1.8l0.9 -1.2l0.3 -2.1l-0.2 -1.6l-0.8 -1l-0.8 -1.6l-0.6 -1.7l0.1 -0.6l0.9 -1.1l-0.9 -2.7l-0.5 -1.8l-1.4 -1.8l0.2 -0.5z"/><path class="map-country" d="M584.6 240.0l0.2 1.1l0.6 0.7v0.9l-0.7 0.5l-1 1.5l-1.1 1l-1.1 0.1l-0.2 -3.3l-0.7 -1.3l1.7 0.2l0.9 -1.5l1.4 0.1z"/><path class="map-country" d="M599.2 142.5l-0.5 0.8l-1 -0.3l-0.5 1.8l0.6 0.3l-0.7 0.4l-0.1 0.7l1.3 -0.3l0.1 1l-1.4 4.5l-0.3 -0.7l-1.5 -4.1l0.8 -0.9l-0.2 -0.2l0.7 -1.3l0.6 -2.1l0.4 -0.7h0.1h0.9l0.3 -0.5h0.7v1.1l-0.3 0.5z"/><path class="map-country" d="M599.5 140.9h-0.7l-0.3 0.5h-0.9l1 -2.2l1.3 -2l0.1 -0.1l1.2 0.1l0.5 1.1l-1.5 1.1l-0.7 1.5z"/><path class="map-country" d="M637.6 268.0l0.8 1.2l0.6 1.8l0.5 3.3l0.7 1.3l-0.3 1.4l-0.5 0.8l-0.9 -1.7l-0.5 0.9l0.5 2l-0.2 1.2l-0.8 0.7l-0.2 2.3l-1.1 3.2l-1.3 3.9l-1.8 5.2l-1 3.9l-1.3 3.2l-2.2 0.7l-2.5 1.1l-1.6 -0.7l-2.2 -1l-0.7 -1.4l-0.2 -2.5l-1 -2.2l-0.3 -2l0.5 -2l1.3 -0.5v-0.9l1.4 -2.1l0.2 -1.8l-0.6 -1.3l-0.6 -1.7l-0.2 -2.6l1 -1.6l0.4 -1.7l1.3 -0.1l1.6 -0.6l1 -0.5h1.2l1.6 -1.6l2.3 -1.7l0.8 -1.4l-0.3 -1.2l1.1 0.3l1.6 -1.9v-1.7l1 -1.2l0.9 1.2z"/><path class="map-country" d="M598.3 145.9l-1.3 0.3l0.1 -0.7l0.7 -0.4l-0.6 -0.3l0.5 -1.8l1 0.3v1.8l-0.4 0.8z"/><path class="map-country" d="M453.6 195.6l3 -0.1l0.6 -0.7h0.9l1.1 0.7h0.9l0.9 -0.5l0.5 0.8l-1.2 0.6h-1.2l-1.2 -0.6l-1 0.6l-0.5 0.1l-0.7 0.4l-2.5 -0.1l0.4 -1.2z"/><path class="map-country" d="M526.3 149.1l-1.1 -4.9l-1.8 -1.2v-0.6l-2.3 -1.7l-0.2 -2.1l1.7 -1.5l0.7 -2.3l-0.5 -2.7l0.6 -1.4l3 -1.1l2 0.3l-0.1 1.4l2.3 -1l0.2 0.5l-1.4 1.4v1.3l1 0.7l-0.4 2.4l-1.8 1.4l0.5 1.5h1.5l0.7 1.4l1 0.4l-0.1 2.1l-1.4 0.8l-0.9 0.9l-1.9 1.1l0.3 1.1l-0.2 1.2l-1.4 0.6z"/><path class="map-country" d="M475.9 157.2v-0.5v-0.2v-3.3l4.5 -2l2.8 -0.5l2.2 -0.7l1.1 -1.4l3.2 -1.1l0.2 -2l1.6 -0.3l1.2 -1l3.7 -0.5l0.5 -1.1l-0.8 -0.6l-0.9 -2.9l-0.2 -1.7l-1 -1.8l2.6 -1.5l3 -0.5l1.8 -1.1l2.7 -0.8l4.7 -0.5l4.6 -0.3l1.4 0.4l2.6 -1l3 -0.1l1.1 0.7l1.9 -0.2l-0.6 1.4l0.5 2.7l-0.7 2.3l-1.7 1.5l0.2 2.1l2.3 1.7v0.6l1.8 1.2l1.1 4.9l0.9 2.5l0.2 1.3l-0.5 2.3l0.2 1.2l-0.4 1.5l0.3 1.8l-1.1 1.1l1.6 2.1l0.1 1.2l1 1.5l1.3 -0.5l2.2 1.3l1.2 1.7l-9.5 5.3l-8 5.5l-3.9 1.2l-3.1 0.3l-0.1 -1.8l-1.2 -0.4l-1.8 -0.8l-0.6 -1.3l-9.4 -6.1l-9.4 -6l-10.4 -6.8z"/><path class="map-country" d="M598.7 143.3l0.5 -0.8l3.1 1.1l5.5 -3l1.1 3.4l-0.6 0.4l-5.5 1.4l2.8 2.8l-1 0.5l-0.4 0.9l-2.1 0.4l-0.7 1l-1.2 0.8l-3.1 -0.4l-0.1 -0.4l1.4 -4.5l-0.1 -1l0.4 -0.8v-1.8z"/><path class="map-country" d="M643.3 166.0l0.5 -0.1l0.1 0.7l2.1 -0.4h2.3l1.7 0.1l1.9 -1.9l2.1 -1.7l1.8 -1.7l0.5 0.9l0.4 2.2h-1.5l-0.2 1.8l0.5 0.4l-1.3 0.6v1.1l-0.8 1.1v1.2l-0.6 0.5l-8.4 -1.4l-1 -2.8l-0.1 -0.6z"/><path class="map-country" d="M641.1 164.6l-0.1 -2.1l0.7 -1.4l0.8 -0.3l0.8 0.9l0.1 1.6l-0.7 1.6l-0.7 0.2l-0.9 -0.5z"/><path class="map-country" d="M633.3 150.1l0.5 1.2l-0.2 0.6l0.9 2.1l-2 0.1l-0.7 -1.3l-2.4 -0.3l2 -2.7l1.9 0.3z"/><path class="map-country" d="M608.9 144.0l-1.1 -3.4l6.1 -2.9l1.1 -3.3l-0.3 -2.1l1.5 -0.6l1.4 -1.8l1.2 -0.4l3.3 0.3l0.9 0.8l1.4 -0.5l1.8 3.3l1.8 0.8l0.2 1.6l-1.4 1l-0.6 2.2l1.9 2.6l3.4 1.5l1.4 2.2l-0.4 2h0.8l0.1 1.4l1.5 1.5l-1.6 -0.1l-1.9 -0.3l-2 2.7l-5.2 -0.2l-7.8 -5.6l-4.2 -2l-3.3 -0.7z"/><path class="map-country" d="M653.4 170.3v-1.2l0.8 -1.1v-1.1l1.3 -0.6l-0.5 -0.4l0.2 -1.8h1.5l1.2 1.9l1.6 1l2 0.4l1.6 0.5l1.3 1.6l0.7 0.9l1 0.3v0.7l-1 1.6l-0.4 0.8l-1.2 0.9l-1 1.9l-1.3 -0.2l-0.6 0.7l-0.4 1.4l0.3 1.9l-0.2 0.3h-1.3l-1.8 1l-0.2 1.4l-0.7 0.6h-1.7l-1.1 0.7v1.1l-1.3 0.8l-1.5 -0.3l-1.9 0.9l-1.3 0.2l-0.9 -2l-2.2 -4.5l8.4 -2.8l1.8 -5.6l-1.2 -1.9zM656.3 161.9l-0.5 -0.9l0.8 -1l0.3 0.3l-0.3 1.1l-0.3 0.5z"/><path class="map-country" d="M964.5 277.5l1.7 1.6l-0.9 0.3l-0.9 -1.2l0.1 -0.7zM963.3 276.9l-0.4 -0.8v-2.1l1.3 0.8l0.4 2.3l-0.7 -0.4l-0.6 0.2z"/><path class="map-country" d="M785.0 199.5l-0.7 -3.4l1.8 -2.3l3.6 -0.5l2.6 0.4l2.3 1.1l1.2 -1.9l2.5 1l0.6 1.8l-0.3 3.4l-4.7 2.1l1.2 1.7l-2.9 0.2l-2.4 1.1l-2.3 -0.4l-1.1 -1.4l-1.4 -2.9z"/><path class="map-country" d="M792.3 193.7l-2.6 -0.4l-3.6 0.5l-1.8 2.3l0.7 3.4l-2.5 -1.3l-2.4 0.1l0.4 -2.2h-2.5l-0.2 3l-1.5 4.1l-0.9 2.5l0.2 2l1.8 0.1l1.2 2.5l0.5 2.4l1.5 1.6l1.7 0.3l1.4 1.4l-0.9 1.2l-1.8 0.3l-0.2 -1.4l-2.3 -1.2l-0.5 0.5l-1.1 -1.1l-0.5 -1.4l-1.4 -1.5l-1.4 -1.4l-0.4 1.7l-0.6 -1.6l0.3 -1.7l0.9 -2.7l1.3 -2.8l1.5 -2.6l-1.1 -2.5l0.1 -1.3l-0.3 -1.6l-1.9 -2.2l-0.6 -1.4l0.9 -0.5l1 -2.4l-1.1 -1.8l-1.8 -2.1l-1.3 -2.4l1.2 -0.5l1.2 -3l2 -0.1l1.6 -1.2l1.6 -0.7l1.2 0.9l0.2 1.6l1.8 0.2l-0.6 2.9v2.5l2.9 -1.7l0.9 0.5l1.6 -0.1l0.6 -0.9l2.1 0.2l2.1 2.2l0.2 2.8l2.2 2.4l-0.1 2.3l-0.9 1.3z"/><path class="map-country" d="M798.3 193.9l-2.5 -1l-1.2 1.9l-2.3 -1.1l0.9 -1.3l0.1 -2.3l-2.2 -2.4l-0.2 -2.8l-2.1 -2.2l-2.1 -0.2l-0.6 0.9l-1.6 0.1l-0.9 -0.5l-2.9 1.7v-2.5l0.6 -2.9l-1.8 -0.2l-0.2 -1.6l-1.2 -0.9l0.6 -1l2.4 -1.8l0.2 0.6l1.5 0.1l-0.4 -3.2l1.4 -0.4l1.6 2.2l1.3 2.5l3.4 0.1l1.1 2.4l-1.8 0.7l-0.8 1l3.3 1.7l2.3 3.3l1.8 2.4l2.1 1.9l0.7 2l-0.5 2.8z"/><path class="map-country" d="M778.1 176.6l-1.6 0.7l-1.6 1.2l-2 0.1l-1.2 3l-1.2 0.5l1.3 2.4l1.8 2.1l1.1 1.8l-1 2.4l-0.9 0.5l0.6 1.4l1.9 2.2l0.3 1.6l-0.1 1.3l1.1 2.5l-1.5 2.6l-1.3 2.8l-0.3 -2l0.8 -2.1l-0.9 -1.7l0.2 -3l-1.1 -1.5l-0.9 -3.3l-0.5 -3.5l-1.2 -2.3l-1.8 1.4l-3.2 2l-1.5 -0.3l-1.8 -0.6l1 -3.5l-0.6 -2.6l-2.2 -3.2l0.4 -1l-1.7 -0.3l-1.9 -2.3l-0.2 -2.2l1 0.4v-2l1.4 -0.7l-0.3 -1.1l0.6 -1l0.1 -2.9l2.2 0.7l1.2 -2.3l0.2 -1.4l1.5 -2.3l-0.1 -1.6l3.6 -1.9l2 0.5l-0.2 -1.7l1 -0.5l-0.2 -1.1l1.6 -0.2l0.9 1.7l1.2 0.6l0.1 2.1l-0.1 2.3l-2.6 2.4l-0.4 3.3l3 -0.5l0.6 2.5l1.8 0.6l-0.8 2.3l2 1l1.2 0.5l2.1 -0.8l0.1 1.2l-2.4 1.8l-0.6 1z"/><path class="map-country" d="M789.8 204.2l2.4 -1.1l2.9 -0.2l-1.2 -1.7l4.7 -2.1l0.3 -3.4l-0.6 -1.8l0.5 -2.8l-0.7 -2l-2.1 -1.9l-1.8 -2.4l-2.3 -3.3l-3.3 -1.7l0.8 -1l1.8 -0.7l-1.1 -2.4l-3.4 -0.1l-1.3 -2.5l-1.6 -2.2l1.5 -0.6h2.2l2.7 -0.4l2.4 -1.4l1.3 1l2.6 0.5l-0.5 1.6l1.3 1.1l2.8 0.8l-3.7 2.3l-2.3 2.7l-0.6 1.9l2.1 2.9l2.6 3.7l2.5 1.7l1.7 2.2l1.3 5.1l-0.4 4.9l-2.3 1.9l-3.2 1.7l-2.2 2.4l-3.5 2.5l-1 -1.7l0.8 -1.9l-2.1 -1.6z"/><path class="map-country" d="M862.9 115.6l0.4 0.5l-1.1 -0.2l-1.2 0.9l-0.8 1l0.1 2l-1.4 0.6l-0.5 0.5l-1.1 0.8l-1.8 0.4l-1.2 0.8l-0.1 1.2l-0.4 0.3l1.2 0.5l1.5 1.2l-0.4 0.6l-1.2 0.2l-1.9 0.2l-1.1 1.2l-1.2 -0.1l-0.2 0.3l-1.4 -0.6l-0.3 0.6l-0.8 0.2l-0.1 -0.5l-0.7 -0.3l-0.8 -0.4l0.8 -1.2l0.6 -0.4l-0.2 -0.5l0.7 -1.5l-0.2 -0.4l-1.6 -0.3l-1.3 -0.8l2.2 -1.8l3.1 -1.5l1.9 -1.9l1.3 0.8l2.4 0.1l-0.4 -1.4l4.3 -1.2l1.1 -1.6l1.8 1.7z"/><path class="map-country" d="M850.5 128.5l0.2 -0.3l1.2 0.1l1.1 -1.2l1.9 -0.2l1.2 -0.2l0.4 -0.6l2.4 3.3l0.7 1.8v3.2l-1 1.5l-2.5 0.5l-2.3 1.2l-2.5 0.2l-0.3 -1.5l0.5 -2.1l-1.2 -2.9l2.1 -0.4l-1.9 -2.4z"/><path class="map-country" d="M743.8 96.4l2.9 -0.5l5.3 -2.4l4.2 -1.3l2.4 0.9h2.9l1.9 1.3l2.7 0.1l4.1 0.7l2.7 -1.9l-1.2 -1.7l2.9 -2.8l3.1 1.1l2.5 0.3l3.3 0.7l0.5 2.1l4 1.2l2.6 -0.5l3.5 -0.4l2.8 0.4l2.7 1.3l1.7 1.4h2.6l3.5 0.5l2.5 -0.7l3.7 -0.5l4.1 -1.9l1.6 0.3l1.5 0.9l3.3 -0.2l-1.3 2.1l-2 2.7l0.7 1.2l1.6 -0.4l2.7 0.4l2.2 -1l2.2 0.9l2.5 1.9l-0.3 1l-2.2 -0.3l-4 0.4l-2 0.8l-2 1.8l-4.3 1.1l-2.7 1.5l-2.9 -0.6l-1.5 -0.3l-1.5 1.8l0.9 1.1l0.4 0.9l-1.9 1l-2 1.4l-3.2 1l-4.2 0.1l-4.5 1l-3.2 1.5l-1.3 -0.9h-3.3l-4.1 -1.7l-2.8 -0.4l-3.7 0.4l-5.7 -0.6l-3.1 0.1l-1.6 -1.7l-1.3 -2.6l-1.7 -0.3l-3.3 -1.7l-3.8 -0.4l-3.3 -0.5l-1 -1.2l1.1 -3.2l-1.9 -2.2l-4 -1.1l-2.3 -1.5l-0.7 -1.9z"/><path class="map-country" d="M770.4 154.8l0.2 1.1l-1 0.5l0.2 1.7l-2 -0.5l-3.6 1.9l0.1 1.6l-1.5 2.3l-0.2 1.4l-1.2 2.3l-2.2 -0.7l-0.1 2.9l-0.6 1l0.3 1.1l-1.4 0.7l-1.4 -4.4h-0.8l-0.5 1.8l-1.5 -1.5l0.9 -1.5l1.2 -0.2l1.3 -2.3l-1.6 -0.5h-2.6l-2.6 -0.4l-0.3 -1.9l-1.3 -0.1l-2.2 -1.2l-1 1.9l2 1.4l-1.7 1.1l-0.6 1l1.7 0.7l-0.5 1.7l1 2.1l0.4 2.3l-0.4 1l-1.9 -0.1l-3.4 0.6l0.2 2.1l-1.5 1.7l-4 1.8l-3.1 3.3l-2.1 1.7l-2.8 1.9v1.2l-1.4 0.7l-2.5 1l-1.3 0.2l-0.8 2.1l0.6 3.6l0.1 2.3l-1.2 2.6v4.8l-1.4 0.1l-1.3 2.1l0.9 0.9l-2.6 0.8l-0.9 1.9l-1.1 0.8l-2.6 -2.6l-1.3 -3.9l-1.1 -2.8l-1 -1.3l-1.4 -2.7l-0.7 -3.4l-0.5 -1.8l-2.5 -3.8l-1.2 -5.4l-0.8 -3.5v-3.4l-0.6 -2.6l-4 1.7l-2 -0.4l-3.6 -3.3l1.4 -1l-0.9 -1.1l-3.2 -2.4l1.8 -1.8h6.1l-0.5 -2.4l-1.6 -1.4l-0.3 -2.2l-1.8 -1.2l3.1 -2.9l3.2 0.2l2.9 -2.9l1.7 -2.8l2.7 -2.8v-2l2.3 -1.6l-2.2 -1.4l-1 -1.9l-0.9 -2.4l1.3 -1.2l4.2 0.7l3.1 -0.4l2.7 -2.4l3 3.3l-0.3 2.3l1.1 1.4l-0.1 1.4l-2 -0.4l0.8 3.1l2.7 1.7l3.9 2l-1.8 1.2l-1 2.6l2.7 1.1l2.6 1.4l3.6 1.5l3.8 0.4l1.6 1.4l2.2 0.3l3.3 0.6h2.3l0.3 -1.1l-0.3 -1.8l0.2 -1.2l1.7 -0.6l0.2 2.2l0.1 0.6l2.5 1l1.7 -0.4l2.4 0.2l2.2 -0.1l0.2 -1.7l-1.1 -0.9l2.3 -0.4l2.5 -2l3.2 -1.8l2.3 0.7l2 -1.2l1.3 1.7l-0.9 1.2l3 0.4z"/><path class="map-country" d="M757.4 172.1v2l-1 -0.4l0.2 2.2l-0.8 -1.4l-0.2 -1.4l-0.5 -1.4l-1.2 -1.6l-2.5 -0.1l0.2 1.1l-0.8 1.6l-1.2 -0.6l-0.4 0.5l-0.8 -0.3l-1.1 -0.2l-0.4 -2.3l-1 -2.1l0.5 -1.7l-1.7 -0.7l0.6 -1l1.7 -1.1l-2 -1.4l1 -1.9l2.2 1.2l1.3 0.1l0.3 1.9l2.6 0.4h2.6l1.6 0.5l-1.3 2.3l-1.2 0.2l-0.9 1.5l1.5 1.5l0.5 -1.8h0.8l1.4 4.4z"/><path class="map-country" d="M754.7 156.2l1.1 0.9l-0.2 1.7l-2.2 0.1l-2.4 -0.2l-1.7 0.4l-2.5 -1l-0.1 -0.6l1.8 -2.1l1.5 -0.7l2 0.7h1.5l1.2 0.8z"/><path class="map-country" d="M744.8 155.9l-0.2 1.2l0.3 1.8l-0.3 1.1h-2.3l-3.3 -0.6l-2.2 -0.3l-1.6 -1.4l-3.8 -0.4l-3.6 -1.5l-2.6 -1.4l-2.7 -1.1l1 -2.6l1.8 -1.2l1.2 -0.7l2.2 0.9l2.8 1.8l1.6 0.4l0.9 1.3l2.1 0.6l2.3 1.2l3.1 0.6l3.3 0.3z"/><path class="map-country" d="M716.2 134.7l-2.7 2.4l-3.1 0.4l-4.2 -0.7l-1.3 1.2l0.9 2.4l1 1.9l2.2 1.4l-2.3 1.6v2l-2.7 2.8l-1.7 2.8l-2.9 2.9l-3.2 -0.2l-3.1 2.9l1.8 1.2l0.3 2.2l1.6 1.4l0.5 2.4h-6.1l-1.8 1.8l-2.1 -0.7l-0.8 -2l-2.1 -2.1l-5.2 0.5l-4.5 0.1l-3.9 0.4l1.1 -3.3l4 -1.4l-0.3 -1.3l-1.3 -0.4l-0.1 -2.5l-2.6 -1.2l-1.1 -1.7l-1.4 -1.4l4.6 1.4l2.8 -0.4l1.7 0.3l0.5 -0.6l2 0.3l3.6 -1.2l0.1 -2.4l1.5 -1.5h2.1l0.3 -0.8l2.1 -0.4l1.1 0.3l1 -0.8l-0.1 -1.7l1.2 -1.6l1.7 -0.7l-1.1 -1.9l2.7 0.1l0.8 -1l-0.2 -1l1.4 -1.2l-0.3 -1.4l-0.7 -1.2l1.7 -1.2l3 -0.6l3.1 -0.3l1.5 -0.5l1.6 -0.3l2 1.3l0.8 2.1l4.6 1.1z"/><path class="map-country" d="M684.8 129.5l1.5 0.1l2.1 0.6l0.9 0.3l2 -0.9l0.9 0.5l0.9 -1.2h1.7l0.4 -0.4l0.3 -1.1l1.2 -1l1.5 0.7l-0.3 0.8l0.8 0.1l-0.2 2.4l1.1 0.9l0.9 -0.6l1.3 -0.3l1.7 -1.2l1.9 0.2h2.9l0.5 0.8l-1.6 0.3l-1.5 0.5l-3.1 0.3l-3 0.6l-1.7 1.2l0.7 1.2l0.3 1.4l-1.4 1.2l0.2 1l-0.8 1l-2.7 -0.1l1.1 1.9l-1.7 0.7l-1.2 1.6l0.1 1.7l-1 0.8l-1.1 -0.3l-2.1 0.4l-0.3 0.8h-2.1l-1.5 1.5l-0.1 2.4l-3.6 1.2l-2 -0.3l-0.5 0.6l-1.7 -0.3l-2.8 0.4l-4.6 -1.4l2.5 -2.5l-0.2 -1.8l-2.1 -0.5l-0.2 -1.8l-0.9 -2.2l1.1 -1.5l-1.2 -0.4l0.8 -2l1.1 -3.5l2.9 1.1l2.1 -0.4l0.5 -1.3l2.2 -0.4l1.6 -0.8l0.5 -2.3l2.4 -0.5l0.4 -1l1.3 0.8h0.9z"/><path class="map-country" d="M688.4 130.2l1.6 -2.9l-0.6 -2l-2.1 -0.7l0.8 -1.2l2.3 0.1l1.3 -1.5l0.9 -1.8l3.7 -0.6l-0.6 1.2l0.4 0.8l1.2 -0.1l-1.1 0.9l-3 -0.5l-0.2 1.6l3 -0.2l3.4 0.9l5.3 -0.4l0.7 2.6l0.9 -0.3l1.7 0.6l-0.1 1.1l0.4 1.6h-2.9l-1.9 -0.2l-1.7 1.2l-1.3 0.3l-0.9 0.6l-1.1 -0.9l0.2 -2.4l-0.8 -0.1l0.3 -0.8l-1.5 -0.7l-1.2 1l-0.3 1.1l-0.4 0.4h-1.7l-0.9 1.2l-0.9 -0.5l-2 0.9l-0.9 -0.3z"/><path class="map-country" d="M697.1 115.9l0.6 -1.2l1.9 -0.4l4.5 1l0.5 -1.7l1.5 -0.5l4 1.1l1 -0.3l4.6 0.1l4.1 0.3l1.4 1l1.7 0.4l-0.3 0.6l-4.4 1.5l-1 1.1l-3.6 0.4l-1 1.7l-3 -0.3l-1.9 0.5l-2.6 1.3l0.3 0.7l-0.7 0.6l-5.3 0.4l-3.4 -0.9l-3 0.2l0.2 -1.6l3 0.5l1.1 -0.9l2.1 0.3l3.5 -2l-3.3 -1.4l-1.9 0.6l-2.1 -1l2.3 -1.8l-0.8 -0.3z"/><path class="map-country" d="M645.8 117.3l1.3 -1l3.1 -0.5l1.9 0.7l1.9 2.2l1.5 -0.1l3.1 -0.1l-0.5 -1.3l2.4 -1l2.4 -1.6l3.7 1.4l0.3 2.3l1.1 0.5l3 -0.1l0.9 0.5l1.4 2.9l3.1 1.9l1.8 1.3l3 1.4l3.6 1.1v1.7h-0.9l-1.3 -0.8l-0.4 1l-2.4 0.5l-0.5 2.3l-1.6 0.8l-2.2 0.4l-0.5 1.3l-2.1 0.4l-2.9 -1.1l-0.2 -2.3l-2.1 -0.1l-3.2 -2.5l-2.2 -0.3l-3.1 -1.4l-1.9 -0.3l-1.2 0.6l-1.9 -0.1l-2 1.6l-2.4 0.5l-0.5 -2l0.4 -2.9l-2.2 -0.9l0.7 -1.9l-1.8 -0.2l0.6 -2.3l2.6 0.7l2.4 -0.9l-2 -1.7l-0.8 -1.6l-2.2 0.7l-0.3 2.1l-0.9 -1.8z"/><path class="map-country" d="M634.9 150.2l-1.5 -1.5l-0.1 -1.4h-0.8l0.4 -2l-1.4 -2.2l-3.4 -1.5l-1.9 -2.6l0.6 -2.2l1.4 -1l-0.2 -1.6l-1.8 -0.8l-1.8 -3.3l-1.6 -2.2l0.6 -0.9l-0.9 -3.2l1.9 -0.8l0.5 1.1l1.4 1.3l1.9 0.3l1 -0.1l3.3 -2l1 -0.2l0.8 0.8l-0.9 1.4l1.7 1.4l0.7 -0.1l0.9 2l2.6 0.6l1.9 1.4l4 0.5l4.3 -0.7l0.3 -0.7l2.4 -0.5l2 -1.6l1.9 0.1l1.2 -0.6l1.9 0.3l3.1 1.4l2.2 0.3l3.2 2.5l2.1 0.1l0.2 2.3l-1.1 3.5l-0.8 2l1.2 0.4l-1.1 1.5l0.9 2.2l0.2 1.8l2.1 0.5l0.2 1.8l-2.5 2.5l1.4 1.4l1.1 1.7l2.6 1.2l0.1 2.5l1.3 0.4l0.3 1.3l-4 1.4l-1.1 3.3l-5.2 -0.9l-3 -0.6l-3.2 -0.4l-1.1 -3.4l-1.4 -0.5l-2.1 0.5l-2.8 1.4l-3.4 -0.9l-2.8 -2.2l-2.7 -0.8l-1.8 -2.6l-2.1 -3.7l-1.5 0.4l-1.8 -0.9l-1 1.1z"/><path class="map-country" d="M599.2 142.5l0.3 -0.5v-1.1l0.7 -1.5l1.5 -1.1l-0.5 -1.1l-1.2 -0.1l-0.3 -2.1l0.7 -1.2l0.8 -0.6l0.7 -0.6l0.2 -1.5l0.9 0.5l3 -0.8l1.5 0.6l2.3 -0.1l3.2 -1h1.5l3.1 -0.4l-1.4 1.8l-1.5 0.6l0.3 2.1l-1.1 3.3l-6.1 2.9l-5.5 3l-3.1 -1.1z"/><path class="map-country" d="M629.2 125.6l-1 0.1l-1.2 -1.6l0.1 -0.4h-1.3l-0.8 -0.8l-0.6 0.1l-1.1 -0.8l-2 -0.7l0.2 -1.3l-0.4 -1l3.8 -0.4l0.6 0.7l1.1 0.5l-0.6 0.7l1.5 0.9l-0.8 0.9l1.2 0.8l1.2 0.4l0.1 1.9z"/><path class="map-country" d="M530.6 69.8l1.3 -1.6l2.3 -1.9l0.9 -3.2l-1.8 -1.4l-0.2 -3.7l1.8 -2.6h2.8l1 -1.1l-1 -0.9l4.3 -3.9l2.7 -3.1l1.9 -2h2.6l0.8 -1.5l5.2 0.4l0.4 -1.8l1.7 -0.1l3.8 1.3l4.3 1.9l0.1 4.3l0.9 1.1l-4.8 0.8l-2.7 1.9l0.5 1.7l-4.5 2.2l-5.3 2.4l-2 3.9l1.9 2l2.7 1.5l-2.6 3.2l-2.9 0.6l-1 4.7l-1.6 2.6l-3.4 -0.3l-1.5 2.2l-3.2 0.1l-0.9 -2.6l-2.4 -3.1l-2.1 -4z"/><path class="map-country" d="M578.3 77.3l2.9 0.7l0.4 0.7l1.4 -0.3l2.8 0.6l0.2 1.3l-0.6 0.8l1.8 1.8l1.1 0.5l-0.2 0.5l1.9 0.5l0.8 0.7l-1.1 0.6l-2.2 -0.1l-0.5 0.3l0.6 0.9l0.7 1.8l-2.4 0.2l-0.8 0.6l-0.2 1.4l-1.1 -0.3l-2.5 0.1l-0.8 -0.6l-1 0.5l-1.1 -0.4l-2.1 -0.1l-3.1 -0.6l-2.8 -0.3l-2.2 0.1l-1.5 0.8l-1.3 0.1l-0.1 -1.3l-0.9 -1.3l1.7 -0.5v-1.1l-0.7 -1.1l-0.2 -1.2h2.7l3 -1.1l0.7 -1.5l2.3 -0.9l-0.3 -1.3l1.7 -0.4l3 -1.1z"/><path class="map-country" d="M588.3 88.6l1 0.1l0.7 -0.6l0.9 0.1l2.9 -0.2l1.7 1.5l-0.7 0.6l0.3 0.9l2.2 0.1l1 1.2l-0.1 0.5l3.5 1l2.2 -0.4l1.7 1.3h1.6l4.1 0.9v0.8l-1.1 1.4l0.6 1.6l-0.4 0.9l-2.7 0.2l-1.4 0.8l-0.1 1.2l-2.2 0.2l-1.9 0.9l-2.6 0.2l-2.4 1l0.2 1.5l-0.5 -0.1l-0.3 -0.5l-0.9 -0.2l-2 -0.6l-0.7 0.7l-0.4 -0.3l-4.3 -0.7l-0.2 -1l-2.6 0.3l-1 1.6l-2.2 2l-1.2 -0.5l-1.3 0.5l-1.3 -0.5l0.7 -0.3l0.5 -1l0.8 -0.9l-0.2 -0.5l0.6 -0.2l0.2 0.4l1.7 0.1l0.7 -0.2l-0.5 -0.3l0.2 -0.4l-1 -0.7l-0.4 -1.2l-1 -0.4l0.2 -1l-1.3 -0.7l-1.1 -0.1l-2 -0.9l-1.9 0.3l-0.7 0.4h-1.1l-0.7 0.6l-2.1 0.3l-0.9 0.4l-1.3 -0.6l-1.8 -0.1l-1.7 -0.3l-1.2 0.6l-0.2 -0.7l-1.6 -0.8l0.6 -1.1l0.8 -0.7l0.6 0.1l-0.7 -1.2l2.5 -2.3l1.4 -0.3l0.2 -0.8l-1.3 -2.4l1.3 -0.1l1.5 -0.8l2.2 -0.1l2.8 0.3l3.1 0.6l2.1 0.1l1.1 0.4l1 -0.5l0.8 0.6l2.5 -0.1l1.1 0.3l0.2 -1.4l0.8 -0.6l2.4 -0.2z"/><path class="map-country" d="M565.2 83.6l0.2 1.2l0.7 1.1v1.1l-1.7 0.5l0.9 1.3l0.1 1.3l1.3 2.4l-0.2 0.8l-1.4 0.3l-2.5 2.3l0.7 1.2l-0.6 -0.1l-2.7 -1.1l-2 0.4l-1.3 -0.3l-1.6 0.6l-1.4 -1l-1.2 0.4l-0.1 -0.2l-1.3 -1.3l-2.1 -0.2l-0.2 -0.9l-1.9 -0.3l-0.5 0.7l-1.5 -0.5l0.2 -0.8l-2.1 -0.2l-1.3 -0.9l-1.1 -1.8l0.2 -1l-0.7 -1.4l-1 -1l0.8 -0.8l-0.7 -1.4l1.9 -0.8l4.4 -1.3l3.5 -0.9l2.7 0.4l0.2 0.7h2.7l3.4 0.4l5.1 -0.1l1.5 0.3l0.6 0.9z"/><path class="map-country" d="M547.2 99.7l-0.2 1.1h-1.6l0.5 0.6l-0.9 1.8l-0.5 0.5h-2.5l-1.4 0.7l-2.2 -0.3l-4 -0.7l-0.6 -0.9l-2.8 0.4l-0.3 0.6l-1.7 -0.4l-1.4 -0.1l-1.3 -0.5l0.5 -0.7l-0.1 -0.5l0.8 -0.1l1.4 0.7l0.4 -0.7l2.4 0.1l2 -0.5l1.4 0.1l0.8 0.6l0.3 -0.5l-0.4 -1.8l1 -0.4l1 -1.2l2 0.9l1.6 -1.2l1 -0.2l2.1 0.9l1.3 -0.2l1.3 0.5l-0.2 0.4l0.3 1z"/><path class="map-country" d="M561.3 98.8l1.6 0.8l0.2 0.7l-1.7 0.6l-1.3 1.9l-1.7 1.9l-2.2 0.5l-1.8 -0.1l-2.1 0.7l-1 0.4l-2.3 -0.5l-2.1 -1.2l-0.9 -0.3l-0.5 -1h-0.5l0.9 -1.8l-0.5 -0.6h1.6l0.2 -1.1l1.4 0.7l1 0.3l2.3 -0.4l0.3 -0.5l1.1 -0.1l1.3 -0.4l0.3 0.1l1.3 -0.3l0.7 -0.7l0.9 -0.1l3 0.8l0.5 -0.3z"/><path class="map-country" d="M573.9 99.4l0.7 -0.4l1.9 -0.3l2 0.9l1.1 0.1l1.3 0.7l-0.2 1l1 0.4l0.4 1.2l1 0.7l-0.2 0.4l0.5 0.3l-0.7 0.2l-1.7 -0.1l-0.2 -0.4l-0.6 0.2l0.2 0.5l-0.8 0.9l-0.5 1l-0.7 0.3l-0.5 -1.3l0.3 -1.2l-0.1 -1.2l-1.6 -1.6l-0.9 -1.2l-0.8 -0.8l-0.9 -0.3z"/><path class="map-country" d="M578.4 107.0l1.3 0.5l1.3 -0.5l1.2 0.5l0.1 0.7l-1.4 0.6l-0.8 -0.2l-0.8 3.3l-1.6 -0.3l-2 -1l-3.3 0.7l-1.4 0.7l-4.1 -0.2l-2.1 -0.4l-1.1 0.2l-0.8 -1.1l-0.5 -0.5l0.7 -0.5l-0.7 -0.3l-0.9 0.6l-1.6 -0.8l-0.2 -1.2l-1.7 -0.6l-0.3 -0.9l-1.5 -1.1l2.2 -0.5l1.7 -1.9l1.3 -1.9l1.7 -0.6l1.2 -0.6l1.7 0.3l1.8 0.1l1.3 0.6l0.9 -0.4l2.1 -0.3l0.7 -0.6h1.1l0.9 0.3l0.8 0.8l0.9 1.2l1.6 1.6l0.1 1.2l-0.3 1.2l0.5 1.3z"/><path class="map-country" d="M573.6 78.8l0.3 1.3l-2.3 0.9l-0.7 1.5l-3 1.1h-2.7l-0.6 -0.9l-1.5 -0.3l-0.2 -0.7l0.3 -0.7l-1.2 -0.5l-2.9 -0.5l-0.6 -2.3l3.2 -0.9l4.6 0.2l2.8 -0.3l0.3 0.6l1.5 0.2l2.7 1.3z"/><path class="map-country" d="M575.8 73.7l1.3 0.6l0.3 1.4l0.9 1.6l-3 1.1l-1.7 0.4l-2.7 -1.3l-1.5 -0.2l-0.3 -0.6l-2.8 0.3l-4.6 -0.2l-3.2 0.9l0.1 -2.1l1.3 -1.7l2.7 -1l2.2 2.1l2.2 -0.1l0.5 -2.1l2.4 -0.5l1.2 0.3l2.4 1.1h2.3z"/><path class="map-country" d="M577.7 68.1l0.4 0.5l-1.9 1.6l0.8 2.6l-1.2 0.9h-2.3l-2.4 -1.1l-1.2 -0.3l-2.4 0.5l0.4 -1.6l-1.1 0.3l-1.7 -1l-0.3 -1.6l3.5 -0.7l3.5 -0.5l3.1 0.5l2.8 -0.1z"/><path class="map-country" d="M539.2 84.0l0.7 1.4l-0.8 0.8l1 1l0.7 1.4l-0.2 1l1.1 1.8l-1.2 0.3l-0.8 -0.4l-0.7 0.6l-2 0.5l-1 0.7l-2 0.6l0.5 0.8l0.3 1.2l1.4 0.7l1.6 1.2l-1 1.2l-1 0.4l0.4 1.8l-0.3 0.5l-0.8 -0.6l-1.4 -0.1l-2 0.5l-2.4 -0.1l-0.4 0.7l-1.4 -0.7l-0.8 0.1l-3 -0.8l-0.6 0.6h-2.4l0.4 -2l1.4 -1.9l-4 -0.5l-1.3 -0.8l0.1 -1.2l-0.5 -0.6l0.3 -1.9l-0.5 -2.9h1.7l0.7 -1l0.7 -2.6l-0.5 -0.9l0.5 -0.6l2.3 -0.2l0.6 0.6l1.8 -1.3l-0.6 -1.1l-0.1 -1.5l2.1 0.3l1.8 -0.4v1.1l2.8 0.6v1l2.8 -0.5l1.6 -0.8l3.1 1.1l1.3 0.9z"/><path class="map-country" d="M562.9 110.5l0.8 1.1l1.1 -0.2l2.1 0.4l4.1 0.2l1.4 -0.7l3.3 -0.7l2 1l1.6 0.3l-1.4 1.2l-1 2l0.9 1.5l-2.4 -0.3l-2.9 0.8v1.4l-2.5 0.3l-2 -1l-2.2 0.8l-2 -0.1l-0.2 -1.8l-1.4 -0.9l0.4 -0.4l-0.3 -0.3l0.5 -0.9l1 -0.9l-1.3 -1.2l-0.2 -1l0.6 -0.6z"/><path class="map-country" d="M573.0 135.3l-0.3 0.8l-4 0.2v-0.4l-3.4 -0.6l0.5 -1.1l1.6 0.9l2.1 -0.2l2.1 0.2l-0.1 0.5l1.5 -0.3zM563.8 118.5l2 0.1l2.2 -0.8l2 1l2.5 -0.3v-1.4l1.4 0.8l-0.9 1.7l-0.6 0.3h-1.7l-1.5 -0.3l-3.3 0.7l1.9 1.6l-1.4 0.4h-1.6l-1.4 -1.4l-0.5 0.6l0.6 1.7l1.4 1.3l-1.1 0.6l1.6 1.3l1.3 0.8l0.1 1.5l-2.6 -0.7l0.8 1.4l-1.7 0.3l1 2.5h-1.8l-2.3 -1.2l-1 -2.2l-0.5 -1.9l-1.1 -1.3l-1.4 -1.5l-0.2 -0.8l1.3 -1.4l0.1 -0.9l0.9 -0.4l0.1 -0.7l1.8 -0.3l1.1 -0.6l1.5 0.1l0.4 -0.5l0.6 -0.1z"/><path class="map-country" d="M624.4 130.1l-1.4 0.5l-0.9 -0.8l-3.3 -0.3l-1.2 0.4l-3.1 0.4h-1.5l-3.2 1l-2.3 0.1l-1.5 -0.6l-3 0.8l-0.9 -0.5l-0.2 1.5l-0.7 0.6l-0.8 0.6l-1 -1.2l1 -1.1l-1.6 0.3l-2.4 -0.7l-1.9 1.6l-4.2 0.3l-2.2 -1.5l-3 -0.1l-0.7 1.2l-1.9 0.3l-2.7 -1.4h-3l-1.7 -2.8l-2 -1.5l1.4 -2.2l-1.8 -1.3l3.1 -2.6l4.3 -0.2l1.1 -2.1l5.3 0.4l3.4 -1.8l3.2 -0.8h4.6l4.8 1.9l4 1.1l3.3 -0.4l2.3 0.2l3.3 -1.4l3 -0.2l2.7 1.4l0.4 1l-0.2 1.3l2 0.7l1.1 0.8l-1.9 0.8l0.9 3.2l-0.6 0.9l1.6 2.2zM572.5 117.1l2.9 -0.8l2.4 0.3l0.3 1.1l2.4 0.9l-0.5 0.7l-3.3 0.1l-1.2 0.9l-2.3 1.5l-0.9 -1.3l0.1 -0.6l0.6 -0.3l0.9 -1.7l-1.4 -0.8z"/><path class="map-country" d="M558.4 119.9l-0.1 0.7l-0.9 0.4l-0.1 0.9l-1.3 1.4l-0.5 -0.2l-0.1 -0.6l-1.5 -1l-0.2 -1.3l0.2 -1.9l0.4 -0.9l-0.5 -0.4l-0.2 -0.9l1.2 -1.3l0.2 0.5l0.8 -0.3l0.5 0.8l0.7 0.3l0.2 1l-0.4 0.9l0.4 1.2l1.2 0.7z"/><path class="map-country" d="M546.0 104.2l0.9 0.3l2.1 1.2l2.3 0.5l1 -0.4l0.7 1.1l0.9 0.8l-1.1 1l-1.3 -0.6h-1.9l-2.4 -0.4h-1.3l-0.6 0.6l-1 -0.6l-0.6 1.1l1.4 1.3l0.6 0.9l1.3 1l1 0.6l1.1 1.2l2.5 1.1l-0.4 0.4l-2.6 -1l-1.6 -1l-2.5 -0.8l-2.3 -2.1l0.5 -0.2l-1.3 -1.1v-1l-1.8 -0.4l-0.8 1.2l-0.9 -0.9l0.1 -1l0.1 -0.1l1.9 0.1l0.5 -0.4l1 0.4l1.1 0.1v-0.8l0.9 -0.3l0.3 -1.1l2.2 -0.7z"/><path class="map-country" d="M526.7 101.3l0.1 0.5l-0.5 0.7l1.3 0.5l1.4 0.1l-0.2 1.1l-1.2 0.5l-2.1 -0.4l-0.6 1.2h-1.3l-0.5 -0.4l-1.6 0.9l-1.3 0.2l-1.2 -0.6l-0.9 -1.2l-1.4 0.4l0.1 -1.3l2 -1.5l-0.1 -0.7l1.3 0.2l0.7 -0.4h2.4l0.6 -0.6l3 0.8z"/><path class="map-country" d="M516.8 94.1l0.5 0.6l-0.1 1.2l-0.8 0.1l-0.6 -0.2l0.3 -1.6l0.7 -0.1z"/><path class="map-country" d="M517.1 92.2l-0.3 1.9l-0.7 0.1l-0.3 1.6l-2.5 -1.3l-1.4 0.2l-1.9 -1.3l-1.3 -1.1l-1.3 -0.1l-0.4 -0.9l2.2 -0.6l2 0.2l2.6 -0.6l1.8 1.3l1.5 0.6z"/><path class="map-country" d="M519.2 84.8l0.5 0.9l-0.7 2.6l-0.7 1h-1.7l0.5 2.9l-1.5 -0.6l-1.8 -1.3l-2.6 0.6l-2 -0.2l1.4 -0.8l2.5 -4l3.8 -1.2l2.3 0.1z"/><path class="map-country" d="M474.9 117.0l1 -0.7l1.1 -0.4l0.7 1.3h1.7l0.5 -0.3l1.6 0.1l0.8 1.4l-1.3 0.7l-0.1 2.2l-0.4 0.4l-0.1 1.3l-1.2 0.2l1.1 1.7l-0.8 1.8l1 0.9l-0.4 0.7l-1 1.1l0.2 0.9l-1.1 0.7l-1.5 -0.4l-1.4 0.3l0.4 -2.2l-0.3 -1.7l-1.2 -0.2l-0.7 -1.1l0.3 -1.8l1.1 -1l0.2 -1.1l0.5 -1.7v-1.2l-0.6 -1l-0.1 -0.9z"/><path class="map-country" d="M479.3 130.3l-0.2 -0.9l1 -1.1l0.4 -0.7l-1 -0.9l0.8 -1.8l-1.1 -1.7l1.2 -0.2l0.1 -1.3l0.4 -0.4l0.1 -2.2l1.3 -0.7l-0.8 -1.4l-1.6 -0.1l-0.5 0.3h-1.7l-0.7 -1.3l-1.1 0.4l-1 0.7l0.1 -2l-1.1 -1.2l3.9 -2l3.4 0.5h3.8l2.9 0.5l2.3 -0.2l4.5 0.1l1.1 1.1l5.1 1.3l1 -0.6l3.2 1.2l3.2 -0.3l0.1 1.6l-2.6 1.8l-3.5 0.6l-0.3 0.9l-1.7 1.6l-1.1 2.2l1.1 1.6l-1.6 1.3l-0.6 1.8l-2.1 0.5l-2 2.2h-3.5l-2.6 -0.1l-1.8 1l-1 1.1l-1.4 -0.3l-1 -0.9l-0.8 -1.6l-2.6 -0.4z"/><path class="map-country" d="M482.8 83.7l0.4 2l-2.1 2.5l-4.9 1.6l-3.9 -0.4l2.2 -2.9l-1.4 -2.8l3.8 -2.2l2.1 -1.3l0.5 1.5l-0.5 1.5l1.7 -0.1l2.1 0.6z"/><path class="map-country" d="M960.5 291.9l2.3 1.7l1.4 1.3l-1 0.7l-1.6 -0.8l-2 -1.2l-1.7 -1.5l-1.9 -2l-0.4 -0.9h1.2l1.6 1l1.2 0.9l0.9 0.8z"/><path class="map-country" d="M950.3 262.5l0.8 0.9h-1.9l-1.1 -1.7l1.7 0.6l0.5 0.2zM949.1 260.0l-0.4 0.5l-2.1 -2.4l-0.5 -1.7h0.9l1 2.3l1.1 1.3zM946.8 260.8h-1.1l-1.7 -0.3l-0.6 -0.4l0.2 -1.1l1.8 0.4l1 0.6l0.4 0.8zM943.4 255.6l0.7 0.9l0.1 0.6l-2.2 -1.2l-1.5 -1l-1 -1l0.4 -0.2l1.3 0.6l2.2 1.3zM936.5 252.8l1.1 0.9l-0.6 0.2l-1.2 -0.6l-1.1 -1.2l0.1 -0.4l1.7 1.1z"/><path class="map-country" d="M991.3 344.6l-1 1.5l-1.4 1.9l-2.1 1.1l-0.5 -0.7l-1.2 -0.4l1.6 -2.3l-0.9 -1.5l-3 -1.1l0.1 -1l2 -1l0.5 -2.1l-0.1 -1.8l-1.2 -1.9l0.1 -0.5l-1.3 -1.1l-2.2 -2.5l-1.2 -2l1.1 -0.2l1.5 1.6l2.1 0.7l0.8 2.5l2 2.9l0.1 -1.9l1.3 0.8l0.4 2.1l2.2 0.9l1.9 0.2l1.6 -1.1l1.4 0.3l-0.7 2.5l-0.8 1.6h-2.2l-0.7 0.8l0.3 1.2l-0.5 0.5zM971.3 354.3l2.4 -1.4l1.6 -1.5l1.3 -2l1 -0.7l0.4 -1.6l2 -1.3l0.6 1.2l0.6 1.1l2 -1.1l0.8 1.2v1.2l-1 1.2l-1.8 2.1l-1.5 1.1l1.1 1.3l-2.2 0.1l-2.3 1l-0.8 1.8l-1.6 2.9l-2.2 1.2l-1.3 0.8l-2.6 -0.1l-1.8 -0.9l-3 -0.2l-0.5 -1l1.5 -2.1l3.5 -2.7l1.8 -0.5l2 -1.1z"/><path class="map-country" d="M910.2 346.7l1.7 0.2l0.2 3.3l-0.9 0.9l-0.3 2.3l-1 -0.8l-1.9 1.9l-0.6 -0.1l-1.7 -0.1l-1.7 -2.4l-0.4 -1.8l-1.6 -2.4l0.1 -1.3l1.8 0.2l2.7 1l1.5 -0.4l2.1 -0.5zM850.4 322.8l-2.9 1.4l-2.4 0.7l-0.6 1.4l-1 1.2h-2.4l-1.7 0.3l-2.5 -0.5l-2 0.3l-1.9 0.1l-1.6 1.5l-0.8 -0.1l-1.4 0.8l-1.4 0.8l-2 -0.1h-1.8l-3 -1.7l-1.5 -0.6l0.1 -1.6l1.4 -0.3l0.4 -0.7l-0.1 -1l0.4 -1.9l-0.3 -1.7l-1.5 -2.8l-0.5 -1.5l0.2 -1.6l-1.2 -1.8v-0.9l-1.3 -1.1l-0.3 -2.1l-1.6 -2.2l-0.4 -1.2l1.2 1.2l-0.9 -2.6l1.4 0.8l0.8 1.1v-1.4l-1.4 -2.2l-0.3 -0.9l-0.6 -0.8l0.3 -1.6l0.5 -0.7l0.4 -1.4l-0.3 -1.6l1.2 -2l0.2 2.1l1.2 -1.9l2.2 -1l1.4 -1.1l2.1 -1.1l1.3 -0.2l0.7 0.4l2.2 -1.1l1.7 -0.3l0.4 -0.6l0.8 -0.2h1.5l2.9 -0.8l1.5 -1.2l0.7 -1.5l1.7 -1.4l0.1 -1.1l0.1 -1.5l1.9 -2.4l1.2 2.4l1.2 -0.6l-1 -1.3l0.8 -1.3l1.3 0.6l0.3 -2.1l1.5 -1.4l0.7 -1.1l1.4 -0.5v-0.7l1.2 0.3l0.1 -0.7l1.2 -0.4l1.4 -0.4l2 1.3l1.6 1.6l1.7 0.1l1.8 0.2l-0.6 -1.5l1.3 -2.2l1.3 -0.8l-0.5 -0.7l1.2 -1.5l1.7 -1l1.4 0.3l2.4 -0.5l-0.1 -1.4l-2 -1l1.5 -0.4l1.8 0.7l1.5 1.2l2.3 0.7l0.8 -0.3l1.7 0.9l1.6 -0.8l1.1 0.2l0.6 -0.5l1.3 1.3l-0.7 1.5l-1.1 1.2h-0.9l0.3 1.2l-0.8 1.3l-1 1.4l0.2 0.8l2.2 1.5l2.1 0.9l1.5 1l2 1.6h0.8l1.4 0.7l0.4 0.9l2.7 0.9l1.8 -0.9l0.6 -1.5l0.5 -1.2l0.4 -1.6l0.8 -2.2l-0.4 -1.3l0.2 -0.8l-0.3 -1.6l0.4 -2.1l0.5 -0.6l-0.4 -0.9l0.6 -1.5l0.6 -1.5v-0.8l1.1 -1l0.8 1.3l0.1 1.8l0.7 0.3l0.2 1.2l1 1.4l0.2 1.6l-0.1 1l1 2.1l1.8 -1l0.9 1.2l1.3 1.1l-0.3 1.2l0.6 2.4l0.4 1.4l0.7 0.3l0.8 2.4l-0.3 1.4l0.9 1.9l3 1.4l2 1.4l1.9 1.2l-0.4 0.6l1.6 1.8l1.1 3l1.1 -0.6l1.1 1.2l0.7 -0.4l0.5 2.9l1.9 1.7l1.3 1.1l2.2 2.2l0.8 2.3v1.5l-0.1 1.8l1.3 2.3l-0.2 2.5l-0.5 1.3l-0.7 2.4v1.6l-0.5 2l-1.2 2.6l-2.1 1.3l-1 2.2l-0.9 1.3l-0.9 2.4l-1 1.4l-0.7 2.1l-0.4 1.9l0.2 0.9l-1.6 1l-3.1 0.1l-2.6 1.1l-1.3 1.1l-1.7 1.2l-2.3 -1.3l-1.7 -0.5l0.5 -1.4l-1.6 0.5l-2.4 2l-2.4 -0.7l-1.6 -0.5l-1.6 -0.2l-2.6 -0.8l-1.8 -1.7l-0.6 -2.1l-0.6 -1.4l-1.4 -1.1l-2.6 -0.3l0.9 -1.4l-0.7 -2.1l-1.4 2l-2.4 0.5l1.4 -1.6l0.5 -1.6l1 -1.3l-0.2 -2.1l-2.3 2.4l-1.7 0.9l-1.1 2.2l-2.1 -1.1l0.1 -1.5l-1.8 -2l-1.4 -1l0.5 -0.7l-3.6 -1.6l-1.9 -0.1l-2.7 -1.4l-5 0.3l-3.6 1l-3.1 0.9l-2.7 -0.2z"/><path class="map-country" d="M727.2 212.4l-0.4 2.9l-1.2 0.8l-2.4 0.7l-1.3 -2.3l-0.5 -3.9l1.2 -4.6l2 1.6l1.2 1.9l1.4 2.9z"/><path class="map-country map-target" id="map-cn" data-country="cn" d="M804.1 182.8l-2.3 -0.9l-0.1 -2.4l1.4 -1.2l3 -0.8l1.6 0.1l0.7 1l-1.3 1.2l-0.6 1.7l-2.4 1.3zM722.9 115.7l-0.2 -1.6l1.9 -0.7l-2.5 -4.8l5.5 -1.1l1.5 -0.7l2 -4.9l5.5 0.9l1.5 -1.3l0.1 -2.8l2.3 -0.2l2.2 -1.9l1.1 -0.2l0.7 1.9l2.3 1.5l4 1.1l1.9 2.2l-1.1 3.2l1 1.2l3.3 0.5l3.8 0.4l3.3 1.7l1.7 0.3l1.3 2.6l1.6 1.7l3.1 -0.1l5.7 0.6l3.7 -0.4l2.8 0.4l4.1 1.7h3.3l1.3 0.9l3.2 -1.5l4.5 -1l4.2 -0.1l3.2 -1l2 -1.4l1.9 -1l-0.4 -0.9l-0.9 -1.1l1.5 -1.8l1.5 0.3l2.9 0.6l2.7 -1.5l4.3 -1.1l2 -1.8l2 -0.8l4 -0.4l2.2 0.3l0.3 -1l-2.5 -1.9l-2.2 -0.9l-2.2 1l-2.7 -0.4l-1.6 0.4l-0.7 -1.2l2 -2.7l1.3 -2.1l3.3 1l4 -1.8l-0.1 -1.2l2.5 -2.9l1.6 -0.9l-0.1 -1.5l-1.5 -0.7l2.3 -1.4l3.5 -0.5l3.7 -0.1l4.1 0.9l2.4 1l1.8 2.8l1 1.2l1 1.7l1 2.7l4.8 0.9l3.3 2l1.1 2.6h4.3l2.4 -1.1l4.6 -0.8l-1.5 2.5l-1.1 1l-0.9 3l-1.9 2.7l-3.4 -0.5l-2.3 1l0.7 2.4l-0.4 3.3l-1.4 0.1v1.4l-1.8 -1.7l-1.1 1.6l-4.3 1.2l0.4 1.4l-2.4 -0.1l-1.3 -0.8l-1.9 1.9l-3.1 1.5l-2.2 1.8l-3.9 0.8l-2 1.3l-3 0.8l1.4 -1.3l-0.5 -1.1l2.2 -1.9l-1.5 -1.4l-2.4 1l-3.2 1.9l-1.7 1.8l-2.7 0.1l-1.4 1.3l1.4 1.9l2.3 0.5l0.1 1.2l2.2 0.8l3.1 -2l2.5 1.1l1.8 0.1l0.4 1.4l-3.9 0.8l-1.3 1.5l-2.7 1.4l-1.4 2l3 1.5l1.1 2.7l1.6 2.6l1.9 2.1v2.1l-1.8 0.7l0.7 1.5l1.6 0.9l-0.4 2.2l-0.7 2.2l-1.5 0.3l-2.1 3l-2.2 3.6l-2.6 3.3l-3.8 2.6l-3.9 2.3l-3.1 0.4l-1.7 1.2l-1 -0.9l-1.5 1.4l-3.9 1.4l-3 0.4l-0.9 2.9l-1.6 0.2l-0.7 -2l0.7 -1.1l-3.8 -0.9l-1.3 0.5l-2.8 -0.8l-1.3 -1.1l0.5 -1.6l-2.6 -0.5l-1.3 -1l-2.4 1.4l-2.7 0.4h-2.2l-1.5 0.6l-1.4 0.4l0.4 3.2l-1.5 -0.1l-0.2 -0.6l-0.1 -1.2l-2.1 0.8l-1.2 -0.5l-2 -1l0.8 -2.3l-1.8 -0.6l-0.6 -2.5l-3 0.5l0.4 -3.3l2.6 -2.4l0.1 -2.3l-0.1 -2.1l-1.2 -0.6l-0.9 -1.7l-1.6 0.2l-3 -0.4l0.9 -1.2l-1.3 -1.7l-2 1.2l-2.3 -0.7l-3.2 1.8l-2.5 2l-2.3 0.4l-1.2 -0.8h-1.5l-2 -0.7l-1.5 0.7l-1.8 2.1l-0.2 -2.2l-1.7 0.6l-3.3 -0.3l-3.1 -0.6l-2.3 -1.2l-2.1 -0.6l-0.9 -1.3l-1.6 -0.4l-2.8 -1.8l-2.2 -0.9l-1.2 0.7l-3.9 -2l-2.7 -1.7l-0.8 -3.1l2 0.4l0.1 -1.4l-1.1 -1.4l0.3 -2.3l-3 -3.3l-4.6 -1.1l-0.8 -2.1l-2 -1.3l-0.5 -0.8l-0.4 -1.6l0.1 -1.1l-1.7 -0.6l-0.9 0.3l-0.7 -2.6l0.7 -0.6l-0.3 -0.7l2.6 -1.3l1.9 -0.5l3 0.3l1 -1.7l3.6 -0.4l1 -1.1l4.4 -1.5l0.3 -0.6z"/><path class="map-country" d="M838.3 165.6l-1.7 4.4l-1.2 2.3l-1.5 -2.3l-0.3 -2.1l1.7 -2.7l2.2 -2.1l1.3 0.8l-0.5 1.7z"/><path class="map-country" d="M529.0 103.1l1.7 0.4l0.3 -0.6l2.8 -0.4l0.6 0.9l4 0.7l-0.4 1.4l0.7 1.2l-2.2 -0.4l-2.3 1l0.2 1.4l-0.3 0.7l0.9 1.5l2.6 1.4l1.4 2.3l3.1 2.2h2.1l0.7 0.6l-0.8 0.5l2.5 1l2.1 0.9l2.3 1.4l0.3 0.6l-0.5 0.9l-1.5 -1.3l-2.4 -0.4l-1.2 1.8l2 1l-0.3 1.5l-1.2 0.1l-1.5 2.4l-1.1 0.2v-0.8l0.5 -1.5l0.6 -0.6l-1 -1.6l-0.9 -1.4l-1.1 -0.4l-0.9 -1.2l-1.7 -0.5l-1.2 -1.1l-2.1 -0.2l-2.2 -1.2l-2.5 -1.8l-1.9 -1.6l-0.9 -2.8l-1.3 -0.3l-2.3 -0.9l-1.3 0.4l-1.6 1.3l-1.1 0.2l0.3 -1.2l-1.5 -0.4l-0.8 -2.1l1 -0.9l-0.8 -1l0.1 -0.8l1.2 0.6l1.3 -0.2l1.6 -0.9l0.5 0.4h1.3l0.6 -1.2l2.1 0.4l1.2 -0.5l0.2 -1.1zM541.0 127.4l2.1 -0.3l-1 2.2l0.4 0.9l-0.6 1.4l-2.1 -1l-1.4 -0.3l-3.9 -1.4l0.4 -1.5l3.3 0.3l2.8 -0.3zM524.2 119.7l1.4 -0.8l1.6 1.9l-0.3 3.7l-1.3 -0.2l-1.1 1l-1.1 -0.8l-0.1 -3.3l-0.6 -1.6l1.5 0.1z"/><path class="map-country" d="M527.6 80.6l-1.8 0.4l-2.1 -0.3l-1.1 -1.6l-0.1 -2.8l0.4 -0.8l0.8 -0.8l2.5 -0.2l1 -0.7l2.2 -0.8l-0.1 1.4l-0.8 0.9l0.3 0.8l1.5 0.4l-0.7 1.1l-0.8 -0.4l-2 2l0.8 1.4zM534.4 77.5l0.8 1.4l-1.6 2.2l-2.9 -1.6l-0.4 -1.1l4.1 -0.9z"/><path class="map-country map-target" id="map-gb" data-country="gb" d="M482.8 83.7l-2.1 -0.6l-1.7 0.1l0.5 -1.5l-0.5 -1.5l2.3 -0.1l3 1.7l-1.5 1.9zM491.4 85.0l0.4 -1.6l-1.8 -1.7l-0.1 -0.1l-3.4 -0.5l-0.6 -0.7l1 -1.3l-0.9 -0.7l-1.5 1.3l-0.2 -2.7l-1.4 -1.4l1 -2.9l2.2 -2.2l2.2 0.2l3.4 -0.2l-3 3l2.8 -0.4h3.1l-0.8 2.3l-2.5 2.5l2.9 0.1l0.2 0.3l2.5 3.3l1.9 0.4l1.7 3.2l0.8 1.1l3.4 0.5l-0.4 1.8l-1.4 0.8l1.1 1.5l-2.5 1.4h-3.7l-4.7 0.8l-1.3 -0.6l-1.8 1.3l-2.6 -0.3l-2 1.1l-1.4 -0.6l4 -2.9l2.5 -0.6l-4.3 -0.5l-0.8 -1.1l2.9 -0.8l-1.5 -1.5l0.5 -1.9l4.1 0.3z"/><path class="map-country" d="M459.7 48.7l-0.6 1.8l3.1 1.9l-3.6 2.1l-8 1.9l-2.4 0.6l-3.7 -0.5l-7.7 -0.8l2.7 -1.3l-6 -1.3l4.9 -0.6l-0.1 -0.8l-5.9 -0.6l1.9 -1.8l4.2 -0.4l4.3 1.8l4.3 -1.5l3.5 0.8l4.5 -1.5l4.6 0.2z"/><path class="map-country" d="M628.9 117.1h0.8l1.9 1.7l1.2 0.2l0.5 -0.7l1.7 -1.1l1.4 1.5l1.4 1.9l1.3 0.2l0.9 0.7l-2.3 0.2l-0.5 2.2l-0.5 1l-1 0.6l0.1 1.4l-0.7 0.1l-1.7 -1.4l0.9 -1.4l-0.8 -0.8l-1 0.2l-3.3 2l-0.1 -1.9l-1.2 -0.4l-1.2 -0.8l0.8 -0.9l-1.5 -0.9l0.6 -0.7l-1.1 -0.5l-0.6 -0.7l0.7 -0.5l2.1 0.8l1.5 0.2l0.3 -0.4l-1.3 -1.5l0.7 -0.3zM628.2 125.7l-1.9 -0.3l-1.4 -1.3l-0.5 -1.1l0.6 -0.1l0.8 0.8h1.3l-0.1 0.4l1.2 1.6z"/><path class="map-country" d="M611.0 112.7l0.3 -0.3l2.4 0.4l4.1 0.5l3.7 1.3l0.5 0.5l1.7 -0.4l2.6 0.6l0.9 1.1l1.7 0.7l-0.7 0.3l1.3 1.5l-0.3 0.4l-1.5 -0.2l-2.1 -0.8l-0.7 0.5l-3.8 0.4l-2.7 -1.4l-3 0.2l0.4 -1.2l-0.7 -1.9l-1.6 -1l-1.5 -0.4l-1 -0.8z"/><path class="map-country" d="M835.6 198.0l-1.4 -2.1l2.4 0.1l1 1l-0.8 2.4l-1.2 -1.4zM840.5 205.6l0.7 -0.8l0.3 -1.7l1.5 -0.2l-0.4 1.9l2.1 -2.7l-0.3 2.7l-1 0.9l-0.9 1.7l-0.8 0.9l-1.8 -2l0.6 -0.7zM851.0 210.0l0.3 1.8l0.2 1.6l-1 2.5l-1 -2.8l-1.3 1.4l0.9 2l-0.8 1.3l-3.2 -1.6l-0.8 -2l0.8 -1.3l-1.7 -1.3l-0.9 1.1l-1.3 -0.1l-2.1 1.6l-0.4 -0.8l1.1 -2.4l1.7 -0.8l1.5 -1l1 1.2l2.1 -0.7l0.5 -1.3h1.9l-0.1 -2.2l2.2 1.3l0.2 1.4l0.2 1.1zM829.2 207.5l-3.7 2.6l1.3 -2l2 -1.7l1.7 -1.9l1.5 -2.7l0.5 2.2l-1.9 1.5l-1.4 2zM839.8 182.7l-0.4 1.2l0.9 2l-0.7 2.3l-1.7 0.9l-0.4 2.2l0.6 2.2l1.5 0.3l1.2 -0.3l3.5 1.6l-0.3 1.5l0.9 0.6l-0.2 1.3l-2.2 -1.4l-1 -1.4l-0.7 1l-1.8 -1.7l-2.5 0.5l-1.4 -0.7l0.1 -1.1l0.9 -0.7l-0.8 -0.7l-0.4 1l-1.4 -1.6l-0.4 -1.2l-0.1 -2.6l1.1 0.9l0.3 -4.4l0.9 -2.5h1.7l1.7 0.8l0.9 -0.7l0.2 0.7zM839.0 201.6l-0.4 -1.3l1.6 0.9h1.8l-0.1 1.1l-1.2 1.2l-1.8 0.8l-0.1 -1.3l0.2 -1.4zM848.6 199.5l0.8 3.1l-2.1 -0.7v0.9l0.7 1.8l-1.3 0.6l-0.1 -2l-0.9 -0.1l-0.4 -1.7l1.6 0.2v-1l-1.7 -2.1h2.6l0.8 1z"/><path class="map-country" d="M778.0 215.4l0.5 -0.5l2.3 1.2l0.2 1.4l1.8 -0.3l0.9 -1.2l0.7 0.3l1.6 1.7l1.2 1.8l0.1 1.9l-0.3 1.3l0.3 0.9l0.2 1.7l1 0.7l1.1 2.5l-0.1 0.9l-1.9 0.2l-2.7 -2l-3.3 -2.2l-0.3 -1.5l-1.6 -1.8l-0.4 -2.3l-1 -1.5l0.3 -2l-0.6 -1.2zM827.4 221.8l-2.4 -0.4h-3.2l-0.9 3.1l-1.1 1l-1.4 3.9l-2.3 0.6l-2.6 -0.8l-1.3 0.2l-1.7 1.4l-1.7 -0.2l-1.8 0.6l-1.9 -1.6l-0.5 -1.8l2.1 0.9l2.1 -0.5l0.6 -2.4l1.1 -0.5l3.4 -0.6l2 -2.2l1.3 -1.7l1.3 1.4l0.6 -0.9h1.3l0.2 -1.7l0.1 -1.4l2.1 -1.9l1.4 -2.2h1.2l1.4 1.4l0.1 1.2l1.8 0.8l2.4 0.8l-0.2 1.1l-1.9 0.1l0.5 1.4l-2.1 0.9z"/><path class="map-country" d="M820.7 218.2l-0.1 1.4l-0.2 1.7h-1.3l-0.6 0.9l-1.3 -1.4l1.1 -1.1l2.4 -1.5z"/><path class="map-country" d="M538.4 104.1l2.2 0.3l1.4 -0.7h2.5l0.5 -0.5h0.5l0.5 1l-2.2 0.7l-0.3 1.1l-0.9 0.3v0.8l-1.1 -0.1l-1 -0.4l-0.5 0.4l-1.9 -0.1l0.6 -0.2l-0.7 -1.2l0.4 -1.4z"/><path class="map-country" d="M579.4 41.5l-0.4 1.9l4.3 1.9l-2.6 2.1l3.2 3.1l-1.8 2.4l2.5 2.1l-1.2 1.8l4.1 1.9l-1 1.4l-2.6 1.6l-5.9 3.6l-5.1 0.2l-4.9 1l-4.5 0.6l-1.6 -1.5l-2.7 -0.9l0.6 -2.8l-1.3 -2.5l1.3 -1.6l2.5 -1.7l6.4 -3l1.8 -0.6l-0.2 -1.2l-3.9 -1.3l-0.9 -1.1l-0.1 -4.3l-4.3 -1.9l-3.8 -1.3l1.7 -0.8l3.1 1.5l3.6 -0.1l3 0.6l2.7 -1.2l1.3 -2l4.3 -1l3.6 1.1l-1.2 2z"/><path class="map-country" d="M562.7 97.0l-0.8 0.7l-0.6 1.1l-0.5 0.3l-3 -0.8l-0.9 0.1l-0.7 0.7l-1.3 0.3l-0.3 -0.1l-1.3 0.4l-1.1 0.1l-0.3 0.5l-2.3 0.4l-1 -0.3l-1.4 -0.7l-0.3 -1l0.2 -0.4l0.4 -0.6l1.2 0.1l1 -0.3l0.1 -0.3l0.5 -0.1l0.2 -0.6l0.6 -0.2l0.4 -0.5h0.9l0.1 0.2l1.2 -0.4l1.4 1l1.6 -0.6l1.3 0.3l2 -0.4l2.7 1.1z"/><path class="map-country" d="M541.7 91.4l1.3 0.9l2.1 0.2l-0.2 0.8l1.5 0.5l0.5 -0.7l1.9 0.3l0.2 0.9l2.1 0.2l1.3 1.3h-0.9l-0.4 0.5l-0.6 0.2l-0.2 0.6l-0.5 0.1l-0.1 0.3l-1 0.3l-1.2 -0.1l-0.4 0.6l-1.3 -0.5l-1.3 0.2l-2.1 -0.9l-1 0.2l-1.6 1.2l-2 -0.9l-1.6 -1.2l-1.4 -0.7l-0.3 -1.2l-0.5 -0.8l2 -0.6l1 -0.7l2 -0.5l0.7 -0.6l0.8 0.4l1.2 -0.3z"/><path class="map-country" d="M601.2 193.3l-0.3 -1.1l1.2 -4.1l0.3 -1.9l0.8 -0.8l2.1 -0.5l1.4 -1.6l1.6 3.3l0.8 2.5l1.5 1.4l3.8 2.6l1.5 1.6l1.5 1.6l0.9 0.9l1.4 0.9l-0.9 0.6l-1.2 -0.2l-0.9 -0.9l-1.1 -1.6l-1.3 -0.9l-0.7 -1l-2.4 -1.1h-1.9l-0.7 -0.6l-1.6 0.6l-1.7 -1.2l-0.9 2.1l-3.2 -0.6z"/><path class="map-country map-target" id="map-jp" data-country="jp" d="M894.1 124.5l-2.5 2.8v2.9l-1 2.2l0.4 1.4l-1.4 1.9l-3.6 1.3l-4.8 0.2l-4 3.2l-1.9 -1.1l-0.1 -2.1l-4.8 0.6l-3.3 1.4h-3.3l2.9 2.1l-1.9 4.7l-1.8 1.1l-1.3 -1l0.7 -2.5l-1.8 -0.9l-1.1 -1.9l2.6 -0.8l1.4 -1.8l2.8 -1.4l2.1 -1.9l5.5 -0.8l3 0.5l2.9 -4.9l1.8 1.3l4.1 -2.7l1.6 -1.1l1.7 -3.4l-0.4 -3.1l1.1 -1.8l3 -0.5l1.5 3.8l-0.1 2.3zM901.7 111.2l2 -1.2l0.6 3.2l-4.1 0.7l-2.5 2.8l-4.3 -1.9l-1.6 3l-3 0.1l-0.4 -2.8l1.4 -2.1l2.9 -0.2l0.8 -3.8l0.9 -2.2l3.2 2.9l2.1 0.9l2 0.6zM867.7 140.4l1.5 -1.7l1.6 0.3l1.2 -1.1l2 0.6l0.3 0.9l-1.5 1.7l-1.2 -0.9l-1.4 0.7l-0.7 1.6l-1.8 -0.8v-1.3z"/><path class="map-country" d="M338.4 289.4l0.8 1.5l-0.1 3.8l2.9 0.5l1.1 -0.5l1.9 0.7l0.5 0.9l0.3 2.5l0.3 1.1l1 0.1l1.1 -0.4l1 0.5v1.5l-0.4 1.6l-0.5 1.6l-0.5 2.5l-2.5 2.1l-2.2 0.5l-3.1 -0.5l-2.8 -0.7l2.7 -4.2l-0.4 -1.3l-2.9 -1.1l-3.3 -2l-2.3 -0.4l-5.1 -4.6l1.1 -3.3v-1.5l1.4 -2.4l4.8 -0.8h2.6l2.6 1.4v0.9z"/><path class="map-country" d="M644.4 180.6l2.2 4.5l0.9 2l-2 0.7l-0.5 1.3l-0.1 0.9l-2.8 1.2l-4.4 1.3l-2.5 1.9l-1.2 0.2l-0.8 -0.2l-1.7 1.2l-1.7 0.5l-2.4 0.2l-0.7 0.1l-0.6 0.7l-0.7 0.3l-0.4 0.7l-1.4 -0.1l-0.9 0.4l-1.9 -0.2l-0.7 -1.6v-1.5l-0.4 -0.8l-0.6 -2.1l-0.8 -1.1l0.6 -0.2l-0.3 -1.2l0.4 -0.6l-0.2 -1.2l1.2 -0.9l-0.2 -1.1l0.7 -1.4l1.1 0.7l0.8 -0.2l3.2 -0.1l0.5 0.3l2.7 0.3l1.1 -0.2l0.7 1l1.3 -0.5l1.9 -2.9l2.6 -1.3l8 -1z"/><path class="map-country" d="M597.1 151.8l3.1 0.4l1.2 -0.8l0.7 -1l2.1 -0.4l0.4 -0.9l1 -0.5l-2.8 -2.8l5.5 -1.4l0.6 -0.4l3.3 0.7l4.2 2l7.8 5.6l5.2 0.2l2.4 0.3l0.7 1.3l2 -0.1l1.1 2.4l1.3 0.7l0.5 0.9l1.9 1.2l0.2 1.1l-0.3 1l0.4 0.9l0.8 0.8l0.3 0.9l0.4 0.7l0.9 0.5l0.7 -0.2l0.6 1.1l0.1 0.6l1 2.8l8.4 1.4l0.6 -0.5l1.2 1.9l-1.8 5.6l-8.4 2.8l-8 1l-2.6 1.3l-1.9 2.9l-1.3 0.5l-0.7 -1l-1.1 0.2l-2.7 -0.3l-0.5 -0.3l-3.2 0.1l-0.8 0.2l-1.1 -0.7l-0.7 1.4l0.2 1.1l-1.2 0.9l-0.3 -1.2l-0.9 -0.8l-0.2 -1.1l-1.4 -1l-1.5 -2.3l-0.8 -2.3l-1.9 -1.9l-1.2 -0.5l-1.9 -2.6l-0.3 -1.9l0.1 -1.7l-1.6 -3.1l-1.3 -1.1l-1.5 -0.5l-0.9 -1.6l0.2 -0.6l-0.8 -1.5l-0.8 -0.6l-1.1 -2.1l-1.7 -2.2l-1.4 -1.9h-1.4l0.4 -1.5l0.2 -1l0.3 -1.1z"/><path class="map-country" d="M590.9 135.7h0.2l0.4 -0.7l2 0.1l2.5 -0.9l-1.8 1.2l0.2 0.5l-0.3 -0.1l-0.6 0.3l-0.4 -0.1l-0.1 0.1l-0.1 -0.3l-0.2 -0.1l-0.5 -0.1l-0.8 0.3l-0.5 -0.2z"/><path class="map-country" d="M590.9 135.7l0.5 0.2l0.8 -0.3l0.5 0.1l0.2 0.1l0.1 0.3l0.1 -0.1l0.4 0.1l0.6 -0.3l0.3 0.1l0.1 0.3l-2.9 1.1l-1.4 -0.4l-0.6 -1.1l1.3 -0.1z"/><path class="map-country" d="M494.0 135.6l1 1.8l0.2 1.7l0.9 2.9l0.8 0.6l-0.5 1.1l-3.7 0.5l-1.2 1l-1.6 0.3l-0.2 2l-3.2 1.1l-1.1 1.4l-2.2 0.7l-2.8 0.5l-4.5 2v3.3h-0.4l0.1 1.5l-1.7 0.1l-0.9 0.6h-1.3l-1 -0.3l-2.3 0.3l-1 2.1l-0.8 0.2l-1.3 3.5l-3.9 3l-0.9 3.9l-1.1 1.2l-0.4 1l-6.2 0.2h-0.1l0.2 -1.3l1 -0.7l0.9 -1.5l-0.2 -0.9l1 -2l1.6 -1.7l0.9 -0.5l0.7 -1.6l0.1 -1.5l1 -1.7l1.8 -1l1.8 -2.8l0.1 -0.1l1.3 -1l2.6 -0.4l2.2 -1.9l1.4 -0.7l2.3 -2.3l-0.7 -3.5l1.1 -2.4l0.4 -1.4l1.8 -1.9l2.7 -1.3l2.1 -1.1l1.9 -2.9l0.8 -1.7h2.1l1.6 1.2l2.7 -0.2l2.9 0.6h1.2z"/><path class="map-country" d="M602.4 172.2h-11h-10.8h-11.2v-10.2v-9.9l-0.8 -2.2l0.7 -1.7l-0.4 -1.2l1 -1.4h3.7l2.7 0.7l2.7 0.9l1.3 0.4l2.2 -0.9l1.1 -0.8l2.4 -0.2l2 0.3l0.8 1.4l0.6 -0.9l2.2 0.7l2.2 0.1l1.4 -0.7l1.5 4.1l0.3 0.7l-0.8 1.1l-0.6 2.1l-0.7 1.4l-0.7 0.5l-0.9 -0.9l-1.3 -1.2l-1.9 -4l-0.3 0.3l1.1 2.9l1.7 2.8l2.1 4.3l1.1 1.5l0.9 1.6l2.4 3.1l-0.5 0.5l0.1 1.8l3.2 2.5l0.5 0.5z"/><path class="map-country" d="M569.4 172.2v5.6h-3.2v1.1l-11.1 -5.3l-11 -5.3l-2.8 1.5l-2 1.1l-1.6 -1.6l-4.4 -1.2l-1.2 -1.7l-2.2 -1.3l-1.3 0.5l-1 -1.5l-0.1 -1.2l-1.6 -2.1l1.1 -1.1l-0.3 -1.8l0.4 -1.5l-0.2 -1.2l0.5 -2.3l-0.2 -1.3l-0.9 -2.5l1.4 -0.6l0.2 -1.2l-0.3 -1.1l1.9 -1.1l0.9 -0.9l1.4 -0.8l0.1 -2.1l3.3 0.9l1.1 -0.2l2.4 0.5l3.6 1.2l1.3 2.5l2.5 0.5l4 1.2l2.9 1.4l1.4 -0.8l1.3 -1.2l-0.6 -2.2l0.8 -1.3l2 -1.3l1.9 -0.4l3.8 0.6l0.9 1.2h1.1l0.9 0.5l2.7 0.3l0.7 0.9l-1 1.4l0.4 1.2l-0.7 1.7l0.8 2.2v9.9v10.2z"/><path class="map-country" d="M632.7 211.1l-7.8 8.3l-3.6 0.2l-2.5 1.9l-1.8 0.1l-0.7 0.8h-1.9l-1.2 -0.9l-2.5 1.2l-0.8 1.1l-1.9 -0.2l-0.6 -0.3l-0.6 0.1l-0.9 -0.1l-3.5 -2.3h-2l-0.9 -0.9v-1.6l-1.5 -0.5l-1.6 -3l-1.3 -0.6l-0.4 -1.1l-1.5 -1.4l-1.7 -0.2l1 -1.6h1.5l0.4 -0.9l-0.1 -2.5l0.9 -2.9l1.3 -0.8l0.3 -1.1l1.1 -2.1l1.7 -1.4l1.1 -2.7l0.5 -2.4l3.2 0.6l0.9 -2.1l1.7 1.2l1.6 -0.6l0.7 0.6h1.9l2.4 1.1l0.7 1l1.3 0.9l1.1 1.6l0.9 0.9l-0.9 1.2l-1 1.3l0.2 0.8l0.1 0.8l1.5 0.1l0.7 -0.2l0.6 0.5l-0.6 1l1 1.5l1.1 1.3l1 1l9.1 3.3h2.3z"/><path class="map-country" d="M617.6 198.5l1.2 0.2l0.9 -0.6l0.6 0.8l-0.1 1.2l-1.5 0.6l1.1 0.8l-1 1.5l-0.6 -0.5l-0.7 0.2l-1.5 -0.1l-0.1 -0.8l-0.2 -0.8l1 -1.3l0.9 -1.2z"/><path class="map-country" d="M636.0 201.6l-0.1 0.1v1.1v2.8v1.5l-1.2 1.7l-2 2.3h-2.3l-9.1 -3.3l-1 -1l-1.1 -1.3l-1 -1.5l0.6 -1l1 -1.5l1 0.5l0.5 1.2l1.2 1.1h1.4l2.6 -0.7l3.1 -0.3l2.4 -0.9l1.4 -0.2l1 -0.5l1.6 -0.1z"/><path class="map-country" d="M594.2 236.0l-5.7 0.2h-3l-1 0.3l-1.7 0.8l-0.6 -0.2v-2.1l0.6 -1.1l0.2 -2.2l0.6 -1.3l1 -1.5l1.1 -0.7l0.9 -1l-1.1 -0.4l0.1 -3.2l1.2 -0.8l1.8 0.6l2.2 -0.6h1.9l1.8 -1.3l1.3 2l0.3 1.4l1.2 3.1l-1 2.1l-1.4 1.8l-0.8 1.1l0.1 3z"/><path class="map-country" d="M584.5 236.5l1.1 1.6l-0.2 1.6l-0.8 0.3l-1.4 -0.1l-0.9 1.5l-1.7 -0.2l0.3 -1.5l0.4 -0.2l0.1 -1.7l0.8 -0.7l0.6 0.2l1.7 -0.8z"/><path class="map-country" d="M551.6 114.9l-2.5 -1.1l-1.1 -1.2l-1 -0.6l-1.3 -1l-0.6 -0.9l-1.4 -1.3l0.6 -1.1l1 0.6l0.6 -0.6h1.3l2.4 0.4h1.9l1.3 0.6h1l-0.7 1.2l1.3 1.1l-0.4 1.3l-0.6 0.1l-0.5 0.3l-0.9 0.6l-0.4 1.6z"/><path class="map-country" d="M562.2 115.8l1.4 0.9l0.2 1.8l-0.6 0.1l-0.4 0.5l-1.5 -0.1l-1.1 0.6l-1.8 0.3l-1.2 -0.7l-0.4 -1.2l0.4 -0.9h0.3l0.2 -0.6l1.6 -0.4l0.6 -0.1l1 -0.2h1.3z"/><path class="map-country" d="M552.3 105.8l2.1 -0.7l1.8 0.1l1.5 1.1l0.3 0.9l1.7 0.6l0.2 1.2l1.6 0.8l0.9 -0.6l0.7 0.3l-0.7 0.5l0.5 0.5l-0.6 0.6l0.2 1l1.3 1.2l-1 0.9l-0.5 0.9l0.3 0.3l-0.4 0.4h-1.3l-1 0.2l-0.1 -0.2l0.4 -0.4l0.3 -0.6h-0.4l-0.5 -0.5l-0.5 -0.2l-0.4 -0.4l-0.5 -0.2l-0.4 -0.4l-0.5 0.2l-0.4 0.9l-0.6 0.2l0.2 -0.2l-1.1 -0.6l-0.9 -0.3l-0.4 -0.4l-0.7 -0.5l0.6 -0.1l0.4 -1.3l-1.3 -1.1l0.7 -1.2h-1l1.1 -1l-0.9 -0.8l-0.7 -1.1z"/><path class="map-country" d="M555.8 115.0l-0.8 0.3l-0.2 -0.5l-1.2 1.3l0.2 0.9l-0.6 -0.2l-0.8 -0.9l-1.2 -0.6l0.4 -0.4l0.4 -1.6l0.9 -0.6l0.5 -0.3l0.7 0.5l0.4 0.4l0.9 0.3l1.1 0.6l-0.2 0.2l-0.5 0.6z"/><path class="map-country" d="M557.2 117.1l-0.2 -1l-0.7 -0.3l-0.5 -0.8l0.5 -0.6l0.6 -0.2l0.4 -0.9l0.5 -0.2l0.4 0.4l0.5 0.2l0.4 0.4l0.5 0.2l0.5 0.5h0.4l-0.3 0.6l-0.4 0.4l0.1 0.2l-0.6 0.1l-1.6 0.4l-0.2 0.6h-0.3z"/><path class="map-country" d="M328.7 203.4l1.6 -0.3l0.5 0.1l-0.1 2l-2.3 0.4l-0.5 -0.3l0.8 -0.8v-1.1z"/><path class="map-country" d="M585.6 223.6l-2.4 -1.9l-0.7 -1.1l-1.5 0.5l-1.3 -0.1l-0.7 0.4l-1.3 -0.3l-1.7 -2.3l-0.4 -0.9l-2.1 -1.1l-0.7 -1.7l-1.1 -1.2l-1.9 -1.4v-0.9l-1.6 -1.1l-1.8 -1.1l0.8 -0.3l1 -0.5l0.7 -2.5l0.7 -1.3l2 -0.4l0.5 0.8l1.4 1.6l0.8 0.2l1 -0.4l2 0.1l0.4 0.5h2.8l0.1 -0.5l1.4 -0.6l0.3 -0.8l1 -0.6l2.4 1.7l1.4 -0.3l1.4 -2l1.5 -1.5l-0.2 -1.7l-0.7 -0.8l1.7 -0.2l0.2 -0.6l1.2 0.2l-0.3 2.1l0.3 2l1.5 1.1l0.3 0.9v1.4h0.3l0.1 2.2l-0.4 0.9h-1.5l-1 1.6l1.7 0.2l1.5 1.4l0.4 1.1l1.3 0.6l1.6 3l-1.8 1.9l-1.7 1.6l-1.8 1.3h-1.9l-2.2 0.6l-1.8 -0.6l-1.2 0.8z"/></svg>
               <button class="map-marker" data-country="us" style="left:22.78%;top:31.34%" aria-label="USA — pokaż szczegóły rynku">
@@ -2214,27 +2624,148 @@ button {
             </div>
             <div class="map-legend">
               <span class="is-target"><i></i> Rynki objęte dotacją PMT</span>
-              <span><i></i> Pozostałe państwa</span>
+              <span><i></i> Pozostałe kraje</span>
+            </div>
+            </div>
+
+            <div class="market-perks">
+              <div class="market-perk">
+                <span class="market-perk-icon"><svg aria-hidden="true"><use href="#i-trend"/></svg></span>
+                <div><strong>Nowe rynki</strong><span>większa sprzedaż i zyski</span></div>
+              </div>
+              <div class="market-perk">
+                <span class="market-perk-icon"><svg aria-hidden="true"><use href="#i-shield"/></svg></span>
+                <div><strong>Mniejsze ryzyko</strong><span>z dywersyfikacją eksportu</span></div>
+              </div>
+              <div class="market-perk">
+                <span class="market-perk-icon"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
+                <div><strong>Silniejsza marka</strong><span>na rynkach międzynarodowych</span></div>
+              </div>
+              <div class="market-perk">
+                <span class="market-perk-icon"><svg aria-hidden="true"><use href="#i-users"/></svg></span>
+                <div><strong>Długoterminowy</strong><span>wzrost wartości firmy</span></div>
+              </div>
             </div>
           </div>
 
-          <article class="country-card reveal" id="countryCard" aria-live="polite" style="--reveal-delay:.12s">
-            <div class="country-switch" role="tablist" aria-label="Wybór rynku">
-              <button data-country="us" role="tab" class="is-active">USA</button>
-              <button data-country="gb" role="tab">UK</button>
-              <button data-country="cn" role="tab">Chiny</button>
-              <button data-country="jp" role="tab">Japonia</button>
+          <article class="market-card reveal" id="countryCard" aria-live="polite" style="--reveal-delay:.12s">
+            <header class="market-card-head">
+              <span class="flag" id="ccFlag"><svg viewBox="0 0 28 20" aria-hidden="true"><use href="#flag-us"/></svg></span>
+              <div class="market-card-title">
+                <h3 id="ccName">USA</h3>
+                <p id="ccTagline">Największa gospodarka świata i stabilny rynek</p>
+              </div>
+              <span class="market-potential" id="ccPotential">
+                <svg aria-hidden="true"><use href="#i-trend"/></svg> <span id="ccPotentialText">Wysoki potencjał</span>
+              </span>
+            </header>
+
+            <div class="market-card-body">
+              <div class="market-grid-2">
+                <div class="market-block">
+                  <h4><svg aria-hidden="true"><use href="#i-target"/></svg> Potencjał rynku</h4>
+                  <ul class="market-list" id="ccPotList"></ul>
+                </div>
+                <div class="market-block">
+                  <h4><svg aria-hidden="true"><use href="#i-users"/></svg> Dla jakich branż?</h4>
+                  <p class="market-sub">Projekt adresowany do firm z branż:</p>
+                  <ul class="market-list market-list--industries">
+                    <li>budowa i wykańczanie budowli</li>
+                    <li>elektronika profesjonalna, mikroelektronika, fotonika</li>
+                    <li>IT / ICT</li>
+                    <li>kosmetyczna</li>
+                    <li>kosmiczna i lotnicza</li>
+                    <li>kreatywna, w tym branża gier komputerowych</li>
+                    <li>maszyn i urządzeń</li>
+                    <li>meblarska</li>
+                    <li>medyczna i farmaceutyczna</li>
+                    <li>motoryzacyjna</li>
+                    <li>pojazdów szynowych</li>
+                    <li>spożywcza</li>
+                    <li>statków specjalistycznych, jachtów, łodzi</li>
+                    <li>wysokich technologii w obszarze bezpieczeństwa i towarów podwójnego zastosowania</li>
+                    <li>zielonych technologii</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="market-grid-3">
+                <div class="market-block">
+                  <h4><svg aria-hidden="true"><use href="#i-star"/></svg> Czego oczekują klienci?</h4>
+                  <p id="ccClients"></p>
+                </div>
+                <div class="market-block">
+                  <h4><svg aria-hidden="true"><use href="#i-trophy"/></svg> Polskie sukcesy</h4>
+                  <p id="ccSuccess"></p>
+                </div>
+                <div class="market-block">
+                  <h4><svg aria-hidden="true"><use href="#i-folder"/></svg> Co możesz sfinansować?</h4>
+                  <p>Badania rynku, udział w targach, promocję i materiały marketingowe,
+                     doradztwo, tłumaczenia, certyfikacje, podróże służbowe i inne.</p>
+                </div>
+              </div>
+
+              <div class="market-card-foot">
+                <div class="market-amount">
+                  <span class="market-amount-icon"><svg aria-hidden="true"><use href="#i-money"/></svg></span>
+                  <div>
+                    <strong>Nawet do <b>150 000 zł</b></strong>
+                    <span id="ccAmount">na działania wspierające wejście na rynek amerykański.</span>
+                    <span class="market-term">Termin naboru: <b>wrzesień 2026 r.</b></span>
+                  </div>
+                </div>
+                <div class="market-cta">
+                  <a class="btn btn--primary btn--sm" href="#rezerwacja">
+                    Omów ten rynek na konsultacji kwalifikacyjnej
+                    <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+                  </a>
+                  <span class="market-cta-note">Konsultacja 390 zł – odejmujemy od ceny usługi</span>
+                </div>
+              </div>
             </div>
-            <span class="flag" id="ccFlag"><svg viewBox="0 0 28 20" aria-hidden="true"><use href="#flag-us"/></svg></span>
-            <span class="country-tag" id="ccTag">Rynek nr 1 na świecie</span>
-            <h3 id="ccName">Stany Zjednoczone</h3>
-            <p id="ccDesc">Największy rynek gamingowy świata pod względem przychodów i ojczyzna globalnego esportu.</p>
-            <ul id="ccPoints"></ul>
-            <a class="btn btn--primary btn--sm" href="#rezerwacja">
-              Omów ten rynek na konsultacji
+          </article>
+        </div>
+
+        <div class="consult-band reveal">
+          <div class="consult-band-head">
+            <span class="consult-band-icon"><svg aria-hidden="true"><use href="#i-chat"/></svg></span>
+            <div>
+              <h3>Dlaczego warto umówić konsultację kwalifikacyjną za 390 zł?</h3>
+              <p>Zyskasz pewność i konkretny plan działania dopasowany do Twojej firmy.</p>
+            </div>
+          </div>
+          <div class="consult-band-grid">
+            <div class="consult-item">
+              <span class="ci-icon"><svg aria-hidden="true"><use href="#i-search"/></svg></span>
+              <strong>Oszczędzasz czas i pieniądze</strong>
+              <p>Unikasz błędnych decyzji, które mogą kosztować miesiące pracy i tysiące złotych.</p>
+            </div>
+            <div class="consult-item">
+              <span class="ci-icon"><svg aria-hidden="true"><use href="#i-doc-check"/></svg></span>
+              <strong>Pewność decyzji</strong>
+              <p>Dowiesz się, czy PMT jest dla Ciebie najlepszym źródłem finansowania. Jeśli nie – wskażemy inne możliwości.</p>
+            </div>
+            <div class="consult-item">
+              <span class="ci-icon"><svg aria-hidden="true"><use href="#i-clipboard"/></svg></span>
+              <strong>Wartość konsultacji</strong>
+              <p>Otrzymasz konkretną analizę i rekomendacje, nie tylko ogólne informacje.</p>
+            </div>
+            <div class="consult-item">
+              <span class="ci-icon"><svg aria-hidden="true"><use href="#i-money"/></svg></span>
+              <strong>390 zł odejmujemy od ceny usługi</strong>
+              <p>Jeżeli zdecydujesz się na współpracę.</p>
+            </div>
+          </div>
+          <div class="consult-band-cta">
+            <a class="btn btn--primary" href="#rezerwacja">
+              Umów konsultację kwalifikacyjną
               <svg aria-hidden="true"><use href="#i-arrow"/></svg>
             </a>
-          </article>
+            <a class="btn btn--ghost" href="https://pmt.paih.gov.pl/o-projekcie/" target="_blank" rel="noopener">
+              Dowiedz się więcej o programie PMT
+              <svg aria-hidden="true"><use href="#i-chev-r"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -2736,59 +3267,82 @@ button {
   );
   document.querySelectorAll(".count").forEach((el) => countObserver.observe(el));
 
-  /* ---------- mapa rynków + karta kraju ---------- */
+  /* ---------- mapa rynków + karta rynku ---------- */
   const COUNTRIES = {
     us: {
-      name: "Stany Zjednoczone",
-      tag: "Rynek gamingowy nr 1 na świecie",
-      desc: "Największy rynek gier pod względem przychodów i ojczyzna globalnego esportu — od lig franczyzowych po największe platformy streamingowe.",
-      points: [
-        "Ponad 200 mln aktywnych graczy i najwyższe wydatki na gry na świecie",
-        "Silna scena esportowa: ligi, sponsorzy, wydarzenia arenowe",
-        "Kluczowe targi i eventy: PAX, TwitchCon, Game Awards",
-        "Dojrzały rynek wydawców i inwestorów gamingowych",
+      name: "USA",
+      tagline: "Największa gospodarka świata i stabilny rynek",
+      potential: "Wysoki potencjał",
+      market: "amerykański",
+      potentialPoints: [
+        "Największy rynek konsumencki na świecie",
+        "Wysoka siła nabywcza i gotowość do płacenia za jakość i innowacje",
+        "Dynamiczny rozwój e-commerce i sprzedaży online",
+        "Ogromne możliwości w sektorach B2B i technologicznych",
       ],
-    },
-    gb: {
-      name: "Wielka Brytania",
-      tag: "Największy rynek gier w Europie",
-      desc: "Po brexicie Wielka Brytania jest rynkiem pozaunijnym — dzięki temu ekspansję do UK można sfinansować z grantu PMT.",
-      points: [
-        "Największy rynek gamingowy Europy i hub wydawniczy",
-        "Bliskość kulturowa i językowa ułatwia start ekspansji",
-        "Rozwinięta scena esportowa i studia AAA",
-        "Naturalny pierwszy krok przed rynkiem amerykańskim",
-      ],
+      clients:
+        "Wysoka jakość, niezawodność, certyfikaty i zgodność z normami amerykańskimi (FDA, UL, ISO), szybka realizacja i doskonała obsługa posprzedażowa.",
+      success:
+        "Polskie firmy z branży meblarskiej, maszynowej, kosmetycznej i IT skutecznie rozwijają sprzedaż w USA, budując długotrwałe relacje z partnerami biznesowymi.",
     },
     cn: {
       name: "Chiny",
-      tag: "Najwięcej graczy na świecie",
-      desc: "Setki milionów graczy i dominacja mobile — rynek o ogromnym potencjale, który wymaga lokalnego partnera i starannego przygotowania.",
-      points: [
-        "Około 700 mln graczy — największa społeczność na świecie",
-        "Dominacja gier mobilnych i modeli free-to-play",
-        "Wejście wymaga licencji i lokalnego wydawcy — pomagamy to zaplanować",
-        "ChinaJoy — jedne z największych targów gamingowych świata",
+      tagline: "Gigantyczny rynek i ogromny potencjał wzrostu",
+      potential: "Bardzo wysoki potencjał",
+      market: "chiński",
+      potentialPoints: [
+        "Druga największa gospodarka świata",
+        "Ogromna klasa średnia i rosnąca siła nabywcza",
+        "Wysoki popyt na innowacyjne i wysokiej jakości produkty z zagranicy",
+        "Dynamiczny rozwój e-commerce i kanałów cyfrowych",
       ],
+      clients:
+        "Wysoka jakość, niezawodność, bezpieczeństwo, nowoczesny design, prestiż marki oraz dopasowanie do lokalnych potrzeb i trendów.",
+      success:
+        "Polskie marki z branży kosmetycznej, spożywczej i meblarskiej zdobywają rosnące uznanie wśród chińskich konsumentów i dystrybutorów.",
+    },
+    gb: {
+      name: "Wielka Brytania",
+      tagline: "Stabilny, dojrzały rynek bliski kulturowo i prawnie",
+      potential: "Wysoki potencjał",
+      market: "brytyjski",
+      potentialPoints: [
+        "6. co do wielkości gospodarka świata",
+        "Silny popyt na innowacyjne i wysokiej jakości produkty",
+        "Dostęp do rynku Commonwealth i dalszych rynków międzynarodowych",
+        "Bliskość geograficzna i kulturowa – łatwiejsze relacje biznesowe",
+      ],
+      clients:
+        "Jakości, trwałości, certyfikatów, przejrzystej komunikacji, szybkich dostaw oraz zgodności z normami i regulacjami.",
+      success:
+        "Polskie marki meblarskie, kosmetyczne, spożywcze i technologiczne skutecznie budują rozpoznawalność i zwiększają sprzedaż w Wielkiej Brytanii.",
     },
     jp: {
       name: "Japonia",
-      tag: "Ojczyzna światowego gamingu",
-      desc: "Trzeci największy rynek gier na świecie, z lojalnymi graczami premium i silną kulturą konsolową.",
-      points: [
-        "Jeden z najwyższych przychodów na gracza globalnie",
-        "Silny rynek konsol i gier mobilnych premium",
-        "Tokyo Game Show — brama do całej Azji",
-        "Docenia dopracowane, artystyczne produkcje — atut polskich studiów",
+      tagline: "Innowacyjny rynek ceniony za jakość i technologie",
+      potential: "Wysoki potencjał",
+      market: "japoński",
+      potentialPoints: [
+        "3. największa gospodarka świata",
+        "Wysoka siła nabywcza i stabilne otoczenie biznesowe",
+        "Duże zapotrzebowanie na innowacyjne i wysokiej jakości produkty",
+        "Rosnący import w sektorach technologicznych, medycznych i ekologicznych",
       ],
+      clients:
+        "Jakości, niezawodności, precyzji, bezpieczeństwa, dbałości o detale oraz certyfikatów i zgodności z normami japońskimi.",
+      success:
+        "Polskie firmy z branży maszynowej, meblarskiej i kosmetycznej skutecznie rozwijają sprzedaż w Japonii.",
     },
   };
 
   const ccFlag = document.getElementById("ccFlag");
-  const ccTag = document.getElementById("ccTag");
   const ccName = document.getElementById("ccName");
-  const ccDesc = document.getElementById("ccDesc");
-  const ccPoints = document.getElementById("ccPoints");
+  const ccTagline = document.getElementById("ccTagline");
+  const ccPotentialText = document.getElementById("ccPotentialText");
+  const ccPotList = document.getElementById("ccPotList");
+  const ccClients = document.getElementById("ccClients");
+  const ccSuccess = document.getElementById("ccSuccess");
+  const ccAmount = document.getElementById("ccAmount");
   const switchButtons = document.querySelectorAll(".country-switch button");
   const markers = document.querySelectorAll(".map-marker");
 
@@ -2797,19 +3351,24 @@ button {
     if (!data) return;
     ccFlag.innerHTML =
       '<svg viewBox="0 0 28 20" aria-hidden="true"><use href="#flag-' + code + '"/></svg>';
-    ccTag.textContent = data.tag;
     ccName.textContent = data.name;
-    ccDesc.textContent = data.desc;
-    ccPoints.innerHTML = data.points
+    ccTagline.textContent = data.tagline;
+    ccPotentialText.textContent = data.potential;
+    ccClients.textContent = data.clients;
+    ccSuccess.textContent = data.success;
+    ccAmount.textContent = "na działania wspierające wejście na rynek " + data.market + ".";
+    ccPotList.innerHTML = data.potentialPoints
       .map(
         (p) =>
           '<li><svg aria-hidden="true"><use href="#i-check"/></svg><span>' + p + "</span></li>"
       )
       .join("");
 
-    switchButtons.forEach((b) =>
-      b.classList.toggle("is-active", b.dataset.country === code)
-    );
+    switchButtons.forEach((b) => {
+      const active = b.dataset.country === code;
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-selected", String(active));
+    });
     markers.forEach((m) => m.classList.toggle("is-active", m.dataset.country === code));
     document
       .querySelectorAll(".map-target")

@@ -141,6 +141,14 @@ button {
   margin: 0;
 }
 
+.hl {
+  color: var(--red);
+}
+
+.section--dark .hl {
+  color: var(--orange);
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -643,9 +651,15 @@ button {
 
 .map-wrap {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.28fr);
+  gap: clamp(1.5rem, 3.5vw, 2.6rem);
+  align-items: start;
+}
+
+.map-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
 }
 
 .map-panel {
@@ -653,7 +667,7 @@ button {
   background: linear-gradient(165deg, #FBFAF9, #F1EFF3);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: clamp(1rem, 2.5vw, 2rem);
+  padding: clamp(1rem, 2.5vw, 1.6rem);
   box-shadow: var(--shadow-card);
   overflow: hidden;
 }
@@ -674,77 +688,98 @@ button {
   transition: fill 0.25s;
 }
 
+/* rynki docelowe: nieaktywne w jasnej czerwieni, aktywny w mocnej */
 .map-target {
-  fill: url(#targetGrad);
-  fill: var(--red);
+  fill: #EBA9AF;
   cursor: pointer;
   transition: fill 0.25s, filter 0.25s;
 }
 
 .map-target:hover {
   fill: var(--red-bright);
-  filter: drop-shadow(0 4px 10px rgba(148, 24, 36, 0.4));
 }
 
 .map-target.is-active {
-  fill: var(--red-dark);
-  filter: drop-shadow(0 4px 12px rgba(92, 5, 13, 0.5));
+  fill: var(--red);
+  filter: drop-shadow(0 4px 12px rgba(148, 24, 36, 0.45));
 }
 
+/* pinezka w kształcie kropli */
 .map-marker {
   position: absolute;
-  transform: translate(-50%, -50%);
-  width: 40px;
+  transform: translate(-50%, -100%);
+  width: 30px;
   height: 40px;
   border: 0;
-  border-radius: 50%;
   background: transparent;
-  display: grid;
-  place-items: center;
   padding: 0;
+  cursor: pointer;
 }
 
 .map-marker .pin {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
   background: var(--red);
-  border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(92, 5, 13, 0.55);
+  border: 2px solid #fff;
+  box-shadow: 0 3px 8px rgba(92, 5, 13, 0.4);
   transition: transform 0.2s var(--ease-out), background-color 0.2s;
+}
+
+.map-marker .pin::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: #fff;
 }
 
 .map-marker::before {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 14px;
+  left: 50%;
+  top: 11px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
   border-radius: 50%;
-  background: rgba(148, 24, 36, 0.45);
-  animation: marker-pulse 2.2s infinite;
+  background: rgba(148, 24, 36, 0.4);
+  animation: marker-pulse 2.4s infinite;
 }
 
 @keyframes marker-pulse {
   0% {
     transform: scale(1);
-    opacity: 0.8;
+    opacity: 0.7;
   }
   75%,
   100% {
-    transform: scale(3.1);
+    transform: scale(3);
     opacity: 0;
   }
 }
 
-.map-marker:hover .pin,
+.map-marker:hover .pin {
+  transform: rotate(-45deg) scale(1.12);
+}
+
 .map-marker.is-active .pin {
-  transform: scale(1.35);
-  background: var(--orange);
+  background: var(--red-dark);
+  transform: rotate(-45deg) scale(1.18);
 }
 
 .map-marker .label {
   position: absolute;
-  bottom: calc(100% + 2px);
+  bottom: calc(100% + 4px);
   left: 50%;
   transform: translateX(-50%);
   background: var(--ink);
@@ -792,102 +827,428 @@ button {
   background: var(--red);
 }
 
-/* karta kraju */
-.country-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--ink);
-  color: #F5F4F6;
-  border-radius: var(--radius);
-  padding: clamp(1.4rem, 3vw, 2rem);
-  box-shadow: var(--shadow-pop);
-}
-
-.country-card .flag {
-  width: 44px;
-  height: 31px;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
-  margin-bottom: 1rem;
-}
-
-.country-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.35rem;
-}
-
-.country-card .country-tag {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 0.9rem;
-}
-
-.country-card p {
-  color: rgba(245, 244, 246, 0.78);
-  font-size: 0.98rem;
-}
-
-.country-card ul {
-  list-style: none;
-  margin: 0 0 1.4rem;
-  padding: 0;
+/* przełącznik rynków (nad mapą, na jasnym tle) */
+.country-switch {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
 }
 
-.country-card li {
-  display: flex;
-  gap: 0.55rem;
-  align-items: flex-start;
-  font-size: 0.93rem;
-  color: rgba(245, 244, 246, 0.85);
-}
-
-.country-card li svg {
-  width: 17px;
-  height: 17px;
-  color: var(--orange);
-  flex: none;
-  margin-top: 3px;
-}
-
-.country-card .btn {
-  margin-top: auto;
-}
-
-.country-switch {
-  display: flex;
-  gap: 0.4rem;
-  margin-bottom: 1.2rem;
-}
-
 .country-switch button {
-  flex: 1;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(245, 244, 246, 0.8);
-  border-radius: 9px;
-  padding: 0.45rem 0.2rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 12px;
+  padding: 0.55rem 0.8rem;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.country-switch button .flag {
+  width: 24px;
+  height: 17px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .country-switch button:hover {
-  border-color: var(--orange);
-  color: #fff;
+  border-color: var(--red);
+  transform: translateY(-2px);
 }
 
 .country-switch button.is-active {
   background: linear-gradient(135deg, var(--red), var(--red-dark));
   border-color: transparent;
   color: #fff;
+  box-shadow: 0 10px 22px -10px rgba(148, 24, 36, 0.6);
+}
+
+.country-switch button.is-active .flag {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+/* kafelki korzyści pod mapą */
+.market-perks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.market-perk {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.85rem 0.9rem;
+  transition: transform 0.2s var(--ease-out), border-color 0.2s;
+}
+
+.market-perk:hover {
+  transform: translateY(-3px);
+  border-color: rgba(148, 24, 36, 0.35);
+}
+
+.market-perk-icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(148, 24, 36, 0.1), rgba(241, 137, 32, 0.14));
+  color: var(--red);
+}
+
+.market-perk-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.market-perk strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+}
+
+.market-perk span {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+/* bogata karta rynku */
+.market-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.market-card-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(120deg, var(--red-dark) 0%, var(--red) 100%);
+  color: #fff;
+}
+
+.market-card-head .flag {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.market-card-head .flag svg {
+  width: 46px;
+  height: 33px;
+}
+
+.market-card-title {
+  margin-right: auto;
+  min-width: 0;
+}
+
+.market-card-title h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.market-card-title p {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.market-potential {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: none;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #FFCB8C;
+}
+
+.market-potential svg {
+  width: 16px;
+  height: 16px;
+}
+
+.market-card-body {
+  padding: clamp(1.2rem, 2.5vw, 1.7rem);
+}
+
+.market-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 3vw, 2rem);
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.market-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.market-block h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.98rem;
+  margin-bottom: 0.7rem;
+}
+
+.market-block h4 svg {
+  width: 19px;
+  height: 19px;
+  color: var(--red);
+  flex: none;
+}
+
+.market-block > p {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.market-sub {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.5rem;
+}
+
+.market-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.market-list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.market-list li svg {
+  width: 17px;
+  height: 17px;
+  color: var(--green-ok);
+  flex: none;
+  margin-top: 2px;
+}
+
+.market-list--industries {
+  gap: 0.32rem;
+}
+
+.market-list--industries li {
+  font-size: 0.86rem;
+}
+
+.market-list--industries li::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.market-card-foot {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: center;
+  padding-top: 1.4rem;
+}
+
+.market-amount {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.market-amount-icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(148, 24, 36, 0.1), rgba(241, 137, 32, 0.14));
+  color: var(--red);
+}
+
+.market-amount-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.market-amount strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--red-dark);
+}
+
+.market-amount strong b {
+  color: var(--red);
+}
+
+.market-amount > div > span {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+}
+
+.market-amount .market-term {
+  margin-top: 0.25rem;
+  color: var(--ink);
+}
+
+.market-amount .market-term b {
+  color: var(--red);
+}
+
+.market-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.market-cta .btn {
+  width: 100%;
+}
+
+.market-cta-note {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+/* dolny pas: dlaczego warto */
+.consult-band {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.consult-band-head {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  margin-bottom: 1.4rem;
+}
+
+.consult-band-icon {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
+  color: #fff;
+}
+
+.consult-band-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.consult-band-head h3 {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  margin: 0 0 0.15rem;
+}
+
+.consult-band-head p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.consult-band-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.consult-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.1rem;
+}
+
+.consult-item .ci-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(148, 24, 36, 0.08);
+  color: var(--red);
+  margin-bottom: 0.7rem;
+}
+
+.consult-item .ci-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.consult-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  margin-bottom: 0.3rem;
+}
+
+.consult-item p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.consult-band-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
 }
 
 /* ------------------------------------------------------------
@@ -1902,6 +2263,10 @@ button {
   .booking {
     position: static;
   }
+
+  .consult-band-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 860px) {
@@ -1956,6 +2321,14 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .country-switch {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .market-perks {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   .compare {
     grid-template-columns: 1fr;
   }
@@ -1980,6 +2353,21 @@ button {
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .market-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .country-switch,
+  .market-perks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .consult-band-cta .btn {
+    flex: 1 1 auto;
   }
 }
 
@@ -2012,5 +2400,20 @@ button {
 
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .market-grid-2,
+  .market-card-foot,
+  .market-perks,
+  .consult-band-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-card-head {
+    flex-wrap: wrap;
+  }
+
+  .market-potential {
+    order: 3;
   }
 }

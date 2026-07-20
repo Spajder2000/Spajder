@@ -65,59 +65,82 @@
   );
   document.querySelectorAll(".count").forEach((el) => countObserver.observe(el));
 
-  /* ---------- mapa rynków + karta kraju ---------- */
+  /* ---------- mapa rynków + karta rynku ---------- */
   const COUNTRIES = {
     us: {
-      name: "Stany Zjednoczone",
-      tag: "Rynek gamingowy nr 1 na świecie",
-      desc: "Największy rynek gier pod względem przychodów i ojczyzna globalnego esportu — od lig franczyzowych po największe platformy streamingowe.",
-      points: [
-        "Ponad 200 mln aktywnych graczy i najwyższe wydatki na gry na świecie",
-        "Silna scena esportowa: ligi, sponsorzy, wydarzenia arenowe",
-        "Kluczowe targi i eventy: PAX, TwitchCon, Game Awards",
-        "Dojrzały rynek wydawców i inwestorów gamingowych",
+      name: "USA",
+      tagline: "Największa gospodarka świata i stabilny rynek",
+      potential: "Wysoki potencjał",
+      market: "amerykański",
+      potentialPoints: [
+        "Największy rynek konsumencki na świecie",
+        "Wysoka siła nabywcza i gotowość do płacenia za jakość i innowacje",
+        "Dynamiczny rozwój e-commerce i sprzedaży online",
+        "Ogromne możliwości w sektorach B2B i technologicznych",
       ],
-    },
-    gb: {
-      name: "Wielka Brytania",
-      tag: "Największy rynek gier w Europie",
-      desc: "Po brexicie Wielka Brytania jest rynkiem pozaunijnym — dzięki temu ekspansję do UK można sfinansować z grantu PMT.",
-      points: [
-        "Największy rynek gamingowy Europy i hub wydawniczy",
-        "Bliskość kulturowa i językowa ułatwia start ekspansji",
-        "Rozwinięta scena esportowa i studia AAA",
-        "Naturalny pierwszy krok przed rynkiem amerykańskim",
-      ],
+      clients:
+        "Wysoka jakość, niezawodność, certyfikaty i zgodność z normami amerykańskimi (FDA, UL, ISO), szybka realizacja i doskonała obsługa posprzedażowa.",
+      success:
+        "Polskie firmy z branży meblarskiej, maszynowej, kosmetycznej i IT skutecznie rozwijają sprzedaż w USA, budując długotrwałe relacje z partnerami biznesowymi.",
     },
     cn: {
       name: "Chiny",
-      tag: "Najwięcej graczy na świecie",
-      desc: "Setki milionów graczy i dominacja mobile — rynek o ogromnym potencjale, który wymaga lokalnego partnera i starannego przygotowania.",
-      points: [
-        "Około 700 mln graczy — największa społeczność na świecie",
-        "Dominacja gier mobilnych i modeli free-to-play",
-        "Wejście wymaga licencji i lokalnego wydawcy — pomagamy to zaplanować",
-        "ChinaJoy — jedne z największych targów gamingowych świata",
+      tagline: "Gigantyczny rynek i ogromny potencjał wzrostu",
+      potential: "Bardzo wysoki potencjał",
+      market: "chiński",
+      potentialPoints: [
+        "Druga największa gospodarka świata",
+        "Ogromna klasa średnia i rosnąca siła nabywcza",
+        "Wysoki popyt na innowacyjne i wysokiej jakości produkty z zagranicy",
+        "Dynamiczny rozwój e-commerce i kanałów cyfrowych",
       ],
+      clients:
+        "Wysoka jakość, niezawodność, bezpieczeństwo, nowoczesny design, prestiż marki oraz dopasowanie do lokalnych potrzeb i trendów.",
+      success:
+        "Polskie marki z branży kosmetycznej, spożywczej i meblarskiej zdobywają rosnące uznanie wśród chińskich konsumentów i dystrybutorów.",
+    },
+    gb: {
+      name: "Wielka Brytania",
+      tagline: "Stabilny, dojrzały rynek bliski kulturowo i prawnie",
+      potential: "Wysoki potencjał",
+      market: "brytyjski",
+      potentialPoints: [
+        "6. co do wielkości gospodarka świata",
+        "Silny popyt na innowacyjne i wysokiej jakości produkty",
+        "Dostęp do rynku Commonwealth i dalszych rynków międzynarodowych",
+        "Bliskość geograficzna i kulturowa – łatwiejsze relacje biznesowe",
+      ],
+      clients:
+        "Jakości, trwałości, certyfikatów, przejrzystej komunikacji, szybkich dostaw oraz zgodności z normami i regulacjami.",
+      success:
+        "Polskie marki meblarskie, kosmetyczne, spożywcze i technologiczne skutecznie budują rozpoznawalność i zwiększają sprzedaż w Wielkiej Brytanii.",
     },
     jp: {
       name: "Japonia",
-      tag: "Ojczyzna światowego gamingu",
-      desc: "Trzeci największy rynek gier na świecie, z lojalnymi graczami premium i silną kulturą konsolową.",
-      points: [
-        "Jeden z najwyższych przychodów na gracza globalnie",
-        "Silny rynek konsol i gier mobilnych premium",
-        "Tokyo Game Show — brama do całej Azji",
-        "Docenia dopracowane, artystyczne produkcje — atut polskich studiów",
+      tagline: "Innowacyjny rynek ceniony za jakość i technologie",
+      potential: "Wysoki potencjał",
+      market: "japoński",
+      potentialPoints: [
+        "3. największa gospodarka świata",
+        "Wysoka siła nabywcza i stabilne otoczenie biznesowe",
+        "Duże zapotrzebowanie na innowacyjne i wysokiej jakości produkty",
+        "Rosnący import w sektorach technologicznych, medycznych i ekologicznych",
       ],
+      clients:
+        "Jakości, niezawodności, precyzji, bezpieczeństwa, dbałości o detale oraz certyfikatów i zgodności z normami japońskimi.",
+      success:
+        "Polskie firmy z branży maszynowej, meblarskiej i kosmetycznej skutecznie rozwijają sprzedaż w Japonii.",
     },
   };
 
   const ccFlag = document.getElementById("ccFlag");
-  const ccTag = document.getElementById("ccTag");
   const ccName = document.getElementById("ccName");
-  const ccDesc = document.getElementById("ccDesc");
-  const ccPoints = document.getElementById("ccPoints");
+  const ccTagline = document.getElementById("ccTagline");
+  const ccPotentialText = document.getElementById("ccPotentialText");
+  const ccPotList = document.getElementById("ccPotList");
+  const ccClients = document.getElementById("ccClients");
+  const ccSuccess = document.getElementById("ccSuccess");
+  const ccAmount = document.getElementById("ccAmount");
   const switchButtons = document.querySelectorAll(".country-switch button");
   const markers = document.querySelectorAll(".map-marker");
 
@@ -126,19 +149,24 @@
     if (!data) return;
     ccFlag.innerHTML =
       '<svg viewBox="0 0 28 20" aria-hidden="true"><use href="#flag-' + code + '"/></svg>';
-    ccTag.textContent = data.tag;
     ccName.textContent = data.name;
-    ccDesc.textContent = data.desc;
-    ccPoints.innerHTML = data.points
+    ccTagline.textContent = data.tagline;
+    ccPotentialText.textContent = data.potential;
+    ccClients.textContent = data.clients;
+    ccSuccess.textContent = data.success;
+    ccAmount.textContent = "na działania wspierające wejście na rynek " + data.market + ".";
+    ccPotList.innerHTML = data.potentialPoints
       .map(
         (p) =>
           '<li><svg aria-hidden="true"><use href="#i-check"/></svg><span>' + p + "</span></li>"
       )
       .join("");
 
-    switchButtons.forEach((b) =>
-      b.classList.toggle("is-active", b.dataset.country === code)
-    );
+    switchButtons.forEach((b) => {
+      const active = b.dataset.country === code;
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-selected", String(active));
+    });
     markers.forEach((m) => m.classList.toggle("is-active", m.dataset.country === code));
     document
       .querySelectorAll(".map-target")
