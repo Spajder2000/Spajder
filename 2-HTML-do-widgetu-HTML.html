@@ -1,12 +1,11 @@
 <!--
   ============================================================
   KROK 2 — HTML
-  Wklej CAŁOŚĆ do widżetu "HTML" (Custom HTML) w Elementorze.
-  WAŻNE: musi to być widżet "HTML", NIE "Edytor tekstu" —
-  edytor tekstu wycina <script> i psuje layout.
-  Sekcję/kolumnę ustaw na pełną szerokość (Full Width),
-  padding sekcji = 0.
-  Najpierw wklej KROK 1 (CSS) do Additional CSS.
+  Wklej CAŁOŚĆ do widżetu "HTML" (Custom HTML) w Elementorze
+  albo do bloku "Własny kod HTML" w edytorze WordPress.
+  NAJPIERW wykonaj KROK 1 (CSS do Additional CSS) — bez tego
+  będzie bez stylów. Ta wersja wygląda dobrze nawet gdy skrypt
+  zostanie wycięty (FAQ działa natywnie, liczby są widoczne).
   ============================================================
 -->
 <div class="pjw-landing">
@@ -33,9 +32,9 @@
     <!-- STATS -->
     <section class="pjw-stats">
       <div class="pjw-wrap pjw-statsgrid">
-        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="4200" data-pjw-suffix="+">0</div><div class="pjw-statlbl">Obsłużonych firm</div></div>
-        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="98" data-pjw-suffix="%">0</div><div class="pjw-statlbl">Poleca nas dalej</div></div>
-        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="24" data-pjw-suffix="h">0</div><div class="pjw-statlbl">Czas reakcji wsparcia</div></div>
+        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="4200" data-pjw-suffix="+">4 200+</div><div class="pjw-statlbl">Obsłużonych firm</div></div>
+        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="98" data-pjw-suffix="%">98%</div><div class="pjw-statlbl">Poleca nas dalej</div></div>
+        <div class="pjw-reveal"><div class="pjw-statnum" data-pjw-count="24" data-pjw-suffix="h">24h</div><div class="pjw-statlbl">Czas reakcji wsparcia</div></div>
       </div>
     </section>
 
@@ -104,7 +103,7 @@
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ (natywne <details> — działa bez JS) -->
     <section id="pjw-faq" class="pjw-pad">
       <div class="pjw-wrap">
         <div class="pjw-head pjw-reveal">
@@ -112,22 +111,22 @@
           <p class="pjw-lead">Transparentność to podstawa zaufania.</p>
         </div>
         <div class="pjw-faq">
-          <div class="pjw-qa pjw-reveal">
-            <button class="pjw-q" aria-expanded="false">Czy oferta jest w pełni legalna?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-            <div class="pjw-a"><div class="pjw-ainner">Tak. Działamy jako zweryfikowany sprzedawca i do każdego zamówienia dołączamy dowód zakupu oraz fakturę VAT. Wszystko jest zgodne z warunkami licencyjnymi producentów.</div></div>
-          </div>
-          <div class="pjw-qa pjw-reveal">
-            <button class="pjw-q" aria-expanded="false">Czy dostanę fakturę VAT?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-            <div class="pjw-a"><div class="pjw-ainner">Oczywiście. Fakturę VAT wystawiamy do każdego zamówienia — wystarczy podać dane firmy podczas składania zamówienia.</div></div>
-          </div>
-          <div class="pjw-qa pjw-reveal">
-            <button class="pjw-q" aria-expanded="false">Czy pomożecie przy instalacji?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-            <div class="pjw-a"><div class="pjw-ainner">Tak. Nasz zespół wsparcia prowadzi Cię krok po kroku przez instalację i konfigurację, aby wszystko działało od razu.</div></div>
-          </div>
-          <div class="pjw-qa pjw-reveal">
-            <button class="pjw-q" aria-expanded="false">Co jeśli mam więcej pytań przed zakupem?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-            <div class="pjw-a"><div class="pjw-ainner">Kliknij „Dowiedz się więcej" — na stronie bezpiecznysoft.pl znajdziesz pełne dane kontaktowe i konsultanta, który odpowie na wszystkie pytania przed decyzją.</div></div>
-          </div>
+          <details class="pjw-qa pjw-reveal">
+            <summary class="pjw-q">Czy oferta jest w pełni legalna?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="pjw-ainner">Tak. Działamy jako zweryfikowany sprzedawca i do każdego zamówienia dołączamy dowód zakupu oraz fakturę VAT. Wszystko jest zgodne z warunkami licencyjnymi producentów.</div>
+          </details>
+          <details class="pjw-qa pjw-reveal">
+            <summary class="pjw-q">Czy dostanę fakturę VAT?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="pjw-ainner">Oczywiście. Fakturę VAT wystawiamy do każdego zamówienia — wystarczy podać dane firmy podczas składania zamówienia.</div>
+          </details>
+          <details class="pjw-qa pjw-reveal">
+            <summary class="pjw-q">Czy pomożecie przy instalacji?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="pjw-ainner">Tak. Nasz zespół wsparcia prowadzi Cię krok po kroku przez instalację i konfigurację, aby wszystko działało od razu.</div>
+          </details>
+          <details class="pjw-qa pjw-reveal">
+            <summary class="pjw-q">Co jeśli mam więcej pytań przed zakupem?<span class="pjw-chev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="pjw-ainner">Kliknij „Dowiedz się więcej" — na stronie bezpiecznysoft.pl znajdziesz pełne dane kontaktowe i konsultanta, który odpowie na wszystkie pytania przed decyzją.</div>
+          </details>
         </div>
       </div>
     </section>
@@ -163,10 +162,10 @@
 
   <footer class="pjw-footer">
     <div class="pjw-wrap pjw-foot">
-      <div class="pjw-brand" style="font-size:15px">
-        <span class="pjw-logo" style="width:30px;height:30px;border-radius:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+      <div class="pjw-brand" style="display:flex;align-items:center;gap:10px;font-weight:800">
+        <span style="display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--brand-600);color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
       </div>
-      <p>&copy; <span data-pjw-year></span> Zweryfikowany sprzedawca oprogramowania dla firm.</p>
+      <p>&copy; <span data-pjw-year>2026</span> Zweryfikowany sprzedawca oprogramowania dla firm.</p>
     </div>
     <div class="pjw-wrap pjw-credit">
       Realizacja strony: <a href="#">PAJAKWEB</a>
@@ -179,64 +178,24 @@
   'use strict';
   var root=document.querySelector('.pjw-landing');
   if(!root)return;
+  root.classList.add('pjw-js'); /* dopiero teraz włączamy ukrywanie do animacji */
   var CTA_URL='https://www.bezpiecznysoft.pl';
-
-  var y=root.querySelector('[data-pjw-year]');
-  if(y)y.textContent=new Date().getFullYear();
-
+  var y=root.querySelector('[data-pjw-year]'); if(y)y.textContent=new Date().getFullYear();
   root.querySelectorAll('[data-pjw-cta]').forEach(function(btn){
-    btn.addEventListener('click',function(e){
-      e.preventDefault();
-      btn.style.transition='transform 120ms ease';
-      btn.style.transform='scale(.96)';
-      setTimeout(function(){btn.style.transform='';window.location.href=CTA_URL;},150);
-    });
+    btn.addEventListener('click',function(e){e.preventDefault();btn.style.transition='transform 120ms ease';btn.style.transform='scale(.96)';setTimeout(function(){btn.style.transform='';window.location.href=CTA_URL;},150);});
   });
-
   root.querySelectorAll('a[href^="#pjw-"]').forEach(function(link){
-    link.addEventListener('click',function(e){
-      var t=document.getElementById(this.getAttribute('href').slice(1));
-      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
-    });
+    link.addEventListener('click',function(e){var t=document.getElementById(this.getAttribute('href').slice(1));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});
   });
-
-  root.querySelectorAll('.pjw-qa').forEach(function(item){
-    var q=item.querySelector('.pjw-q'), a=item.querySelector('.pjw-a');
-    q.addEventListener('click',function(){
-      var open=item.classList.toggle('pjw-open');
-      q.setAttribute('aria-expanded',open?'true':'false');
-      a.style.maxHeight=open?a.scrollHeight+'px':'0';
-    });
-  });
-
-  function runCount(scope){
-    (scope||root).querySelectorAll('[data-pjw-count]').forEach(function(el){
-      if(el.dataset.pjwDone)return; el.dataset.pjwDone='1';
-      var target=+el.dataset.pjwCount, suffix=el.dataset.pjwSuffix||'', dur=1400, start=performance.now();
-      function tick(now){
-        var p=Math.min((now-start)/dur,1), eased=1-Math.pow(1-p,3);
-        el.textContent=Math.floor(eased*target).toLocaleString('pl-PL')+suffix;
-        if(p<1)requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    });
-  }
-
+  function runCount(scope){(scope||root).querySelectorAll('[data-pjw-count]').forEach(function(el){
+    if(el.dataset.pjwDone)return;el.dataset.pjwDone='1';
+    var target=+el.dataset.pjwCount,suffix=el.dataset.pjwSuffix||'',dur=1400,start=performance.now();
+    function tick(now){var p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3);el.textContent=Math.floor(eased*target).toLocaleString('pl-PL')+suffix;if(p<1)requestAnimationFrame(tick);}
+    requestAnimationFrame(tick);});}
   var reveals=root.querySelectorAll('.pjw-reveal');
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries,obs){
-      entries.forEach(function(en){
-        if(en.isIntersecting){
-          en.target.classList.add('pjw-show');
-          obs.unobserve(en.target);
-          if(en.target.querySelector('[data-pjw-count]'))runCount(en.target);
-        }
-      });
-    },{threshold:.14,rootMargin:'0px 0px -30px 0px'});
+    var io=new IntersectionObserver(function(entries,obs){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('pjw-show');obs.unobserve(en.target);if(en.target.querySelector('[data-pjw-count]'))runCount(en.target);}});},{threshold:.14,rootMargin:'0px 0px -30px 0px'});
     reveals.forEach(function(el,i){el.style.transitionDelay=(i%3)*80+'ms';io.observe(el);});
-  } else {
-    reveals.forEach(function(el){el.classList.add('pjw-show');});
-    runCount(root);
-  }
+  }else{reveals.forEach(function(el){el.classList.add('pjw-show');});runCount(root);}
 })();
 </script>
