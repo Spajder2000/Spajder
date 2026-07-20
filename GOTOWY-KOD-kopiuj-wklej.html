@@ -124,10 +124,17 @@
 .pjw-credit{border-top:1px solid var(--ink-100);padding:16px 0;text-align:center;font-size:13px;color:var(--ink-400)}
 .pjw-credit a{font-weight:600;color:var(--ink-600)}
 
-/* Treść WIDOCZNA domyślnie. Animacja włącza się dopiero, gdy zadziała JS. */
-.pjw-landing.pjw-js .pjw-reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-.pjw-landing.pjw-js .pjw-reveal.pjw-show{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.pjw-landing.pjw-js .pjw-reveal{opacity:1;transform:none}.pjw-pulse{animation:none}}
+/* Cała treść zawsze widoczna (bez animacji chowania) */
+.pjw-landing .pjw-reveal{opacity:1 !important;transform:none !important}
+/* Twarde wyśrodkowanie sekcji, gdyby motyw wymuszał wyrównanie do lewej */
+.pjw-landing .pjw-hero,
+.pjw-landing .pjw-head,
+.pjw-landing .pjw-statsgrid,
+.pjw-landing .pjw-step,
+.pjw-landing .pjw-ctastrip,
+.pjw-landing .pjw-trust{text-align:center !important}
+.pjw-landing .pjw-stepn{margin-left:auto !important;margin-right:auto !important}
+@media(prefers-reduced-motion:reduce){.pjw-pulse{animation:none}}
 </style>
 
 <div class="pjw-landing">
