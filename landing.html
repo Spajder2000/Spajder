@@ -39,7 +39,9 @@
 .pjw-btn-ghost:hover{background:var(--ink-50) !important}
 .pjw-btn-white{background:#fff !important;color:var(--brand-700) !important}
 
-.pjw-hero{position:relative;overflow:hidden;text-align:center !important;padding:70px 0 60px}
+.pjw-hero{position:relative;overflow:hidden;text-align:center !important;padding:80px 0 60px}
+.pjw-hero .pjw-heroinner,.pjw-hero .pjw-heroinner *{text-align:center !important}
+.pjw-heroinner{max-width:900px;margin:0 auto}
 .pjw-gridbg{position:absolute;inset:0;
   background-image:linear-gradient(to right,rgba(5,150,105,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(5,150,105,.06) 1px,transparent 1px);
   background-size:44px 44px}
@@ -50,7 +52,7 @@
 .pjw-landing h1{margin-top:26px;font-size:clamp(32px,6vw,58px);line-height:1.08;letter-spacing:-.03em}
 .pjw-landing h1 .pjw-accent{color:var(--brand-600)}
 .pjw-sub{margin:22px auto 0;max-width:640px;font-size:clamp(16px,2.4vw,19px);color:var(--ink-600)}
-.pjw-ctarow{margin-top:34px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
+.pjw-ctarow{margin-top:34px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
 @media(min-width:560px){.pjw-ctarow{flex-direction:row}}
 .pjw-ctanote{margin-top:18px;font-size:13.5px;color:var(--ink-500)}
 
@@ -106,11 +108,18 @@
 /* Telefony */
 @media(max-width:560px){
   .pjw-pad{padding:46px 0}
-  .pjw-hero{padding:46px 0 40px}
+  .pjw-hero{padding:54px 0 40px}
   .pjw-wrap,.pjw-narrow{padding:0 18px}
+  .pjw-landing h1{font-size:clamp(27px,7.5vw,40px)}
+  .pjw-sub{font-size:16px}
   .pjw-btn{width:100%;max-width:360px}
   .pjw-statsgrid{gap:4px}
+  .pjw-statnum{font-size:26px}
   .pjw-badges{gap:10px 18px}
+}
+/* Bardzo wąskie telefony: statystyki w jednej kolumnie */
+@media(max-width:380px){
+  .pjw-statsgrid{grid-template-columns:1fr;gap:14px}
 }
 </style>
 
