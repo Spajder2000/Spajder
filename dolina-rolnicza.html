@@ -678,6 +678,17 @@ img{max-width:100%;display:block}
 /* Buttons: always center their own label/arrow cluster */
 .btn,.dr12-btn,.big-cta{justify-content:center;text-align:center}
 
+/* Refined CTA icon badges: modern soft chip instead of heavy solid discs,
+   consistent across every instance of the band. Pink bands (DR05–DR07)
+   use a white chip + maroon icon; the gray DR08 band keeps its green fill. */
+.cbar .cbar-badge{width:54px;height:54px;border-radius:15px;box-shadow:0 8px 20px rgba(30,32,44,.10)}
+.cbar:not(.dr08-band) .cbar-badge{background:#fff;border:1px solid rgba(152,19,26,.10)}
+.cbar:not(.dr08-band) .cbar-badge .ic{stroke:var(--red-acc);width:27px;height:27px;stroke-width:1.85}
+.cbar{padding:26px 32px}
+.cbar-cell{gap:16px}
+.cbar b{font-size:16px}
+.cbar .cbar-price{font-size:14.5px;letter-spacing:.01em}
+
 /* Tablet & phone: every CTA band collapses to a clean centered stack */
 @media(max-width:1000px){
   .band,.cbar,.dr08-band{justify-content:center;justify-items:center;text-align:center}
