@@ -503,7 +503,7 @@ img{max-width:100%;display:block}
 .gfeat{display:flex;gap:14px;align-items:flex-start}
 .gfeat-ic{width:52px;height:52px;border-radius:50%;background:var(--green-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .gfeat-ic .ic{stroke:#fff;width:26px;height:26px}
-.gfeat b{font-family:'Poppins';font-size:14.5px;font-weight:700;color:var(--ink);display:block;margin-bottom:4px}
+.gfeat b{font-family:'Poppins';font-size:14.5px;font-weight:700;color:var(--ink);display:block;margin-bottom:6px;min-height:2.4em}
 .gfeat span{font-size:12px;color:var(--body);line-height:1.45}
 .mbox{background:var(--red-acc);border-radius:16px;padding:20px 22px;color:#fff}
 .mbox-h{display:flex;gap:12px;align-items:center;margin-bottom:12px}
@@ -702,11 +702,16 @@ img{max-width:100%;display:block}
   .cbar .cbar-amt{font-size:24px}
 }
 
-/* Desktop: hairline dividers give the cream CTA band clear structure */
+/* Desktop: full-height hairline dividers + cleanly centered columns */
 @media(min-width:1001px){
-  .cbar .cbar-cell:nth-child(2),
-  .cbar .cbar-cta{border-left:1px solid rgba(152,19,26,.15);padding-left:28px}
+  .cbar{align-items:stretch}
+  .cbar-cell{align-items:center}
   .cbar-cta{justify-content:center}
+  .cbar .cbar-cell:nth-child(2),
+  .cbar .cbar-cta{border-left:1px solid rgba(152,19,26,.15);padding-left:30px}
+  /* gray band (DR08) uses a neutral divider instead of the rose one */
+  .dr08-band .cbar-cell:nth-child(2),
+  .dr08-band .cbar-cta{border-left-color:var(--line)}
 }
 </style>
 </head>
@@ -991,7 +996,7 @@ img{max-width:100%;display:block}
     <div class="pc-note"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg><div><b>Bez zobowiązań</b><span>Konsultacja nie zobowiązuje do współpracy. Otrzymujesz jasną rekomendację i kolejne kroki.</span></div></div>
    </div>
   </div>
-  <div class="dr08-band">
+  <div class="cbar dr08-band">
    <div class="cbar-cell"><span class="cbar-badge" style="background:var(--gtint)"><svg class="ic" viewBox="0 0 24 24" style="stroke:var(--green)"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span><div><b style="color:var(--green-deep);display:block;margin-bottom:4px">Nabór: luty 2027</b><span style="font-size:12.5px;color:var(--body)">Przygotowanie dobrej jakości projektu trwa od 3 do 6 miesięcy. <b style="color:var(--ink)">Nie czekaj na ostatnią chwilę.</b></span></div></div>
    <div class="cbar-cell"><span class="cbar-badge" style="background:var(--green-deep)"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg></span><div><b class="cbar-price">Konsultacja kwalifikacyjna</b><span class="cbar-amt">390 zł <i>brutto</i></span><span>60-minutowe spotkanie z ekspertem.</span></div></div>
    <div class="cbar-cta"><a class="btn" href="#rezerwacja">Umów konsultację <span class="ar"><svg class="ari" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><span class="cbar-note">Sprawdź, czy Twój pomysł ma szansę na dofinansowanie do 85%.</span></div>
