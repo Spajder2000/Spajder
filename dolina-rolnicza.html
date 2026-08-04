@@ -669,6 +669,39 @@ img{max-width:100%;display:block}
   .term-h b{font-size:14px}
 }
 </style>
+
+<style>
+/* ===================================================================
+   CTA alignment + mobile polish (loaded last so it wins)
+   =================================================================== */
+
+/* Buttons: always center their own label/arrow cluster */
+.btn,.dr12-btn,.big-cta{justify-content:center;text-align:center}
+
+/* Tablet & phone: every CTA band collapses to a clean centered stack */
+@media(max-width:1000px){
+  .band,.cbar,.dr08-band{justify-content:center;justify-items:center;text-align:center}
+  .band-main,.band-price,.cbar-cell{flex-direction:column;align-items:center;text-align:center;width:100%;gap:9px}
+  .band-price{border-left:none;padding-left:0}
+  .band-cta,.cbar-cta{width:100%;align-items:center}
+  .band-note,.cbar-note{text-align:center;max-width:360px}
+  .band-cta .btn,.cbar .btn,.dr08-band .btn{width:100%;max-width:420px}
+  .mbox{text-align:center}
+  .mbox-h{justify-content:center}
+}
+
+/* Phone: standalone CTAs go full-width and centered */
+@media(max-width:640px){
+  .hero-btn{width:100%;max-width:440px}
+  .dr12-btn{display:flex;width:100%;max-width:440px}
+  .dr12-facts{justify-content:center;gap:16px 26px}
+  .dr12-facts .f{justify-content:center}
+  .ft-contact .btn{width:100%;justify-content:center}
+  .cal-arrow{display:none}
+  .cbar-note,.band-note{max-width:100%}
+  .cbar-amt{font-size:24px}
+}
+</style>
 </head>
 <body>
 <section class="hero" id="top">
