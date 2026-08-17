@@ -712,6 +712,33 @@ img{max-width:100%;display:block}
   .cal-arrow{display:none}
   .cbar-note,.band-note{max-width:100%}
   .cbar .cbar-amt{font-size:24px}
+
+  /* --- Booking calendar: one row of 3 times per day, big tap targets --- */
+  .cal{display:block}
+  .cal-cols{display:block}
+  .cal-day{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px}
+  .cal-dh{grid-column:1/-1;display:flex;gap:7px;align-items:baseline;justify-content:flex-start;text-align:left;padding:0 0 8px}
+  .slot{margin-bottom:0;padding:13px 2px;font-size:13px;min-height:44px;display:flex;align-items:center;justify-content:center}
+  .slot.off{font-size:11px}
+
+  /* --- Legibility: no body text below ~11.5px on phones --- */
+  .p2-lab span,.d2-t span{font-size:11.5px}
+  .stat-l{font-size:11px;letter-spacing:.06em}
+  .pstep span{font-size:12px}
+
+  /* --- Comfortable tap targets for footer links --- */
+  .ft-col a{padding:12px 0}
+  .ft-bottom .lnks a{padding:6px 4px}
+}
+
+@media(max-width:360px){
+  .wrap{padding:0 15px}
+  .ft-inner{padding:28px 20px}
+  .ft-stats{gap:14px}
+  .ft-stats .s b{font-size:23px}
+  .hero h1{font-size:25px}
+  .cal-day{gap:6px}
+  .slot{font-size:12.5px;padding:12px 1px}
 }
 
 /* Desktop: full-height hairline dividers + cleanly centered columns */
